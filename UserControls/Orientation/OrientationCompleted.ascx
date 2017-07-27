@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="OrientationCompleted.ascx.cs" Inherits="UserControls_Orientation_OrientationCompleted" %>
+<asp:Literal ID="hideOrientation" runat="server"></asp:Literal>

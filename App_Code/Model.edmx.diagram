@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9a55b63afc4541a7980fd843ca4cbf50" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="diyptModel.MemberCommunityChat" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="diyptModel.MemberExercisePlan" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="diyptModel.MemberExercisePlanWeek" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="diyptModel.MemberFoodPlanWeek" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="diyptModel.MemberPlanWeekResult" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizeExerciseDayGroupName" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizeExerciseDayType" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizeExercisePlan" Width="1.5" PointX="0.75" PointY="6.375" />
+        <EntityTypeShape EntityType="diyptModel.PrizeExercisePlanWeekDay" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizeExercisePlanWeek" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="diyptModel.PrizeExerciseUnit" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizeExerciseUnitSetForDay" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizeExerciseUnitSet" Width="1.5" PointX="6.75" PointY="10.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizeFoodPlan" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="diyptModel.PrizeMemberLog" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizeMember" Width="1.5" PointX="11.75" PointY="4.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizeOrder" Width="1.5" PointX="8.75" PointY="11.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizePlanExperience" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizePlanLevel" Width="1.5" PointX="10.75" PointY="12.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizePlanLocation" Width="1.5" PointX="12.75" PointY="12.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizePollingTask" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizeSysConfig" Width="1.5" PointX="13.75" PointY="3.75" />
+        <AssociationConnector Association="diyptModel.FK_PrizeExercisePlanWeek_PrizeExercisePlan" />
+        <AssociationConnector Association="diyptModel.FK_PrizeExercisePlanWeek_PrizeFoodPlan" />
+        <EntityTypeShape EntityType="diyptModel.MemberEmail" Width="1.5" PointX="5.375" PointY="13.75" />
+        <EntityTypeShape EntityType="diyptModel.PrizeErrorLog" Width="1.5" PointX="14.375" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

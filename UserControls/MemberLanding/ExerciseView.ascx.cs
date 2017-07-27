@@ -1,0 +1,302 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Data;
+
+public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.UserControl
+{
+    protected List<Label> labels;
+    protected List<Label> lblDates;
+    protected List<Label> lblTimeDuration;
+    // protected HashSet<int> exerciseUnitSets;
+    protected PrizeDataAccess dbAccess = new PrizeDataAccess();
+    protected int currentPlanWeekId;
+    protected int currentPlanId;
+    protected int prevMemberPlanWeekId;
+    protected int nextMemberPlanWeekId;
+    protected int dayNumber;
+    protected List<string> strEquipments;
+    PrizeExercisePlanWeek planWeek;
+    MemberExercisePlanWeek memberPlanWeek;
+
+    protected void InitLables()
+    {
+        if (labels == null)
+        {
+            labels = new List<Label>();
+            labels.Add(lblExMon1);
+            labels.Add(lblExTue1);
+            labels.Add(lblExWed1);
+            labels.Add(lblExThu1);
+            labels.Add(lblExFri1);
+            labels.Add(lblExSat1);
+            labels.Add(lblExSun1);
+        }
+
+        if (lblDates == null)
+        {
+            lblDates = new List<Label>();
+            lblDates.Add(lblDay1);
+            lblDates.Add(lblDay2);
+            lblDates.Add(lblDay3);
+            lblDates.Add(lblDay4);
+            lblDates.Add(lblDay5);
+            lblDates.Add(lblDay6);
+            lblDates.Add(lblDay7);
+        }
+
+        if (lblTimeDuration == null)
+        {
+            lblTimeDuration = new List<Label>();
+            lblTimeDuration.Add(lblTimeDuration1);
+            lblTimeDuration.Add(lblTimeDuration2);
+            lblTimeDuration.Add(lblTimeDuration3);
+            lblTimeDuration.Add(lblTimeDuration4);
+            lblTimeDuration.Add(lblTimeDuration5);
+            lblTimeDuration.Add(lblTimeDuration6);
+            lblTimeDuration.Add(lblTimeDuration7);
+        }
+        //exerciseUnitSets = new HashSet<int>();
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (PrizeMemberAuthUtils.CurrentUserLogin() != true)
+            return;
+
+        InitLables();
+
+        int memberId = PrizeMemberAuthUtils.GetMemberID();
+
+        if (Request["MemberPlanWeekID"] != null)
+        {
+            int memberPlanWeekId;
+            int.TryParse(Request["MemberPlanWeekID"], out memberPlanWeekId);
+
+            memberPlanWeek = dbAccess.GetMemberPlanWeekById(memberPlanWeekId);
+
+            planWeek = dbAccess.GetExercisePlanWeek(memberPlanWeek.ExercisePlanWeekId);
+
+        }
+        else
+        {
+            memberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId); //(MemberExercisePlanWeek)Session["MemberPlanWeek"];
+            if (memberPlanWeek == null)
+            {
+                return;
+            }
+
+            planWeek = dbAccess.GetExercisePlanWeek(memberPlanWeek.ExercisePlanWeekId);
+        }
+
+        currentPlanWeekId = (int)memberPlanWeek.ExercisePlanWeekId;
+
+        LoadWeeklyInfo(memberId, planWeek, memberPlanWeek);
+
+        dbAccess.GetNextAndPrevPlanWeek(memberPlanWeek, ref prevMemberPlanWeekId, ref nextMemberPlanWeekId);
+        if (prevMemberPlanWeekId != -1)
+        {
+            dayPre.NavigateUrl = "/my-account/exercise-view?MemberPlanWeekID=" + prevMemberPlanWeekId;
+            if (planWeek != null)
+                dayPre.Text = "Week " + (memberPlanWeek.Week - 1 );
+        }
+        else
+            dayPre.Attributes.Add("class", "no-arrow");
+
+        if (nextMemberPlanWeekId != -1)
+        {
+            dayNext.NavigateUrl = "/my-account/exercise-view?MemberPlanWeekID=" + nextMemberPlanWeekId;
+            dayNext.Text = "Week " + (memberPlanWeek.Week + 1);
+
+        }
+        else
+            dayNext.Attributes.Add("class", "no-arrow");
+    }
+
+    protected void LoadWeeklyInfo(int memberID, PrizeExercisePlanWeek planWeek, MemberExercisePlanWeek memberPlanWeek)
+    {
+        dayNumber = PrizeCommonUtils.GetSystemDate().GetDayOfWeek();
+
+        int memberId = PrizeMemberAuthUtils.GetMemberID();
+
+        using (DIYPTEntities db = new DIYPTEntities())
+        {
+            db.Database.Connection.Open();
+
+            lblDateDuration.Text = PrizeCommonUtils.ParseDateToEnglish(memberPlanWeek.StartDate) + " - "
+                + PrizeCommonUtils.ParseDateToEnglish(memberPlanWeek.EndDate);
+
+            for (int i = 0; i < lblDates.Count; i++)
+            { 
+                lblDates[i].Text = PrizeCommonUtils.ParseDateToEnglish(memberPlanWeek.StartDate.AddDays(i));
+                HyperLink linkDay = FindControl("linkDay" + (i + 1)) as HyperLink;
+                if (linkDay != null && planWeek != null)
+                    linkDay.NavigateUrl = (String.Format("{0}?PlanWeekId={1}&MemberPlanWeekId={2}&PlanDayNumber={3}", PrizeConstants.URL_MEMBER_DAY_VIEW, planWeek.Id, memberPlanWeek.Id, i + 1));
+                else if (planWeek == null)
+                {
+                    //Orientation week
+                    linkDay.NavigateUrl = "/orientation/day-" + (i + 1);
+                    labels[i].Text = "Orientation day " + (i + 1);
+                }
+            }
+
+            int iWeekNum = memberPlanWeek.Week;
+            lblWeekNum.Text = "Week " + iWeekNum;
+
+            if (planWeek == null)
+            {
+                db.Database.Connection.Close();
+                return;
+            }
+
+
+
+            string[] planWeekDesc = planWeek.Description.Split('\n');
+            bool bEquipmentSession = false;
+            if (strEquipments == null)
+                strEquipments = new List<string>();
+            for (int i = 0; i < planWeekDesc.Length; i++)
+            {
+                string[] strKeyValue = planWeekDesc[i].Split(':');
+                if (strKeyValue != null && strKeyValue.Length > 1)
+                {
+                    if ((i == 1) && (strKeyValue[0].IndexOf("phase", StringComparison.OrdinalIgnoreCase) >= 0))
+                    {
+                        lblTrainingPhase.Text = strKeyValue[1];
+                        continue;
+                    }
+                    if ((i == 2) && (strKeyValue[0].IndexOf("phase duration", StringComparison.OrdinalIgnoreCase) >= 0 || (strKeyValue[0].IndexOf("training duration", StringComparison.OrdinalIgnoreCase) >= 0)))
+                    {
+                        lblDuration.Text = strKeyValue[1];
+                        continue;
+                    }
+
+                    if (strKeyValue[0].IndexOf("equipment", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        bEquipmentSession = true;
+                        strEquipments.Clear();
+                        continue;
+                    }
+                }
+
+                if (bEquipmentSession && !planWeekDesc[i].Equals(""))
+                {
+                    strEquipments.Add(planWeekDesc[i]);
+                    continue;
+                }
+            }
+
+
+            DataSet myPlan = dbAccess.GetExercisePlanInfo((int)planWeek.ExercisePlanId);
+            if (myPlan.Tables[0].Rows.Count == 0)
+            {
+                db.Database.Connection.Close();
+                return;
+            }
+
+            this.lblGoal.Text = myPlan.Tables[0].Rows[0]["ProgramName"].ToString();
+
+
+            LoadDailyInfo(memberId, planWeek);
+
+            PrizePlanProgram myProgram = (from c in db.PrizePlanPrograms
+                                          where c.Id == planWeek.ExercisePlanId
+                                          select c).FirstOrDefault();
+
+            db.Database.Connection.Close();
+        }
+    }
+
+    protected void LoadDailyInfo(int iMemberId, PrizeExercisePlanWeek planWeek)
+    {
+        //lblExercise.Text = dbWeek.Description;
+        //lblWeek.Text = dbWeek.Week.ToString();
+
+        foreach (var lbl in labels)
+            lbl.Text = PrizeConstants.STR_NO_TRAINNING;
+
+        DataSet ds = dbAccess.GetMemberWeeklyInfo(planWeek.Id);
+
+        int DayTimeTypeId1 = 0;
+        //int DayTimeTypeId2 = 0;
+        foreach (DataRow row in ds.Tables[0].Rows)
+        {
+            int iWeekDay = (int)row[0] - 1;
+            int iDayTimeType = (int)row[1]; //(int)reader.GetInt32(3);
+
+            if (iWeekDay < labels.Count)
+            {
+                int iIndex = iWeekDay;
+                //if (iDayTimeType == DayTimeTypeId2)
+                    //iIndex += 7;
+                labels[iIndex].Text = (String)row[2];//reader.GetString(1);
+            }
+
+            //if (iWeekDay == (int)(PrizeCommonUtils.GetSystemDate().DayOfWeek))
+                //exerciseUnitSets.Add((int)row[4]); //((int)reader.GetInt32(4));
+        }
+
+        HtmlControl temp = (HtmlControl)FindControl("day" + (int)(PrizeCommonUtils.GetSystemDate().GetDayOfWeek()));
+        HtmlControl tempe = (HtmlControl)FindControl("day" + (int)(PrizeCommonUtils.GetSystemDate().GetDayOfWeek()) + "e");
+        /*if (temp != null)
+        {
+            temp.Attributes.Add("style", "background-color: #eee");
+            tempe.Attributes.Add("style", "background-color: #eee");
+        }
+        */
+        for (int i = 0; i < 7; i++)
+        {
+            DataSet dsDaily = dbAccess.GetExerciseUnitsSetDetail(planWeek.Id, i + 1);
+            int iTimeDuration = 0;
+            for (int j = 1; j < dsDaily.Tables.Count; j++)
+            {
+                foreach (DataRow row in dsDaily.Tables[j].Rows)
+                {
+                    iTimeDuration += int.Parse(row["TimeDuration"].ToString());
+                }
+            }
+            iTimeDuration = iTimeDuration / 60;
+            lblTimeDuration[i].Text = "" + iTimeDuration;
+        }
+    }
+
+
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(String.Format("{0}?PlanWeekId={1}&MemberPlanWeek={2}&PlanDayNumber={3}", PrizeConstants.URL_MEMBER_DAY_VIEW, currentPlanWeekId, memberPlanWeek.Id, dayNumber));
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(String.Format("{0}?PlanWeekId={1}&PlanDayNumber={2}", PrizeConstants.URL_MEMBER_PROGRESS_STATUS, currentPlanWeekId, dayNumber));
+    }
+
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        int memberId = PrizeMemberAuthUtils.GetMemberID();
+
+        PrizeExercisePlan plan = dbAccess.GetNotStartedExercisePlan(memberId);
+        if (plan == null)
+        {
+            MemberExercisePlan curMemberPlan = dbAccess.GetCurrentMemberPlan(memberId);
+            if (curMemberPlan != null)
+            {
+                plan = dbAccess.GetExercisePlan(curMemberPlan.ExercisePlanId);
+            }
+            if (plan == null)
+                plan = dbAccess.GetLastFinishedExercisePlan(memberId);
+        }
+
+        PrizeExercisePlan nextPlan = dbAccess.GetNextExercisePlan(plan);
+
+        if (nextPlan != null)
+            Response.Redirect(String.Format("{0}?targetplanid={1}", PrizeConstants.URL_MEMBER_BUY_PLAN, nextPlan.Id));
+
+    }
+
+}

@@ -243,3 +243,21 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/Xslt
+/Views
+/Umbraco_Client
+/Umbraco
+/Script
+/member_images
+/Media
+/Masterpages
+/js
+/Install
+/images
+/html
+/fonts
+/data
+/Css
+/Config
+/App_Data
+/App_Browsers
