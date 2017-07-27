@@ -42,7 +42,7 @@
                         <div class="plan-name"><%#DataBinder.Eval(Container.DataItem,"Sequence")+"."%><a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1A_<%# Container.ItemIndex %>'><%#DataBinder.Eval(Container.DataItem,"Exercise")%></a></div>
                         <div class="plan-info">or alternatively <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1B_<%# Container.ItemIndex %>'><%#DataBinder.Eval(Container.DataItem,"AlternateExercise")%></a></div>
                         <div class="plan-info">
-                            <span class="c_b">Reps & Sets:</span><%#DataBinder.Eval(Container.DataItem,"Reps")%>
+                            <span class="c_b">Reps & Sets: </span><%#DataBinder.Eval(Container.DataItem,"Reps")%> x <%#DataBinder.Eval(Container.DataItem,"Trainning_Set")%> Sets
                         </div>
                         <div class="plan-info">
                             <span class="c_b">Rest (sec):</span> </span><%#DataBinder.Eval(Container.DataItem,"Rest")%>

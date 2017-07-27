@@ -178,10 +178,11 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
         {
             var temp = newNode.GetProperty("step1Image").Value;
             var med = umbraco.uQuery.GetMedia(int.Parse(temp));
-            string url = med.getProperty("umbracoFile").Value.ToString();
-            ((Image)e.Item.FindControl("image1")).ImageUrl = url;
-
-
+            if (med != null)
+            {
+                string url = med.getProperty("umbracoFile").Value.ToString();
+                ((Image)e.Item.FindControl("image1")).ImageUrl = url;
+            }
         }
     }
 

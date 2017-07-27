@@ -76,7 +76,7 @@ display: block;
                     <div class="col-3" runat="server" ID="carbo">
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="images/icon-carbohydrate.svg">
+                                <img src="/images/icon-carbohydrate.svg">
                             </div>
                             <div class="col-md-6 pull-md-1 right-0-m-s">
                                 <p>Carbohydrate</p>
