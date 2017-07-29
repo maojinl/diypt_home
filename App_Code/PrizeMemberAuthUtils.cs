@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using System.Web.Security;
 
 /// <summary>
@@ -175,5 +176,37 @@ public class PrizeMemberAuthUtils
         if (iIndex < questionAnwsers.Length)
             sRet = questionAnwsers[iIndex];
         return sRet;
+    }
+
+    static public int GetMemberWeek1NotifiedTimes(PrizeMember member)
+    {
+        char c = GetMemberSetting(member.UserSettings, PrizeConstants.MemberSettings.ShowedWeek1NotificationTimes);
+        StringBuilder sb = new StringBuilder();
+        sb.Append(c);
+        int i = int.Parse(sb.ToString());
+        return i;
+    }
+
+    static public int AddMemberWeek1NotifiedTimes(PrizeMember member)
+    {
+        using (DIYPTEntities db = new DIYPTEntities())
+        {
+            PrizeMember memberUpdating = (from table in db.PrizeMembers
+                                            where table.UmbracoId == member.UmbracoId
+                                          select table).FirstOrDefault();
+            char c = GetMemberSetting(memberUpdating.UserSettings, PrizeConstants.MemberSettings.ShowedWeek1NotificationTimes);
+            StringBuilder sb = new StringBuilder();
+            sb.Append(c);
+            int i = int.Parse(sb.ToString());
+            if (i < 9)
+                i++;
+            sb.Clear();
+            sb.Append(i.ToString());
+            string s = string.Copy(memberUpdating.UserSettings);
+            SetMemberSetting(ref s, PrizeConstants.MemberSettings.ShowedWeek1NotificationTimes, sb[0]);
+            memberUpdating.UserSettings = s;
+            db.SaveChanges();
+            return i;
+        }
     }
 }

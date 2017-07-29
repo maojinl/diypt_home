@@ -29,14 +29,13 @@ public class PrizeConstants
     {
         ShowProgram,
         ShowLevel,
-        ShowDDD
+        ShowedWeek1NotificationTimes
     }
 
     public enum MemberTasksConfig
     {
         Login21DayEmail,
-        ShowLevel,
-        ShowDDD
+        Task1
     }
 
     public static readonly string[] WEEK_DAY_NAMES =

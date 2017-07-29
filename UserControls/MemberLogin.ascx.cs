@@ -51,9 +51,7 @@ public partial class UserControls_MemberLogin : System.Web.UI.UserControl
             {
                 Session["taRegistration"] = uMember.Email;
                 System.Web.Security.FormsAuthentication.SetAuthCookie(uMember.LoginName, true);
-                Member.AddMemberToCache(uMember);   //, true, new TimeSpan(0, timeout, 0));
-                Member uMember1 = Member.GetCurrentMember();
-                //MemberExercisePlanWeek memberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(uMember.Id);
+                Member.AddMemberToCache(uMember);
                 MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(uMember.Id);
                 if (myPlan == null)
                     Response.Redirect(String.Format("{0}?loginName={1}&memberId={2}", PrizeConstants.URL_MEMBER_LANDING, uMember.LoginName, uMember.Id));
