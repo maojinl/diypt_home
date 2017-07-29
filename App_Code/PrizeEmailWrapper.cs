@@ -148,17 +148,48 @@ public class PrizeEmailWrapper
 					MemberPlanWeekResult memberPlanWeekResult = (from c in db.MemberPlanWeekResults
 																 where c.MemberExercisePlanWeekId == memberPlanWithWeek.MemberPlanWeekId
 																 select c).FirstOrDefault();
-					if (memberPlanWeekResult.Tasks != null && memberPlanWeekResult.Tasks.Length > 1 && memberPlanWeekResult.Tasks[1] == '0')
+					if (memberPlanWeekResult.Tasks != null && memberPlanWeekResult.Tasks.Length > 1 && memberPlanWeekResult.Tasks[0] == '0')
 					{
 						Prepare1DaysPrior2Week4Email(memberPlanWithWeek.MemberId);
 						char[] arr = memberPlanWeekResult.Tasks.ToArray();
-						arr[1] = '1';
+						arr[0] = '1';
 						memberPlanWeekResult.Tasks = new string(arr);
 						
-					}
-					
+					}	
 				}
-				db.SaveChanges();
+
+                // send email 1 day prior to week 11
+                availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
+                memberPlanWithWeeks = from c in db.MemberExercisePlans
+                                          join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
+                                          where c.Status.Equals(availableStatus) && b.Week == 11
+                                          select new
+                                          {
+                                              MemberId = c.MemberId,
+                                              MemberPlanWeekId = b.Id,
+                                              WeekStartDate = b.StartDate,
+                                          };
+
+                foreach (var memberPlanWithWeek in memberPlanWithWeeks)
+                {
+                    DateTime now = PrizeCommonUtils.GetSystemDate();
+                    if (now.AddDays(1) < memberPlanWithWeek.WeekStartDate)
+                        continue;
+
+                    MemberPlanWeekResult memberPlanWeekResult = (from c in db.MemberPlanWeekResults
+                                                                 where c.MemberExercisePlanWeekId == memberPlanWithWeek.MemberPlanWeekId
+                                                                 select c).FirstOrDefault();
+                    if (memberPlanWeekResult.Tasks != null && memberPlanWeekResult.Tasks.Length > 1 && memberPlanWeekResult.Tasks[0] == '0')
+                    {
+                        PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberPlanWithWeek.MemberId);
+                        PrepareSimpleEmailByType(member, PrizeConstants.EmailType.OneDaysPrior2Week11, "Night before Day 1 of Week 11", member.Firstname);
+                        char[] arr = memberPlanWeekResult.Tasks.ToArray();
+                        arr[0] = '1';
+                        memberPlanWeekResult.Tasks = new string(arr);
+
+                    }
+                }
+                db.SaveChanges();
 				return;
 			}
 		}

@@ -20,23 +20,20 @@ public class PrizeConstants
     public enum TasksType
     {
         DailyRedoAble,
-        DailyOnce,
-        WeeklyRedoAble,
-        WeeklyOnce
+        DailyOnce
     }
 
     public enum MemberSettings
     {
         ShowProgram,
         ShowLevel,
-        ShowDDD
+        ShowedWeek1NotificationTimes
     }
 
     public enum MemberTasksConfig
     {
         Login21DayEmail,
-        ShowLevel,
-        ShowDDD
+        Task1
     }
 
     public static readonly string[] WEEK_DAY_NAMES =
@@ -86,7 +83,8 @@ public class PrizeConstants
     {
         WelcomeEmail = 1,
         TwoDaysPrior2Start,
-        OneDaysPrior2Week4
+        OneDaysPrior2Week4,
+        OneDaysPrior2Week11
     }
 
     public enum EmailStatus
