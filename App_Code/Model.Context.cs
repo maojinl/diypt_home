@@ -39,7 +39,6 @@ public partial class DIYPTEntities : DbContext
     public virtual DbSet<PrizeExerciseUnitSet> PrizeExerciseUnitSets { get; set; }
     public virtual DbSet<PrizeFoodPlan> PrizeFoodPlans { get; set; }
     public virtual DbSet<PrizeMemberLog> PrizeMemberLogs { get; set; }
-    public virtual DbSet<PrizeMember> PrizeMembers { get; set; }
     public virtual DbSet<PrizeOrder> PrizeOrders { get; set; }
     public virtual DbSet<PrizePlanExperience> PrizePlanExperiences { get; set; }
     public virtual DbSet<PrizePlanLevel> PrizePlanLevels { get; set; }
@@ -48,4 +47,5 @@ public partial class DIYPTEntities : DbContext
     public virtual DbSet<PrizeSysConfig> PrizeSysConfigs { get; set; }
     public virtual DbSet<MemberEmail> MemberEmails { get; set; }
     public virtual DbSet<PrizeErrorLog> PrizeErrorLogs { get; set; }
+    public virtual DbSet<PrizeMember> PrizeMembers { get; set; }
 }

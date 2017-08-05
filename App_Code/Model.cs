@@ -276,6 +276,8 @@ public partial class PrizeMember
     public string Questions { get; set; }
     public Nullable<System.DateTime> RegisterDateTime { get; set; }
     public string UserSettings { get; set; }
+    public string Tasks { get; set; }
+    public int ContinuousLogin { get; set; }
 }
 
 public partial class PrizeMemberLog

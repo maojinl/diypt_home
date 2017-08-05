@@ -53,6 +53,10 @@ public partial class UserControls_MemberLogin : System.Web.UI.UserControl
                 System.Web.Security.FormsAuthentication.SetAuthCookie(uMember.LoginName, true);
                 Member.AddMemberToCache(uMember);
                 MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(uMember.Id);
+                int myPlanId = 0;
+                if (myPlan != null)
+                    myPlanId = myPlan.ExercisePlanId;
+                PrizeMemberAuthUtils.SaveMemberLoginLog(uMember.Id, myPlanId, this.ToString(), "Login");
                 if (myPlan == null)
                     Response.Redirect(String.Format("{0}?loginName={1}&memberId={2}", PrizeConstants.URL_MEMBER_LANDING, uMember.LoginName, uMember.Id));
                 else

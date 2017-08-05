@@ -8,21 +8,6 @@ using System.Web;
 /// </summary>
 public static class PrizeLogs
 {
-    static public void SaveMemberLog(int memberId, int? memberPlanId, string sWebPage, string sEvent, string sError)
-    {
-        using (DIYPTEntities db = new DIYPTEntities())
-        {
-            var log = new PrizeMemberLog();
-            log.MemberExercisePlanId = memberId;
-            log.MemberExercisePlanId = memberPlanId;
-            log.Page = sWebPage; //HttpContext.Current.Request.Url.AbsolutePath;
-            log.LogDate = PrizeCommonUtils.GetSystemDate();
-            log.Event = sEvent;
-            log.Error = sError;
-            db.PrizeMemberLogs.Add(log);
-            db.SaveChanges();
-        }
-    }
 
 	static public void SaveSystemErrorLog(int memberId, int? memberPlanId, PrizeConstants.SystemErrorLevel level, 
 		string sWebPage, string sEvent, string sError, string sInnerError)

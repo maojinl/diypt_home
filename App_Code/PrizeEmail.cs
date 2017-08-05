@@ -66,8 +66,12 @@ Comment:
 			nodeId = 6671;
 		else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week4)
 			nodeId = 5377;
+        else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week11)
+            nodeId = 9676;
+        else if (emailType == PrizeConstants.EmailType.ContinuousLogin)
+            nodeId = 6672;
 
-		var node = new Node(nodeId);
+        var node = new Node(nodeId);
 		var templateNode = new Node(templateNodeId);
 		string header = templateNode.GetProperty("templateheader").Value;
 		string footer = templateNode.GetProperty("templateFooter").Value;

@@ -72,7 +72,7 @@
             <span class="plan-time c_b">
                 <asp:Label ID="lblTimeDuration2" runat="server"></asp:Label>
                 mins</span></div>
-        <asp:Repeater ID="DailyTaskRepeater2" runat="server">
+        <asp:Repeater ID="DailyTaskRepeater2" runat="server" OnItemDataBound="DailyTaskRepeater1_ItemDataBound" >
             <ItemTemplate>
 
                 <div class="row row-plan">
@@ -114,7 +114,7 @@
             <span class="plan-time c_b">
                 <asp:Label ID="lblTimeDuration3" runat="server"></asp:Label>
                 mins</span></div>
-        <asp:Repeater ID="DailyTaskRepeater3" runat="server">
+        <asp:Repeater ID="DailyTaskRepeater3" runat="server" OnItemDataBound="DailyTaskRepeater1_ItemDataBound" >
             <ItemTemplate>
 
                 <div class="row row-plan">
@@ -123,8 +123,8 @@
                             <asp:Image ID="image1" runat="server" class="img-fluid" ImageUrl='<%#DataBinder.Eval(Container.DataItem,"Exercise")%>' /></a>
                     </div>
                     <div class="col-sm-4">
-                        <div class="plan-name"><%#DataBinder.Eval(Container.DataItem,"Sequence")+"."%><a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup2A_<%# Container.ItemIndex %>'><%#DataBinder.Eval(Container.DataItem,"Exercise")%></a></div>
-                        <div class="plan-info">or alternatively <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup2B_<%# Container.ItemIndex %>'><%#DataBinder.Eval(Container.DataItem,"AlternateExercise")%></a></div>
+                        <div class="plan-name"><%#DataBinder.Eval(Container.DataItem,"Sequence")+"."%><a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup3A_<%# Container.ItemIndex %>'><%#DataBinder.Eval(Container.DataItem,"Exercise")%></a></div>
+                        <div class="plan-info">or alternatively <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup3B_<%# Container.ItemIndex %>'><%#DataBinder.Eval(Container.DataItem,"AlternateExercise")%></a></div>
                         <div class="plan-info">
                             <span class="c_b">Reps & Sets:</span><%#DataBinder.Eval(Container.DataItem,"Reps")%>
                         </div>

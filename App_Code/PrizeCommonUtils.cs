@@ -15,6 +15,12 @@ public static class PrizeCommonUtils
         return dt;
     }
 
+    static public DateTime GetDayEnd(DateTime date)
+    {
+        DateTime dt = DateTime.Parse(date.ToString("yyyy-MM-dd") + " 23:59:59");
+        return dt;
+    }
+
     static public DateTime GetNextWeekStart(DateTime date)
     {
         int remainDays = 7 - (int)date.GetDayOfWeek() + 1;

@@ -67,8 +67,7 @@ public class RegisteredEvents: ApplicationEventHandler
                 if (!PrizeMemberPlanManager.UpdateMemberPlans())
                     throw new Exception();
 
-                PrizeEmailWrapper emailWrapper = new PrizeEmailWrapper();
-                emailWrapper.DailyEmailTask();
+                PrizeEmailWrapper.DailyEmailTask();
 
                 if (task == null)
                 {

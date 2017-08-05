@@ -115,6 +115,7 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
         {
             for (int i = 0; i < tblDayGroupInfo.Rows.Count && i < divs.Count; i++)
             {
+                counter = 0;
                 divs[i].Visible = true;
                 int iTimeDuration = 0;
                 labels[i].Text = tblDayGroupInfo.Rows[i]["DayGroupName"].ToString();
@@ -160,7 +161,7 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
         foreach (Node childNode in node.Children)
         {
             var child = childNode;
-            if (child.Name == nodeName)
+            if (child.Name.ToLower().TrimEnd() == nodeName.ToLower().TrimEnd())
             {
                 nodeId = child.Id;
                 break;

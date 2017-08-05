@@ -72,6 +72,8 @@ public class PrizeConstants
 
     public const int MAX_ORIENTATION_QUESTION = 70;
 
+    public const int MAX_CONTINUOUS_LOGIN = 21;
+
     public const String WALLET_USER_NAME = "jerry.mao.au-facilitator_api1.gmail.com";
     public const String WALLET_PASSWORD = "T38GAH7S9YD7HDFG";
     public const String WALLET_SIGNATURE = "AFcWxV21C7fd0v3bYYYRCpSSRl31AAb7Ba0pk35icr1MyMz8i3EN1IOW";
@@ -84,7 +86,8 @@ public class PrizeConstants
         WelcomeEmail = 1,
         TwoDaysPrior2Start,
         OneDaysPrior2Week4,
-        OneDaysPrior2Week11
+        OneDaysPrior2Week11,
+        ContinuousLogin
     }
 
     public enum EmailStatus

@@ -102,7 +102,7 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
         {
             dayPre.NavigateUrl = "/my-account/exercise-view?MemberPlanWeekID=" + prevMemberPlanWeekId;
             if (planWeek != null)
-                dayPre.Text = "Week " + (memberPlanWeek.Week - 1 );
+                dayPre.Text = "Week " + (memberPlanWeek.Week -1);
         }
         else
             dayPre.Attributes.Add("class", "no-arrow");
@@ -110,8 +110,10 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
         if (nextMemberPlanWeekId != -1)
         {
             dayNext.NavigateUrl = "/my-account/exercise-view?MemberPlanWeekID=" + nextMemberPlanWeekId;
-            dayNext.Text = "Week " + (memberPlanWeek.Week + 1);
-
+            if (planWeek != null)
+                dayNext.Text = "Week " + (memberPlanWeek.Week + 1);
+            else
+                dayNext.Text = "Week 1";
         }
         else
             dayNext.Attributes.Add("class", "no-arrow");
@@ -131,7 +133,7 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
                 + PrizeCommonUtils.ParseDateToEnglish(memberPlanWeek.EndDate);
 
             for (int i = 0; i < lblDates.Count; i++)
-            { 
+            {
                 lblDates[i].Text = PrizeCommonUtils.ParseDateToEnglish(memberPlanWeek.StartDate.AddDays(i));
                 HyperLink linkDay = FindControl("linkDay" + (i + 1)) as HyperLink;
                 if (linkDay != null && planWeek != null)
@@ -143,17 +145,18 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
                     labels[i].Text = "Orientation day " + (i + 1);
                 }
             }
-
-            int iWeekNum = memberPlanWeek.Week;
-            lblWeekNum.Text = "Week " + iWeekNum;
-
             if (planWeek == null)
             {
+                lblWeekNum.Text = "Week 0";
+                PrizeDataAccess dba = new PrizeDataAccess();
+                if (dba.MemberInOrientation(PrizeMemberAuthUtils.GetMemberID()))
+                     topInfo.Visible = false;
                 db.Database.Connection.Close();
                 return;
             }
 
-
+            int iWeekNum = memberPlanWeek.Week;
+            lblWeekNum.Text = "Week " + iWeekNum;
 
             string[] planWeekDesc = planWeek.Description.Split('\n');
             bool bEquipmentSession = false;
@@ -190,6 +193,18 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
                 }
             }
 
+            if (strEquipments != null && strEquipments.Count > 0)
+            {
+                string tempLiteral = "<ul class='equipment-list'>";
+                foreach (var e in strEquipments)
+                {
+                    tempLiteral += "<li>" + e + "</li>";
+                }
+                tempLiteral += "</ul>";
+                equipmentLiteral.Text = tempLiteral;
+                equipmentLiteralMobile.Text = tempLiteral;
+                equipmentDiv.Visible = true;
+            }
 
             DataSet myPlan = dbAccess.GetExercisePlanInfo((int)planWeek.ExercisePlanId);
             if (myPlan.Tables[0].Rows.Count == 0)
@@ -203,9 +218,10 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
 
             LoadDailyInfo(memberId, planWeek);
 
-            PrizePlanProgram myProgram = (from c in db.PrizePlanPrograms
-                                          where c.Id == planWeek.ExercisePlanId
-                                          select c).FirstOrDefault();
+            //PrizePlanProgram myProgram = (from c in db.PrizePlanPrograms
+            //                              where c.Id == planWeek.ExercisePlanId
+            //                              select c).FirstOrDefault();
+            
 
             db.Database.Connection.Close();
         }
@@ -232,12 +248,12 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
             {
                 int iIndex = iWeekDay;
                 //if (iDayTimeType == DayTimeTypeId2)
-                    //iIndex += 7;
+                //iIndex += 7;
                 labels[iIndex].Text = (String)row[2];//reader.GetString(1);
             }
 
             //if (iWeekDay == (int)(PrizeCommonUtils.GetSystemDate().DayOfWeek))
-                //exerciseUnitSets.Add((int)row[4]); //((int)reader.GetInt32(4));
+            //exerciseUnitSets.Add((int)row[4]); //((int)reader.GetInt32(4));
         }
 
         HtmlControl temp = (HtmlControl)FindControl("day" + (int)(PrizeCommonUtils.GetSystemDate().GetDayOfWeek()));

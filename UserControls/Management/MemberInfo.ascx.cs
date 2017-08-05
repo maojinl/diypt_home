@@ -131,12 +131,11 @@ public partial class UserControls_Management_MemberInfo : System.Web.UI.UserCont
 
     protected void Send(object sender, EventArgs e)
     {
-        PrizeEmailWrapper wrapper = new PrizeEmailWrapper();
         MembershipUser aMember;
 
         PrizeMember member = PrizeMemberAuthUtils.GetMemberData(1066);
-       
-        wrapper.SendWelcomeEmail(member, "loginname");
+
+        PrizeEmailWrapper.SendWelcomeEmail(member, "loginname");
     }
 
     protected void OnRowCancelingEdit(object sender, EventArgs e)

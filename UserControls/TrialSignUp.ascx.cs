@@ -93,8 +93,7 @@ public partial class UserControls_TrialSignUp : System.Web.UI.UserControl
                     string sLocation = ddlLocation.Text;
                     string sProgram = ddlProgram.Text;
                     string sLevel = ddlLevel.Text;
-                    PrizeEmailWrapper emailWrapper = new PrizeEmailWrapper();
-                    emailWrapper.SendWelcomeEmail(PrizeMemberAuthUtils.GetMemberData(uMember.Id), uMember.LoginName);
+                    PrizeEmailWrapper.SendWelcomeEmail(PrizeMemberAuthUtils.GetMemberData(uMember.Id), uMember.LoginName);
                     Response.Redirect(String.Format("{0}?program={1}&location={2}&level={3}&experience={4}&Trial=1", PrizeConstants.URL_MEMBER_BUY_PLAN, sProgram, sLocation, sLevel, "Semester 1"));
                     return;
                 }

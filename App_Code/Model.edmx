@@ -279,6 +279,8 @@
           <Property Name="Questions" Type="varchar(max)" />
           <Property Name="RegisterDateTime" Type="datetime" />
           <Property Name="UserSettings" Type="varchar" MaxLength="20" />
+          <Property Name="Tasks" Type="char" MaxLength="32" />
+          <Property Name="ContinuousLogin" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PrizeOrders">
           <Key>
@@ -453,7 +455,6 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <EntitySet Name="PrizeExerciseUnitSets" EntityType="diyptModel.PrizeExerciseUnitSet" />
           <EntitySet Name="PrizeFoodPlans" EntityType="diyptModel.PrizeFoodPlan" />
           <EntitySet Name="PrizeMemberLogs" EntityType="diyptModel.PrizeMemberLog" />
-          <EntitySet Name="PrizeMembers" EntityType="diyptModel.PrizeMember" />
           <EntitySet Name="PrizeOrders" EntityType="diyptModel.PrizeOrder" />
           <EntitySet Name="PrizePlanExperiences" EntityType="diyptModel.PrizePlanExperience" />
           <EntitySet Name="PrizePlanLevels" EntityType="diyptModel.PrizePlanLevel" />
@@ -474,6 +475,7 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           </AssociationSet>
           <EntitySet Name="MemberEmails" EntityType="diyptModel.MemberEmail" />
           <EntitySet Name="PrizeErrorLogs" EntityType="diyptModel.PrizeErrorLog" />
+          <EntitySet Name="PrizeMembers" EntityType="diyptModel.PrizeMember" />
           </EntityContainer>
         <EntityType Name="PrizePlanProgram">
           <Key>
@@ -699,42 +701,6 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="Event" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Error" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="PrizeMember">
-          <Key>
-            <PropertyRef Name="UmbracoId" />
-          </Key>
-          <Property Name="UmbracoId" Type="Int32" Nullable="false" />
-          <Property Name="Firstname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="DoB" Type="DateTime" Precision="3" />
-          <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="StreetAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Suburb" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Postcode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Height" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Weight" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Waist" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="BodyFat" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="GoalDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="GoalWeight" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="GoalWaist" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="GoalBodyFat" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Twiter" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
-          <Property Name="Facebook" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
-          <Property Name="Instagram" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
-          <Property Name="WhyDIYPT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Questions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="RegisterDateTime" Type="DateTime" Precision="3" />
-          <Property Name="UserSettings" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="PrizeOrder">
           <Key>
             <PropertyRef Name="OrderId" />
@@ -861,6 +827,44 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="Event" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Error" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="InnerError" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PrizeMember">
+          <Key>
+            <PropertyRef Name="UmbracoId" />
+          </Key>
+          <Property Name="UmbracoId" Type="Int32" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DoB" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="StreetAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Suburb" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Postcode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Height" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Weight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Waist" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BodyFat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GoalDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GoalWeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GoalWaist" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GoalBodyFat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Twiter" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="Facebook" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="Instagram" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="WhyDIYPT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Questions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RegisterDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UserSettings" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tasks" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Name="ContinuousLogin" Type="Int32" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1102,43 +1106,6 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PrizeMembers">
-            <EntityTypeMapping TypeName="diyptModel.PrizeMember">
-              <MappingFragment StoreEntitySet="PrizeMembers">
-                <ScalarProperty Name="UserSettings" ColumnName="UserSettings" />
-                <ScalarProperty Name="RegisterDateTime" ColumnName="RegisterDateTime" />
-                <ScalarProperty Name="Questions" ColumnName="Questions" />
-                <ScalarProperty Name="WhyDIYPT" ColumnName="WhyDIYPT" />
-                <ScalarProperty Name="Instagram" ColumnName="Instagram" />
-                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
-                <ScalarProperty Name="Twiter" ColumnName="Twiter" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="GoalBodyFat" ColumnName="GoalBodyFat" />
-                <ScalarProperty Name="GoalWaist" ColumnName="GoalWaist" />
-                <ScalarProperty Name="GoalWeight" ColumnName="GoalWeight" />
-                <ScalarProperty Name="GoalDescription" ColumnName="GoalDescription" />
-                <ScalarProperty Name="BodyFat" ColumnName="BodyFat" />
-                <ScalarProperty Name="Waist" ColumnName="Waist" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Suburb" ColumnName="Suburb" />
-                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="DoB" ColumnName="DoB" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
-                <ScalarProperty Name="UmbracoId" ColumnName="UmbracoId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PrizeOrders">
             <EntityTypeMapping TypeName="diyptModel.PrizeOrder">
               <MappingFragment StoreEntitySet="PrizeOrders">
@@ -1235,6 +1202,45 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
                 <ScalarProperty Name="MemberExercisePlanId" ColumnName="MemberExercisePlanId" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrizeMembers">
+            <EntityTypeMapping TypeName="diyptModel.PrizeMember">
+              <MappingFragment StoreEntitySet="PrizeMembers">
+                <ScalarProperty Name="ContinuousLogin" ColumnName="ContinuousLogin" />
+                <ScalarProperty Name="Tasks" ColumnName="Tasks" />
+                <ScalarProperty Name="UserSettings" ColumnName="UserSettings" />
+                <ScalarProperty Name="RegisterDateTime" ColumnName="RegisterDateTime" />
+                <ScalarProperty Name="Questions" ColumnName="Questions" />
+                <ScalarProperty Name="WhyDIYPT" ColumnName="WhyDIYPT" />
+                <ScalarProperty Name="Instagram" ColumnName="Instagram" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Twiter" ColumnName="Twiter" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="GoalBodyFat" ColumnName="GoalBodyFat" />
+                <ScalarProperty Name="GoalWaist" ColumnName="GoalWaist" />
+                <ScalarProperty Name="GoalWeight" ColumnName="GoalWeight" />
+                <ScalarProperty Name="GoalDescription" ColumnName="GoalDescription" />
+                <ScalarProperty Name="BodyFat" ColumnName="BodyFat" />
+                <ScalarProperty Name="Waist" ColumnName="Waist" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DoB" ColumnName="DoB" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="UmbracoId" ColumnName="UmbracoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

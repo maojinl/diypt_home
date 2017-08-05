@@ -209,4 +209,41 @@ public class PrizeMemberAuthUtils
             return i;
         }
     }
+
+    static public void SaveMemberLoginLog(int memberId, int? memberPlanId, string sWebPage, string sEvent, string sError = null)
+    {
+        using (DIYPTEntities db = new DIYPTEntities())
+        {
+            PrizeMember member = (from table in db.PrizeMembers
+                                          where table.UmbracoId == memberId
+                                          select table).FirstOrDefault();
+
+            var log = new PrizeMemberLog();
+            log.MemberId = memberId;
+            log.MemberExercisePlanId = memberPlanId;
+            log.Page = sWebPage; //HttpContext.Current.Request.Url.AbsolutePath;
+            log.LogDate = PrizeCommonUtils.GetSystemDate();
+            log.Event = sEvent;
+            log.Error = sError;
+            db.PrizeMemberLogs.Add(log);
+
+            DateTime dtYesterdayStart = PrizeCommonUtils.GetDayStart(log.LogDate.AddDays(-1));
+            DateTime dtYesterdayEnd = PrizeCommonUtils.GetDayEnd(log.LogDate.AddDays(-1));
+
+            PrizeMemberLog yesterdayLogin = (from table in db.PrizeMemberLogs
+                                             where table.MemberId == memberId && table.LogDate >= dtYesterdayStart && table.LogDate <= dtYesterdayEnd
+                                             select table).FirstOrDefault();
+            if (yesterdayLogin != null && member.ContinuousLogin < PrizeConstants.MAX_CONTINUOUS_LOGIN)
+                member.ContinuousLogin++;
+            else
+                member.ContinuousLogin = 1;
+
+            if (member.ContinuousLogin >= PrizeConstants.MAX_CONTINUOUS_LOGIN)
+            {
+                PrizeEmailWrapper.SendMemberConintuousLoginEmail(member);
+            }
+
+            db.SaveChanges();
+        }
+    }
 }

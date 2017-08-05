@@ -15,13 +15,13 @@ public class PrizeEmailWrapper
         //        
     }
 
-    public void SendWelcomeEmail(PrizeMember member, string loginName)
+    static public void SendWelcomeEmail(PrizeMember member, string loginName)
     {
         int emailId = PrepareSimpleEmailByType(member, PrizeConstants.EmailType.WelcomeEmail, "Welcome", member.Firstname, loginName);
        // SenEmailById(emailId);
     }
 
-    public void Prepare1DaysPrior2Week4Email(int memberId)
+    static public void Prepare1DaysPrior2Week4Email(int memberId)
     {
 		using (var db = new DIYPTEntities())
 		{
@@ -54,12 +54,12 @@ public class PrizeEmailWrapper
 		}
     }
 
-    public void SendTestEmail(String content)
+    static public void SendTestEmail(String content)
     {
         return;
     }
 
-    public int PrepareSimpleEmailByType(PrizeMember member, PrizeConstants.EmailType type, string title, 
+    static public int PrepareSimpleEmailByType(PrizeMember member, PrizeConstants.EmailType type, string title, 
         string content1 = null, string content2 = null, string content3 = null, string content4 =null, string content5 = null)
     {
         try
@@ -84,12 +84,12 @@ public class PrizeEmailWrapper
         }
         catch (Exception e)
         {
-            PrizeLogs.SaveSystemErrorLog(member.UmbracoId, 0, PrizeConstants.SystemErrorLevel.LevelMidium, this.ToString(), "Prepare email", e.Message, e.InnerException.Message);
+            PrizeLogs.SaveSystemErrorLog(member.UmbracoId, 0, PrizeConstants.SystemErrorLevel.LevelMidium, typeof(PrizeEmailWrapper).ToString(), "Prepare email", e.Message, e.InnerException.Message);
             return 0;
         }
     }
 
-    public void DailyEmailTask()
+    static public void DailyEmailTask()
     {
 		try
 		{
@@ -195,8 +195,15 @@ public class PrizeEmailWrapper
 		}
 		catch (Exception e)
 		{
-			PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, this.ToString(), "DailyEmailTask", e.Message, e.InnerException.Message);
+			PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), "DailyEmailTask", e.Message, e.InnerException.Message);
 		}
+    }
+
+
+    static public int SendMemberConintuousLoginEmail(PrizeMember member)
+    {
+        int emailId = PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ContinuousLogin, "After logging on consistently for 21 days", member.Firstname);
+        return emailId;
     }
 
 
