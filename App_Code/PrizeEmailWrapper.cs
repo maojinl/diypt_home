@@ -48,6 +48,7 @@ public class PrizeEmailWrapper
             myEmail.Content3 = foodPlan.Food2;
             myEmail.Content4 = foodPlan.Food3;
             myEmail.Content5 = foodPlan.Food4;
+            myEmail.ScheduleDate = PrizeCommonUtils.GetSystemDate();
             db.MemberEmails.Add(myEmail);
 			db.SaveChanges();
 			return;
@@ -77,6 +78,7 @@ public class PrizeEmailWrapper
                 myEmail.Content3 = content3;
                 myEmail.Content4 = content4;
                 myEmail.Content5 = content5;
+                myEmail.ScheduleDate = PrizeCommonUtils.GetSystemDate();
                 mydb.MemberEmails.Add(myEmail);
 				mydb.SaveChanges();
 				return myEmail.EmailId;

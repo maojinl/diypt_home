@@ -34,6 +34,8 @@ public partial class MemberEmail
     public string Content4 { get; set; }
     public string Content5 { get; set; }
     public int Status { get; set; }
+    public Nullable<System.DateTime> ScheduleDate { get; set; }
+    public Nullable<System.DateTime> SendDate { get; set; }
 }
 
 public partial class MemberExercisePlan

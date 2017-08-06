@@ -73,11 +73,13 @@ public class PrizeEmailServiceThread : ApplicationEventHandler
                 if (bSent)
                 {
                     email.Status = (int)PrizeConstants.EmailStatus.Succeeded;
+                    email.SendDate = PrizeCommonUtils.GetSystemDate();
                     db.SaveChanges();
                 }
                 else
                 {
                     PrizeLogs.SaveSystemErrorLog(email.MemberId, 0, PrizeConstants.SystemErrorLevel.LevelNormal, "Email thread", "Sending email",  sError, "");
+                    email.SendDate = PrizeCommonUtils.GetSystemDate();
                     email.Status = (int)PrizeConstants.EmailStatus.Failed;
                     db.SaveChanges();
                 }

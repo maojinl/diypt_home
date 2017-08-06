@@ -45,7 +45,7 @@ public partial class DIYPTEntities : DbContext
     public virtual DbSet<PrizePlanLocation> PrizePlanLocations { get; set; }
     public virtual DbSet<PrizePollingTask> PrizePollingTasks { get; set; }
     public virtual DbSet<PrizeSysConfig> PrizeSysConfigs { get; set; }
-    public virtual DbSet<MemberEmail> MemberEmails { get; set; }
     public virtual DbSet<PrizeErrorLog> PrizeErrorLogs { get; set; }
     public virtual DbSet<PrizeMember> PrizeMembers { get; set; }
+    public virtual DbSet<MemberEmail> MemberEmails { get; set; }
 }

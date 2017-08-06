@@ -32,6 +32,8 @@
           <Property Name="Content4" Type="varchar(max)" />
           <Property Name="Content5" Type="varchar(max)" />
           <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="ScheduleDate" Type="datetime" />
+          <Property Name="SendDate" Type="datetime" />
         </EntityType>
         <EntityType Name="MemberExercisePlans">
           <Key>
@@ -473,9 +475,9 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
             <End Role="PrizeFoodPlan" EntitySet="PrizeFoodPlans" />
             <End Role="PrizeExercisePlanWeek" EntitySet="PrizeExercisePlanWeeks" />
           </AssociationSet>
-          <EntitySet Name="MemberEmails" EntityType="diyptModel.MemberEmail" />
           <EntitySet Name="PrizeErrorLogs" EntityType="diyptModel.PrizeErrorLog" />
           <EntitySet Name="PrizeMembers" EntityType="diyptModel.PrizeMember" />
+          <EntitySet Name="MemberEmails" EntityType="diyptModel.MemberEmail" />
           </EntityContainer>
         <EntityType Name="PrizePlanProgram">
           <Key>
@@ -798,22 +800,6 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="MemberEmail">
-          <Key>
-            <PropertyRef Name="EmailId" />
-          </Key>
-          <Property Name="EmailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemberId" Type="Int32" Nullable="false" />
-          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="EmailType" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Content1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Content2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Content3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Content4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Content5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="PrizeErrorLog">
           <Key>
             <PropertyRef Name="Id" />
@@ -865,6 +851,24 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="UserSettings" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Tasks" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
           <Property Name="ContinuousLogin" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberEmail">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="EmailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EmailType" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="ScheduleDate" Type="DateTime" Precision="3" />
+          <Property Name="SendDate" Type="DateTime" Precision="3" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1173,23 +1177,6 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MemberEmails">
-            <EntityTypeMapping TypeName="diyptModel.MemberEmail">
-              <MappingFragment StoreEntitySet="MemberEmails">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Content5" ColumnName="Content5" />
-                <ScalarProperty Name="Content4" ColumnName="Content4" />
-                <ScalarProperty Name="Content3" ColumnName="Content3" />
-                <ScalarProperty Name="Content2" ColumnName="Content2" />
-                <ScalarProperty Name="Content1" ColumnName="Content1" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="EmailType" ColumnName="EmailType" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PrizeErrorLogs">
             <EntityTypeMapping TypeName="diyptModel.PrizeErrorLog">
               <MappingFragment StoreEntitySet="PrizeErrorLogs">
@@ -1241,6 +1228,25 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Firstname" ColumnName="Firstname" />
                 <ScalarProperty Name="UmbracoId" ColumnName="UmbracoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberEmails">
+            <EntityTypeMapping TypeName="diyptModel.MemberEmail">
+              <MappingFragment StoreEntitySet="MemberEmails">
+                <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+                <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Content5" ColumnName="Content5" />
+                <ScalarProperty Name="Content4" ColumnName="Content4" />
+                <ScalarProperty Name="Content3" ColumnName="Content3" />
+                <ScalarProperty Name="Content2" ColumnName="Content2" />
+                <ScalarProperty Name="Content1" ColumnName="Content1" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="EmailType" ColumnName="EmailType" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
