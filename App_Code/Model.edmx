@@ -347,6 +347,16 @@
           <Property Name="Count" Type="int" Nullable="false" />
           <Property Name="Status" Type="varchar" MaxLength="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="PrizePresetTasks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskDate" Type="datetime" Nullable="false" />
+          <Property Name="PresetTaskType" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="2" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PrizeSysConfigs">
@@ -417,6 +427,7 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <EntitySet Name="PrizePlanLocations" EntityType="Self.PrizePlanLocations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrizePlanPrograms" EntityType="Self.PrizePlanPrograms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrizePollingTasks" EntityType="Self.PrizePollingTasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrizePresetTasks" EntityType="Self.PrizePresetTasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrizeSysConfigs" EntityType="Self.PrizeSysConfigs" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [PrizeSysConfigs].[Id] AS [Id], 
@@ -478,6 +489,7 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <EntitySet Name="PrizeErrorLogs" EntityType="diyptModel.PrizeErrorLog" />
           <EntitySet Name="PrizeMembers" EntityType="diyptModel.PrizeMember" />
           <EntitySet Name="MemberEmails" EntityType="diyptModel.MemberEmail" />
+          <EntitySet Name="PrizePresetTasks" EntityType="diyptModel.PrizePresetTask" />
           </EntityContainer>
         <EntityType Name="PrizePlanProgram">
           <Key>
@@ -870,6 +882,16 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="ScheduleDate" Type="DateTime" Precision="3" />
           <Property Name="SendDate" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="PrizePresetTask">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PresetTaskType" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1247,6 +1269,17 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
                 <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrizePresetTasks">
+            <EntityTypeMapping TypeName="diyptModel.PrizePresetTask">
+              <MappingFragment StoreEntitySet="PrizePresetTasks">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="PresetTaskType" ColumnName="PresetTaskType" />
+                <ScalarProperty Name="TaskDate" ColumnName="TaskDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

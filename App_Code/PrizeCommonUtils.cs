@@ -37,6 +37,18 @@ public static class PrizeCommonUtils
         return dt;
     }
 
+    static public DateTime GetYearStart(DateTime date)
+    {
+        DateTime dt = DateTime.Parse(date.ToString("yyyy") + "-01-01 00:00:00");
+        return dt;
+    }
+
+    static public DateTime GetYearEnd(DateTime date)
+    {
+        DateTime dt = DateTime.Parse(date.ToString("yyyy") + "-12-31 00:00:00");
+        return dt;
+    }
+
     static public int GetDayOfWeek(this DateTime dt)
     {
         if (dt.DayOfWeek == 0)

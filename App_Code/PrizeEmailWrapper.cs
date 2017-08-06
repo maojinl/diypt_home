@@ -201,6 +201,30 @@ public class PrizeEmailWrapper
 		}
     }
 
+    static public void EmailPresetTask()
+    {
+        try
+        {
+            using (var db = new DIYPTEntities())
+            {
+                DateTime now = PrizeCommonUtils.GetSystemDate();
+                DateTime start = PrizeCommonUtils.GetYearStart(now);
+                DateTime end = PrizeCommonUtils.GetYearEnd(now.AddYears(1));
+                var tasks = (from c in db.PrizePresetTasks
+                                          where c.TaskDate >= start && c.TaskDate <= end &&
+                                          (c.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailNewYear 
+                                          || c.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailEaster 
+                                          || c.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailChristmas)
+                                          select c).FirstOrDefault();
+
+            }
+        }
+        catch (Exception e)
+        {
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), "EmailPresetTask", e.Message, e.InnerException.Message);
+        }
+    }
+
 
     static public int SendMemberConintuousLoginEmail(PrizeMember member)
     {

@@ -359,6 +359,15 @@ public partial class PrizePollingTask
     public string Status { get; set; }
 }
 
+public partial class PrizePresetTask
+{
+    public int Id { get; set; }
+    public System.DateTime TaskDate { get; set; }
+    public int PresetTaskType { get; set; }
+    public int Count { get; set; }
+    public string Status { get; set; }
+}
+
 public partial class PrizeSysConfig
 {
     public int Id { get; set; }

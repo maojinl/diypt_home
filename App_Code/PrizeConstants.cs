@@ -23,6 +23,13 @@ public class PrizeConstants
         DailyOnce
     }
 
+    public enum PresetTasksType
+    {
+        YearlyEmailNewYear = 1,
+        YearlyEmailEaster,
+        YearlyEmailChristmas
+    }
+
     public enum MemberSettings
     {
         ShowProgram,
