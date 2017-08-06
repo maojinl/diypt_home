@@ -100,7 +100,7 @@ public class PrizeConstants
 	public enum SystemErrorLevel
 	{
 		LevelNormal = 1,
-		LevelMidium,
+		LevelMedium,
 		LevelSerious
 	}
 

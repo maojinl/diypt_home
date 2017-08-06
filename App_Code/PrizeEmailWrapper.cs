@@ -86,7 +86,7 @@ public class PrizeEmailWrapper
         }
         catch (Exception e)
         {
-            PrizeLogs.SaveSystemErrorLog(member.UmbracoId, 0, PrizeConstants.SystemErrorLevel.LevelMidium, typeof(PrizeEmailWrapper).ToString(), "Prepare email", e.Message, e.InnerException.Message);
+            PrizeLogs.SaveSystemErrorLog(member.UmbracoId, 0, PrizeConstants.SystemErrorLevel.LevelMedium, typeof(PrizeEmailWrapper).ToString(), "Prepare email", e.Message, e.InnerException.Message);
             return 0;
         }
     }
