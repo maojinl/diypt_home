@@ -49,4 +49,5 @@ public partial class DIYPTEntities : DbContext
     public virtual DbSet<PrizeMember> PrizeMembers { get; set; }
     public virtual DbSet<MemberEmail> MemberEmails { get; set; }
     public virtual DbSet<PrizePresetTask> PrizePresetTasks { get; set; }
+    public virtual DbSet<cmsMember> cmsMembers { get; set; }
 }

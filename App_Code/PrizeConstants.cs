@@ -94,7 +94,10 @@ public class PrizeConstants
         TwoDaysPrior2Start,
         OneDaysPrior2Week4,
         OneDaysPrior2Week11,
-        ContinuousLogin
+        ContinuousLogin,
+        NewYearEmail,
+        EasterEmail,
+        ChristmasEmail
     }
 
     public enum EmailStatus

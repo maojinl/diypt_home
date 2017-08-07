@@ -10,6 +10,14 @@
 using System;
 using System.Collections.Generic;
 
+public partial class cmsMember
+{
+    public int nodeId { get; set; }
+    public string Email { get; set; }
+    public string LoginName { get; set; }
+    public string Password { get; set; }
+}
+
 public partial class MemberCommunityChat
 {
     public int Id { get; set; }

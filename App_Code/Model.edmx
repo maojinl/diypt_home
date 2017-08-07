@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="diyptModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cmsMember">
+          <Key>
+            <PropertyRef Name="nodeId" />
+          </Key>
+          <Property Name="nodeId" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
         <EntityType Name="MemberCommunityChats">
           <Key>
             <PropertyRef Name="Id" />
@@ -403,6 +412,7 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="diyptModelStoreContainer">
+          <EntitySet Name="cmsMember" EntityType="Self.cmsMember" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberCommunityChats" EntityType="Self.MemberCommunityChats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberEmails" EntityType="Self.MemberEmails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberExercisePlans" EntityType="Self.MemberExercisePlans" Schema="dbo" store:Type="Tables" />
@@ -490,6 +500,7 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <EntitySet Name="PrizeMembers" EntityType="diyptModel.PrizeMember" />
           <EntitySet Name="MemberEmails" EntityType="diyptModel.MemberEmail" />
           <EntitySet Name="PrizePresetTasks" EntityType="diyptModel.PrizePresetTask" />
+          <EntitySet Name="cmsMembers" EntityType="diyptModel.cmsMember" />
           </EntityContainer>
         <EntityType Name="PrizePlanProgram">
           <Key>
@@ -892,6 +903,15 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="Count" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="cmsMember">
+          <Key>
+            <PropertyRef Name="nodeId" />
+          </Key>
+          <Property Name="nodeId" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1280,6 +1300,16 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
                 <ScalarProperty Name="PresetTaskType" ColumnName="PresetTaskType" />
                 <ScalarProperty Name="TaskDate" ColumnName="TaskDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cmsMembers">
+            <EntityTypeMapping TypeName="diyptModel.cmsMember">
+              <MappingFragment StoreEntitySet="cmsMember">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="nodeId" ColumnName="nodeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

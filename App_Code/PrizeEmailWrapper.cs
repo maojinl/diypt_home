@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
@@ -109,7 +110,8 @@ public class PrizeEmailWrapper
 				foreach (var memberPlan in memberPlans)
 				{
 					DateTime now = PrizeCommonUtils.GetSystemDate();
-					if (now.AddDays(2) < memberPlan.StartDate)
+					//if (now.AddDays(2) < memberPlan.StartDate)
+                    if (!PrizeCommonUtils.LessThanDaysAhead(now, memberPlan.StartDate, 2))
 						continue;
 					MemberExercisePlanWeek memberPlanWeek = (from c in db.MemberExercisePlanWeeks
 															 where c.MemberExercisePlanId == memberPlan.Id && c.Week == 0
@@ -144,8 +146,9 @@ public class PrizeEmailWrapper
 				foreach (var memberPlanWithWeek in memberPlanWithWeeks)
 				{
 					DateTime now = PrizeCommonUtils.GetSystemDate();
-					if (now.AddDays(1) < memberPlanWithWeek.WeekStartDate)
-						continue;
+                    //if (now.AddDays(1) < memberPlanWithWeek.WeekStartDate)
+                    if (!PrizeCommonUtils.LessThanDaysAhead(now, memberPlanWithWeek.WeekStartDate, 1))
+                        continue;
 
 					MemberPlanWeekResult memberPlanWeekResult = (from c in db.MemberPlanWeekResults
 																 where c.MemberExercisePlanWeekId == memberPlanWithWeek.MemberPlanWeekId
@@ -175,7 +178,8 @@ public class PrizeEmailWrapper
                 foreach (var memberPlanWithWeek in memberPlanWithWeeks)
                 {
                     DateTime now = PrizeCommonUtils.GetSystemDate();
-                    if (now.AddDays(1) < memberPlanWithWeek.WeekStartDate)
+                    //if (now.AddDays(1) < memberPlanWithWeek.WeekStartDate)
+                    if (!PrizeCommonUtils.LessThanDaysAhead(now, memberPlanWithWeek.WeekStartDate, 1))
                         continue;
 
                     MemberPlanWeekResult memberPlanWeekResult = (from c in db.MemberPlanWeekResults
@@ -208,15 +212,67 @@ public class PrizeEmailWrapper
             using (var db = new DIYPTEntities())
             {
                 DateTime now = PrizeCommonUtils.GetSystemDate();
-                DateTime start = PrizeCommonUtils.GetYearStart(now);
                 DateTime end = PrizeCommonUtils.GetYearEnd(now.AddYears(1));
-                var tasks = (from c in db.PrizePresetTasks
-                                          where c.TaskDate >= start && c.TaskDate <= end &&
-                                          (c.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailNewYear 
-                                          || c.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailEaster 
-                                          || c.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailChristmas)
-                                          select c).FirstOrDefault();
+                IList<PrizePresetTask> tasks = (from c in db.PrizePresetTasks
+                    where c.TaskDate >= now && c.TaskDate <= end &&
+                    (c.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailNewYear 
+                    || c.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailEaster 
+                    || c.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailChristmas)
+                    && c.Status.Equals("0")
+                    select c).ToList();
+                IList<PrizeMember> membersList = null;
 
+                foreach (PrizePresetTask task in tasks)
+                {
+                    if (PrizeCommonUtils.LessThanDaysAhead(now, task.TaskDate, 1))
+                    {
+                        if (task.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailNewYear)
+                        {
+                            if (membersList == null)
+                            {
+                                membersList = (from a in db.PrizeMembers
+                                               join b in db.cmsMembers on a.UmbracoId equals b.nodeId
+                                               orderby a.UmbracoId
+                                               select a
+                                ).ToList();
+                            }
+                            foreach (PrizeMember member in membersList)
+                            {
+                                PrepareSimpleEmailByType(member, PrizeConstants.EmailType.NewYearEmail, member.Firstname, "Happy New Year");
+                            }
+                        }
+                        else if (task.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailEaster)
+                        {
+                            if (membersList == null)
+                            {
+                                membersList = (from a in db.PrizeMembers
+                                               join b in db.cmsMembers on a.UmbracoId equals b.nodeId
+                                               orderby a.UmbracoId
+                                               select a
+                                ).ToList();
+                            }
+                            foreach (PrizeMember member in membersList)
+                            {
+                                PrepareSimpleEmailByType(member, PrizeConstants.EmailType.EasterEmail, member.Firstname, "Happy Easter");
+                            }
+                        }
+                        else if (task.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailChristmas)
+                        {
+                            if (membersList == null)
+                            {
+                                membersList = (from a in db.PrizeMembers
+                                               join b in db.cmsMembers on a.UmbracoId equals b.nodeId
+                                               orderby a.UmbracoId
+                                               select a
+                                ).ToList();
+                            }
+                            foreach (PrizeMember member in membersList)
+                            {
+                                PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ChristmasEmail, member.Firstname, "Merry Christmas");
+                            }
+                        }
+                    }  
+                }
             }
         }
         catch (Exception e)

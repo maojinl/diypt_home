@@ -99,4 +99,13 @@ public static class PrizeCommonUtils
         }
         return dt;
     }
+
+    static public bool LessThanDaysAhead(DateTime date, DateTime targetDate, int days)
+    {
+        DateTime now = PrizeCommonUtils.GetSystemDate();
+        bool result = false;
+        if (date.AddDays(days) >= targetDate)
+            result = true;
+        return result;
+    }
 }
