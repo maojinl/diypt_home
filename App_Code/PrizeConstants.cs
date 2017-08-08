@@ -60,6 +60,7 @@ public class PrizeConstants
     public const string URL_CHECKOUT_ERROR = "~/Checkout/Checkout-Error";
     public const string URL_MEMBER_BUY_PLAN = "~/buy-plan";
     public const string URL_MEMBER_COMING_UP = "~/my-account/coming-up#tab-bx-coming";
+    public const string URL_MEMBER_CONTINUE_PLAN = "~/continuePlan";
 
     public const int TIME_OUT = 20;
 

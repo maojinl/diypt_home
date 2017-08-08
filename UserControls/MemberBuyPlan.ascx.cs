@@ -18,6 +18,8 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
             string sExp = Request.QueryString["experience"];
 
             string sPlanId = Request.QueryString["targetplanid"];
+            string sMyPlanId = Request.QueryString["targetmemberplanid"];
+
             bool bIsTrial = false;
             if (Request.QueryString["Trial"] != null && Request.QueryString["Trial"].Equals("1"))
                 bIsTrial = true;
@@ -27,17 +29,34 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
             double nPrize = 0;
             PrizeMemberPlanManager planManager = new PrizeMemberPlanManager();
             int ret;
-            if (sPlanId == null)
+            if (String.IsNullOrEmpty(sMyPlanId))
             {
-                newPlanId = planManager.FindNewPlan(sProgram, sLocation, sLevel, sExp, bIsTrial);
-                if (newPlanId < 0)
-                    throw new Exception("ERROR: could not find the plan " + PrizeErrorCode.getErrorMessage(newPlanId));
+                if (String.IsNullOrEmpty(sPlanId))
+                {
+                    newPlanId = planManager.FindNewPlan(sProgram, sLocation, sLevel, sExp, bIsTrial);
+                    if (newPlanId < 0)
+                        throw new Exception("ERROR: could not find the plan " + PrizeErrorCode.getErrorMessage(newPlanId));
+                }
+                else
+                    newPlanId = int.Parse(sPlanId);
+                ret = planManager.BuyNewPlan(newPlanId, ref prizePlan, ref myPlan);
             }
             else
-                newPlanId = int.Parse(sPlanId);
-            ret = planManager.BuyNewPlan(newPlanId, ref prizePlan, ref myPlan);
+            {
+                if (String.IsNullOrEmpty(sPlanId))
+                    ret = -1;
+                else
+                {
+                    prizePlan = dbAccess.GetExercisePlan(int.Parse(sPlanId));
+                    myPlan = dbAccess.GetMemberExercisePlan(int.Parse(sMyPlanId));
+                    ret = 0;
+                }
+            }
+
             if (ret < 0)
-                throw new Exception("ERROR: error for buying plan "+ret);
+            {
+                throw new Exception("ERROR: error for buying plan " + ret);
+            }
             else
             {
                 ShowNewPlan(prizePlan, myPlan);

@@ -58,7 +58,17 @@ public partial class UserControls_MemberLogin : System.Web.UI.UserControl
                     myPlanId = myPlan.ExercisePlanId;
                 PrizeMemberAuthUtils.SaveMemberLoginLog(uMember.Id, myPlanId, this.ToString(), "Login");
                 if (myPlan == null)
-                    Response.Redirect(String.Format("{0}?loginName={1}&memberId={2}", PrizeConstants.URL_MEMBER_LANDING, uMember.LoginName, uMember.Id));
+                {
+                    myPlan = dbAccess.GetNextMemberPlanNeedToPay(uMember.Id);
+                    if (myPlan == null)
+                    {
+                        Response.Redirect(String.Format("{0}?loginName={1}&memberId={2}", PrizeConstants.URL_MEMBER_CONTINUE_PLAN, uMember.LoginName, uMember.Id));
+                    }
+                    else
+                    {
+                        Response.Redirect(String.Format("{0}?targetplanid={1}&targetmemberplanid={2}", PrizeConstants.URL_MEMBER_BUY_PLAN, myPlan.ExercisePlanId, myPlan.Id));
+                    }
+                }
                 else
                 {
                     PrizeExercisePlan plan = dbAccess.GetExercisePlan(myPlan.ExercisePlanId);

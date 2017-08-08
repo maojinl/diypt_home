@@ -70,6 +70,15 @@ Comment:
             nodeId = 9676;
         else if (emailType == PrizeConstants.EmailType.ContinuousLogin)
             nodeId = 6672;
+        else if (emailType == PrizeConstants.EmailType.NewYearEmail)
+            nodeId = 6681;
+        else if (emailType == PrizeConstants.EmailType.EasterEmail)
+            nodeId = 6680;
+        else if (emailType == PrizeConstants.EmailType.ChristmasEmail)
+            nodeId = 5385;
+
+        if (templateNodeId == 5332)
+            return;
 
         var node = new Node(nodeId);
 		var templateNode = new Node(templateNodeId);
