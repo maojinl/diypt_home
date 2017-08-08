@@ -222,7 +222,6 @@ public class PrizeMemberPlanManager
         {
             try
             {
-
                 db.Database.Connection.Open();
 
                 DateTime today = PrizeCommonUtils.GetDayStart(PrizeCommonUtils.GetSystemDate());
@@ -304,14 +303,15 @@ public class PrizeMemberPlanManager
                 return true;
             }
             catch (Exception e)
-        {
-            return false;
+            {
+                PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeMemberPlanManager).ToString(), "UpdateMemberPlans", e.Message, e.InnerException.Message);
+                return false;
+            }
+            finally
+            {
+                db.Database.Connection.Close();
+            }
         }
-        finally
-        {
-            db.Database.Connection.Close();
-        }
-    }
     }
 
     protected static void CopyWeekResult(ref MemberPlanWeekResult startingWeekResult, ref MemberPlanWeekResult finishingWeekResult)

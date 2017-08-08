@@ -63,11 +63,11 @@ public class RegisteredEvents: ApplicationEventHandler
             
             if (task == null || task.Count < 1)
             {
-                //PrizeMemberPlanManager planManager = new PrizeMemberPlanManager();
-                if (!PrizeMemberPlanManager.UpdateMemberPlans())
-                    throw new Exception();
+                PrizeMemberPlanManager.UpdateMemberPlans();                    
 
                 PrizeEmailWrapper.DailyEmailTask();
+
+                PrizeEmailWrapper.EmailPresetTask();
 
                 if (task == null)
                 {
@@ -84,8 +84,9 @@ public class RegisteredEvents: ApplicationEventHandler
                 db.SaveChanges();
             }
         }
-        catch
+        catch (Exception e)
         {
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(RegisteredEvents).ToString(), "DailyTasks", e.Message, e.InnerException.Message);
             return;
         }
         finally

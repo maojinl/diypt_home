@@ -212,13 +212,13 @@ public class PrizeEmailWrapper
             using (var db = new DIYPTEntities())
             {
                 DateTime now = PrizeCommonUtils.GetSystemDate();
-                DateTime end = PrizeCommonUtils.GetYearEnd(now.AddYears(1));
+                DateTime end = now.AddDays(10);
                 IList<PrizePresetTask> tasks = (from c in db.PrizePresetTasks
                     where c.TaskDate >= now && c.TaskDate <= end &&
                     (c.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailNewYear 
                     || c.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailEaster 
                     || c.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailChristmas)
-                    && c.Status.Equals("0")
+                    && c.Status.Equals("1")
                     select c).ToList();
                 IList<PrizeMember> membersList = null;
 
@@ -238,8 +238,10 @@ public class PrizeEmailWrapper
                             }
                             foreach (PrizeMember member in membersList)
                             {
-                                PrepareSimpleEmailByType(member, PrizeConstants.EmailType.NewYearEmail, member.Firstname, "Happy New Year");
+                                PrepareSimpleEmailByType(member, PrizeConstants.EmailType.NewYearEmail, "Happy New Year", member.Firstname);
                             }
+                            task.Status = "2";
+                            task.Count++;
                         }
                         else if (task.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailEaster)
                         {
@@ -253,8 +255,10 @@ public class PrizeEmailWrapper
                             }
                             foreach (PrizeMember member in membersList)
                             {
-                                PrepareSimpleEmailByType(member, PrizeConstants.EmailType.EasterEmail, member.Firstname, "Happy Easter");
+                                PrepareSimpleEmailByType(member, PrizeConstants.EmailType.EasterEmail, "Happy Easter", member.Firstname);
                             }
+                            task.Status = "2";
+                            task.Count++;
                         }
                         else if (task.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailChristmas)
                         {
@@ -268,16 +272,20 @@ public class PrizeEmailWrapper
                             }
                             foreach (PrizeMember member in membersList)
                             {
-                                PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ChristmasEmail, member.Firstname, "Merry Christmas");
+                                PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ChristmasEmail, "Merry Christmas", member.Firstname);
                             }
+                            task.Status = "2";
+                            task.Count++;
                         }
                     }  
                 }
+                db.SaveChanges();
             }
         }
         catch (Exception e)
         {
             PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), "EmailPresetTask", e.Message, e.InnerException.Message);
+            return;
         }
     }
 
