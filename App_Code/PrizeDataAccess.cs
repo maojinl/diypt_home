@@ -401,6 +401,8 @@ public class PrizeDataAccess
             PrizePlanLevel lvl;
             PrizePlanLocation location;
 
+            bool bUpgraded = false;
+
             location = (from c in db.PrizePlanLocations
                         orderby c.Sequence
                         select c).FirstOrDefault();
@@ -414,55 +416,48 @@ public class PrizeDataAccess
                            where c.Id == finishedPlan.ExperienceId
                            select c).FirstOrDefault();
                     if (exp.Sequence < db.PrizePlanExperiences.Count())
+                    {
                         expSeq = exp.Sequence + 1;
+                        bUpgraded = false;
+                    }
                     else
+                    {
                         expSeq = 1;
+                        bUpgraded = true;
+                    }
 
                     lvl = (from c in db.PrizePlanLevels
                            where c.Id == finishedPlan.LevelId
                            select c).FirstOrDefault();
-                    if (expSeq > 1)
+                    if (!bUpgraded)
                         levelSeq = lvl.Sequence;
                     else
                     {
                         if (lvl.Sequence < db.PrizePlanLevels.Count())
+                        {
                             levelSeq = lvl.Sequence + 1;
+                            bUpgraded = false;
+                        }
                         else
+                        {
                             levelSeq = 1;
+                            bUpgraded = true;
+                        }
                     }
 
                     program = (from c in db.PrizePlanPrograms
                                where c.Id == finishedPlan.ProgramId
                                select c).FirstOrDefault();
-                    if (levelSeq > 1)
+                    if (!bUpgraded)
                         programSeq = program.Sequence;
                     else
                     {
                         if (program.Sequence < db.PrizePlanPrograms.Count())
+                        {
                             programSeq = program.Sequence + 1;
+                            bUpgraded = false;
+                        }
                     }
-
-                    locationId = finishedPlan.LocationId;
-                }
-                else if (finishedPlan.IsTrialPlan == 1)
-                {
-                    program = (from c in db.PrizePlanPrograms
-                               where c.Id == finishedPlan.ProgramId
-                               select c).FirstOrDefault();
-                    if (program.Sequence < db.PrizePlanPrograms.Count())
-                        programSeq = program.Sequence;
-
-                    exp = (from c in db.PrizePlanExperiences
-                           where c.Id == finishedPlan.ExperienceId
-                           select c).FirstOrDefault();
-                    if (exp.Sequence < db.PrizePlanExperiences.Count())
-                        expSeq = exp.Sequence;
-
-                    lvl = (from c in db.PrizePlanLevels
-                           where c.Id == finishedPlan.LevelId
-                           select c).FirstOrDefault();
-                    if (lvl.Sequence < db.PrizePlanLevels.Count())
-                        levelSeq = lvl.Sequence;
 
                     locationId = finishedPlan.LocationId;
                 }
