@@ -57,7 +57,7 @@
                         </tr>
                         <tr>
                             <td scope="row">
-                                <h5><a id="action3"  class="c_black" href="/orientation/day-4/get-familiar-with-the-row">Get familiar with the row</a></h5>
+                                <h5><a id="action3"  class="c_black" href="/orientation/day-4/get-familiar-with-a-pull-exercise">Get familiar with a pull exercise</a></h5>
                             </td>
                             <td>
                                  <p class="tick-circle" style="background-color: transparent;"><asp:CheckBox ID="CheckBox3" runat="server" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />

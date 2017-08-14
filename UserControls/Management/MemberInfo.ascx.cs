@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using umbraco.cms.businesslogic.member;
 
 public partial class UserControls_Management_MemberInfo : System.Web.UI.UserControl
 {
@@ -13,7 +11,12 @@ public partial class UserControls_Management_MemberInfo : System.Web.UI.UserCont
     {
         if (!this.IsPostBack)
         {
+
+
+
             this.BindGrid();
+
+
         }
     }
 
@@ -127,17 +130,10 @@ public partial class UserControls_Management_MemberInfo : System.Web.UI.UserCont
     protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
     {
 
+
+
+
     }
-
-    protected void Send(object sender, EventArgs e)
-    {
-        MembershipUser aMember;
-
-        PrizeMember member = PrizeMemberAuthUtils.GetMemberData(1066);
-
-        PrizeEmailWrapper.SendWelcomeEmail(member, "loginname");
-    }
-
     protected void OnRowCancelingEdit(object sender, EventArgs e)
     {
         GridView1.EditIndex = -1;

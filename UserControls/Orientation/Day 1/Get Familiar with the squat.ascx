@@ -6,19 +6,19 @@
         <a class="c_grey" href="javascript:window.print()">
             <img src="/images/icon-print-g.svg" /><span class="hidden-sm-down sec">PRINT PLAN ></span></a>
     </div>
- 
-        <div class="text-center">
-            <h1><strong>Day 1 - Task 3</strong></h1>
-            <div class="ori-date">
-                <span class="c_y">
-                    <asp:Label ID="lblDay" runat="server"></asp:Label></span>
-                <asp:Label ID="lblDate" runat="server"></asp:Label>
-            </div>
+
+    <div class="text-center">
+        <h1><strong>Day 1 - Task 3</strong></h1>
+        <div class="ori-date">
+            <span class="c_y">
+                <asp:Label ID="lblDay" runat="server"></asp:Label></span>
+            <asp:Label ID="lblDate" runat="server"></asp:Label>
         </div>
-        <div class="d-flex justify-content-between align-items-center pb-4 pre-next">
-            <a id="dayPre" class="day-pre c_y" href="/orientation/day-1/pre-ex-questionnaire">Back</a>
-            <a id="dayNext" class="day-next c_y" href="/orientation/day-1">Next</a>
-        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center pb-4 pre-next">
+        <a id="dayPre" class="day-pre c_y" href="/orientation/day-1/pre-ex-questionnaire">Back</a>
+        <a id="dayNext" class="day-next c_y" href="/orientation/day-1">Next</a>
+    </div>
 
     <div class="row">
         <div class="col-lg-10 push-lg-1">
@@ -39,90 +39,31 @@
                 </div>
             </div>
             <p>The only movement pattern you won’t be learning is gait because we naturally do this movement on a daily basis.</p>
-             <p>So that means that you’ll be learning one exercise per day.</p>
-            <h5 class="c_y mt-4">Today’s exercise is the ‘squat’.</h5>
-           
-            <p> Today’s exercise is the squat. However, depending on your program, I want you to focus on a particular variation of the squat.</p>
+            <p>So that means that you’ll be learning one exercise per day. Today’s exercise is the squat. However, depending on your program, I want you to focus on a particular variation of the squat.</p>
             <div class="row loc-home pg-t pg-l">
                 <div class="col-md-4 ori-1-3-demo mb-4">
-                    <a href="#" data-toggle="modal" data-target="#exerciseModal1"><img class="img-fluid" src="/images/ori/day1/demo.jpg" /></a>
+                    <a href="#" data-toggle="modal" data-target="#exerciseModal1">
+                        <asp:Image runat="server" ID="imgExercise1" CssClass="img-fluid" /></a>
                     <h4 class="sec c_y mt-2 mb-2">BEGINNER</h4>
-                    <p><strong>Body Weight Squat</strong></p>
+                    <p><strong><asp:Label ID="lblExercise1" runat="server"></asp:Label></strong></p>
                 </div>
                 <div class="col-md-4 ori-1-3-demo mb-4">
-                    <a href="#" data-toggle="modal" data-target="#exerciseModal2"><img class="img-fluid" src="/images/ori/day1/demo.jpg" /></a>
+                    <a href="#" data-toggle="modal" data-target="#exerciseModal2">
+                        <asp:Image runat="server" ID="imgExercise2" CssClass="img-fluid" /></a>
                     <h4 class="sec c_y mt-2 mb-2">INTERMEDIATE</h4>
-                    <p><strong>Powerband front squat</strong></p>
+                    <p><strong><asp:Label ID="lblExercise2" runat="server"></asp:Label></strong></p>
                 </div>
                 <div class="col-md-4 ori-1-3-demo mb-4">
-                    <a href="#" data-toggle="modal" data-target="#exerciseModal3"><img class="img-fluid" src="/images/ori/day1/demo.jpg" /></a>
+                    <a href="#" data-toggle="modal" data-target="#exerciseModal3">
+                        <asp:Image runat="server" ID="imgExercise3" CssClass="img-fluid" /></a>
                     <h4 class="sec c_y mt-2 mb-2">ADVANCED</h4>
-                    <p><strong>Powerband back squat</strong></p>
+                    <p><strong><asp:Label ID="lblExercise3" runat="server"></asp:Label></strong></p>
                 </div>
             </div>
-            <!--<div class="row loc-home pg-g">
-                <div class="col-md-4 ori-1-3-demo mb-4">
-                    <img class="img-fluid" src="images/ori/day1/demo.jpg" />
-                    <h4 class="sec c_y mt-2 mb-2">BEGINNER</h4>
-                    <p><strong>Body Weight Squat</strong></p>
-                    <a href="#" class="c_y">View demo ></a>
-                </div>
-                <div class="col-md-4 ori-1-3-demo mb-4">
-                    <img class="img-fluid" src="images/ori/day1/demo.jpg" />
-                    <h4 class="sec c_y mt-2 mb-2">INTERMEDIATE</h4>
-                    <p><strong>Sandbag back squat</strong></p>
-                    <a href="#" class="c_y">View demo ></a>
-                </div>
-                <div class="col-md-4 ori-1-3-demo mb-4">
-                    <img class="img-fluid" src="images/ori/day1/demo.jpg" />
-                    <h4 class="sec c_y mt-2 mb-2">ADVANCED</h4>
-                    <p><strong>Overhead broomstick squat</strong></p>
-                    <a href="#" class="c_y">View demo ></a>
-                </div>
-            </div>
-            <div class="row loc-gym pg-t pg-l">
-                <div class="col-md-4 ori-1-3-demo mb-4">
-                    <img class="img-fluid" src="images/ori/day1/demo.jpg" />
-                    <h4 class="sec c_y mt-2 mb-2">BEGINNER</h4>
-                    <p><strong>Body Weight Squat</strong></p>
-                    <a href="#" class="c_y">View demo ></a>
-                </div>
-                <div class="col-md-4 ori-1-3-demo mb-4">
-                    <img class="img-fluid" src="images/ori/day1/demo.jpg" />
-                    <h4 class="sec c_y mt-2 mb-2">INTERMEDIATE</h4>
-                    <p><strong>BB back squat</strong></p>
-                    <a href="#" class="c_y">View demo ></a>
-                </div>
-                <div class="col-md-4 ori-1-3-demo mb-4">
-                    <img class="img-fluid" src="images/ori/day1/demo.jpg" />
-                    <h4 class="sec c_y mt-2 mb-2">ADVANCED</h4>
-                    <p><strong>BB front squat</strong></p>
-                    <a href="#" class="c_y">View demo ></a>
-                </div>
-            </div>
-            <div class="row loc-gym pg-g">
-                <div class="col-md-4 ori-1-3-demo mb-4">
-                    <img class="img-fluid" src="images/ori/day1/demo.jpg" />
-                    <h4 class="sec c_y mt-2 mb-2">BEGINNER</h4>
-                    <p><strong>Body Weight Squat</strong></p>
-                    <a href="#" class="c_y">View demo ></a>
-                </div>
-                <div class="col-md-4 ori-1-3-demo mb-4">
-                    <img class="img-fluid" src="images/ori/day1/demo.jpg" />
-                    <h4 class="sec c_y mt-2 mb-2">INTERMEDIATE</h4>
-                    <p><strong>BB back squat</strong></p>
-                    <a href="#" class="c_y">View demo ></a>
-                </div>
-                <div class="col-md-4 ori-1-3-demo mb-4">
-                    <img class="img-fluid" src="images/ori/day1/demo.jpg" />
-                    <h4 class="sec c_y mt-2 mb-2">ADVANCED</h4>
-                    <p><strong>BB front squat</strong></p>
-                    <a href="#" class="c_y">View demo ></a>
-                </div>
-            </div>
-            -->
-            <hr/>
-            <asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/>
+
+
+            <hr />
+            <asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click" />
         </div>
     </div>
 </div>
@@ -132,44 +73,6 @@
 <div class="modal fade" id="exerciseModal1" tabindex="-1" role="dialog" aria-labelledby="exerciseModalLabel1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exerciseModalLabel1">Beginner  </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class='embed-container'>
-                    <iframe src="https://player.vimeo.com/video/204969161" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                </div>
-                <img class="img-fluid img-center mt-3" src="images/exercise/week1/1.jpg">
-                <div class="d-flex align-items-center w94 mb-3">
-                    <div class="p-2 ">
-                        <h6 class="c_b sec nowrap">STEP 1</h6>
-                    </div>
-                    <div class="p-2 ">
-                        <p>Phasellus tempus diam in urna gravida porttitor. Pells dignissim varius ante, </p>
-                    </div>
-                </div>
-                <img class="img-fluid img-center mt-3" src="images/exercise/week1/2.jpg">
-                <div class="d-flex align-items-center w94 mb-3">
-                    <div class="p-2 ">
-                        <h6 class="c_b sec nowrap">STEP 2</h6>
-                    </div>
-                    <div class="p-2 ">
-                        <p>Phasellus tempus diam in urna gravida porttitor. Pells dignissim varius ante, </p>
-                    </div>
-                </div>
-                <img class="img-fluid img-center mt-3" src="images/exercise/week1/3.jpg">
-                <div class="d-flex align-items-center w94 mb-3">
-                    <div class="p-2 ">
-                        <h6 class="c_b sec nowrap">STEP 3</h6>
-                    </div>
-                    <div class="p-2 ">
-                        <p>Phasellus tempus diam in urna gravida porttitor. Pells dignissim varius ante, </p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -178,18 +81,6 @@
 <div class="modal fade" id="exerciseModal2" tabindex="-1" role="dialog" aria-labelledby="exerciseModalLabel2" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exerciseModalLabel2">Intermediate  </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class='embed-container'>
-                    <iframe src="https://player.vimeo.com/video/204969161" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                </div>
-                
-            </div>
         </div>
     </div>
 </div>
@@ -197,18 +88,6 @@
 <div class="modal fade" id="exerciseModal3" tabindex="-1" role="dialog" aria-labelledby="exerciseModalLabel3" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exerciseModalLabel3">Advanced  </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class='embed-container'>
-                    <iframe src="https://player.vimeo.com/video/204969161" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                </div>
-                
-            </div>
         </div>
     </div>
 </div>

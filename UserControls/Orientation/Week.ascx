@@ -73,7 +73,7 @@
                         <ul>
                             <li><a class="weeklink" data-num="3-1" href="/orientation/day-3/3-day-food-diary">3 day food diary</a></li>
                             <li><a class="weeklink" data-num="3-2" href="/orientation/day-3/video-how-to-count-your-macros">Video - How to count your Macros</a></li>
-                            <li><a class="weeklink" data-num="3-3" href="/orientation/day-3/get-familiar-with-the-chest-press">Get familiar with the chest press</a></li>
+                            <li><a class="weeklink" data-num="3-3" href="/orientation/day-3/get-familiar-with-a-push-exercise">Get familiar with a push exercise</a></li>
                         </ul>
                         <a class="weeklink c_y" href="/orientation/day-3" data-num="3">View Day 3 detail</a>
                     </td>
@@ -93,7 +93,7 @@
                         <ul>
                             <li><a class="weeklink" data-num="4-1" href="/orientation/day-4/kitchen-makeover-questionnaire">Kitchen makeover questionnaire</a></li>
                             <li><a class="weeklink" data-num="4-2" href="/orientation/day-4/video-5-kitchen-makeover-tips">Video - 5 kitchen makeover tips</a></li>
-                            <li><a class="weeklink" data-num="4-3" href="/orientation/day-4/get-familiar-with-the-row">Get familiar with the row</a></li>
+                            <li><a class="weeklink" data-num="4-3" href="/orientation/day-4/get-familiar-with-a-pull-exercise">Get familiar with a pull exercise</a></li>
                         </ul>
                         <a class="weeklink c_y" href="/orientation/day-4" data-num="4">View Day 4 detail</a>
                     </td>

@@ -25,12 +25,12 @@ display: block;
 </style>
 <div class="tab-inner-content nodisplay wk4">
     <div class="d-flex justify-content-end content-nav-action sec  mb-4">
-        <a class="c_grey" href="login-recipe-library.html"><img src="/images/icon-recipe-g.svg" /><span class="hidden-sm-down">VIEW RECIPE LIBRARY ></span></a>
+        <a class="c_grey" href="/meal-plans#t1"><img src="/images/icon-recipe-g.svg" /><span class="hidden-sm-down">VIEW RECIPE LIBRARY ></span></a>
         <a class="c_grey" href="javascript:window.print()"><img src="/images/icon-print-g.svg" /><span class="hidden-sm-down">PRINT PLAN ></span></a>
     </div>
     <div class="text-center">
         <h1><strong><asp:Label ID="lblWeekNum" runat="server"></asp:Label></strong></h1>
-        <div class="ori-date"><span class="c_y"><asp:Label ID="lblDate" runat="server"></asp:Label></span></div>
+        <div class="ori-date"><span class="c_y"><asp:Label ID="lblDateDuration" runat="server"></asp:Label></asp:Label></span></div>
     </div>
     <!--div class="d-flex justify-content-between align-items-center pb-4 pre-next">
         <a id="dayPre1" class="day-pre c_y" href="#">Back</a>
@@ -50,7 +50,8 @@ display: block;
                 </p>
                 <p class=" wk5">Complete food diary every day and maintain calories for the week using My Fitness Pal</p>
                 <h5 class="c_y  mt-4  wk4 wk5">MACRONUTRIENTS GOALS </h5>
-                <div class="row week-view-intro mb-3  wk4 wk5 ">
+                <div class="week-view-intro mb-3  wk4 wk5 ">
+                <div class="row">
                  <div class="col-3" runat="server" ID="colories">
                         <div class="row">
                             <div class="col-md-4 ">
@@ -86,8 +87,8 @@ display: block;
                     </div>
                     <div class="col-3" runat="server" ID="fats">
                         <div class="row">
-                            <div class="col-md-4 col-sp-fat">
-                                <img class="img-fluid" src="/images/icon-fats-y.svg">
+                            <div class="col-md-4">
+                                <img  src="/images/icon-fats-y.svg">
                             </div>
                             <div class="col-md-6 pull-md-1 right-0-m-s">
                                 <p>Fats</p>
@@ -95,13 +96,14 @@ display: block;
                             </div>
                         </div>
                     </div>
+                    </div>
                 </div>
                 <div class="grey-box  mb-5  wk4 wk5">
                     <h5 class="ml-4 mt-2 "><strong>NOTES</strong></h5>
                     <ul>
-                        <li class=" wk4 wk5"><strong>VERY IMPORTANT</strong> - Avoid Gluten, wheat, dairy products. If you are unsure, look at the package, google it or ask me.</li>
-                        <li class=" wk5">Buy a food scale as weighing your food will make it easier to reach your macronutrient goals.</li>
-                        <li class=" wk4 wk5">Make another one of my delicious, quick and easy <a class="c_y" target="_blank" href="#">video meals (link to recipe library)</a>.</li>
+                        <li class=" wk4 wk5">- If you believe you are following my food plan 100% but feel like you're not achieving your goal, see how your body reacts after food ie. are you bloated, produce excessive gas or are lethargic? If so, I suggest you do a food allergy test. </li>
+                        <li class=" wk5">- buy a food scale as weighing your food will make it easier to reach your macronutrient goals</li>
+                        <li class=" wk4 wk5">- Make another one of my delicious, quick and easy <a class="c_y" target="_blank" href="/meal-plans">video meals</a>.</li>
                     </ul>
                 </div>
                 <h5 class="c_y  wk4 wk5">MACRONUTRIENTS LIST </h5>
@@ -221,17 +223,19 @@ display: block;
         </div>
     </div>
     <div class="row pb-4 pt-4">
-        <a id="weekView" href="#" class="c_y btn btn-secondary m-1 col-sm-4 push-sm-2">VIEW RECIPE LIBRARY ></a>
+        <a id="weekView" href="/meal-plans" class="c_y btn btn-secondary m-1 col-sm-4 push-sm-2">VIEW RECIPE LIBRARY ></a>
         <a href="javascript:window.print()" class="c_y btn btn-secondary m-1 col-sm-4 push-sm-2">PRINT MEAL PLAN ></a>
     </div>
 </div>
 <script>
+/*
 $("#recipe").on("click", function(e) {
     e.preventDefault();
     $.get("data/member-tab-breakfast.html", function(data) {
         $('#member-tab-meal').html(data);
     });
 });
+*/
 </script>
 
 

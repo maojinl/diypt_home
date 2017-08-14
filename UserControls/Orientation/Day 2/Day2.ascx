@@ -29,7 +29,7 @@
                         <li>To track your progress along your 13 week journey</li>
                         <li>Help you with setting goals.</li>
                     </ul>
-                    <p>You will do the measurements and fitness test every 4 weeks and will record it in your <strong>Progress Stats.</strong> Your Progress Stats will be on the front page once you log into your account because I want it to be in your face and visual for you to have a daily reminder about your progress and achievements.</p>
+                    <p>You will do the measurements every 3 to 4 weeks and record it in your <b>Progress stats</b>. Your Progress Stats has a tab dedicated to itself because I want it to be in your face and visual for you to have a daiy reminder about your progress and achievements.</p>
                 </div>
                 <div class="col-sm-5">
                     <img class="img-fluid img-round" src="/images/ori/day2/intro.jpg" />

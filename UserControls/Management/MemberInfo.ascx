@@ -36,18 +36,6 @@
     </tr>
 
 
-          <tr>
-         <td>
-            
-              <asp:Button runat="server" ID="btnSend" OnClick="Send" Text="Send" />
-            
-        </td>
-         <td>
-              &nbsp;</td>
-
-    </tr>
-
-
 </table>
 
 

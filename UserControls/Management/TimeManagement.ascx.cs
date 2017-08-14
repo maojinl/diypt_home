@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class UserControls_Management_TimeManagement : System.Web.UI.UserControl
 {
+    DateTime currentTime;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -21,7 +22,11 @@ public partial class UserControls_Management_TimeManagement : System.Web.UI.User
                                            select a).FirstOrDefault();
                     string s = "";
                     if (conf != null && conf.SystemDate.HasValue)
-                        s = conf.SystemDate.Value.ToString("yyyy-MM-dd");
+                        currentTime = conf.SystemDate.Value;
+                    else
+                        currentTime = DateTime.Now;
+
+                    s = currentTime.ToString("yyyy-MM-dd");
                     txtDate.Text = s;
 
                 }
@@ -53,6 +58,12 @@ public partial class UserControls_Management_TimeManagement : System.Web.UI.User
             db.SaveChanges();*/
             string s = txtDate.Text;
             DateTime dt = DateTime.Parse(s);
+
+            if (dt < currentTime)
+            {
+                Response.Write("<script>alert('Time can't go backward.');</script>");
+                return;
+            }
 
             DateTime start = DateTime.Parse(dt.ToString("yyyy-MM-dd") + " 00:00:00");
             DateTime end = DateTime.Parse(dt.ToString("yyyy-MM-dd") + " 23:59:59");

@@ -106,7 +106,7 @@
         </div>
     </div>
     <!-- lose weight -->
-    <div class="pg-l" id="">
+    <div class="pg-l" id="divWeight" runat="server">
         <div class="row">
             <div class="col-10 push-1 col-5 mb-3">
                 <h2>I want to lose weight and increase fitness</h2>
@@ -347,7 +347,7 @@
     </div>
 
     <!-- build muscle -->
-    <div class="pg-b">
+    <div class="pg-b" id="divMuscle" runat="server">
         <div class="row">
             <div class="col-10 push-1 col-5 mb-3">
                 <h2>I want to build muscle</h2>
@@ -564,7 +564,7 @@
     </div>
 
     <!-- tone up -->
-    <div class="pg-t">
+    <div class="pg-t" id="divTone" runat="server">
         <div class="row">
             <div class="col-10 push-1 col-5 mb-3">
                 <h2>I want to tone up and have a beach body</h2>

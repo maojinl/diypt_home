@@ -17,7 +17,8 @@ public partial class UserControls_MemberLanding_MemberFoodPlanView : System.Web.
 
         int iWeekNum = memberPlanWeek.Week;
         lblWeekNum.Text = "Week " + iWeekNum;
-        lblDate.Text = PrizeCommonUtils.ParseDateToEnglish(PrizeCommonUtils.GetSystemDate());
+        lblDateDuration.Text = PrizeCommonUtils.ParseDateToEnglish(memberPlanWeek.StartDate) + " - "
+            + PrizeCommonUtils.ParseDateToEnglish(memberPlanWeek.EndDate);
 
         MemberExercisePlan memberPlan = dbAccess.GetCurrentMemberPlan(memberId);
         if (memberPlan == null)

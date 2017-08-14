@@ -69,6 +69,8 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
             return;
 
         InitLables();
+        //var member = PrizeMemberAuthUtils.GetMemberData();
+        //lblTest.Text = member.Questions;
 
         int memberId = PrizeMemberAuthUtils.GetMemberID();
 
@@ -87,6 +89,14 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
             memberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId); //(MemberExercisePlanWeek)Session["MemberPlanWeek"];
             if (memberPlanWeek == null)
             {
+				HideLinks();
+                topInfo.Visible = false;
+				dayPre.Visible = false;
+				dayNext.Visible = false;
+				dayView.Visible =false;
+				printDay.Visible = false;
+				timesaverDiv.Visible = false;
+				timesaverDivMobile.Visible = false;
                 return;
             }
 
@@ -119,6 +129,21 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
             dayNext.Attributes.Add("class", "no-arrow");
     }
 
+	private void HideLinks()
+	{
+		
+            for (int i = 1; i <= 7; i++)
+			{
+				   HyperLink linkDay = FindControl("linkDay" + (i )) as HyperLink;
+				    if (linkDay != null )
+						linkDay.Visible = false;
+					
+					System.Web.UI.HtmlControls.HtmlGenericControl timeDay = FindControl("timeDay" + (i)) as System.Web.UI.HtmlControls.HtmlGenericControl;
+				    if (timeDay != null )
+						timeDay.Visible = false;
+					
+			}
+	}
     protected void LoadWeeklyInfo(int memberID, PrizeExercisePlanWeek planWeek, MemberExercisePlanWeek memberPlanWeek)
     {
         dayNumber = PrizeCommonUtils.GetSystemDate().GetDayOfWeek();

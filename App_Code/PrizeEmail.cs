@@ -76,6 +76,30 @@ Comment:
             nodeId = 6680;
         else if (emailType == PrizeConstants.EmailType.ChristmasEmail)
             nodeId = 5385;
+		else if (emailType == PrizeConstants.EmailType.BirthdayEmail)
+			nodeId = 5380;
+		else if (emailType == PrizeConstants.EmailType.FirstMonthEmail)
+			nodeId = 6673;
+		else if (emailType == PrizeConstants.EmailType.SecondMonthEmail)
+			nodeId = 6674;
+		else if (emailType == PrizeConstants.EmailType.ThirdMonthEmail)
+			nodeId = 6675;
+        else if (emailType == PrizeConstants.EmailType.TwoDaysPrior2End)
+            nodeId = 6678;
+        else if (emailType == PrizeConstants.EmailType.OneDayPrior2TrialEnd)
+            nodeId = 6679;
+        else if (emailType == PrizeConstants.EmailType.MileStoneWeek2)
+            nodeId = 5379;
+        else if (emailType == PrizeConstants.EmailType.MileStoneWeek6)
+            nodeId = 5381;
+        else if (emailType == PrizeConstants.EmailType.MileStoneWeek10)
+            nodeId = 5382;
+        else if (emailType == PrizeConstants.EmailType.MileStoneWeek12)
+            nodeId = 5384;
+        else if (emailType == PrizeConstants.EmailType.MileStoneEndWeek12)
+            nodeId = 6683;
+        else if (emailType == PrizeConstants.EmailType.MileStoneGoalWeek13)
+            nodeId = 9675;
 
         if (templateNodeId == 5332)
             return;
@@ -130,6 +154,29 @@ Comment:
 
         MailMessage mm = new MailMessage("no-reply@diypt.com", "thuyen.vu@ctc.usyd.edu.au");
         mm.Subject = "Test email";
+        mm.Body = content;
+        mm.BodyEncoding = UTF8Encoding.UTF8;
+        mm.IsBodyHtml = true;
+        //mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+        client.Send(mm);
+    }
+
+    static public void SendContactEmail(string content)
+    {
+        SmtpClient client = new SmtpClient();
+        // client.Port = 587;
+        //client.Host = "smtp.gmail.com";
+        //client.EnableSsl = true;
+        client.Timeout = 10000;
+        //client.DeliveryMethod = SmtpDeliveryMethod.Network;
+        //client.UseDefaultCredentials = false;
+        //client.Credentials = new System.Net.NetworkCredential("user@gmail.com", "password");
+
+        MailMessage mm = new MailMessage("no-reply@diypt.com.au", "thuyen.vu@gmail.com");
+        //mm.To.Add("jrguico@yahoo.com.au");
+        //mm.To.Add("");
+        mm.Subject = "Contact us";
         mm.Body = content;
         mm.BodyEncoding = UTF8Encoding.UTF8;
         mm.IsBodyHtml = true;

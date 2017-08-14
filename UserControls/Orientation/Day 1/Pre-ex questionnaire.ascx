@@ -47,122 +47,122 @@
                             </label>
                         </div>
                     </fieldset>
-                    <p class="mt-3 ">If yes, explain why you didn't succeed.
+                    <p class="mt-3">If yes, explain why you didn't succeed.
                     </p>
-                    <textarea class="form-control " id="oriTextarea2 " rows="3 "></textarea>
+                    <textarea class="form-control" id="oriTextarea2" rows="3"></textarea>
                 </div>
             </div>
-            <div class="row ">
-                <div class="col-sm-6 mb-4 mt-4 ">
+            <div class="row">
+                <div class="col-sm-6 mb-4 mt-4">
                     <div class="tri-card c_y_tri">
                         <div class="tri-number sec c_y_b">3</div>
                     </div>
-                    <p class="mt-3 "> Why is this goal important to youIf yes, how many?
+                    <p class="mt-3"> Why is this goal important to you. If yes, how many?
                     </p>
-                    <textarea class="form-control " id="oriTextarea3 " rows="3 "></textarea>
+                    <textarea class="form-control" id="oriTextarea3" rows="3"></textarea>
                 </div>
-                <div class="col-sm-6 mb-4 mt-4 ">
+                <div class="col-sm-6 mb-4 mt-4">
                     <div class="tri-card c_y_tri">
-                        <div class="tri-number sec c_y_b ">4</div>
+                        <div class="tri-number sec c_y_b">4</div>
                     </div>
-                    <p class="mt-3 ">Have you ever exercised previously?
+                    <p class="mt-3">Have you ever exercised previously?
                     </p>
-                    <fieldset class="form-group row ">
-                        <div class="form-check col-sm-6 ">
-                            <label class="form-check-label ">
-                                <input type="radio" class="form-check-input " name="q4 "> No
+                    <fieldset class="form-group row">
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="q4"> No
                             </label>
                         </div>
-                        <div class="form-check col-sm-6 ">
-                            <label class="form-check-label ">
-                                <input type="radio" class="form-check-input " name="q4 "> Yes
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="q4"> Yes
                             </label>
                         </div>
                     </fieldset>
                     <p>If no, move on to question 7.</p>
                 </div>
             </div>
-            <div class="row ">
-                <div class="col-sm-6 mb-4 mt-4 ">
+            <div class="row">
+                <div class="col-sm-6 mb-4 mt-4">
                     <div class="tri-card c_y_tri">
                         <div class="tri-number sec c_y_b">5</div>
                     </div>
-                    <p class="mt-3 ">What type of exercise have you been doing in the last 3 months until today? Choose the answer which reMlects the predominant part of your weekly routine.
+                    <p class="mt-3">What type of exercise have you been doing in the last 3 months until today? Choose the answer which reflects the predominant part of your weekly routine.
                     </p>
-                    <fieldset class="form-group row ">
-                        <div class="form-check col-sm-6 ">
-                            <label class="form-check-label ">
-                                <input type="radio" class="form-check-input " name="q5 "> Low intensity cardio
+                    <fieldset class="form-group row">
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="q5"> Low intensity cardio
                             </label>
                         </div>
-                        <div class="form-check col-sm-6 ">
-                            <label class="form-check-label ">
-                                <input type="radio" class="form-check-input " name="q5 "> High intensity cardio
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="q5"> High intensity cardio
                             </label>
                         </div>
-                        <div class="form-check col-sm-6 ">
-                            <label class="form-check-label ">
-                                <input type="radio" class="form-check-input " name="q5 "> Light - medium resistance training
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="q5"> Light resistance training
                             </label>
                         </div>
-                        <div class="form-check col-sm-6 ">
-                            <label class="form-check-label ">
-                                <input type="radio" class="form-check-input " name="q5 "> Medium - heavy resistance training
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="q5"> Medium resistance training
                             </label>
                         </div>
-                        <div class="form-check col-sm-6 ">
-                            <label class="form-check-label ">
-                                <input type="radio" class="form-check-input " name="q5 "> Heavy resistance training
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="q5"> Heavy resistance training
                             </label>
                         </div>
-                        <div class="form-check col-sm-6 ">
-                            <label class="form-check-label ">
-                                <input type="radio" class="form-check-input " name="q5 "> Yoga/pilates
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="q5"> Yoga/pilates
                             </label>
                         </div>
-                        <div class="form-check col-sm-6 ">
-                            <label class="form-check-label ">
-                                <input type="radio" class="form-check-input " name="q5 "> Classes
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="q5"> Classes
                             </label>
                         </div>
                     </fieldset>
                 </div>
-                <div class="col-sm-6 mb-4 mt-4 ">
+                <div class="col-sm-6 mb-4 mt-4">
                     <div class="tri-card c_y_tri">
                         <div class="tri-number sec c_y_b">6</div>
                     </div>
-                    <p class="mt-3 ">Where do you exercise majority of the time?</p>
-                    <fieldset class="form-group row ">
-                        <div class="form-check col-sm-6 ">
-                            <label class="form-check-label ">
-                                <input type="radio" class="form-check-input " name="q6 "> Gym
+                    <p class="mt-3">Where do you exercise majority of the time?</p>
+                    <fieldset class="form-group row">
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="q6"> Gym
                             </label>
                         </div>
-                        <div class="form-check col-sm-6 ">
-                            <label class="form-check-label ">
-                                <input type="radio" class="form-check-input " name="q6 "> Gym classes
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="q6"> Gym classes
                             </label>
                         </div>
-                        <div class="form-check col-sm-6 ">
-                            <label class="form-check-label ">
-                                <input type="radio" class="form-check-input " name="q6 "> Home
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="q6"> Home
                             </label>
                         </div>
-                        <div class="form-check col-sm-6 ">
-                            <label class="form-check-label ">
-                                <input type="radio" class="form-check-input " name="q6 "> Park
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="q6"> Park
                             </label>
                         </div>
                     </fieldset>
                 </div>
             </div>
-            <div class="row ">
-                <div class="col-sm-6 mb-4 mt-4 ">
+            <div class="row">
+                <div class="col-sm-6 mb-4 mt-4">
                     <div class="tri-card c_y_tri">
                         <div class="tri-number sec c_y_b">7</div>
                     </div>
-                    <p class="mt-3 ">What obstacles do you foresee stopping you from achieving your goals?</p>
-                    <textarea class="form-control " id="oriTextarea3 " rows="3 "></textarea>
+                    <p class="mt-3">What obstacles do you foresee stopping you from achieving your goals?</p>
+                    <textarea class="form-control" id="oriTextarea7" rows="3"></textarea>
                 </div>
             </div>
             <hr>

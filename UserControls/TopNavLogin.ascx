@@ -2,9 +2,10 @@
 
 <a id="nav-menu-bar" class="hidden-md-up nav-menu-bar" data-toggle="offcanvas"><img src="/images/menu-bar.svg" /></a>
 
+
+<div runat="server" id="loggedInDiv">
 <a id="nav-icon-member" class="hidden-md-up nav-icon-member" data-toggle="offcanvas">
     <img src="/images/icon-member.svg" /></a>
-<div runat="server" id="loggedInDiv">
 <div id="topNavLinksMember" class="hidden-sm-down">
     <ul class="navbar-nav ">
         <li class="nav-item  dropdown">

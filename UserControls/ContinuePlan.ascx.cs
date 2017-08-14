@@ -39,8 +39,11 @@ public partial class UserControls_ContinuePlan : System.Web.UI.UserControl
         else
         {
             planName = dbAcess.GetPlanName(plan);
-            lblNextPlanName.Text = planName;
             sPlanName = planName.Split('_');
+            lblProg.Text = sPlanName[0];
+            lblSem.Text = sPlanName[3].Replace("Semester", "");
+            lblLvl.Text = sPlanName[2];
+            lblLoc.Text = sPlanName[1];
             ddlLocation.Text = sPlanName[1];
         }
     }
@@ -48,13 +51,18 @@ public partial class UserControls_ContinuePlan : System.Web.UI.UserControl
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         string sLocation = ddlLocation.Text;
-        planName = lblNextPlanName.Text;
-        sPlanName = planName.Split('_');
-        string sProgram = sPlanName[0];
-        string sLevel = sPlanName[2];
-        string sExp = sPlanName[3];
+        string sProgram = lblProg.Text;
+        string sLevel = lblLvl.Text;
+        string sExp = "Semester " + lblSem.Text;
+
+        if (ddlProgram.SelectedValue != "" && sProgram.ToLower() != ddlProgram.SelectedValue.ToLower() )
+        {
+            sProgram = ddlProgram.SelectedValue;
+            sLevel = "Beginner";
+            sExp = "Semester 1";
+        }
         Response.Redirect(String.Format("{0}?program={1}&location={2}&level={3}&experience={4}",
-            PrizeConstants.URL_MEMBER_BUY_PLAN, sPlanName[0], 
+            PrizeConstants.URL_MEMBER_BUY_PLAN, sProgram, 
             sLocation, sLevel, sExp));
     }
 

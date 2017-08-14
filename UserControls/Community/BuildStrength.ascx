@@ -5,8 +5,7 @@
         <asp:Literal ID="lblPostCount" runat="server"></asp:Literal></div>
     <h2 class="chat-group-title">
         <asp:Image ID="imgGroup" runat="server" class="chat-group-title-icon" /><asp:Literal ID="lblGroup" runat="server"></asp:Literal>
-        Chat <span>
-            <asp:Literal ID="lblLevel" runat="server"></asp:Literal></span> </h2>
+        Chat <asp:Label ID="lblLevel" runat="server"></asp:Label> </h2>
     <div class="reply-section reply-section-form">
         <asp:Image ID="commentImage" class="reply-pic" runat="server" Width="84" Height="84" />
         <div class="reply-info">
@@ -27,13 +26,13 @@
     <asp:Repeater ID="rpComments" runat="server">
         <ItemTemplate>
             <div class="reply-section">
-                <img class="reply-pic" src="/images/members/jn/jn.jpg" />
+                <asp:Image ID="rpImage" runat="server" class="reply-pic" ImageUrl='<%# Eval("ImageURL") %>' style="height:84px;width:84px;"/>
                 <div class="reply-info">
                     <div class="reply-name"><%# Eval("Name") %></div>
                     <div class="reply-level"><%# Eval("Program") %></div>
-                    <div class="reply-time"><%# Eval("Time") %></div>
+                    <div class="reply-time"><%# FormatDate(Eval("Time")) %></div>
                 </div>
-                <p><%# Eval("Comment") %></p>
+                <p style="margin-left: 130px;"><%# Eval("Comment") %></p>
             </div>
 
 
@@ -52,7 +51,7 @@
                 <asp:Image ID="imgIcon" runat="server" />
             </div>
         </div>
-        <h4 class="community-chat-title">
+        <h4 class="community-chat-title sec">
             <asp:Literal ID="lblGroup2" runat="server"></asp:Literal>
             GROUP</h4>
         <div class="chat-level chat-level-y" runat="server" id="divChatLevel">

@@ -20,6 +20,25 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
             string sPlanId = Request.QueryString["targetplanid"];
             string sMyPlanId = Request.QueryString["targetmemberplanid"];
 
+
+            var member = PrizeMemberAuthUtils.GetMemberData();
+			txtFirstName.Text = member.Firstname;
+			tbLastName.Text = member.Surname;
+            txtEmail.Text = member.Email;
+            tbMobile.Text = member.Mobile;
+            tbPhone.Text = member.Phone;
+            tbStreetAddress.Text = member.StreetAddress;
+            tbSuburb.Text = member.Suburb;
+            tbState.Text = member.State;
+            ddCountry.Text = member.Country;
+            tbPostCode.Text = member.Postcode;
+			
+			ddlProgram.Text = sProgram;
+			ddlLocation.Text = sLocation;
+            //ddlQ3.Text = member.Questions;
+			//PrizeMemberAuthUtils.GetMemberAnswer(member, 3);
+            //ddlQ4.Text = "test " + member.Email;
+
             bool bIsTrial = false;
             if (Request.QueryString["Trial"] != null && Request.QueryString["Trial"].Equals("1"))
                 bIsTrial = true;

@@ -26,8 +26,8 @@ public partial class UserControls_ResetPassword : System.Web.UI.UserControl
         if (mem != null)
         {
             var pass = Membership.GeneratePassword(6, 1);
-            ApplicationContext.Current.Services.MemberService.SavePassword(mem, pass);
-           // mem.Password = pass;
+            //ApplicationContext.Current.Services.MemberService.SavePassword(mem, pass);
+            //mem.Password = pass;
            //mem.ChangePassword(pass);
            //mem.Save();
             //PrizeEmail.SendPasswordReminder(txtEmail.Text, pass);

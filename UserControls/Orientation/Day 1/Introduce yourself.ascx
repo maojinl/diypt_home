@@ -39,7 +39,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-5"><img class="my-profile-intro-icon" src="/images/icon-member.svg" />
+                <div class="col-sm-5">
+                    <asp:Image ID="imgProfile" runat="server" class="my-profile-intro-icon" />
                 </div>
             </div>
             <hr/>
@@ -48,7 +49,6 @@
                     <h5 class="f-sec c_y sec">ACTION 2</h5>
                      <h4 class="mb-3">Check out your Revitalise Me zone</h4>
                     <p>Revitalise me is a library of information where there are plenty of videos and articles about training, nutrition and mindset plus you get to ask questions, make comments or share something with fellow DIYPTers to help you through your program.</p>
-                    <p>Visit <strong>Revitalise Me</strong> and browse around for topics that interest you. I suggest you join one of our <strong>Community Chat</strong> to connect with other DIYPTers doing the say program that you're doing.</p>
                     <div class="row">
                         <div class="col-md-6 mb-2"><a href="/revitalise-me" class="btn btn-secondary btn-block c_y" target="_blank">SEE REVITALISE ME ></a></div>
                         <div class="col-md-6 mb-2">
@@ -76,7 +76,7 @@
                     
                     <p>2. End with a question to encourage more responses</p>
                     <div class="row">
-                        <div class="col-md-6 mb-2"><a href="#" class="btn btn-secondary btn-block c_y">WRITE A POST ></a></div>
+                        <div class="col-md-6 mb-2"><a href="/community" target="_blank" class="btn btn-secondary btn-block c_y">WRITE A POST ></a></div>
                         <div class="col-md-6 mb-2">
                             <div class="form-check">
                                 <label class="form-check-label">

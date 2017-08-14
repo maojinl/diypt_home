@@ -19,7 +19,7 @@
             <img class="img-fluid img-round" src="/images/ori/day2/test.jpg" />
         </div>
         <div class="push-sm-1 col-sm-5">
-            <p>The following ques/ons are designed to assess your level of social support, which strongly influences how well you follow any nutri/on or exercise program. Simply answer the ques/ons below by selec/ng the response most appropriate to your situa/on. Once you’ve completed all the ques/ons, your score will be calculated. And remember, be honest, You’re doing this exercise to find the areas of your life that might present challenges to your progress.
+            <p>The following questions are designed to assess your level of social support, which strongly influences how well you follow any nutrition or exercise program. Simply answer the questions below by selecting the response most appropriate to your situation. Once you’ve completed all the questions, your score will be calculated. And remember, be honest, You’re doing this exercise to find the areas of your life that might present challenges to your progress.
             </p>
         </div>
     </div>
@@ -33,7 +33,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-12">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q1" id="" value="3" checked> Yes, most of them do
+                        <input type="radio" class="form-check-input" name="q1" id="" value="3"> Yes, most of them do
                     </label>
                 </div>
                 <div class="form-check col-12">
@@ -57,7 +57,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-12">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q2" id="" value="5" checked> Yes, my spouse/partner does
+                        <input type="radio" class="form-check-input" name="q2" id="" value="5"> Yes, my spouse/partner does
                     </label>
                 </div>
                 <div class="form-check col-12">
@@ -83,7 +83,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-12">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q3" id="" value="2" checked> Yes, its easy to find a partner
+                        <input type="radio" class="form-check-input" name="q3" id="" value="2"> Yes, its easy to find a partner
                     </label>
                 </div>
                 <div class="form-check col-12">
@@ -106,7 +106,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-12">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q4" id="" value="-4" checked>Yes, they often do
+                        <input type="radio" class="form-check-input" name="q4" id="" value="-4">Yes, they often do
                     </label>
                 </div>
                 <div class="form-check col-12">
@@ -132,7 +132,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-12">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q5" id="" value="2" checked> Yes, they always do
+                        <input type="radio" class="form-check-input" name="q5" id="" value="2"> Yes, they always do
                     </label>
                 </div>
                 <div class="form-check col-12">
@@ -155,7 +155,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q6" id="" value="5" checked> Yes, I’ve been a member for years
+                        <input type="radio" class="form-check-input" name="q6" id="" value="5"> Yes, I’ve been a member for years
                     </label>
                 </div>
                 <div class="form-check col-sm-6">
@@ -181,7 +181,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q7" id="" value="2" checked> yes, I’ve been doing this for at least 1 year
+                        <input type="radio" class="form-check-input" name="q7" id="" value="2"> yes, I’ve been doing this for at least 1 year
                     </label>
                 </div>
                 <div class="form-check col-sm-6">
@@ -204,7 +204,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q8" id="" value="2" checked> They're very interested
+                        <input type="radio" class="form-check-input" name="q8" id="" value="2"> They're very interested
                     </label>
                 </div>
                 <div class="form-check col-sm-6">
@@ -230,7 +230,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q9" id="" value="-5" checked> Always
+                        <input type="radio" class="form-check-input" name="q9" id="" value="-5"> Always
                     </label>
                 </div>
                 <div class="form-check col-sm-6">
@@ -253,7 +253,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q10" id="" value="5" checked> Always
+                        <input type="radio" class="form-check-input" name="q10" id="" value="5"> Always
                     </label>
                 </div>
                 <div class="form-check col-sm-6">
@@ -279,7 +279,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q11" id="" value="-3" checked> Always; they say fun/work first, exercise last
+                        <input type="radio" class="form-check-input" name="q11" id="" value="-3"> Always; they say fun/work first, exercise last
                     </label>
                 </div>
                 <div class="form-check col-6">
@@ -302,7 +302,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q12" id="" value="5" checked> Always
+                        <input type="radio" class="form-check-input" name="q12" id="" value="5"> Always
                     </label>
                 </div>
                 <div class="form-check col-sm-6">
@@ -341,12 +341,12 @@
             </div>
             <div class="k-result" id="k-result-3" style="display: none;">
                 <h5>4 to -14 total points - needs improvement:</h5>
-                <p>Your social support is lacking and may need a makeover. However, you’re not alone here. Many people struggle with social support. And that’s why I encourage you to be vocal in your Revitalise Me Zone because there are many more like you so I want us all to be in each others social support crew. Also, check out our video - <a href="/orientation/day-5/video-social-support-crew">Your Social Support crew</a> for more ideas on how you can improve your social support crew.
+                <p>Your social support is lacking and may need a makeover. However, you’re not alone here. Many people struggle with social support. And that’s why I encourage you to be vocal in your Community Chat because there are many more like you so I want us all to be in each others social support crew. Also, check out our video - <a href="/orientation/day-5/video-social-support-crew">Your Social Support crew</a> for more ideas on how you can improve your social support crew.
                 </p>
             </div>
             <div class="k-result" id="k-result-4" style="display: none;">
                 <h5>-15 to -31 total points - poor:</h5>
-                <p>This score is quite low and may signal some definite challenges in your work and at - home environments, as well as in your relationships. These can lead to old habits surfacing as many food related problems are really relationship and environment problems. Watch our video - <a href="/orientation/day-5/video-social-support-crew">Your Social Support crew</a> for tips on how to improve your social support crew and be vocal in your Revitalise Me Zone. Make comments and ask as many questions as you want because together we’ll work on overcoming your challenges. 
+                <p>This score is quite low and may signal some definite challenges in your work and at - home environments, as well as in your relationships. These can lead to old habits surfacing as many food related problems are really relationship and environment problems. Watch our video - <a href="/orientation/day-5/video-social-support-crew">Your Social Support crew</a> for tips on how to improve your social support crew and be vocal in your Community Chat. Make comments and ask as many questions as you want because together we’ll work on overcoming your challenges. 
                 </p>
             </div>
         </div>

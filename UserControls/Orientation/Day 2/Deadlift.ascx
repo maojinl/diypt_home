@@ -18,48 +18,35 @@
             <h1 class="text-center mb-3">GET FAMILIAR WITH THE DEADLIFT</h1>
             <div class="row mb-4">
                 <div class="col-sm-12">
-                    <p>In the next 6 days, in preparation for the start of your 12 week exercise program you will be learning the 6 basic fundamental exercises that form the foundation of the workouts we developed in your DIYPT program.</p>
-                    <p>These exercises have been derived from the 7 primal movement patterns made famous by exercise expert and Physiologist, Paul Chek. They are:</p>
-                    <ul class="ori-fa-list">
-                        <li>Squat</li>
-                        <li>Lunge</li>
-                        <li>Push</li>
-                        <li>Pull</li>
-                        <li>Bend</li>
-                        <li>Twist</li>
-                        <li>Gait i.e. walking, jogging or sprinting.</li>
-                    </ul>
+                    
+                    
                 </div>
             </div>
-            <p>The only movement pattern you won’t be learning is gait because we naturally do this movement on a daily basis.</p>
-            <h5 class="c_y mt-4">Today’s exercise is the deadleft.</h5>
-            <p>So that means that you’ll be learning one exercise per day.</p>
             <p>Today’s exercise from the 7 primal movement patterns is the deadlift (bend pattern). However, depending on your program, I want you to focus on a particular variation of the deadlift.</p>
             <div class="row loc-home pg-t pg-l">
                 <div class="col-md-4 ori-1-3-demo mb-4">
-                <a href="#" data-toggle="modal" data-target="#exerciseModal1">
-                    <img class="img-fluid" src="/images/ori/day1/demo.jpg" /></a>
+                    <a href="#" data-toggle="modal" data-target="#exerciseModal1">
+                        <asp:Image runat="server" ID="imgExercise1" CssClass="img-fluid" /></a>
                     <h4 class="sec c_y mt-2 mb-2">BEGINNER</h4>
-                    <p><strong>Broomstick deadlift</strong></p>
-                    <a href="#" class="c_y">View demo ></a>
+                    <p><strong><asp:Label ID="lblExercise1" runat="server"></asp:Label></strong></p>
                 </div>
                 <div class="col-md-4 ori-1-3-demo mb-4">
-                <a href="#" data-toggle="modal" data-target="#exerciseModal2">
-                    <img class="img-fluid" src="/images/ori/day1/demo.jpg" /></a>
+                    <a href="#" data-toggle="modal" data-target="#exerciseModal2">
+                        <asp:Image runat="server" ID="imgExercise2" CssClass="img-fluid" /></a>
                     <h4 class="sec c_y mt-2 mb-2">INTERMEDIATE</h4>
-                    <p><strong>Powerband deadlift</strong></p>
-                    <a href="#" class="c_y">View demo ></a>
+                    <p><strong><asp:Label ID="lblExercise2" runat="server"></asp:Label></strong></p>
                 </div>
                 <div class="col-md-4 ori-1-3-demo mb-4">
-                <a href="#" data-toggle="modal" data-target="#exerciseModal3">
-                    <img class="img-fluid" src="/images/ori/day1/demo.jpg" /></a>
+                    <a href="#" data-toggle="modal" data-target="#exerciseModal3">
+                        <asp:Image runat="server" ID="imgExercise3" CssClass="img-fluid" /></a>
                     <h4 class="sec c_y mt-2 mb-2">ADVANCED</h4>
-                    <p><strong>Powerband swing</strong></p>
-                    <a href="#" class="c_y">View demo ></a>
+                    <p><strong><asp:Label ID="lblExercise3" runat="server"></asp:Label></strong></p>
                 </div>
             </div>
-            <hr/>
-            <asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/>
+
+
+            <hr />
+            <asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click" />
         </div>
     </div>
 </div>
@@ -69,47 +56,6 @@
 <div class="modal fade" id="exerciseModal1" tabindex="-1" role="dialog" aria-labelledby="exerciseModalLabel1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exerciseModalLabel1">Beginner  </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class='embed-container'>
-                    <iframe src="https://player.vimeo.com/video/204969161" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                </div>
-                <img class="img-fluid img-center mt-3" src="/images/exercise/week1/1.jpg">
-          
-                <div class="d-flex align-items-center w94 mb-3">
-                    <div class="p-2 ">
-                        <h6 class="c_b sec nowrap">STEP 1</h6>
-                    </div>
-                    <div class="p-2 ">
-                        <p>Phasellus tempus diam in urna gravida porttitor. Pells dignissim varius ante, </p>
-                    </div>
-                </div>
-                <img class="img-fluid img-center mt-3" src="/images/exercise/week1/2.jpg">
-        
-                <div class="d-flex align-items-center w94 mb-3">
-                    <div class="p-2 ">
-                        <h6 class="c_b sec nowrap">STEP 2</h6>
-                    </div>
-                    <div class="p-2 ">
-                        <p>Phasellus tempus diam in urna gravida porttitor. Pells dignissim varius ante, </p>
-                    </div>
-                </div>
-                <img class="img-fluid img-center mt-3" src="/images/exercise/week1/3.jpg">
-        
-                <div class="d-flex align-items-center w94 mb-3">
-                    <div class="p-2 ">
-                        <h6 class="c_b sec nowrap">STEP 3</h6>
-                    </div>
-                    <div class="p-2 ">
-                        <p>Phasellus tempus diam in urna gravida porttitor. Pells dignissim varius ante, </p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -118,18 +64,6 @@
 <div class="modal fade" id="exerciseModal2" tabindex="-1" role="dialog" aria-labelledby="exerciseModalLabel2" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exerciseModalLabel2">Intermediate  </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class='embed-container'>
-                    <iframe src="https://player.vimeo.com/video/204969161" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                </div>
-                
-            </div>
         </div>
     </div>
 </div>
@@ -137,18 +71,6 @@
 <div class="modal fade" id="exerciseModal3" tabindex="-1" role="dialog" aria-labelledby="exerciseModalLabel3" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exerciseModalLabel3">Advanced  </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class='embed-container'>
-                    <iframe src="https://player.vimeo.com/video/204969161" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                </div>
-                
-            </div>
         </div>
     </div>
 </div>

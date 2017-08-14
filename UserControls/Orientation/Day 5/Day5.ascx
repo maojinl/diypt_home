@@ -17,7 +17,7 @@
         <div class="col-lg-10 push-lg-1 ">
             <div class="row">
                 <div class="col-sm-7 ">
-                    <p>Social support is defined as having a network of people that support your goals, contribute positively to your decision - making processes, and are there for you when you need help. Scientists have suggested that people with this kind of network around them can transcend even the worst environments and accomplish great things. Unfortunately, people who don't have this type of network have a harder time accomplishing even modest goals. <strong>Remember this: who you are today and who you become in the future has a lot to do with whom you choose to spend your time</strong>.
+                    <p>Social support is defined as having a network of people that support your goals, contribute positively to your decision, and are there for you when you need help. Scientists have suggested that people with this kind of network around them can transcend even the worst environments and accomplish great things. Unfortunately, people who don't have this type of network have a harder time accomplishing even modest goals. <strong>Remember this: who you are today and who you become in the future has a lot to do with whom you choose to spend your time</strong>.
                     </p>
                 </div>
                 <div class="col-sm-5">

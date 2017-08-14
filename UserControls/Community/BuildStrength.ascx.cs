@@ -32,7 +32,8 @@ public partial class UserControls_Community_BuildStrength : System.Web.UI.UserCo
             if (member != null)
             {
                 commentName.Text = member.Firstname + " " + member.Surname;
-                //commentPlan.Text = member.
+                var acc = new PrizeDataAccess();
+                commentPlan.Text = acc.GetPlanInfoForPublish();
                 if (member.Photo != null && member.Photo != "")
                     commentImage.ImageUrl = member.Photo;
                 else
@@ -52,7 +53,8 @@ public partial class UserControls_Community_BuildStrength : System.Web.UI.UserCo
                 dvMain.Attributes.Add("class", "col-lg-8 chat-group chat-group-y");
                 imgGroup.ImageUrl = "/images/icon-strength-y.svg";
                 lbSubmit.Attributes.Add("class", "btn  btn-secondary");
-                lblGroup.Text = "Build Strength";
+                lblGroup.Text = "INCREASE MUSCLE";
+                lblGroup2.Text = "INCREASE MUSCLE";
                 imgCard.ImageUrl = "/images/chat/build-strength.jpg";
                 imgIcon.ImageUrl = "/images/icon-tab-strength.svg";
                 imgIcon.Attributes.Add("class", "icon-pg icon-yellow");
@@ -68,7 +70,8 @@ public partial class UserControls_Community_BuildStrength : System.Web.UI.UserCo
                 dvMain.Attributes.Add("class", "col-lg-8 chat-group chat-group-p");
                 imgGroup.ImageUrl = "/images/icon-weight-p.svg";
                 lbSubmit.Attributes.Add("class", "btn  btn-secondary");
-                lblGroup.Text = "Weight Loss";
+                lblGroup.Text = "WEIGHT LOSS";
+                lblGroup2.Text = "WEIGHT LOSS";
                 imgCard.ImageUrl = "/images/chat/weight-loss.jpg";
                 imgIcon.ImageUrl = "/images/icon-tab-weight.svg";
                 imgIcon.Attributes.Add("class", "icon-pg icon-pink");
@@ -84,7 +87,8 @@ public partial class UserControls_Community_BuildStrength : System.Web.UI.UserCo
                 dvMain.Attributes.Add("class", "col-lg-8 chat-group chat-group-b");
                 imgGroup.ImageUrl = "/images/icon-tone-up-b.svg";
                 lbSubmit.Attributes.Add("class", "btn  btn-secondary");
-                lblGroup.Text = "Tone Up";
+                lblGroup.Text = "TONE UP";
+                lblGroup2.Text = "TONE UP";
                 imgCard.ImageUrl = "/images/chat/tone-up.jpg";
                 imgIcon.ImageUrl = "/images/icon-tab-tone.svg";
                 imgIcon.Attributes.Add("class", "icon-pg icon-blue");
@@ -101,7 +105,8 @@ public partial class UserControls_Community_BuildStrength : System.Web.UI.UserCo
                 dvMain.Attributes.Add("class", "col-lg-8 chat-group chat-group-y");
                 imgGroup.ImageUrl = "/images/icon-strength-y.svg";
                 lbSubmit.Attributes.Add("class", "btn  btn-secondary btn-y");
-                lblGroup.Text = "Build Strength";
+                lblGroup.Text = "INCREASE MUSCLE";
+                lblGroup2.Text = "INCREASE MUSCLE";
                 imgCard.ImageUrl = "/images/chat/build-strength.jpg";
                 imgIcon.ImageUrl = "/images/icon-tab-strength.svg";
                 imgIcon.Attributes.Add("class", "icon-pg icon-yellow");
@@ -181,5 +186,14 @@ public partial class UserControls_Community_BuildStrength : System.Web.UI.UserCo
         acc.SavePost(chat);
         txtComment.Text = "";
         BindForm();
+    }
+
+    protected string FormatDate(object dateObj)
+    {
+        if(dateObj != null)
+        {
+            return ((DateTime)dateObj).ToString("dd/MM/yyyy");
+        }
+        return "";
     }
 }

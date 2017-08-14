@@ -67,8 +67,6 @@ public class RegisteredEvents: ApplicationEventHandler
 
                 PrizeEmailWrapper.DailyEmailTask();
 
-                PrizeEmailWrapper.EmailPresetTask();
-
                 if (task == null)
                 {
                     task = new PrizePollingTask();

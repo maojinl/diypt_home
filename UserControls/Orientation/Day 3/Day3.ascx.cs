@@ -15,6 +15,8 @@ public partial class UserControls_Orientation_Day_3_Day3 : BaseOrientation
         if (!IsPostBack)
         {
             MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
+            if (myPlan == null)
+                return;
             string result = dbAccess.GetOrientationWeekDayResult(myPlan.Id, 3);
             if (result != null)
             {
@@ -43,6 +45,11 @@ public partial class UserControls_Orientation_Day_3_Day3 : BaseOrientation
         else if (sender == this.CheckBox3)
             quest = 3;
         MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
+        if (myPlan == null)
+        {
+            Response.Write("<script>alert('Your plan has not started yet.');</script>");
+            return;
+        }
         dbAccess.UpdateOrientationWeekDayResult(myPlan.Id, 3, quest, cb.Checked);
     }
 }

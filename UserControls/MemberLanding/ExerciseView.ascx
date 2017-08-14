@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ExerciseView.ascx.cs" Inherits="UserControls_MemberLanding_ExerciseView" %>
 <div class="tab-inner-content">
     <div class="d-flex justify-content-end content-nav-action sec mb-4">
-        <a id="weekView1" class="c_grey" href="/exercise?#tab-bx-warm-up">
+        <a id="weekView1" class="c_grey" href="/exercise#t0">
             <img src="/images/icon-recipe-g.svg" /><span class="hidden-sm-down">VIEW EXERCISE LIBRARY ></span></a>
         <a class="c_grey" href="javascript:window.print()">
             <img src="/images/icon-print-g.svg" /><span class="hidden-sm-down">PRINT PLAN ></span></a>
@@ -25,7 +25,7 @@
                         <div class="col-md-4">
                             <img src="/images/icon-goal.svg">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-6  pull-md-1 right-0-m-s">
                             <p>Goal</p>
                             <p>
                                 <asp:Label ID="lblGoal" runat="server"></asp:Label></p>
@@ -60,8 +60,8 @@
         </div>
     </div>
     <div class="plan-container row no-gutters">
-        <div class="col-md-12 table-responsive">
-
+        <div class="col-lg-10 push-lg-1 table-responsive">
+    <div id="divNotStarted" class="text-center"><h2>Your plan has not started.</h2></div>
             <table class="table-weekly-detail  margin-center ">
                 <tr>
                     <th>
@@ -128,7 +128,7 @@
                         </div>
                         <asp:HyperLink ID="linkDay1" runat="server" class="weekly-view-detail c_b"><span class="hidden-sm-down">View</span> Details ></asp:HyperLink>
 
-                        <div class="weekly-td-time">
+                        <div class="weekly-td-time" id="timeDay1" runat="server">
                             <img class="icon-time" src="/images/icon-time-b.svg" />
                             <asp:Label ID="lblTimeDuration1" runat="server" />
                             mins
@@ -139,7 +139,7 @@
                             <asp:Label ID="lblExTue1" runat="server"></asp:Label>
                         </div>
                         <asp:HyperLink ID="linkDay2" runat="server" class="weekly-view-detail c_b"><span class="hidden-sm-down">View</span> Details ></asp:HyperLink>
-                        <div class="weekly-td-time">
+                        <div class="weekly-td-time" id="timeDay2" runat="server">
                             <img class="icon-time" src="/images/icon-time-b.svg" />
                             <asp:Label ID="lblTimeDuration2" runat="server" />
                             mins
@@ -150,7 +150,7 @@
                             <asp:Label ID="lblExWed1" runat="server"></asp:Label>
                         </div>
                         <asp:HyperLink ID="linkDay3" runat="server" class="weekly-view-detail c_b"><span class="hidden-sm-down">View</span> Details ></asp:HyperLink>
-                        <div class="weekly-td-time">
+                        <div class="weekly-td-time" id="timeDay3" runat="server">
                             <img class="icon-time" src="/images/icon-time-b.svg" />
                             <asp:Label ID="lblTimeDuration3" runat="server" />
                             mins
@@ -161,7 +161,7 @@
                             <asp:Label ID="lblExThu1" runat="server"></asp:Label>
                         </div>
                         <asp:HyperLink ID="linkDay4" runat="server" class="weekly-view-detail c_b"><span class="hidden-sm-down">View</span> Details ></asp:HyperLink>
-                        <div class="weekly-td-time">
+                        <div class="weekly-td-time" id="timeDay4" runat="server">
                             <img class="icon-time" src="/images/icon-time-b.svg" />
                             <asp:Label ID="lblTimeDuration4" runat="server" />
                             mins
@@ -172,7 +172,7 @@
                             <asp:Label ID="lblExFri1" runat="server"></asp:Label>
                         </div>
                         <asp:HyperLink ID="linkDay5" runat="server" class="weekly-view-detail c_b"><span class="hidden-sm-down">View</span> Details ></asp:HyperLink>
-                        <div class="weekly-td-time">
+                        <div class="weekly-td-time" id="timeDay5" runat="server">
                             <img class="icon-time" src="/images/icon-time-b.svg" />
                             <asp:Label ID="lblTimeDuration5" runat="server" />
                             mins
@@ -183,7 +183,7 @@
                             <asp:Label ID="lblExSat1" runat="server"></asp:Label>
                         </div>
                         <asp:HyperLink ID="linkDay6" runat="server" class="weekly-view-detail c_b"><span class="hidden-sm-down">View</span> Details ></asp:HyperLink>
-                        <div class="weekly-td-time">
+                        <div class="weekly-td-time" id="timeDay6" runat="server">
                             <img class="icon-time" src="/images/icon-time-b.svg" />
                             <asp:Label ID="lblTimeDuration6" runat="server" />
                             mins
@@ -194,7 +194,7 @@
                             <asp:Label ID="lblExSun1" runat="server"></asp:Label>
                         </div>
                         <asp:HyperLink ID="linkDay7" runat="server" class="weekly-view-detail c_b" NavigateUrl="#"><span class="hidden-sm-down">View</span> Details ></asp:HyperLink>
-                        <div class="weekly-td-time">
+                        <div class="weekly-td-time" id="timeDay7" runat="server">
                             <img class="icon-time" src="/images/icon-time-b.svg" />
                             <asp:Label ID="lblTimeDuration7" runat="server" />
                             mins
@@ -203,33 +203,36 @@
                 </tr>
             </table>
         </div>
+		<div class="col-12">
         <div class="row row-equipment no-gutters" id="equipmentDiv" runat="server" visible="false">
+		<div class="col-lg-10 push-lg-1">
+		<div class="row">
             <div class="col-sm-2 hidden-sm-down">
                 <img class="icon-equip img-center-xs" src="/images/icon-equip.svg">
             </div>
             <div class="col-sm-10 hidden-sm-down">
-                <h5 class="pt-3 text-center-xs"><strong>Equipment Needed</strong></h5>
+                <h5 class="pt-3 "><strong>Equipment Needed</strong></h5>
                 <asp:Literal ID="equipmentLiteral" runat="server"></asp:Literal>
             </div>
             <div class="col-12 hidden-md-up" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 <div class="row">
-                    <div class="col-4 ">
-                        <img class="icon-equip img-center-xs" src="/images/icon-equip.svg">
-                    </div>
-                    <div class="col-8">
-                        <h5 class="pt-3 text-center-xs"><strong>Equipment Needed</strong></h5>
+                    <div class="col-12 ">
+                        <h5 class="pt-3 "> <img class="icon-equip" src="/images/icon-equip.svg"><strong>Equipment Needed</strong></h5>
                     </div>
                 </div>
             </div>
             <div class="collapse hidden-md-up" id="collapseExample">
                 <asp:Literal ID="equipmentLiteralMobile" runat="server"></asp:Literal>
             </div>
+			</div>
+			</div>
+			</div>
         </div>
 
 
 
 
-        <div class="col-xl-10 push-xl-1 col-lg-12 hidden-sm-down mt-3 ">
+        <div class="col-xl-10 push-xl-1 col-lg-12 hidden-sm-down mt-3" id="timesaverDiv" runat="server">
             <table class="timesaver">
                 <tr>
                     <td class="timesaver-title">
@@ -257,11 +260,11 @@
                 </tr>
             </table>
         </div>
-        <div class="col-xl-10 push-xl-1 col-lg-12  hidden-md-up ">
+        <div class="col-xl-10 push-xl-1 col-lg-12  hidden-md-up" id="timesaverDivMobile" runat="server">
             <table class="timesaver">
                 <tr>
                     <td class="timesaver-title">
-                        <h4 class="sec">TIMESAVER<br />
+                        <h4 class="sec mb-3">TIMESAVER<br />
                             WORKOUTS</h4>
                         <p>Workouts for those occasional times when you have limited time. For optimum results please stick to your scheduled program.</p>
                     </td>
@@ -292,8 +295,8 @@
         </div>
     </div>
     <div class="row pb-4 pt-4">
-        <a id="dayView" href="#" class="c_b btn btn-secondary m-1 col-sm-4 push-sm-2">SWITCH TO DAY VIEW ></a>
-        <a href="#" class="c_b btn btn-secondary m-1 col-sm-4 push-sm-2">PRINT WEEKLY PLAN ></a>
+        <a id="dayView" runat="server" href="#" class="c_b btn btn-secondary m-1 col-sm-4 push-sm-2">SWITCH TO DAY VIEW ></a>
+        <a id="printDay" runat="server" href="#" class="c_b btn btn-secondary m-1 col-sm-4 push-sm-2">PRINT WEEKLY PLAN ></a>
     </div>
 </div>
 <div class="modal fade" id="timeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">

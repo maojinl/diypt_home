@@ -122,9 +122,28 @@
             </div>
 
         </div>
+        <h1 class="c_y">Your next plan is:</h1>
+        <br/>
+        <p>Program: <strong><asp:Label ID="lblProg" runat="server" ForeColor="#CC3300"></asp:Label></strong></p>
+        <p>Location: <strong><asp:Label ID="lblLoc" runat="server" ForeColor="#CC3300"></asp:Label></strong></p>
+        <p>Level: <strong><asp:Label ID="lblLvl" runat="server" ForeColor="#CC3300"></asp:Label></strong></p>
+        <p>Semester: <strong><asp:Label ID="lblSem" runat="server" ForeColor="#CC3300"></asp:Label></strong></p>
+        <div></div>
+        &nbsp;
+        <h6>1. What is your training goal?</h6>
+        <fieldset class="form-group row">
+            <div class="col-md-8">
+                <asp:DropDownList ID="ddlProgram" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="">Keep the same</asp:ListItem>
+                    <asp:ListItem Value="Lose Weight">Lose weight and increase fitness</asp:ListItem>
+                    <asp:ListItem Value="Build Muscle">Build muscle and get bigger</asp:ListItem>
+                    <asp:ListItem Value="Tone Up">Tone up and be body confident</asp:ListItem>
+                </asp:DropDownList>
 
-        <h1 class="c_y">Your next plan is  <asp:Label ID="lblNextPlanName" runat="server" ForeColor="#CC3300"></asp:Label></h1>
-        &nbsp;<h6>2. Where would you prefer to exercise for your DIYPT grogram?</h6>
+
+            </div>
+        </fieldset>
+        <h6>2. Where would you prefer to exercise for your DIYPT program?</h6>
         <fieldset class="form-group row">
             <div class="col-md-8">
                 <asp:DropDownList ID="ddlLocation" runat="server" CssClass="form-control">

@@ -18,7 +18,6 @@
             <div class="row">
                 <div class="col-sm-7 ">
                     <p>I’m a big believer in the quote “You fail to plan, you plan to fail”. You’ve invested money, itme, effort and most of all have shown bucket loads of courage to do something about your health so spending 9me planning and organising your next 12 weeks is a crucial part of the process.
-                        </strong>.
                     </p>
                 </div>
                 <div class="col-sm-5">
@@ -44,6 +43,7 @@
                                  </p>
                             </td>
                         </tr>
+                        <!--
                         <tr>
                             <td scope="row">
                                 <h5><a id="action2"  class="c_black" href="/orientation/day-6/mark-on-your-calendar-diary-any-events">Mark on your calendar/diary any events </a></h5>
@@ -71,6 +71,7 @@
                                  </p>
                             </td>
                         </tr>
+                        -->
                         <tr>
                             <td scope="row">
                                 <h5><a id="action5" class="c_black" href="/orientation/day-6/get-familiar-with-the-twist">Get familiar with the twist</a></h5>

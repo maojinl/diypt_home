@@ -49,7 +49,13 @@ public static class PrizeCommonUtils
         return dt;
     }
 
-    static public int GetDayOfWeek(this DateTime dt)
+	static public DateTime GetMonthStart(DateTime date)
+	{
+		DateTime dt = DateTime.Parse(date.ToString("yyyy-mm") + "-01 00:00:00");
+		return dt;
+	}
+
+	static public int GetDayOfWeek(this DateTime dt)
     {
         if (dt.DayOfWeek == 0)
             return 7;
@@ -102,9 +108,8 @@ public static class PrizeCommonUtils
 
     static public bool LessThanDaysAhead(DateTime date, DateTime targetDate, int days)
     {
-        DateTime now = PrizeCommonUtils.GetSystemDate();
         bool result = false;
-        if (date.AddDays(days) >= targetDate)
+        if (date.AddDays(days) >= targetDate && date.AddDays(days -1) <= targetDate)
             result = true;
         return result;
     }

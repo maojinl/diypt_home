@@ -77,6 +77,9 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
             if (iWeekDay == iDay)
                 lblDayTypeName.Text = (String)row[2];
         }
+        if (lblDayTypeName.Text.ToLower() == PrizeConstants.STR_NO_TRAINNING.ToLower()
+            || lblDayTypeName.Text == "Time to celebrate")
+            divWarmup.Visible = divCooldown.Visible = false;
 
 
         lblDay.Text = PrizeCommonUtils.ParseWeekDayToEnglish(iDay);
@@ -97,6 +100,25 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
             nextDay.Attributes.Add("class", "no-arrow");
 
         InitPageControls();
+
+        DivAdvanceEquipment.Visible = false;
+        PrizeDataAccess db = new PrizeDataAccess();
+        var memberExercisePlan = db.GetCurrentMemberPlanOrStartingPlan(PrizeMemberAuthUtils.GetMemberID());
+        if (memberExercisePlan != null)
+        {
+            var exercisePlan = db.GetExercisePlan(memberExercisePlan.ExercisePlanId);
+            if (exercisePlan != null)
+            {
+                if (exercisePlan.PlanName.ToLower().Contains("home")
+                    && (exercisePlan.PlanName.ToLower().Contains("intermediate")
+                    ||
+                    exercisePlan.PlanName.ToLower().Contains("advanced"))
+                    )
+                {
+                    DivAdvanceEquipment.Visible = true;
+                }
+            }
+        }
 
         LoadDailyInfo(iPlanWeekId, iDay);
 

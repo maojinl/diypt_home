@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 public partial class UserControls_Orientation_Week : BaseOrientation
@@ -53,11 +54,15 @@ public partial class UserControls_Orientation_Week : BaseOrientation
                 for (int j = 1; j <= 10; j++)
                 {
                     controlName = "quest" + i + j;
-                    var c = FindControl(controlName);
+                    HtmlGenericControl c = FindControl(controlName) as HtmlGenericControl;
                     if (c == null)
                         break;
                     if (result[j - 1] == '0')
-                        c.Visible = false;
+                    //c.Visible = false;
+                    { 
+                        c.Attributes.Add("class", "no-tick-circle");
+                        c.InnerText = "x";
+                    }
                     else
                         c.Visible = true;
                 }

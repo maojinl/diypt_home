@@ -98,8 +98,20 @@ public class PrizeConstants
         ContinuousLogin,
         NewYearEmail,
         EasterEmail,
-        ChristmasEmail
-    }
+        ChristmasEmail,
+		BirthdayEmail,
+		FirstMonthEmail,
+		SecondMonthEmail,
+		ThirdMonthEmail,
+		TwoDaysPrior2End,
+		OneDayPrior2TrialEnd,
+		MileStoneWeek2,
+		MileStoneWeek6,
+		MileStoneWeek10,
+		MileStoneWeek12,
+		MileStoneEndWeek12,
+		MileStoneGoalWeek13
+	}
 
     public enum EmailStatus
     {

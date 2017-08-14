@@ -36,7 +36,7 @@
                     <ul class="list list-left">
                         <li>Early morning training is best because you can get it out of the way and you’ll be less likely be interrupted by a phone call or event that requires your urgent attention.</li>
                         <li>Prepare your workout times by checking your schedule regularly.</li>
-                        <li>Fill your sandbags with sand. Two bags should weigh 20kg and another two bags should weigh 10kg. Make sure you gopher tape them to increase durability.</li>
+                        <li>Fill your sandbags with sand. One bag should weigh 20kg and the other should weigh 10kg. Make sure you gohper tape them to increase durability. Click this video - How to make a sandbag for instruction. If it's easier for you to purchase one, you can get one from a department store like K-Mart or Aldi for less than $40 each.</li>
                     </ul>
                     <div class="bg_grey d-flex justify-content-start bd-highlight mb-3">
                         <div class="p-2 bd-highlight">
@@ -46,7 +46,7 @@
                             <h6><strong>Gym clothes to wear:</strong></h6>
                             <ul class="list list-grey list-left">
                                 <li>Good quality training shoes </li>
-                                <li>A fresh training ouSit for every day of your weekly workouts and don't forget a hat, sunglasses and sunscreen if you're training outside</li>
+                                <li>A fresh training outfit for every day of your weekly workouts and don't forget a hat, sunglasses and sunscreen if you're training outside</li>
                             </ul>
                         </div>
                     </div>
@@ -57,17 +57,16 @@
                         <div class="p-2 bd-highlight">
                             <h6><strong>Check you have all the equipment I’ve supplied you with:</strong></h6>
                             <ul class="list list-grey list-left">
-                                <li>3 Powerbands (colours)</li>
+                                <li>3 Powerbands</li>
                                 <li>Training mat</li>
-                                <li>Swiss ball </li>
+                                <li>Swissball </li>
                                 <li>Skipping rope </li>
-                                <li>A pair of Gym gloves</li>
-                                <li>Sandbag bags</li>
+                                <li>A pair of gym gloves</li>
+                                <li>2 x Sandbags</li>
                             </ul>
                             <h6><strong>Extra things you will need:</strong></h6>
                             <ul class="list list-grey list-left">
-                                <li>Broom s)ck (for some exercises, stretches and muscle releasing)</li>
-                                <li>Water boJle for drinking</li>
+                                <li>Water bottle for drinking</li>
                                 <li>Towel</li>
                             </ul>
                         </div>
@@ -85,7 +84,7 @@
                     <h5 class="mb-3 sec c_y">Plan for your meals</h5>
                     <ul class="list list-left">
                         <li>During your 12 week program, ensure you plan your meals the night before in My Fitness Pal to ensure compliance to your macronutrients.</li>
-                        <li>Today, mark on your calendar any events that will disrupt your training and eating routine such as birthdays, weddings and other celebrations where your likely to eat out or there will be unhealthy food served. Go onto the restaurant’s website and check out the menu or ask your friend/family member what foods will be served so you can plan your meals in My Fitness Pal the night before.</li>
+                        <li>Today, mark on your calendar any events that will disrupt your training and eating routine such as birthdays, weddings and other celebrations.</li>
                     </ul>
                 </div>
                 <div class="col-sm-6">
@@ -96,9 +95,9 @@
                     <img class="img-fluid img-round card-icon-img mb-3" src="/images/ori/day6/12-3.jpg" />
                     <h5 class="mb-3 sec c_p ">Plan for your Shopping</h5>
                     <ul class="list list-left">
-                        <li>Do a big grocery shop on the weekend when you have more time and do another 1 or 2 smaller shops during the week for your fresh fruit and vegetables and anything else you may need. For example I do my main grocery shop on Sunday and then do 1 more on Wednesday. </li>
-                        <li> Amongst all your hard work and dedication, don't forget to celebrate your successes no matter how big or small they are. </li>
-                        <li> I encourage you to have a milestone celebration after every 4 week block ie. on the weekend of week 5, week 9 and the massive milestone, week 13. This is a very important part of your journey, so make sure you do celebrate your progress after every 4 week block.</li>
+                        <li>Do a big grocery shop on the weekend when you have more time and do another 1 or 2 smaller shops during the week for your fresh fruit and vegetables and anything else you may need.</li>
+                        <li>Amongst all your hard work and dedication, don't forget to celebrate your successes no matter how big or small they are.</li>
+                        <li>I demand you to have a milestone celebration after every 4 week block because rewards are very important part of creating good habits.</li>
                     </ul>
                 </div>
             </div>

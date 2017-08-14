@@ -115,10 +115,15 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
                 }
                 else
                 {
+
+
+
                     foodplanweek.Food1 = tbFood1.Text;
                     foodplanweek.Food2 = tbFood2.Text;
                     foodplanweek.Food3 = tbFood3.Text;
                     foodplanweek.Food4 = tbFood4.Text;
+
+
                 }
 
                 db.SaveChanges();
@@ -129,7 +134,9 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 
     protected void refresh(object sender, EventArgs e)
     {
+
         this.BindGrid();
+
     }
     protected void OnPaging(object sender, GridViewPageEventArgs e)
     {

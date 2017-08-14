@@ -139,8 +139,6 @@ public partial class UserControls_TrialSignUp : System.Web.UI.UserControl
             ddlLocation.Enabled = false;
             ddlProgram.Enabled = false;
             ddlLevel.Enabled = false;
-            lblPassword.Visible = false;
-            lblPassword1.Visible = false;
             Response.Write(
                        @"<SCRIPT LANGUAGE=""JavaScript"">alert('Please confirm your information')</SCRIPT>");
         }
@@ -171,19 +169,27 @@ public partial class UserControls_TrialSignUp : System.Web.UI.UserControl
                 member.Mobile = tbMobile.Text;
                 member.Phone = tbPhone.Text;
 
-                //member.Password = txtPassword.Text;
-                /*member.Gender = RdoGender.Text;
-                member.DoB = Convert.ToDateTime(txtDob.Text);
+                StringBuilder sb = new StringBuilder();
+                sb.Append(Q3.InnerText);
+                sb.Append("\r\n");
+                sb.Append(ddlQ3.Text);
+                sb.Append("\r\n");
+                sb.Append(Q4.InnerText);
+                sb.Append("\r\n");
+                sb.Append(ddlQ4.Text);
+                sb.Append("\r\n");
+                sb.Append(regQ4.InnerText);
+                sb.Append("\r\n");
+                sb.Append(Q5.InnerText);
+                sb.Append("\r\n");
+                sb.Append(regQ5.InnerText);
+                sb.Append("\r\n");
+                sb.Append(ddlQ6.Text);
+                sb.Append("\r\n");
+                sb.Append(regQ6.InnerText);
+                sb.Append("\r\n");
 
-                member.Height = Convert.ToDecimal(tbHeight.Text);
-                member.Weight = Convert.ToDecimal(tbWeight.Text);
-                member.BodyFat = Convert.ToDecimal(tbBodayfat.Text);
-                                    
-                member.Waist = Convert.ToDecimal(tbWaist.Text);
-                member.GoalWaist = Convert.ToDecimal(tbGoalWaist.Text);
-                member.GoalWeight = Convert.ToDecimal(tbGoalWeight.Text);
-                member.GoalBodyFat = Convert.ToDecimal(tbGoalBodayfat.Text);
-                                */
+                member.Questions = sb.ToString();
                 member.UmbracoId = newUserId;
                 member.RegisterDateTime = PrizeCommonUtils.GetSystemDate();
                 db.PrizeMembers.Add(member);

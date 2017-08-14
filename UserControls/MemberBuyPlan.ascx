@@ -4,35 +4,160 @@
         height: 34px;
     }
 </style>
-<table width="100%">
-    <tr>
-        <td>
-            Plan:&nbsp;
+
+<div class="container-fluid container-fluid-w">
+    <div class="container container-registration-form">
+        <h1 class="c_y">General Details
+                <asp:Label ID="lblMsg" runat="server" ForeColor="#CC3300"></asp:Label>
+
+        </h1>
+        <div class="row form-group">
+            <div class="col-md-2 col-12 col-form-label">First Name</div>
+            <div class="col-md-4 col-12">
+                <asp:Label ID="txtFirstName" runat="server" class="form-control"></asp:Label>
+            </div>
+            <div class="col-md-2 col-12 col-form-label">Surname</div>
+            <div class="col-md-4 col-12">
+
+                <asp:Label ID="tbLastName" runat="server" class="form-control"></asp:Label>
+
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-2 col-12 col-form-label">Email</div>
+            <div class="col-md-4 col-12">
+                <asp:Label ID="txtEmail" runat="server" class="form-control"></asp:Label>
+            </div>
+
+
+        </div>
+        <div class="row form-group">
+            <div class="col-md-2 col-12 col-form-label">Mobile Number</div>
+            <div class="col-md-4 col-12">
+                <asp:Label ID="tbMobile" runat="server" class="form-control"></asp:Label>
+            </div>
+            <div class="col-md-2 col-12 col-form-label">Other Contact</div>
+            <div class="col-md-4 col-12">
+                <asp:Label ID="tbPhone" runat="server" class="form-control"></asp:Label>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-2 col-12 col-form-label">Street Address</div>
+            <div class="col-md-4 col-12">
+                <asp:Label ID="tbStreetAddress" runat="server" class="form-control"></asp:Label>
+            </div>
+            <div class="col-md-2 col-12 col-form-label">Suburb</div>
+            <div class="col-md-4 col-12">
+                <asp:Label ID="tbSuburb" runat="server" class="form-control"></asp:Label>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-2 col-12 col-form-label">State</div>
+            <div class="col-md-4 col-12">
+                <asp:Label ID="tbState" runat="server" class="form-control"></asp:Label>
+            </div>
+            <div class="col-md-2 col-12 col-form-label">Country</div>
+            <div class="col-md-4 col-12">
+                <asp:Label ID="ddCountry" runat="server" class="form-control"></asp:Label>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-2 col-12 col-form-label">Postcode</div>
+            <div class="col-md-4 col-12">
+                <asp:Label ID="tbPostCode" runat="server" class="form-control"></asp:Label>
+            </div>
+            <div class="col-md-2 col-12 col-form-label"></div>
+            <div class="col-md-4 col-12">
+            </div>
+
+        </div>
+        <hr />
+
+        <h1 class="c_y">Program Specific Details</h1>
+        <h6>1. What is your training goal?</h6>
+        <fieldset class="form-group row">
+            <div class="col-md-8">
+
+                <asp:Label ID="ddlProgram" runat="server" class="form-control"></asp:Label>
+
+
+            </div>
+        </fieldset>
+        <h6>2. Where would you prefer to exercise for your DIYPT grogram?</h6>
+        <fieldset class="form-group row">
+            <div class="col-md-8">
+
+                <asp:Label ID="ddlLocation" runat="server" class="form-control"></asp:Label>
+
+
+
+            </div>
+        </fieldset>
+
+		<!--
+        <h6 runat="server" id="Q3">3. Do you have any dietary requirements?</h6>
+
+        <fieldset class="form-group row">
+            <div class="col-md-8">
+
+                <asp:Label ID="ddlQ3" runat="server" class="form-control"></asp:Label>
+
+
+            </div>
+        </fieldset>
+
+
+        <h6 runat="server" id="Q4">4. Do you have any medical conditions that will prevent/disrupt you from training?</h6>
+
+
+        <fieldset class="form-group row">
+            <div class="col-md-8">
+                <asp:Label ID="ddlQ4" runat="server" class="form-control"></asp:Label>
+
+
+                <div id="q4Detail" name="q4Detail">
+                    <p>Please specify:</p>
+                    <asp:Label ID="regQ4" runat="server" class="form-control"></asp:Label>
+                </div>
+            </div>
+        </fieldset>
+
+
+
+
+        <h6 runat="server" id="Q5">5. If you believe you can still exercise, please write an explanation below.</h6>
+
+        <fieldset class="form-group row">
+            <div class="col-md-8">
+                <asp:Label ID="regQ5" runat="server" class="form-control"></asp:Label>
+
+            </div>
+        </fieldset>
+
+        <h6>6. Are you currently on any medication ?</h6>
+        <fieldset class="form-group row">
+            <div class="col-md-8">
+                <asp:Label ID="ddlQ6" runat="server" class="form-control"></asp:Label>
+                <div id="q6Detail">
+                    <p>Please specify:</p>
+                    <asp:Label ID="regQ6" runat="server" class="form-control"></asp:Label>
+                </div>
+            </div>
+        </fieldset>
+-->
+
+        <hr class="mt-5 mb-2" />
+        Plan:&nbsp;
                        <asp:Label ID="lblPlan" runat="server"></asp:Label>
-        </td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td >
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td colspan="2" class="auto-style1">
-                    <asp:ImageButton ID="CheckoutImageBtn" runat="server" 
+        <br />
+        <asp:ImageButton ID="CheckoutImageBtn" runat="server" 
                       ImageUrl="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" 
                       Width="145" AlternateText="Check out with PayPal" 
                       OnClick="CheckoutBtn_Click" 
                       BackColor="Transparent" BorderWidth="0" />
-            <br />
-            <br />
-        </td>
+    </div>
+</div>
 
-    </tr>
-
-</table>
     <div class="error">
         <asp:Label ID="errorLabel" runat="server"></asp:Label>
     </div>

@@ -34,11 +34,14 @@ public partial class UserControls_ComingUp : System.Web.UI.UserControl
         //var nextSunday = tempdate.Next(DayOfWeek.Sunday);
         PrizeDataAccess db = new PrizeDataAccess();
             
-        var exercisePlan = db.GetCurrentMemberPlanOrStartingPlan(PrizeMemberAuthUtils.GetMemberID());
+            var exercisePlan = db.GetCurrentMemberPlanOrStartingPlan(PrizeMemberAuthUtils.GetMemberID());
+        //var nextSunday = exercisePlan.StartDate.NextDay(DayOfWeek.Monday);
         if (exercisePlan == null)
             return;
 
-        var nextSunday = exercisePlan.StartDate.NextDay(DayOfWeek.Sunday);
+        //var nextSunday = exercisePlan.StartDate.NextDay(DayOfWeek.Sunday);
+
+        var nextSunday = exercisePlan.StartDate;
         int counter = 0;
         for (int i = 1; i < 14; i++)
         {

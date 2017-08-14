@@ -11,7 +11,7 @@
     </div>
     <div class="d-flex justify-content-between align-items-center pb-4 pre-next">
         <a id="dayPre" class="day-pre c_y" href="/orientation/day-3/3-day-food-diary">Back</a>
-        <a id="dayNext" class="day-next c_y" href="/orientation/day-3/get-familiar-with-the-chest-press">Next</a>
+        <a id="dayNext" class="day-next c_y" href="/orientation/day-3/get-familiar-with-a-push-exercise">Next</a>
        
     </div>
 
@@ -19,8 +19,8 @@
 
     <div class="row">
         <div class="col-sm-10 push-sm-1">
-            <h1 class="text-center pb-4">Watch video - How to count your macros</h1>
-            
+            <h1 class="text-center pb-4">Watch video - Counting macros the DIYPT way</h1>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/TxBQD5JlRoc" frameborder="0" allowfullscreen></iframe>
         </div>
         <div class="col-sm-10 push-sm-1 text-center">
          <asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/>

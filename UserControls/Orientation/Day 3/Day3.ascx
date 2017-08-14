@@ -20,8 +20,8 @@
                     <p>It is essential that you complete your 3 day food diary this week in Orientation Week. The purpose of this 3 day diary is twofold:
                     </p>
                     <ul class="list list-number">
-                        <li><span class="c_y">1.</span> So you can see how much calories, carbohydrates, protein and fats you are currently intaking, and you'll be able to compare this with how much you should be having when you get your food plan. </li>
-                        <li><span class="c_y">2.</span>Get into the good habit of recording and coun(ng your macros because this is the single most important tool for the success of your program as you need sufficient amount of macronutrients throughout your program and the amounts differs depending on a few factors. There is a science behind geHng that banging body you desire.</li>
+                        <li><span class="c_y">1.</span>So you can see how much calories, carbohydrates, protein and fats you are currently intaking, and you'll be able to compare this with how much you should be having when you get your food plan. </li>
+                        <li><span class="c_y">2.</span>Get into the good habit of recording and counting your macros because this is the single most important tool for the success of your program as you need sufficient amount of macronutrients throughout your program and the amounts differs depending on a few factors. There is a science behind getting that banging body you desire.</li>
                     </ul>
                 </div>
                 <div class="col-sm-5">
@@ -49,7 +49,7 @@
                         </tr>
                         <tr>
                             <td scope="row">
-                                <h5><a id="action2"  class="c_black" href="/orientation/day-3/video-how-to-count-your-macros">Watch video - How to count your macros</a></h5>
+                                <h5><a id="action2"  class="c_black" href="/orientation/day-3/video-how-to-count-your-macros">Watch video - Counting macros the DIYPT way</a></h5>
                             </td>
                             <td>
                                  <p class="tick-circle" style="background-color: transparent;"><asp:CheckBox ID="CheckBox2" runat="server" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />
@@ -58,7 +58,7 @@
                         </tr>
                         <tr>
                             <td scope="row">
-                                <h5><a id="action3"  class="c_black" href="/orientation/day-3/get-familiar-with-the-chest-press">Get familiar with the chest press</a></h5>
+                                <h5><a id="action3"  class="c_black" href="/orientation/day-3/get-familiar-with-a-push-exercise">Get familiar with a push exercise</a></h5>
                             </td>
                             <td>
                                  <p class="tick-circle" style="background-color: transparent;"><asp:CheckBox ID="CheckBox3" runat="server" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />

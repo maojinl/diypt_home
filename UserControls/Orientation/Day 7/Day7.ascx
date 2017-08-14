@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Day7.ascx.cs" Inherits="UserControls_Orientation_Day_7_Day7" %>
 <div class="tab-inner-content">
     <div class="d-flex justify-content-end content-nav-action sec mb-4">
-        <a id="weekView1" class="c_grey" href="#"> <img src="/images/icon-back-g.svg" /><span class="hidden-sm-down sec">BACK TO WEEK VIEW ></span></a>
+        <a id="weekView1" class="c_grey" href="/orientation"> <img src="/images/icon-back-g.svg" /><span class="hidden-sm-down sec">BACK TO WEEK VIEW ></span></a>
         <a class="c_grey" href="javascript:window.print()"> <img src="/images/icon-print-g.svg" /><span class="hidden-sm-down sec">PRINT PLAN ></span></a>
     </div>
     <div class="text-center">
@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-sm-5">
                     <h5 class="underline">Rest Day <img class="icon-s" src="/images/icon-time-y.svg" /><span class="c_y"> All Day </span></h5>
-                    <p>Just a feel good sentence about resting.</p>
+                    <p>It has been a big start to your program, so put your feet up, sit back and relax today. You deserve the reward</p>
                 </div>
             </div>
      

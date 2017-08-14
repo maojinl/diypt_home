@@ -18,7 +18,12 @@ public partial class UserControls_Orientation_Day_4_Kitchen_makeover : BaseOrien
     protected void btnTaskDone_Click(object sender, EventArgs e)
     {
         MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
+        if (myPlan == null)
+        {
+            Response.Write("<script>alert('Your plan has not started yet.');</script>");
+            return;
+        }
         dbAccess.UpdateOrientationWeekDayResult(myPlan.Id, 4, 2, true);
-        Response.Redirect("/orientation/day-4/get-familiar-with-the-row");
+        Response.Redirect("/orientation/day-4/get-familiar-with-a-pull-exercise");
     }
 }

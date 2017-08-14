@@ -38,6 +38,7 @@ public partial class UserControls_MemberLanding_ProgressStatus : System.Web.UI.U
 
             if (_MemberPlanWeek == null)
             {
+                divMeasurement.Visible = false;
                 return;
             }
 
@@ -47,6 +48,13 @@ public partial class UserControls_MemberLanding_ProgressStatus : System.Web.UI.U
                 iWeekNum = 1;
             else
                 iWeekNum = _MemberPlanWeek.Week + 1;
+
+            if (!(_MemberPlanWeek.Week == 0 ||
+                _MemberPlanWeek.Week == 4 ||
+                _MemberPlanWeek.Week == 7 ||
+                _MemberPlanWeek.Week == 10 ||
+                _MemberPlanWeek.Week == 12))
+                divMeasurement.Visible = false;
 
             lblWeekNum.Text = iWeekNum.ToString();
             lblWeekNum2.Text = lblWeekNum.Text;

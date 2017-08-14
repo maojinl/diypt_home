@@ -18,6 +18,11 @@ public partial class UserControls_Orientation_Day_1_Pre_ex_questionnaire : BaseO
     protected void btnTaskDone_Click(object sender, EventArgs e)
     {
         MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
+        if (myPlan == null)
+        {
+            Response.Write("<script>alert('Your plan has not started yet.');</script>");
+            return;
+        }
         dbAccess.UpdateOrientationWeekDayResult(myPlan.Id, 1, 2, true);
         Response.Redirect("/orientation/day-1/get-familiar-with-the-squat");
     }

@@ -65,7 +65,7 @@
                         <div class="form-group row">
                             <div class="form-check col-sm-6">
                                 <label class="form-check-label"> </label>
-                                    <asp:CheckBox ID="cbShowProgram" runat="server" class="form-check-input" Text=" Show My Program"/>
+                                    <asp:CheckBox ID="cbShowProgram" runat="server" class="form-check-input" Text=" Show My Goal"/>
                                
                             </div>
                             <div class="form-check col-sm-6">

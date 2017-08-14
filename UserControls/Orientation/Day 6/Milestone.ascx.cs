@@ -18,6 +18,11 @@ public partial class UserControls_Orientation_Day_6_Milestone : BaseOrientation
     protected void btnTaskDone_Click(object sender, EventArgs e)
     {
         MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
+        if (myPlan == null)
+        {
+            Response.Write("<script>alert('Your plan has not started yet.');</script>");
+            return;
+        }
         dbAccess.UpdateOrientationWeekDayResult(myPlan.Id, 6, 4, true);
         Response.Redirect("/orientation/day-6/get-familiar-with-the-twist");
     }

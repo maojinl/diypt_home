@@ -162,7 +162,7 @@
             <th>Saturday</th>
         </tr>
         <tr>
-            <td>Week 1
+            <td>Week 0
                 <asp:Label runat="server" ID="week1Date" CssClass="coming-date-period"></asp:Label>
       
             </td>
@@ -172,7 +172,7 @@
             </td>
         </tr>
         <tr>
-            <td>Week 2
+            <td>Week 1
                 <asp:Label runat="server" ID="week2Date" CssClass="coming-date-period"></asp:Label>
             </td>
             <td runat="server" id="w2d1" class="bg-grey">
@@ -185,7 +185,7 @@
             <td runat="server" id="w2d7"></td>
         </tr>
         <tr>
-            <td>Week 3
+            <td>Week 2
                 <asp:Label runat="server" ID="week3Date" CssClass="coming-date-period"></asp:Label>
             </td>
 
@@ -200,11 +200,10 @@
 
         </tr>
         <tr>
-            <td>Week 4
+            <td>Week 3
                 <asp:Label runat="server" ID="week4Date" CssClass="coming-date-period"></asp:Label>
             </td>
-            <td runat="server" id="w4d1" class="bg-grey">
-                <img src="/images/coming/gift.svg">Receive your new equipment</td>
+            <td runat="server" id="w4d1"></td>
             <td runat="server" id="w4d2"></td>
             <td runat="server" id="w4d3"></td>
             <td runat="server" id="w4d4"></td>
@@ -213,7 +212,7 @@
             <td runat="server" id="w4d7"></td>
         </tr>
         <tr>
-            <td>Week 5
+            <td>Week 4
                 <asp:Label runat="server" ID="week5Date" CssClass="coming-date-period"></asp:Label>
             </td>
 
@@ -223,32 +222,31 @@
             <td runat="server" id="w5d3"></td>
             <td runat="server" id="w5d4"></td>
             <td runat="server" id="w5d5"></td>
-            <td runat="server" id="w5d6"></td>
+            <td runat="server" id="w5d6" class="bg-y">
+                <img src="/images/coming/meal.svg">End of fortnight program treat meal</td>
             <td runat="server" id="w5d7"></td>
         </tr>
         <tr>
-            <td>Week 6
+            <td>Week 5
                 <asp:Label runat="server" ID="week6Date" CssClass="coming-date-period"></asp:Label>
             </td>
 
             <td runat="server" id="w6d1"></td>
             <td runat="server" id="w6d2"></td>
             <td runat="server" id="w6d3"></td>
-            <td runat="server" id="w6d4" class="bg-b">
-                <img src="/images/coming/test.svg">Redo fitness test</td>
+            <td runat="server" id="w6d4"></td>
             <td runat="server" id="w6d5"></td>
             <td runat="server" id="w6d6"></td>
             <td runat="server" id="w6d7" class="bg-b">
-                <img src="/images/coming/challenge.svg">Monthly challenge</td>
+                <img src="/images/coming/time.svg">Milestone workout</td>
 
         </tr>
         <tr>
-            <td>Week 7
+            <td>Week 6
                 <asp:Label runat="server" ID="week7Date" CssClass="coming-date-period"></asp:Label>
             </td>
 
-            <td runat="server" id="w7d1" class="bg-grey">
-                <img src="/images/coming/gift.svg">Congrats you are half way. Recive new equipment</td>
+            <td runat="server" id="w7d1"></td>
             <td runat="server" id="w7d2"></td>
             <td runat="server" id="w7d3"></td>
             <td runat="server" id="w7d4"></td>
@@ -258,7 +256,7 @@
             <td runat="server" id="w7d7"></td>
         </tr>
         <tr>
-            <td>Week 8
+            <td>Week 7
                 <asp:Label runat="server" ID="week8Date" CssClass="coming-date-period"></asp:Label>
             </td>
             <td runat="server" id="w8d1"></td>
@@ -272,7 +270,7 @@
 
         </tr>
         <tr>
-            <td>Week 9
+            <td>Week 8
                 <asp:Label runat="server" ID="week9Date" CssClass="coming-date-period"></asp:Label>
             </td>
 
@@ -281,26 +279,26 @@
             <td runat="server" id="w9d3"></td>
             <td runat="server" id="w9d4"></td>
             <td runat="server" id="w9d5"></td>
-            <td runat="server" id="w9d6"></td>
+            <td runat="server" id="w9d6" class="bg-y">
+                <img src="/images/coming/meal.svg">End of fortnight program treat meal</td>
             <td runat="server" id="w9d7"></td>
         </tr>
         <tr>
-            <td>Week 10
+            <td>Week 9
                 <asp:Label runat="server" ID="week10Date" CssClass="coming-date-period"></asp:Label>
             </td>
             <td runat="server" id="w10d1"></td>
             <td runat="server" id="w10d2"></td>
             <td runat="server" id="w10d3"></td>
-            <td runat="server" id="w10d4" class="bg-b">
-                <img src="/images/coming/test.svg">Redo fitness test</td>
+            <td runat="server" id="w10d4"></td>
             <td runat="server" id="w10d5"></td>
             <td runat="server" id="w10d6"></td>
             <td runat="server" id="w10d7" class="bg-b">
-                <img src="/images/coming/challenge.svg">Monthly challenge</td>
+                <img src="/images/coming/time.svg">Milestone workout</td>
 
         </tr>
         <tr>
-            <td>Week 11
+            <td>Week 10
                 <asp:Label runat="server" ID="week11Date" CssClass="coming-date-period"></asp:Label>
             </td>
             <td runat="server" id="w11d1"></td>
@@ -315,7 +313,7 @@
 
         </tr>
         <tr>
-            <td>Week 12
+            <td>Week 11
                 <asp:Label runat="server" ID="week12Date" CssClass="coming-date-period"></asp:Label>
             </td>
 
@@ -329,7 +327,7 @@
             <td runat="server" id="w12d7"></td>
         </tr>
         <tr>
-            <td>Week 13
+            <td>Week 12
                 <asp:Label runat="server" ID="week13Date" CssClass="coming-date-period"></asp:Label>
             </td>
             <td runat="server" id="w13d1"></td>
@@ -340,7 +338,7 @@
             <td runat="server" id="w13d6" class="bg-p">
                 <img src="/images/coming/photo.svg">Measure yourself and take progress photos</td>
             <td runat="server" id="w13d7" class="bg-y">
-                <img src="/images/coming/meal.svg">End of 12 weeks celebration meal</td>
+                <img src="/images/coming/celebrate.svg">End of 12 weeks celebration meal</td>
 
         </tr>
     </table>

@@ -44,7 +44,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-12">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q1" id="" value="-5" checked> I have all of them
+                        <input type="radio" class="form-check-input" name="q1" id="" value="-5"> I have all of them
                     </label>
                 </div>
                 <div class="form-check col-12">
@@ -86,7 +86,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-12">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q2" id="" value="-5" checked> I have all of them
+                        <input type="radio" class="form-check-input" name="q2" id="" value="-5"> I have all of them
                     </label>
                 </div>
                 <div class="form-check col-12">
@@ -131,7 +131,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-12">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q3" id="" value="-5" checked> I have all of them
+                        <input type="radio" class="form-check-input" name="q3" id="" value="-5"> I have all of them
                     </label>
                 </div>
                 <div class="form-check col-12">
@@ -173,7 +173,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-12">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q4" id="" value="5" checked> I have all of them
+                        <input type="radio" class="form-check-input" name="q4" id="" value="5"> I have all of them
                     </label>
                 </div>
                 <div class="form-check col-12">
@@ -216,7 +216,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-12">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q5" id="" value="5" checked> I have all of them
+                        <input type="radio" class="form-check-input" name="q5" id="" value="5"> I have all of them
                     </label>
                 </div>
                 <div class="form-check col-12">
@@ -244,7 +244,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q6" id="" value="5" checked> Yes
+                        <input type="radio" class="form-check-input" name="q6" id="" value="5"> Yes
                     </label>
                 </div>
                 <div class="form-check col-6">
@@ -265,7 +265,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q7" id="" value="3" checked> What I think is healthy
+                        <input type="radio" class="form-check-input" name="q7" id="" value="3"> What I think is healthy
                     </label>
                 </div>
                 <div class="form-check col-sm-6">
@@ -283,7 +283,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q8" id="" value="3" checked> More than half of the time I buy economy-sized bags
+                        <input type="radio" class="form-check-input" name="q8" id="" value="3"> More than half of the time I buy economy-sized bags
                     </label>
                 </div>
                 <div class="form-check col-sm-6">
@@ -304,7 +304,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q9" id="" value="5" checked> Fewer than three times a month
+                        <input type="radio" class="form-check-input" name="q9" id="" value="5"> Fewer than three times a month
                     </label>
                 </div>
                 <div class="form-check col-sm-6">
@@ -327,7 +327,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q10" id="" value="3" checked> Yes
+                        <input type="radio" class="form-check-input" name="q10" id="" value="3"> Yes
                     </label>
                 </div>
                 <div class="form-check col-6">
@@ -348,7 +348,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q11" id="" value="2" checked> Yes
+                        <input type="radio" class="form-check-input" name="q11" id="" value="2"> Yes
                     </label>
                 </div>
                 <div class="form-check col-6">
@@ -366,7 +366,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q12" id="" value="-2" checked> Yes
+                        <input type="radio" class="form-check-input" name="q12" id="" value="-2"> Yes
                     </label>
                 </div>
                 <div class="form-check col-6">
@@ -387,7 +387,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q13" id="" value="-5" checked> Most of the time
+                        <input type="radio" class="form-check-input" name="q13" id="" value="-5"> Most of the time
                     </label>
                 </div>
                 <div class="form-check col-sm-6">
@@ -410,7 +410,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q14" id="" value="-5" checked> Yes, always
+                        <input type="radio" class="form-check-input" name="q14" id="" value="-5"> Yes, always
                     </label>
                 </div>
                 <div class="form-check col-sm-6">
@@ -441,7 +441,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q15" id="" value="2" checked> Yes, I hate throwing food out
+                        <input type="radio" class="form-check-input" name="q15" id="" value="2"> Yes, I hate throwing food out
                     </label>
                 </div>
                 <div class="form-check col-sm-6">

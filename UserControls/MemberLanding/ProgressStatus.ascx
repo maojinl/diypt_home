@@ -13,13 +13,58 @@
     <h2 class="progress-title text-center">Progress Results Week <span><asp:Label ID="lblWeekNum" runat="server"></asp:Label></span></h2>
     <!-- PROGRESS INTRO -->
     <div class="row row-chart-intro">
-        <div class="col-sm-12">
-            <p>Nequmet, consectetur, adipisci velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit. Nequmet, consectetur, adipisci velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit.</p>
-<p>
-Take it first thing in the morning while seated, not standing. Place your index and middle finger on either your carotid artery (neck) or your radial artery (inside of your wrist) and count the number of beats you feel in 60 seconds. 
-</p>
+        <div class="col-sm-12" id="divMeasurement" runat="server">
+           <p>Oooh yeah, it's that time... measurement time! Some of you have been looking forward to it and others dread it. </p>
+<p>Either way, what's the point of having a goal if you can't measure how you're going? </p>
+<p>Click here to view the video on how to perform your <a href="#" data-toggle="modal" data-target="#takeGirth">Girth Measurements.</a></p>
+<p>If applicable, <a href="#" data-toggle="modal" data-target="#takeHeartRate">click here for instructions on how to take your resting heart rate</a>.</p>
+
         </div>
     </div>
+    <!-- Modal -->
+<div class="modal fade" id="takeHeartRate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resting heart rate</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Take it first thing in the morning while seated, not standing. Place your index and middle finger on either your carotid artery (neck) or your radial artery (inside of your wrist) and count the number of beats you feel in 60 seconds.</p>
+                <img class="img-fluid  img-round mb-2" src="/images/measurements/rhr-wrists.jpg">
+                <img class="img-fluid  img-round" src="/images/measurements/rhr-neck.jpg">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="takeGirth" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Girth Measurements</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class='embed-container'>
+				<iframe src="https://player.vimeo.com/video/225781940" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
+			</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <!-- PROGRESS INTRO -->
     <!-- PROGRESS INPUT -->
     <form action="#" class="mb-4">
@@ -124,60 +169,83 @@ Take it first thing in the morning while seated, not standing. Place your index 
     <hr>
     <!--  PROGRESS PHOTOS -->
     <h2 class="progress-title text-center">Progress Photos <span>Week <asp:Label ID="lblWeekNum2" runat="server"></asp:Label></span></h2>
+    <p>As the saying goes, you can't compare apples with oranges. Same with comparing photos. They have to be identical. <a href="#" data-toggle="modal" data-target="#takeSelfie">So click here</a> for instructions on how to take consistent progress photos.</p>
 
+<!-- Modal -->
+<div class="modal fade" id="takeSelfie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p></p>
+                <img class="img-fluid  img-round mb-2" src="/images/measurements/selfie-front.jpg">
+                <img class="img-fluid  img-round" src="/images/measurements/selfie-side.jpg">
+                <img class="img-fluid  img-round" src="/images/measurements/selfie-back.jpg">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
     <div runat="server" id="divProgressPhotoWeek1" class="d-flex row mb-4">
         <div class="align-self-sm-center flex-column col-md-3">
             <h3 class="c_p">WEEK 1</h3>
-            <p>adipisci velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit. Nequmet, c</p>
+            
             
         </div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image11" runat="server" class="img-fluid" ImageUrl="/images/front-upload.png"  /></div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image12" runat="server" class="img-fluid" ImageUrl="/images/side-upload.png"   /></div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image13" runat="server" class="img-fluid" ImageUrl="/images/back-upload.png"   /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image11" runat="server" class="img-fluid" ImageUrl="/images/front-upload.png"  /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image12" runat="server" class="img-fluid" ImageUrl="/images/side-upload.png"   /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image13" runat="server" class="img-fluid" ImageUrl="/images/back-upload.png"   /></div>
     </div>
 
     <div runat="server" id="divProgressPhotoWeek5" class="d-flex row mb-4">
         <div class="align-self-sm-center flex-column  col-md-3">
             <h3 class="c_p">WEEK 5</h3>
-            <p>adipisci velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit. Nequmet, c</p>
+            
             
         </div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image51" runat="server" class="img-fluid" ImageUrl="/images/front-upload.png"  /></div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image52" runat="server" class="img-fluid" ImageUrl="/images/side-upload.png"   /></div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image53" runat="server" class="img-fluid" ImageUrl="/images/back-upload.png"   /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image51" runat="server" class="img-fluid" ImageUrl="/images/front-upload.png"  /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image52" runat="server" class="img-fluid" ImageUrl="/images/side-upload.png"   /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image53" runat="server" class="img-fluid" ImageUrl="/images/back-upload.png"   /></div>
     </div>
 
     <div runat="server" id="divProgressPhotoWeek8" class="d-flex row mb-4">
         <div class="align-self-sm-center flex-column  col-md-3">
             <h3 class="c_p">WEEK 8</h3>
-            <p>adipisci velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit. Nequmet, c</p>
+            
             
         </div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image81" runat="server" class="img-fluid" ImageUrl="/images/front-upload.png"  /></div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image82" runat="server" class="img-fluid" ImageUrl="/images/side-upload.png"   /></div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image83" runat="server" class="img-fluid" ImageUrl="/images/back-upload.png"   /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image81" runat="server" class="img-fluid" ImageUrl="/images/front-upload.png"  /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image82" runat="server" class="img-fluid" ImageUrl="/images/side-upload.png"   /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image83" runat="server" class="img-fluid" ImageUrl="/images/back-upload.png"   /></div>
     </div>
 
     <div runat="server" id="divProgressPhotoWeek11" class="d-flex row mb-4">
         <div class="align-self-sm-center flex-column  col-md-3">
             <h3 class="c_p">WEEK 11</h3>
-            <p>adipisci velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit. Nequmet, c</p>
+            
             
         </div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image111" runat="server" class="img-fluid" ImageUrl="/images/front-upload.png"  /></div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image112" runat="server" class="img-fluid" ImageUrl="/images/side-upload.png"   /></div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image113" runat="server" class="img-fluid" ImageUrl="/images/back-upload.png"   /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image111" runat="server" class="img-fluid" ImageUrl="/images/front-upload.png"  /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image112" runat="server" class="img-fluid" ImageUrl="/images/side-upload.png"   /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image113" runat="server" class="img-fluid" ImageUrl="/images/back-upload.png"   /></div>
     </div>
 
     <div runat="server" id="photoPanelUpload" class="d-flex row mb-4">
         <div class="align-self-sm-center flex-column  col-md-3">
             <h3 class="c_p">WEEK <asp:Label ID="lblWeekNum3" runat="server"></asp:Label></h3>
-            <p>adipisci velit. Neque porro quisquam est qui dolorem ipsum quia dolor sit. Nequmet, c</p>
+            
             
         </div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image1" runat="server" class="img-fluid" ImageUrl="/images/front-upload.png"  /></div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image2" runat="server" class="img-fluid" ImageUrl="/images/side-upload.png"   /></div>
-        <div class="p-1 col-md-3"><asp:Image ID="Image3" runat="server" class="img-fluid" ImageUrl="/images/back-upload.png"   /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image1" runat="server" class="img-fluid" ImageUrl="/images/front-upload.png"  /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image2" runat="server" class="img-fluid" ImageUrl="/images/side-upload.png"   /></div>
+        <div class="p-1 col-md-3 col-4"><asp:Image ID="Image3" runat="server" class="img-fluid" ImageUrl="/images/back-upload.png"   /></div>
     </div>
     <!--  end PROGRESS PHOTOS -->
     
