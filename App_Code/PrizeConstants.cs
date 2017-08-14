@@ -93,8 +93,10 @@ public class PrizeConstants
     {
         WelcomeEmail = 1,
         TwoDaysPrior2Start,
-        OneDaysPrior2Week4,
-        OneDaysPrior2Week11,
+        OneDaysPrior2Week4Normal,
+		OneDaysPrior2Week4Vegan,
+		OneDaysPrior2Week4Lactose,
+		OneDaysPrior2Week11,
         ContinuousLogin,
         NewYearEmail,
         EasterEmail,
@@ -110,7 +112,13 @@ public class PrizeConstants
 		MileStoneWeek10,
 		MileStoneWeek12,
 		MileStoneEndWeek12,
-		MileStoneGoalWeek13
+		MileStoneGoalWeek13,
+		MeasurmentWeek4,
+		MeasurmentWeek8,
+		MeasurmentWeek12,
+		MeasurmentMissedWeek4,
+		MeasurmentMissedWeek8,
+		MeasurmentMissedWeek12,
 	}
 
     public enum EmailStatus

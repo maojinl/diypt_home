@@ -64,8 +64,12 @@ Comment:
 			nodeId = 5333;
 		else if (emailType == PrizeConstants.EmailType.TwoDaysPrior2Start)
 			nodeId = 6671;
-		else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week4)
+		else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Normal)
 			nodeId = 5377;
+        else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Vegan)
+            nodeId = 9669;
+        else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Lactose)
+            nodeId = 9670;
         else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week11)
             nodeId = 9676;
         else if (emailType == PrizeConstants.EmailType.ContinuousLogin)
@@ -117,7 +121,9 @@ Comment:
         if (emailType == PrizeConstants.EmailType.WelcomeEmail)
             body = body.Replace("[username]", additionalContents[1]);
 
-        if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week4)
+        if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Normal 
+            || emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Vegan
+            || emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Lactose)
         {
             body = body.Replace("[protein]", additionalContents[2]);
             body = body.Replace("[carb]", additionalContents[3]);

@@ -30,15 +30,22 @@ public class PrizeEmailWrapper
 			String sEmail = member.Email;
 			String sQuestions = PrizeMemberAuthUtils.GetMemberAnswer(member, 0);
 			String sDiertary = "";
+			PrizeConstants.EmailType emailType = PrizeConstants.EmailType.OneDaysPrior2Week4Normal;
 			if (sQuestions.IndexOf("Vegan") >= 0)
+			{
 				sDiertary = "Vegan";
+				emailType = PrizeConstants.EmailType.OneDaysPrior2Week4Vegan;
+			}
 			else if (sQuestions.IndexOf("Lactose intolerant") >= 0)
+			{
 				sDiertary = "Lactose intolerant";
+				emailType = PrizeConstants.EmailType.OneDaysPrior2Week4Lactose;
+			}
 			else
 				sDiertary = "";
 			MemberEmail myEmail = new MemberEmail();
 			myEmail.MemberId = memberId;
-			myEmail.EmailType = (int)PrizeConstants.EmailType.OneDaysPrior2Week4;
+			myEmail.EmailType = (int)emailType;
 			myEmail.EmailAddress = sEmail;
 			myEmail.Title = "Night before Day 1 of Week 4";
 			myEmail.Status = (int)PrizeConstants.EmailStatus.Shceduled;
@@ -95,7 +102,8 @@ public class PrizeEmailWrapper
 	static public void DailyEmailTask()
 	{
 		ExercisePlanEmailTask();
-		EmailPresetTask();
+        MemberEmailTask();
+        EmailPresetTask();
 	}
 
 	static protected void MemberEmailTask()
@@ -219,6 +227,7 @@ public class PrizeEmailWrapper
 											  MemberId = c.MemberId,
 											  MemberPlanWeekId = b.Id,
 											  WeekStartDate = b.StartDate,
+											  MemberExercisePlanId = c.Id,
 										  };
 
 				foreach (var memberPlanWithWeek in memberPlanWithWeeks)
@@ -238,15 +247,16 @@ public class PrizeEmailWrapper
 
                 // send email 1 day prior to week 11
                 availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-                memberPlanWithWeeks = from c in db.MemberExercisePlans
-                                          join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
-                                          where c.Status.Equals(availableStatus) && b.Week == 11 && PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
+				memberPlanWithWeeks = from c in db.MemberExercisePlans
+									  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
+									  where c.Status.Equals(availableStatus) && b.Week == 11 && PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
 									  select new
-                                          {
-                                              MemberId = c.MemberId,
-                                              MemberPlanWeekId = b.Id,
-                                              WeekStartDate = b.StartDate,
-                                          };
+									  {
+										  MemberId = c.MemberId,
+										  MemberPlanWeekId = b.Id,
+										  WeekStartDate = b.StartDate,
+										  MemberExercisePlanId = c.Id,
+									  };
 
                 foreach (var memberPlanWithWeek in memberPlanWithWeeks)
                 {
@@ -336,6 +346,7 @@ public class PrizeEmailWrapper
 											  MemberId = c.MemberId,
 											  MemberPlanWeekId = b.Id,
 											  WeekStartDate = b.StartDate,
+											  MemberExercisePlanId = c.Id,
 										  };
 					foreach (var memberPlanWithWeek in memberPlanWithWeeks)
 					{
@@ -362,11 +373,98 @@ public class PrizeEmailWrapper
 										  MemberId = c.MemberId,
 										  MemberPlanWeekId = b.Id,
 										  WeekStartDate = b.StartDate,
+										  MemberExercisePlanId = c.Id,
 									  };
 				foreach (var memberPlanWithWeek in memberPlanWithWeeks)
 				{
 					PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberPlanWithWeek.MemberId);
 					PrepareSimpleEmailByType(member, PrizeConstants.EmailType.MileStoneEndWeek12, "Milestone End Week 12", member.Firstname);
+				}
+
+				//Measurement Weeks
+				for (int i = 0; i < 3; i++)
+				{
+					int weekNum = 4;
+					PrizeConstants.EmailType emailType = PrizeConstants.EmailType.MeasurmentWeek4;
+					switch (i)
+					{
+						case 1:
+							weekNum = 8;
+							emailType = PrizeConstants.EmailType.MeasurmentWeek8;
+							break;
+						case 2:
+							weekNum = 11;
+							emailType = PrizeConstants.EmailType.MeasurmentWeek12;
+							break;
+						default:
+							break;
+					}
+					availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
+					memberPlanWithWeeks = from c in db.MemberExercisePlans
+										  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
+										  where c.Status.Equals(availableStatus) && b.Week == weekNum && PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 0)
+										   && !(from d in db.MemberEmails
+												where d.EmailType == (int)emailType && d.ScheduleDate > now.AddDays(-10)
+												select d.MemberId).Contains(c.MemberId)
+										  select new
+										  {
+											  MemberId = c.MemberId,
+											  MemberPlanWeekId = b.Id,
+											  WeekStartDate = b.StartDate,
+											  MemberExercisePlanId = c.Id,
+										  };
+					foreach (var memberPlanWithWeek in memberPlanWithWeeks)
+					{
+						PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberPlanWithWeek.MemberId);
+						PrepareSimpleEmailByType(member, emailType, "Measurement Week " +weekNum, member.Firstname);
+					}
+				}
+
+				//Measurement Missed Weeks
+				for (int i = 0; i < 3; i++)
+				{
+					int weekNum = 5;
+					PrizeConstants.EmailType emailType = PrizeConstants.EmailType.MeasurmentMissedWeek4;
+					switch (i)
+					{
+						case 1:
+							weekNum = 8;
+							emailType = PrizeConstants.EmailType.MeasurmentMissedWeek8;
+							break;
+						case 2:
+							weekNum = 11;
+							emailType = PrizeConstants.EmailType.MeasurmentMissedWeek12;
+							break;
+						default:
+							break;
+					}
+					availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
+					memberPlanWithWeeks = from c in db.MemberExercisePlans
+										  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
+										  where c.Status.Equals(availableStatus) && b.Week == weekNum && PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
+										   && !(from d in db.MemberEmails
+												where d.EmailType == (int)emailType && d.ScheduleDate > now.AddDays(-10)
+												select d.MemberId).Contains(c.MemberId)
+										  select new
+										  {
+											  MemberId = c.MemberId,
+											  MemberPlanWeekId = b.Id,
+											  WeekStartDate = b.StartDate,
+											  MemberExercisePlanId = c.Id,
+										  };
+					foreach (var memberPlanWithWeek in memberPlanWithWeeks)
+					{
+						PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberPlanWithWeek.MemberId);
+						MemberPlanWeekResult weekResult = (from f in db.MemberPlanWeekResults
+														   join g in db.MemberExercisePlanWeeks on f.MemberExercisePlanWeekId equals g.Id
+														   where g.MemberExercisePlanId == memberPlanWithWeek.MemberExercisePlanId && g.Week == (weekNum - 1)
+														   && (!f.EndWeight.HasValue || !f.EndWaist.HasValue || !f.EndHip.HasValue 
+														   || !f.EndChest.HasValue || !f.EndHeartRate.HasValue 
+														   || String.IsNullOrEmpty(f.FrontPhoto) || String.IsNullOrEmpty(f.BackPhoto) || String.IsNullOrEmpty(f.SidePhoto))
+														   select f).SingleOrDefault();
+						if (weekResult != null)
+							PrepareSimpleEmailByType(member, emailType, "Missed Measurement " + (weekNum - 1), member.Firstname);
+					}
 				}
 
 				db.SaveChanges();
