@@ -24,23 +24,26 @@ public partial class UserControls_MemberLanding_ProgressStatus : System.Web.UI.U
         if (PrizeMemberAuthUtils.CurrentUserLogin() != true)
             return;
 
+        int memberId = PrizeMemberAuthUtils.GetMemberID();
+
+        _MemberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId); //(MemberExercisePlanWeek)Session["MemberPlanWeek"];
+
+        if (_MemberPlanWeek == null)
+        {
+            divMeasurement.Visible = false;
+            btnUpdateProgress.Enabled = false;
+            return;
+        }
+
         InitPageControls();
 
         frontUpload.Attributes["onchange"] = "UploadFile(this)";
         sideUpload.Attributes["onchange"] = "UploadFile(this)";
         backUpload.Attributes["onchange"] = "UploadFile(this)";
 
-        int memberId = PrizeMemberAuthUtils.GetMemberID();
+       
         using (DIYPTEntities db = new DIYPTEntities())
         {
-
-            _MemberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId); //(MemberExercisePlanWeek)Session["MemberPlanWeek"];
-
-            if (_MemberPlanWeek == null)
-            {
-                divMeasurement.Visible = false;
-                return;
-            }
 
             _PlanWeek = dbAccess.GetExercisePlanWeek(_MemberPlanWeek.ExercisePlanWeekId);
 

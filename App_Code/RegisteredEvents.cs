@@ -21,9 +21,9 @@ public class RegisteredEvents: ApplicationEventHandler
 
     protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
     {
-        System.Timers.Timer myTimer = new System.Timers.Timer(60000);
+        System.Timers.Timer myTimer = new System.Timers.Timer(10000);
         myTimer.Elapsed += new System.Timers.ElapsedEventHandler(OnTimedEvent);
-        myTimer.Interval = 60000;
+        myTimer.Interval = 10000;
         myTimer.Enabled = true;
     }
 
@@ -84,7 +84,7 @@ public class RegisteredEvents: ApplicationEventHandler
         }
         catch (Exception e)
         {
-            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(RegisteredEvents).ToString(), "DailyTasks", e.Message, e.InnerException.Message);
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(RegisteredEvents).ToString(), "DailyTasks", e.Message, e.InnerException == null ? "" : e.InnerException.Message);
             return;
         }
         finally

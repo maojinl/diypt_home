@@ -90,6 +90,12 @@ public static class PrizeCommonUtils
         return d.ToString("0,0.00");
     }
 
+    static public DateTime GetThisYearDate(DateTime date)
+    {
+        DateTime dt = DateTime.Parse(DateTime.Now.ToString("yyyy") + date.ToString("-MM-dd HH:mm:ss"));
+        return dt;
+    }
+
     static public DateTime GetSystemDate()
     {
         DateTime dt = DateTime.Now;
@@ -106,7 +112,7 @@ public static class PrizeCommonUtils
         return dt;
     }
 
-    static public bool LessThanDaysAhead(DateTime date, DateTime targetDate, int days)
+    static public bool LessThanDaysAhead(this DateTime date, DateTime targetDate, int days)
     {
         bool result = false;
         if (date.AddDays(days) >= targetDate && date.AddDays(days -1) <= targetDate)

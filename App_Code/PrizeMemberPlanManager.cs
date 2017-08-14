@@ -304,7 +304,7 @@ public class PrizeMemberPlanManager
             }
             catch (Exception e)
             {
-                PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeMemberPlanManager).ToString(), "UpdateMemberPlans", e.Message, e.InnerException.Message);
+                PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeMemberPlanManager).ToString(), "UpdateMemberPlans", e.Message, e.InnerException == null ? "" : e.InnerException.Message);
                 return false;
             }
             finally

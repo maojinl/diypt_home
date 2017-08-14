@@ -94,7 +94,7 @@ public class PrizeEmailWrapper
         }
         catch (Exception e)
         {
-            PrizeLogs.SaveSystemErrorLog(member.UmbracoId, 0, PrizeConstants.SystemErrorLevel.LevelMedium, typeof(PrizeEmailWrapper).ToString(), "Prepare email", e.Message, e.InnerException.Message);
+            PrizeLogs.SaveSystemErrorLog(member.UmbracoId, 0, PrizeConstants.SystemErrorLevel.LevelMedium, typeof(PrizeEmailWrapper).ToString(), "Prepare email", e.Message, e.InnerException == null ? "" : e.InnerException.Message);
             return 0;
         }
     }
@@ -113,29 +113,41 @@ public class PrizeEmailWrapper
 			IList<PrizeMember> membersList = null;
 			DateTime now = PrizeCommonUtils.GetSystemDate();
 			DateTime yearStart = PrizeCommonUtils.GetYearStart(now);
-			using (var db = new DIYPTEntities())
+            DateTime dtSendEmailBegin = now.AddDays(-10);
+
+            DateTime dtBegin = now.AddDays(1);
+            DateTime dtEnd = now.AddDays(2);
+
+            using (var db = new DIYPTEntities())
 			{
 				//send birthday email
 				membersList = (from a in db.PrizeMembers
 							   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
-							   where a.DoB.HasValue && PrizeCommonUtils.LessThanDaysAhead(now, a.DoB.Value, 1) 
-							   && !(from c in db.MemberEmails where c.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail 
+							   where a.DoB.HasValue //&& PrizeCommonUtils.LessThanDaysAhead(now, a.DoB.Value, 1) 
+                               && !(from c in db.MemberEmails where c.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail 
 								   && c.ScheduleDate > yearStart select c.MemberId).Contains(a.UmbracoId)
 							   orderby a.UmbracoId
 							   select a).ToList();
 
+                DateTime dtBirthday;
 				foreach (PrizeMember member in membersList)
 				{
-					PrepareSimpleEmailByType(member, PrizeConstants.EmailType.BirthdayEmail, "Happy Birthday", member.Firstname);
+                    if (!member.DoB.HasValue)
+                        continue;
+                    dtBirthday = PrizeCommonUtils.GetThisYearDate(member.DoB.Value);
+                    if (PrizeCommonUtils.LessThanDaysAhead(now, dtBirthday, 1))
+                        PrepareSimpleEmailByType(member, PrizeConstants.EmailType.BirthdayEmail, "Happy Birthday", member.Firstname);
 				}
 
-				//send first month email
-				membersList = (from a in db.PrizeMembers
+                //send first month email
+                dtBegin = now.AddDays(29);
+                dtEnd = now.AddDays(30);
+                membersList = (from a in db.PrizeMembers
 							   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
-							   where a.RegisterDateTime.HasValue && PrizeCommonUtils.LessThanDaysAhead(a.RegisterDateTime.Value, now, 30)
-							   && !(from c in db.MemberEmails
-									where c.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail && c.ScheduleDate > now.AddDays(-10)
-									select c.MemberId).Contains(a.UmbracoId)
+							   where a.RegisterDateTime.HasValue && dtBegin <= a.RegisterDateTime.Value && dtEnd >= a.RegisterDateTime.Value //&& PrizeCommonUtils.LessThanDaysAhead(a.RegisterDateTime.Value, now, 30)
+                               && !(from c in db.MemberEmails
+									where c.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail && c.ScheduleDate > dtSendEmailBegin
+                                    select c.MemberId).Contains(a.UmbracoId)
 							   orderby a.UmbracoId
 							   select a).ToList();
 
@@ -144,13 +156,15 @@ public class PrizeEmailWrapper
 					PrepareSimpleEmailByType(member, PrizeConstants.EmailType.FirstMonthEmail, "Anniversary 1 month", member.Firstname);
 				}
 
-				//send second month email
-				membersList = (from a in db.PrizeMembers
+                //send second month email
+                dtBegin = now.AddDays(59);
+                dtEnd = now.AddDays(60);
+                membersList = (from a in db.PrizeMembers
 							   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
-							   where a.RegisterDateTime.HasValue && PrizeCommonUtils.LessThanDaysAhead(a.RegisterDateTime.Value, now,  60)
-							   && !(from c in db.MemberEmails
-									where c.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail && c.ScheduleDate > now.AddDays(-10)
-									select c.MemberId).Contains(a.UmbracoId)
+							   where a.RegisterDateTime.HasValue && dtBegin <= a.RegisterDateTime.Value && dtEnd >= a.RegisterDateTime.Value //&& PrizeCommonUtils.LessThanDaysAhead(a.RegisterDateTime.Value, now,  60)
+                               && !(from c in db.MemberEmails
+									where c.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail && c.ScheduleDate > dtSendEmailBegin
+                                    select c.MemberId).Contains(a.UmbracoId)
 							   orderby a.UmbracoId
 							   select a).ToList();
 
@@ -159,13 +173,15 @@ public class PrizeEmailWrapper
 					PrepareSimpleEmailByType(member, PrizeConstants.EmailType.SecondMonthEmail, "Anniversary 2 month", member.Firstname);
 				}
 
-				//send third month email
-				membersList = (from a in db.PrizeMembers
+                //send third month email
+                dtBegin = now.AddDays(89);
+                dtEnd = now.AddDays(90);
+                membersList = (from a in db.PrizeMembers
 							   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
-							   where a.RegisterDateTime.HasValue && PrizeCommonUtils.LessThanDaysAhead(a.RegisterDateTime.Value, now, 90)
-							   && !(from c in db.MemberEmails
-									where c.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail && c.ScheduleDate > now.AddDays(-10)
-									select c.MemberId).Contains(a.UmbracoId)
+							   where a.RegisterDateTime.HasValue && dtBegin <= a.RegisterDateTime.Value && dtEnd >= a.RegisterDateTime.Value //&& PrizeCommonUtils.LessThanDaysAhead(a.RegisterDateTime.Value, now, 90)
+                               && !(from c in db.MemberEmails
+									where c.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail && c.ScheduleDate > dtSendEmailBegin
+                                    select c.MemberId).Contains(a.UmbracoId)
 							   orderby a.UmbracoId
 							   select a).ToList();
 
@@ -177,8 +193,8 @@ public class PrizeEmailWrapper
 		}
 		catch (Exception e)
 		{
-			PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), "DailyEmailTask", e.Message, e.InnerException.Message);
-		}
+			PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), "DailyEmailTask", e.Message, e.InnerException == null ? "" : e.InnerException.Message);
+        }
 	}
 	static protected void ExercisePlanEmailTask()
     {
@@ -193,11 +209,14 @@ public class PrizeEmailWrapper
 
 				//send email 2 days prior to Orientation week 
 				availableStatus = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-				memberPlans = (from c in db.MemberExercisePlans
-							   where c.Status.Equals(availableStatus) && PrizeCommonUtils.LessThanDaysAhead(now, c.StartDate, 2)
-							   orderby c.MemberId
-							   select c);
-				foreach (var memberPlan in memberPlans)
+                DateTime dtBegin = now.AddDays(1);
+                DateTime dtEnd = now.AddDays(2);
+                memberPlans = (from c in db.MemberExercisePlans
+                               where c.Status.Equals(availableStatus) && dtBegin <= c.StartDate && dtEnd >= c.StartDate  //PrizeCommonUtils.LessThanDaysAhead(now, c.StartDate, 2)
+                               orderby c.MemberId
+                               select c);
+                 
+                foreach (var memberPlan in memberPlans)
 				{
 					MemberExercisePlanWeek memberPlanWeek = (from c in db.MemberExercisePlanWeeks
 															 where c.MemberExercisePlanId == memberPlan.Id && c.Week == 0
@@ -219,10 +238,12 @@ public class PrizeEmailWrapper
 
 				// send email 1 day prior to week 4
 				availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-				var memberPlanWithWeeks = from c in db.MemberExercisePlans
+                dtBegin = now.AddDays(0);
+                dtEnd = now.AddDays(1);
+                var memberPlanWithWeeks = from c in db.MemberExercisePlans
 										  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
-										  where c.Status.Equals(availableStatus) && b.Week == 4 && PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
-										  select new
+										  where c.Status.Equals(availableStatus) && b.Week == 4 && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
+                                          select new
 										  {
 											  MemberId = c.MemberId,
 											  MemberPlanWeekId = b.Id,
@@ -247,10 +268,12 @@ public class PrizeEmailWrapper
 
                 // send email 1 day prior to week 11
                 availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-				memberPlanWithWeeks = from c in db.MemberExercisePlans
+                dtBegin = now.AddDays(0);
+                dtEnd = now.AddDays(1);
+                memberPlanWithWeeks = from c in db.MemberExercisePlans
 									  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
-									  where c.Status.Equals(availableStatus) && b.Week == 11 && PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
-									  select new
+									  where c.Status.Equals(availableStatus) && b.Week == 11 && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
+                                      select new
 									  {
 										  MemberId = c.MemberId,
 										  MemberPlanWeekId = b.Id,
@@ -276,11 +299,14 @@ public class PrizeEmailWrapper
 
 				// send email 2 day prior to end of plan
 				availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-				memberPlans = (from c in db.MemberExercisePlans
-							   where c.Status.Equals(availableStatus) && c.EndDate.HasValue && PrizeCommonUtils.LessThanDaysAhead(now, c.EndDate.Value, 2)
-							   && !(from d in db.MemberEmails
-								  where d.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail && d.ScheduleDate > now.AddDays(-10)
-								  select d.MemberId).Contains(c.MemberId)
+                dtBegin = now.AddDays(1);
+                dtEnd = now.AddDays(2);
+                DateTime dtSendEmailBegin = now.AddDays(-10);
+                memberPlans = (from c in db.MemberExercisePlans
+							   where c.Status.Equals(availableStatus) && c.EndDate.HasValue && dtBegin <= c.EndDate.Value && dtEnd >= c.EndDate.Value //&& PrizeCommonUtils.LessThanDaysAhead(now, c.EndDate.Value, 2)
+                               && !(from d in db.MemberEmails
+								  where d.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail && d.ScheduleDate > dtSendEmailBegin
+                                    select d.MemberId).Contains(c.MemberId)
 							   orderby c.MemberId
 							   select c);
 
@@ -292,12 +318,14 @@ public class PrizeEmailWrapper
 
 				// send email 1 day prior to end of trial plan
 				availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-				memberPlans = (from c in db.MemberExercisePlans
+                dtBegin = now.AddDays(1);
+                dtEnd = now.AddDays(2);
+                memberPlans = (from c in db.MemberExercisePlans
 								join e in db.PrizeExercisePlans on c.ExercisePlanId equals e.Id
-								where c.Status.Equals(availableStatus) && c.EndDate.HasValue && PrizeCommonUtils.LessThanDaysAhead(now, c.EndDate.Value, 2)
-								&& !(from d in db.MemberEmails
-									where d.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail && d.ScheduleDate > now.AddDays(-10)
-									select d.MemberId).Contains(c.MemberId)
+								where c.Status.Equals(availableStatus) && c.EndDate.HasValue && dtBegin <= c.EndDate.Value && dtEnd >= c.EndDate.Value //&& PrizeCommonUtils.LessThanDaysAhead(now, c.EndDate.Value, 2)
+                                && !(from d in db.MemberEmails
+									where d.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail && d.ScheduleDate > dtSendEmailBegin
+                                     select d.MemberId).Contains(c.MemberId)
 								&& e.IsTrialPlan == 1
 								orderby c.MemberId
 								select c);
@@ -335,12 +363,14 @@ public class PrizeEmailWrapper
 							break;
 					}
 					availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-					memberPlanWithWeeks = from c in db.MemberExercisePlans
+                    dtBegin = now.AddDays(0);
+                    dtEnd = now.AddDays(-1);
+                    memberPlanWithWeeks = from c in db.MemberExercisePlans
 										  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
-										  where c.Status.Equals(availableStatus) && b.Week == weekNum && PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 0)
-										   && !(from d in db.MemberEmails
-												where d.EmailType == (int)PrizeConstants.EmailType.MileStoneWeek2 && d.ScheduleDate > now.AddDays(-10)
-												select d.MemberId).Contains(c.MemberId)
+										  where c.Status.Equals(availableStatus) && b.Week == weekNum && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 0)
+                                           && !(from d in db.MemberEmails
+												where d.EmailType == (int)PrizeConstants.EmailType.MileStoneWeek2 && d.ScheduleDate > dtSendEmailBegin
+                                                select d.MemberId).Contains(c.MemberId)
 										  select new
 										  {
 											  MemberId = c.MemberId,
@@ -362,12 +392,14 @@ public class PrizeEmailWrapper
 
 				//Milestone End Week 12
 				availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-				memberPlanWithWeeks = from c in db.MemberExercisePlans
+                dtBegin = now.AddDays(0);
+                dtEnd = now.AddDays(1);
+                memberPlanWithWeeks = from c in db.MemberExercisePlans
 									  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
-									  where c.Status.Equals(availableStatus) && b.Week == 12 && PrizeCommonUtils.LessThanDaysAhead(now, b.EndDate, 1)
-									   && !(from d in db.MemberEmails
-											where d.EmailType == (int)PrizeConstants.EmailType.MileStoneWeek2 && d.ScheduleDate > now.AddDays(-10)
-											select d.MemberId).Contains(c.MemberId)
+									  where c.Status.Equals(availableStatus) && b.Week == 12 && dtBegin <= b.EndDate && dtEnd >= b.EndDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.EndDate, 1)
+                                       && !(from d in db.MemberEmails
+											where d.EmailType == (int)PrizeConstants.EmailType.MileStoneWeek2 && d.ScheduleDate > dtSendEmailBegin
+                                            select d.MemberId).Contains(c.MemberId)
 									  select new
 									  {
 										  MemberId = c.MemberId,
@@ -400,12 +432,14 @@ public class PrizeEmailWrapper
 							break;
 					}
 					availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-					memberPlanWithWeeks = from c in db.MemberExercisePlans
+                    dtBegin = now.AddDays(1);
+                    dtEnd = now.AddDays(-1);
+                    memberPlanWithWeeks = from c in db.MemberExercisePlans
 										  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
-										  where c.Status.Equals(availableStatus) && b.Week == weekNum && PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 0)
-										   && !(from d in db.MemberEmails
-												where d.EmailType == (int)emailType && d.ScheduleDate > now.AddDays(-10)
-												select d.MemberId).Contains(c.MemberId)
+										  where c.Status.Equals(availableStatus) && b.Week == weekNum && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 0)
+                                           && !(from d in db.MemberEmails
+												where d.EmailType == (int)emailType && d.ScheduleDate > dtSendEmailBegin
+                                                select d.MemberId).Contains(c.MemberId)
 										  select new
 										  {
 											  MemberId = c.MemberId,
@@ -439,12 +473,14 @@ public class PrizeEmailWrapper
 							break;
 					}
 					availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-					memberPlanWithWeeks = from c in db.MemberExercisePlans
+                    dtBegin = now.AddDays(0);
+                    dtEnd = now.AddDays(1);
+                    memberPlanWithWeeks = from c in db.MemberExercisePlans
 										  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
-										  where c.Status.Equals(availableStatus) && b.Week == weekNum && PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
-										   && !(from d in db.MemberEmails
-												where d.EmailType == (int)emailType && d.ScheduleDate > now.AddDays(-10)
-												select d.MemberId).Contains(c.MemberId)
+										  where c.Status.Equals(availableStatus) && b.Week == weekNum && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
+                                           && !(from d in db.MemberEmails
+												where d.EmailType == (int)emailType && d.ScheduleDate > dtSendEmailBegin
+                                                select d.MemberId).Contains(c.MemberId)
 										  select new
 										  {
 											  MemberId = c.MemberId,
@@ -473,8 +509,8 @@ public class PrizeEmailWrapper
 		}
 		catch (Exception e)
 		{
-			PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), "DailyEmailTask", e.Message, e.InnerException.Message);
-		}
+			PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), "DailyEmailTask", e.Message, e.InnerException == null ? "" : e.InnerException.Message);
+        }
     }
 
     static protected void EmailPresetTask()
@@ -556,7 +592,7 @@ public class PrizeEmailWrapper
         }
         catch (Exception e)
         {
-            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), "EmailPresetTask", e.Message, e.InnerException.Message);
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), "EmailPresetTask", e.Message, e.InnerException == null ? "" : e.InnerException.Message);
             return;
         }
     }
