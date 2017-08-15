@@ -47,6 +47,9 @@ public partial class UserControls_Orientation_Week : BaseOrientation
         if (!IsPostBack)
         {
             MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(PrizeMemberAuthUtils.GetMemberID());
+            if (myPlan == null)
+                return;
+
             for (int i = 1; i < 7; i++)
             {
                 string result = dbAccess.GetOrientationWeekDayResult(myPlan.Id, i);
