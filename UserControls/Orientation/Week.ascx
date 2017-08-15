@@ -12,7 +12,8 @@
         </div>
     </div>
     <div class="row mb-4">
-        <div style="margin: 0 auto">
+    <div id="divNotStarted" class="text-center" runat="server" Visible="false"><h2>Your program will not start until the next Monday</h2></div>
+        <div style="margin: 0 auto" id="divOrientation" runat="server">
             <table class="table-week-ori table-sm table-responsive">
                 <tr>
                     <th class="no-border-top no-border-left"></th>

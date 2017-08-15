@@ -362,7 +362,7 @@
             <div class="tri-card mb-3">
                 <div class="tri-number sec double-digi">12</div>
             </div>
-            <p>Do you keep food in plain view around the house?</p>
+            <p>If someone were to point to a food in your kitchen, would you know whether it was composed of mostly carbohydrates, protein or fat?</p>
             <fieldset class="form-group row">
                 <div class="form-check col-6">
                     <label class="form-check-label">
