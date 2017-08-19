@@ -77,7 +77,7 @@ display: block;
                     </div>
                     <div class="col-4">
                         <div class="row">
-                            <div class="col-md-4 col-sp-fat">
+                            <div class="col-md-4">
                                 <img class="img-fluid" src="images/icon-fats-y.svg">
                             </div>
                             <div class="col-md-6 pull-md-1 right-0-m-s">

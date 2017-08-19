@@ -59,9 +59,9 @@ public partial class UserControls_MemberLanding_ProgressStatus : System.Web.UI.U
                 _MemberPlanWeek.Week == 12))
                 divMeasurement.Visible = false;
 
-            lblWeekNum.Text = iWeekNum.ToString();
-            lblWeekNum2.Text = lblWeekNum.Text;
-            lblWeekNum3.Text = lblWeekNum.Text;
+            //lblWeekNum.Text = iWeekNum.ToString();
+            //lblWeekNum2.Text = lblWeekNum.Text;
+            //lblWeekNum3.Text = lblWeekNum.Text;
 
             List<MemberPlanWeekResult> weekResults = dbAccess.GetMemberPlanResults(_MemberPlanWeek.MemberExercisePlanId);
 

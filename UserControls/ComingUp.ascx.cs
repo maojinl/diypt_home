@@ -13,17 +13,26 @@ public partial class UserControls_ComingUp : System.Web.UI.UserControl
         FillDate();
         if (!Page.IsPostBack)
         {
-            if (Session["firstWeek1111"] == null)
+            PrizeDataAccess dbAccess = new PrizeDataAccess();
+            var member = PrizeMemberAuthUtils.GetMemberData();
+            var memberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(member.UmbracoId);
+            if (memberPlanWeek != null && memberPlanWeek.Week > 0)
             {
-                Session["firstWeek1111"] = 1;
-                string tempScript = @"<script>$(window).load(function() {
-        $('#weekModal').modal('show');
-    });</script>";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "modalWelcome", tempScript, false);
+                if (PrizeMemberAuthUtils.GetMemberWeek1NotifiedTimes(member) < 3)
+                {
+
+                    if (Session["firstWeek1111"] == null)
+                    {
+                        string tempScript = @"<script>$(window).load(function() {
+                                                $('#weekModal').modal('show');
+                                            });</script>";
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "modalWelcome", tempScript, false);
+
+                        Session["firstWeek1111"] = 1;
+                        PrizeMemberAuthUtils.AddMemberWeek1NotifiedTimes(member);
+                    }
+                }
             }
-                /*
-                 *   
-                 * */
 
         }
     }
@@ -33,8 +42,8 @@ public partial class UserControls_ComingUp : System.Web.UI.UserControl
         //DateTime tempdate = new DateTime(2017, 1, 10);
         //var nextSunday = tempdate.Next(DayOfWeek.Sunday);
         PrizeDataAccess db = new PrizeDataAccess();
-            
-            var exercisePlan = db.GetCurrentMemberPlanOrStartingPlan(PrizeMemberAuthUtils.GetMemberID());
+
+        var exercisePlan = db.GetCurrentMemberPlanOrStartingPlan(PrizeMemberAuthUtils.GetMemberID());
         //var nextSunday = exercisePlan.StartDate.NextDay(DayOfWeek.Monday);
         if (exercisePlan == null)
             return;
@@ -48,13 +57,13 @@ public partial class UserControls_ComingUp : System.Web.UI.UserControl
             Label dateLabel = this.FindControl(string.Format("week{0}Date", i)) as Label;
             if (dateLabel != null)
             {
-                dateLabel.Text = nextSunday.AddDays((i-1) * 7).Date.ToString("dd/MM") + "-" + nextSunday.AddDays(i*7 - 1).Date.ToString("dd/MM");
+                dateLabel.Text = nextSunday.AddDays((i - 1) * 7).Date.ToString("dd/MM") + "-" + nextSunday.AddDays(i * 7 - 1).Date.ToString("dd/MM");
             }
             for (int d = 1; d <= 7; d++)
             {
                 if (nextSunday.AddDays(counter).Date == PrizeCommonUtils.GetSystemDate())
                 {
-                    
+
                     HtmlTableCell tempLabel = this.FindControl(string.Format("w{0}d{1}", i, d)) as HtmlTableCell;
                     if (tempLabel != null)
                         tempLabel.Attributes.Add("class", tempLabel.Attributes["class"] + " active");

@@ -68,7 +68,7 @@ public class PrizeEmailServiceThread : ApplicationEventHandler
                 additionalContents.Add(email.Content3);
                 additionalContents.Add(email.Content4);
                 additionalContents.Add(email.Content5);
-                bSent = PrizeEmailServiceThread.SendEmailHandler(out sError, email.EmailAddress, (PrizeConstants.EmailType)email.EmailType, email.Title, additionalContents);
+                bSent = PrizeEmailServiceThread.SendEmailHandler(email, (PrizeConstants.EmailType)email.EmailType, email.Title, additionalContents);
 
                 if (bSent)
                 {
@@ -78,7 +78,6 @@ public class PrizeEmailServiceThread : ApplicationEventHandler
                 }
                 else
                 {
-                    PrizeLogs.SaveSystemErrorLog(email.MemberId, 0, PrizeConstants.SystemErrorLevel.LevelNormal, "Email thread", "Sending email",  sError, "");
                     email.SendDate = PrizeCommonUtils.GetSystemDate();
                     email.Status = (int)PrizeConstants.EmailStatus.Failed;
                     db.SaveChanges();
@@ -91,17 +90,16 @@ public class PrizeEmailServiceThread : ApplicationEventHandler
         }
     }
 
-    static public bool SendEmailHandler(out string sErrorMessage, string email, PrizeConstants.EmailType emailType, string emailSubject, List<string> additionalContents)
+    static public bool SendEmailHandler(MemberEmail email, PrizeConstants.EmailType emailType, string emailSubject, List<string> additionalContents)
     {
         try
         {
-            PrizeEmail.SendEmailByType(email, emailType, emailSubject, additionalContents);
-            sErrorMessage = "";
+            PrizeEmail.SendEmailByType(email.EmailAddress, emailType, emailSubject, additionalContents);
             return true;
         }
         catch (Exception e)
         {
-            sErrorMessage = e.Message + " " + e.InnerException.Message;
+            PrizeLogs.SaveSystemErrorLog(email.MemberId, 0, PrizeConstants.SystemErrorLevel.LevelNormal, "Email thread", "Sending email", e);
             return false;
         }
     }

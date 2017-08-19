@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
 /// <summary>
 /// Summary description for PrizeEmailWrapper
@@ -28,8 +29,9 @@ public class PrizeEmailWrapper
 		{
 			PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberId);
 			String sEmail = member.Email;
-			String sQuestions = PrizeMemberAuthUtils.GetMemberAnswer(member, 0);
-			String sDiertary = "";
+			String sQuestions = PrizeMemberAuthUtils.GetMemberAnswer(member, "dietary requirements");
+
+            String sDiertary = "";
 			PrizeConstants.EmailType emailType = PrizeConstants.EmailType.OneDaysPrior2Week4Normal;
 			if (sQuestions.IndexOf("Vegan") >= 0)
 			{
@@ -196,81 +198,106 @@ public class PrizeEmailWrapper
 			PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), "DailyEmailTask", e.Message, e.InnerException == null ? "" : e.InnerException.Message);
         }
 	}
+
 	static protected void ExercisePlanEmailTask()
     {
-		try
-		{
-			using (var db = new DIYPTEntities())
-			{
-				string availableStatus;
-				IQueryable<MemberExercisePlan> memberPlans;
-				db.Database.Connection.Open();
-				DateTime now = PrizeCommonUtils.GetSystemDate();
+        string availableStatus;
+        List<MemberExercisePlan> memberPlans;
+        availableStatus = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAID;
+        DateTime now = PrizeCommonUtils.GetSystemDate();
+        DateTime dtBegin = now.AddDays(1);
+        DateTime dtEnd = now.AddDays(2);
+        DateTime dtSendEmailBegin = now.AddDays(-10);
 
-				//send email 2 days prior to Orientation week 
-				availableStatus = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-                DateTime dtBegin = now.AddDays(1);
-                DateTime dtEnd = now.AddDays(2);
+        try
+        {
+            //send email 2 days prior to Orientation week 
+            using (var db = new DIYPTEntities())
+            {
+                db.Database.Connection.Open();
                 memberPlans = (from c in db.MemberExercisePlans
                                where c.Status.Equals(availableStatus) && dtBegin <= c.StartDate && dtEnd >= c.StartDate  //PrizeCommonUtils.LessThanDaysAhead(now, c.StartDate, 2)
                                orderby c.MemberId
-                               select c);
-                 
-                foreach (var memberPlan in memberPlans)
-				{
-					MemberExercisePlanWeek memberPlanWeek = (from c in db.MemberExercisePlanWeeks
-															 where c.MemberExercisePlanId == memberPlan.Id && c.Week == 0
-															 select c).FirstOrDefault();
-					if (memberPlanWeek == null)
-						continue;
-					MemberPlanWeekResult memberPlanWeekResult = (from c in db.MemberPlanWeekResults
-																 where c.MemberExercisePlanWeekId == memberPlanWeek.Id
-																 select c).FirstOrDefault();
-					if (memberPlanWeekResult.Tasks != null && memberPlanWeekResult.Tasks.Length >= 1 && memberPlanWeekResult.Tasks[0] == '0')
-					{
-                        PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberPlan.MemberId);
-						PrepareSimpleEmailByType(member, PrizeConstants.EmailType.TwoDaysPrior2Start, "2 days prior to Orientation week", member.Firstname);
-						char[] arr = memberPlanWeekResult.Tasks.ToArray();
-						arr[0] = '1';
-						memberPlanWeekResult.Tasks = new string(arr);
-					}
-				}
+                               select c).ToList();
 
-				// send email 1 day prior to week 4
-				availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
+                foreach (var memberPlan in memberPlans)
+                {
+                    MemberExercisePlanWeek memberPlanWeek = (from c in db.MemberExercisePlanWeeks
+                                                             where c.MemberExercisePlanId == memberPlan.Id && c.Week == 0
+                                                             select c).FirstOrDefault();
+                    if (memberPlanWeek == null)
+                        continue;
+                    MemberPlanWeekResult memberPlanWeekResult = (from c in db.MemberPlanWeekResults
+                                                                 where c.MemberExercisePlanWeekId == memberPlanWeek.Id
+                                                                 select c).FirstOrDefault();
+                    if (memberPlanWeekResult.Tasks != null && memberPlanWeekResult.Tasks.Length >= 1 && memberPlanWeekResult.Tasks[0] == '0')
+                    {
+                        PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberPlan.MemberId);
+                        PrepareSimpleEmailByType(member, PrizeConstants.EmailType.TwoDaysPrior2Start, "2 days prior to Orientation week", member.Firstname);
+                        char[] arr = memberPlanWeekResult.Tasks.ToArray();
+                        arr[0] = '1';
+                        memberPlanWeekResult.Tasks = new string(arr);
+                        db.SaveChanges();
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), 
+                "DailyEmailTask 2 days prior to Orientation week", ex);
+        }
+
+        try
+        {
+            using (var db = new DIYPTEntities())
+            {
+                // send email 1 day prior to week 4
+                availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
                 dtBegin = now.AddDays(0);
                 dtEnd = now.AddDays(1);
                 var memberPlanWithWeeks = from c in db.MemberExercisePlans
-										  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
-										  where c.Status.Equals(availableStatus) && b.Week == 4 && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
+                                          join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
+                                          where c.Status.Equals(availableStatus) && b.Week == 4 && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
                                           select new
-										  {
-											  MemberId = c.MemberId,
-											  MemberPlanWeekId = b.Id,
-											  WeekStartDate = b.StartDate,
-											  MemberExercisePlanId = c.Id,
-										  };
+                                          {
+                                              MemberId = c.MemberId,
+                                              MemberPlanWeekId = b.Id,
+                                              WeekStartDate = b.StartDate,
+                                              MemberExercisePlanId = c.Id,
+                                          };
 
-				foreach (var memberPlanWithWeek in memberPlanWithWeeks)
-				{
-					MemberPlanWeekResult memberPlanWeekResult = (from c in db.MemberPlanWeekResults
-																 where c.MemberExercisePlanWeekId == memberPlanWithWeek.MemberPlanWeekId
-																 select c).FirstOrDefault();
-					if (memberPlanWeekResult.Tasks != null && memberPlanWeekResult.Tasks.Length > 1 && memberPlanWeekResult.Tasks[0] == '0')
-					{
-						Prepare1DaysPrior2Week4Email(memberPlanWithWeek.MemberId);
-						char[] arr = memberPlanWeekResult.Tasks.ToArray();
-						arr[0] = '1';
-						memberPlanWeekResult.Tasks = new string(arr);
-						
-					}	
-				}
+                foreach (var memberPlanWithWeek in memberPlanWithWeeks)
+                {
+                    MemberPlanWeekResult memberPlanWeekResult = (from c in db.MemberPlanWeekResults
+                                                                 where c.MemberExercisePlanWeekId == memberPlanWithWeek.MemberPlanWeekId
+                                                                 select c).FirstOrDefault();
+                    if (memberPlanWeekResult.Tasks != null && memberPlanWeekResult.Tasks.Length > 1 && memberPlanWeekResult.Tasks[0] == '0')
+                    {
+                        Prepare1DaysPrior2Week4Email(memberPlanWithWeek.MemberId);
+                        char[] arr = memberPlanWeekResult.Tasks.ToArray();
+                        arr[0] = '1';
+                        memberPlanWeekResult.Tasks = new string(arr);
 
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(),
+                "DailyEmailTask 1 day prior to week 4", ex);
+        }
+
+        try
+        {
+            using (var db = new DIYPTEntities())
+            {
                 // send email 1 day prior to week 11
                 availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
                 dtBegin = now.AddDays(0);
                 dtEnd = now.AddDays(1);
-                memberPlanWithWeeks = from c in db.MemberExercisePlans
+                var memberPlanWithWeeks = from c in db.MemberExercisePlans
 									  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
 									  where c.Status.Equals(availableStatus) && b.Week == 11 && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
                                       select new
@@ -296,28 +323,49 @@ public class PrizeEmailWrapper
 
                     }
                 }
+            }
+        }
+        catch (Exception ex)
+        {
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(),
+                "DailyEmailTask 1 day prior to week 11", ex);
+        }
 
-				// send email 2 day prior to end of plan
-				availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
+        try
+        {
+            using (var db = new DIYPTEntities())
+            {
+                //send email Expiring in 2 days
+                availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
                 dtBegin = now.AddDays(1);
                 dtEnd = now.AddDays(2);
-                DateTime dtSendEmailBegin = now.AddDays(-10);
                 memberPlans = (from c in db.MemberExercisePlans
 							   where c.Status.Equals(availableStatus) && c.EndDate.HasValue && dtBegin <= c.EndDate.Value && dtEnd >= c.EndDate.Value //&& PrizeCommonUtils.LessThanDaysAhead(now, c.EndDate.Value, 2)
                                && !(from d in db.MemberEmails
 								  where d.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail && d.ScheduleDate > dtSendEmailBegin
                                     select d.MemberId).Contains(c.MemberId)
 							   orderby c.MemberId
-							   select c);
+							   select c).ToList();
 
 				foreach (var memberPlan in memberPlans)
 				{
 					PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberPlan.MemberId);
 					PrepareSimpleEmailByType(member, PrizeConstants.EmailType.TwoDaysPrior2End, "Expiring in 2 days", member.Firstname);
 				}
+            }
+        }
+        catch (Exception ex)
+        {
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(),
+                "DailyEmailTask Expiring in 2 days", ex);
+        }
 
-				// send email 1 day prior to end of trial plan
-				availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
+        try
+        {
+            using (var db = new DIYPTEntities())
+            {
+                // send email 1 day prior to end of trial plan
+                availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
                 dtBegin = now.AddDays(1);
                 dtEnd = now.AddDays(2);
                 memberPlans = (from c in db.MemberExercisePlans
@@ -328,16 +376,27 @@ public class PrizeEmailWrapper
                                      select d.MemberId).Contains(c.MemberId)
 								&& e.IsTrialPlan == 1
 								orderby c.MemberId
-								select c);
+								select c).ToList();
 
 				foreach (var memberPlan in memberPlans)
 				{
 					PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberPlan.MemberId);
 					PrepareSimpleEmailByType(member, PrizeConstants.EmailType.OneDayPrior2TrialEnd, "1 day before trial period ends", member.Firstname);
 				}
+            }
+        }
+        catch (Exception ex)
+        {
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(),
+                "DailyEmailTask 1 day prior to end of trial plan", ex);
+        }
 
-				// send email COMPLETED STAGES - After week x
-				for (int i = 0; i < 5; i++)
+        try
+        {
+            using (var db = new DIYPTEntities())
+            {
+                // send email COMPLETED STAGES - After week x
+                for (int i = 0; i < 5; i++)
 				{
 					int weekNum = 3;
 					PrizeConstants.EmailType emailType = PrizeConstants.EmailType.MileStoneWeek2;
@@ -365,7 +424,7 @@ public class PrizeEmailWrapper
 					availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
                     dtBegin = now.AddDays(0);
                     dtEnd = now.AddDays(-1);
-                    memberPlanWithWeeks = from c in db.MemberExercisePlans
+                    var memberPlanWithWeeks = from c in db.MemberExercisePlans
 										  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
 										  where c.Status.Equals(availableStatus) && b.Week == weekNum && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 0)
                                            && !(from d in db.MemberEmails
@@ -389,12 +448,23 @@ public class PrizeEmailWrapper
 							PrepareSimpleEmailByType(member, emailType, "Milestone Week " + (weekNum - 1), member.Firstname);
 					}
 				}
+            }
+        }
+        catch (Exception ex)
+        {
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(),
+                "DailyEmailTask COMPLETED STAGES - After week x", ex);
+        }
 
-				//Milestone End Week 12
-				availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
+        try
+        {
+            using (var db = new DIYPTEntities())
+            {
+                //Milestone End Week 12
+                availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
                 dtBegin = now.AddDays(0);
                 dtEnd = now.AddDays(1);
-                memberPlanWithWeeks = from c in db.MemberExercisePlans
+                var memberPlanWithWeeks = from c in db.MemberExercisePlans
 									  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
 									  where c.Status.Equals(availableStatus) && b.Week == 12 && dtBegin <= b.EndDate && dtEnd >= b.EndDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.EndDate, 1)
                                        && !(from d in db.MemberEmails
@@ -412,9 +482,20 @@ public class PrizeEmailWrapper
 					PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberPlanWithWeek.MemberId);
 					PrepareSimpleEmailByType(member, PrizeConstants.EmailType.MileStoneEndWeek12, "Milestone End Week 12", member.Firstname);
 				}
+            }
+        }
+        catch (Exception ex)
+        {
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(),
+                "DailyEmailTask Milestone End Week 12", ex);
+        }
 
-				//Measurement Weeks
-				for (int i = 0; i < 3; i++)
+        try
+        {
+            using (var db = new DIYPTEntities())
+            {
+                //Measurement Weeks
+                for (int i = 0; i < 3; i++)
 				{
 					int weekNum = 4;
 					PrizeConstants.EmailType emailType = PrizeConstants.EmailType.MeasurmentWeek4;
@@ -434,7 +515,7 @@ public class PrizeEmailWrapper
 					availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
                     dtBegin = now.AddDays(1);
                     dtEnd = now.AddDays(-1);
-                    memberPlanWithWeeks = from c in db.MemberExercisePlans
+                    var memberPlanWithWeeks = from c in db.MemberExercisePlans
 										  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
 										  where c.Status.Equals(availableStatus) && b.Week == weekNum && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 0)
                                            && !(from d in db.MemberEmails
@@ -453,9 +534,20 @@ public class PrizeEmailWrapper
 						PrepareSimpleEmailByType(member, emailType, "Measurement Week " +weekNum, member.Firstname);
 					}
 				}
+            }
+        }
+        catch (Exception ex)
+        {
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(),
+                "DailyEmailTask Measurement Weeks", ex);
+        }
 
-				//Measurement Missed Weeks
-				for (int i = 0; i < 3; i++)
+        try
+        {
+            using (var db = new DIYPTEntities())
+            {
+                //Measurement Missed Weeks
+                for (int i = 0; i < 3; i++)
 				{
 					int weekNum = 5;
 					PrizeConstants.EmailType emailType = PrizeConstants.EmailType.MeasurmentMissedWeek4;
@@ -475,7 +567,7 @@ public class PrizeEmailWrapper
 					availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
                     dtBegin = now.AddDays(0);
                     dtEnd = now.AddDays(1);
-                    memberPlanWithWeeks = from c in db.MemberExercisePlans
+                    var memberPlanWithWeeks = from c in db.MemberExercisePlans
 										  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
 										  where c.Status.Equals(availableStatus) && b.Week == weekNum && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
                                            && !(from d in db.MemberEmails
@@ -499,18 +591,17 @@ public class PrizeEmailWrapper
 														   || String.IsNullOrEmpty(f.FrontPhoto) || String.IsNullOrEmpty(f.BackPhoto) || String.IsNullOrEmpty(f.SidePhoto))
 														   select f).SingleOrDefault();
 						if (weekResult != null)
-							PrepareSimpleEmailByType(member, emailType, "Missed Measurement " + (weekNum - 1), member.Firstname);
+							PrepareSimpleEmailByType(member, emailType, "Missed Measurement" + (weekNum - 1), member.Firstname);
 					}
 				}
-
-				db.SaveChanges();
-				return;
-			}
-		}
-		catch (Exception e)
-		{
-			PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), "DailyEmailTask", e.Message, e.InnerException == null ? "" : e.InnerException.Message);
+            }
         }
+        catch (Exception ex)
+        {
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(),
+                "DailyEmailTask Measurement Missed Weeks", ex);
+        }
+        return;
     }
 
     static protected void EmailPresetTask()
@@ -592,7 +683,7 @@ public class PrizeEmailWrapper
         }
         catch (Exception e)
         {
-            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), "EmailPresetTask", e.Message, e.InnerException == null ? "" : e.InnerException.Message);
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), "EmailPresetTask", e);
             return;
         }
     }

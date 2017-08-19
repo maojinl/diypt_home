@@ -17,6 +17,7 @@
 
         <asp:HyperLink ID="dayNext" runat="server" class="day-next c_b"></asp:HyperLink>
     </div>
+
     <div class="plan-container week-view row" id="topInfo" runat="server">
         <div class="col-md-10 push-md-1">
             <div class="row week-view-intro">
@@ -61,7 +62,7 @@
     </div>
     <div class="plan-container row no-gutters">
         <div class="col-lg-10 push-lg-1 table-responsive">
-    <div id="divNotStarted" class="text-center"><h2>Your plan has not started.</h2></div>
+    <div id="divNotStarted" class="text-center" runat="server" visible="false"><h2>Your program will not start until the next Monday</h2></div>
             <table class="table-weekly-detail  margin-center ">
                 <tr>
                     <th>
@@ -216,13 +217,15 @@
             </div>
             <div class="col-12 hidden-md-up" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 <div class="row">
-                    <div class="col-12 ">
+                    <div class="col-12 col-arrow-blue">
                         <h5 class="pt-3 "> <img class="icon-equip" src="/images/icon-equip.svg"><strong>Equipment Needed</strong></h5>
                     </div>
                 </div>
             </div>
             <div class="collapse hidden-md-up" id="collapseExample">
-                <asp:Literal ID="equipmentLiteralMobile" runat="server"></asp:Literal>
+                <div class="col-12">
+            <asp:Literal ID="equipmentLiteralMobile" runat="server"></asp:Literal>
+                </div>  
             </div>
 			</div>
 			</div>
@@ -296,13 +299,19 @@
     </div>
     <div class="row pb-4 pt-4">
         <a id="dayView" runat="server" href="#" class="c_b btn btn-secondary m-1 col-sm-4 push-sm-2">SWITCH TO DAY VIEW ></a>
-        <a id="printDay" runat="server" href="#" class="c_b btn btn-secondary m-1 col-sm-4 push-sm-2">PRINT WEEKLY PLAN ></a>
+        <a id="printDay" runat="server" href="javascript:window.print()" class="c_b btn btn-secondary m-1 col-sm-4 push-sm-2">PRINT WEEKLY PLAN ></a>
     </div>
 </div>
 <div class="modal fade" id="timeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog" role="document">
+
         <div class="modal-content">
-            <div class="modal-header">10 minutes</div>
+            <div class="modal-header">
+                <h5 class="modal-title" >10 minutes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+           </div>
             <div class="modal-body">
                 <div class='embed-container'>
                     <iframe src="https://player.vimeo.com/external/219773052.hd.mp4?s=8ef31aac3d6b7dfd906b36a49839d6df5f2f44fb&profile_id=174" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
@@ -314,7 +323,12 @@
 <div class="modal fade" id="timeModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">20 minutes</div>
+            <div class="modal-header">
+                <h5 class="modal-title" >20 minutes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+           </div>
             <div class="modal-body">
                 <div class='embed-container'>
                     <iframe src="https://player.vimeo.com/external/219773052.hd.mp4?s=8ef31aac3d6b7dfd906b36a49839d6df5f2f44fb&profile_id=174" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
@@ -326,7 +340,12 @@
 <div class="modal fade" id="timeModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">30 minutes</div>
+             <div class="modal-header">
+                <h5 class="modal-title" >30 minutes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+           </div>
             <div class="modal-body">
                 <div class='embed-container'>
                     <iframe src="https://player.vimeo.com/external/219773052.hd.mp4?s=8ef31aac3d6b7dfd906b36a49839d6df5f2f44fb&profile_id=174" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
@@ -335,5 +354,3 @@
         </div>
     </div>
 </div>
-<asp:Button ID="Button1" runat="server" OnClick="Button1_Click1" Text="Button" />
-

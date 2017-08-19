@@ -5,7 +5,7 @@
         <a class="c_grey" href="javascript:window.print()"> <img src="/images/icon-print-g.svg" /><span class="hidden-sm-down sec">PRINT PLAN ></span></a>
     </div>
     <div class="text-center mb-4">
-        <h1><strong>Week 1 - Orientation </strong></h1>
+        <h1><strong>Week 0 - Orientation </strong></h1>
         <div class="ori-date"> 
             <asp:Label ID="lblWeekly" runat="server"></asp:Label>
 

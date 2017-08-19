@@ -77,11 +77,16 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
             if (iWeekDay == iDay)
                 lblDayTypeName.Text = (String)row[2];
         }
-        if (lblDayTypeName.Text.ToLower() == PrizeConstants.STR_NO_TRAINNING.ToLower()
-            || lblDayTypeName.Text == "Time to celebrate")
+        if (lblDayTypeName.Text.ToLower() == PrizeConstants.STR_NO_TRAINNING.ToLower())
+		{
             divWarmup.Visible = divCooldown.Visible = false;
-
-
+			divRest.Visible = true;
+		}
+		if(lblDayTypeName.Text == "Time to celebrate")
+		{
+            divWarmup.Visible = divCooldown.Visible = false;
+			divRest.Visible = true;
+		}
         lblDay.Text = PrizeCommonUtils.ParseWeekDayToEnglish(iDay);
         if (iDay > 1)
         {

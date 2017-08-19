@@ -97,14 +97,17 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
 				printDay.Visible = false;
 				timesaverDiv.Visible = false;
 				timesaverDivMobile.Visible = false;
+				divNotStarted.Visible = true;
                 return;
             }
+			divNotStarted.Visible = false;
 
             planWeek = dbAccess.GetExercisePlanWeek(memberPlanWeek.ExercisePlanWeekId);
         }
 
         currentPlanWeekId = (int)memberPlanWeek.ExercisePlanWeekId;
-
+        //
+        dayView.HRef = dbAccess.GetCurrentDailyViewURL(memberId);
         LoadWeeklyInfo(memberId, planWeek, memberPlanWeek);
 
         dbAccess.GetNextAndPrevPlanWeek(memberPlanWeek, ref prevMemberPlanWeekId, ref nextMemberPlanWeekId);
@@ -340,10 +343,4 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
 
     }
 
-
-    protected void Button1_Click1(object sender, EventArgs e)
-    {
-        PrizeMember member = PrizeMemberAuthUtils.GetMemberData();
-        PrizeMemberAuthUtils.AddMemberWeek1NotifiedTimes(member);
-    }
 }

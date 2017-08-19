@@ -167,14 +167,35 @@ public class PrizeMemberAuthUtils
         }
     }
 
-    static public string GetMemberAnswer(PrizeMember member, int questionNumber)
+    static public string GetMemberAnswer(PrizeMember member, string question)
     {
         string sRet = "";
         char[] c = "\r\n".ToCharArray();
         string[] questionAnwsers = member.Questions.Split(c);
-        int iIndex = (questionNumber - 1) * 2 + 1;
-        if (iIndex < questionAnwsers.Length)
-            sRet = questionAnwsers[iIndex];
+        int iIndexBegin = -1, iIndexEnd = -1;
+        for (int i = 0; i < questionAnwsers.Count(); i++)
+        {
+            if (iIndexBegin < 0)
+            {
+                if (questionAnwsers[i].Contains(question) && questionAnwsers[i].EndsWith("?"))
+                    iIndexBegin = i;
+            }
+            else
+            {
+                if (questionAnwsers[i].EndsWith("?"))
+                {
+                    iIndexEnd = i;
+                    break;
+                }
+            }
+        }
+
+        if (iIndexBegin >= 0)
+        {
+            for (int i = iIndexBegin + 1; i < iIndexEnd; i++)
+                sRet = sRet + questionAnwsers[i] +"\r\n";
+        }
+
         return sRet;
     }
 

@@ -170,20 +170,7 @@
             </div>
         </fieldset>
 
-        <h6>3. What difficulty level of the program do you want to trial?</h6>
-        <fieldset class="form-group row">
-            <div class="col-md-8">
-                <asp:DropDownList ID="ddlLevel" runat="server" CssClass="form-control">
-                    <asp:ListItem Value="Beginner" Selected="True">Beginner</asp:ListItem>
-                    <asp:ListItem Value="Intermediate">Intermediate</asp:ListItem>
-                    <asp:ListItem Value="Advanced">Advanced</asp:ListItem>
-                </asp:DropDownList>
-
-
-            </div>
-        </fieldset>
-
-        <h6 runat="server" id="Q3">4. Do you have any dietary requirements?</h6>
+        <h6 runat="server" id="Q3">3. Do you have any dietary requirements?</h6>
 
         <fieldset class="form-group row">
             <div class="col-md-8">
@@ -202,7 +189,7 @@
         </fieldset>
 
 
-        <h6 runat="server" id="Q4">5. Do you have any medical conditions that will prevent/disrupt you from training?</h6>
+        <h6 runat="server" id="Q4">4. Do you have any medical conditions that will prevent/disrupt you from training?</h6>
 
 
         <fieldset class="form-group row">
@@ -236,7 +223,7 @@
                 </div>
             </fieldset>
         </div>
-        <h6>6. Are you currently on any medication ?</h6>
+        <h6>5. Are you currently on any medication ?</h6>
         <fieldset class="form-group row">
             <div class="col-md-8">
                 <asp:DropDownList ID="ddlQ6" runat="server" CssClass="form-control" onchange="changeQ6(this)">

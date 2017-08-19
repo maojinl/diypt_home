@@ -10,21 +10,33 @@ public partial class UserControls_SloganImage : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
         var planType = "2";
+            string tempScript = "<style>";
         PrizeDataAccess db = new PrizeDataAccess();
         var memberExercisePlan = db.GetCurrentMemberPlanOrStartingPlan(PrizeMemberAuthUtils.GetMemberID());
+		
+                    lblTop.Text = "WEIGHT BEARING EXERCISES";
+                    lblMiddle.Text = "WHOLESOME FOODS";
+                    lblBottom.Text = " REDUCED DOCTOR VISITS";
+                    //weight
+                    tempScript += @"
+.container-fluid-header { background-image: url('/images/login/lose-weight/hero-lose-weight.jpg');}
+@media (max-width:767px) {
+.container-fluid-header { background-image: url('/images/login/lose-weight/hero-lose-weight-m.jpg');}
+}
+";
+
         if (memberExercisePlan != null)
         {
-            var exercisePlan = db.GetExercisePlanInfo(memberExercisePlan.ExercisePlanId);
-            if (exercisePlan.Tables[0].Rows.Count != 0)
+            var exercisePlan = db.GetExercisePlan(memberExercisePlan.ExercisePlanId);
+            if (exercisePlan != null)
             {
-                if (exercisePlan.Tables[0].Rows[0]["ProgramName"].ToString().ToLower().Contains("lose weight"))
+                if (exercisePlan.PlanName.ToLower().Contains("weight"))
                     planType = "1";
-                if (exercisePlan.Tables[0].Rows[0]["ProgramName"].ToString().Contains("build muscle"))
+                if (exercisePlan.PlanName.ToLower().Contains("muscle"))
                     planType = "2";
-                if (exercisePlan.Tables[0].Rows[0]["ProgramName"].ToString().Contains("tone up"))
+                if (exercisePlan.PlanName.ToLower().Contains("tone"))
                     planType = "3";
             }
-            string tempScript = "<style>";
             switch (planType)
             {
                 case "1":
@@ -71,9 +83,8 @@ background-size: 1400px;
                 default:
                     break;
             }
-
+        }
             tempScript += "</style>";
             Page.ClientScript.RegisterStartupScript(this.GetType(), "sloganHeadImage", tempScript, false);
-        }
     }
 }

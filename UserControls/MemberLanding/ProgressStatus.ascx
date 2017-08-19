@@ -13,6 +13,7 @@
     <h2 class="progress-title text-center">Progress Results Week <span><asp:Label ID="lblWeekNum" runat="server"></asp:Label></span></h2>
     <!-- PROGRESS INTRO -->
     <div class="row row-chart-intro">
+    <div id="divNotStarted" class="text-center" runat="server" Visible="false"><h2>Your program will not start until the next Monday</h2></div>
         <div class="col-sm-12" id="divMeasurement" runat="server">
            <p>Oooh yeah, it's that time... measurement time! Some of you have been looking forward to it and others dread it. </p>
 <p>Either way, what's the point of having a goal if you can't measure how you're going? </p>
@@ -119,7 +120,7 @@
                 <div class="chart-unit hidden-sm-down">(kilogram/kg)</div>
                 <div class="chart-result chart-result-sp"><asp:Label ID="lblWeight" runat="server" Text=" "></asp:Label></div>
                 <div class="chart-result-different"><asp:Label ID="lblWeightDiff" runat="server" Text=" "></asp:Label></div>
-                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawWeight" class="btn active btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
+                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawWeight" class="btn btn-p btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
             </div>
         </div>
         <div class="col">
@@ -128,7 +129,7 @@
                 <div class="chart-unit hidden-sm-down">(centimeter/cm)</div>
                 <div class="chart-result chart-result-sp"><asp:Label ID="lblWaist" runat="server" Text=" "></asp:Label></div>
                 <div class="chart-result-different"><asp:Label ID="lblWaistDiff" runat="server" Text=" "></asp:Label></div>
-                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawWaist" class="btn active btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
+                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawWaist" class="btn btn-p btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
             </div>
         </div>
         <div class="col">
@@ -137,7 +138,7 @@
                 <div class="chart-unit hidden-sm-down">(centimeter/cm)</div>
                 <div class="chart-result chart-result-sp"><asp:Label ID="lblHip" runat="server" Text=" "></asp:Label></div>
                 <div class="chart-result-different"><asp:Label ID="lblHipDiff" runat="server" Text=" "></asp:Label></div>
-                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawHip" class="btn active btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
+                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawHip" class="btn btn-p btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
             </div>
         </div>
         <div class="col">
@@ -146,7 +147,7 @@
                 <div class="chart-unit hidden-sm-down">(centimeter/cm)</div>
                 <div class="chart-result chart-result-sp"><asp:Label ID="lblChest" runat="server" Text=" "></asp:Label></div>
                 <div class="chart-result-different"><asp:Label ID="lblChestDiff" runat="server" Text=" "></asp:Label></div>
-                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawChest" class="btn active btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
+                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawChest" class="btn btn-p btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
             </div>
         </div>
         <div class="col">
@@ -155,7 +156,7 @@
                 <div class="chart-unit hidden-sm-down">(times/minute)</div>
                 <div class="chart-result chart-result-sp"><asp:Label ID="lblHeartRate" runat="server" Text=" "></asp:Label></div>
                 <div class="chart-result-different"><asp:Label ID="lblHeartRateDiff" runat="server" Text=" "></asp:Label></div>
-                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawHeartRate" class="btn active btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
+                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawHeartRate" class="btn btn-p btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
             </div>
         </div>
     </div>

@@ -80,7 +80,7 @@
                         <span class="tri-yellow-pg"></span>
                         <img class="icon-pg icon-yellow" src="/images/ori/day6/icon-meal.svg" />
                     </div>
-                    <img class="img-fluid img-round card-icon-img mb-3" src="/images/ori/day6/12-2.jpg" />
+                    <img class="img-fluid img-round card-icon-img mb-3" src="/images/ori/day6/12-3.jpg" />
                     <h5 class="mb-3 sec c_y">Plan for your meals</h5>
                     <ul class="list list-left">
                         <li>During your 12 week program, ensure you plan your meals the night before in My Fitness Pal to ensure compliance to your macronutrients.</li>
@@ -92,7 +92,7 @@
                         <span class="tri-pink-pg"></span>
                         <img class="icon-pg icon-pink " src="/images/ori/day6/icon-shopping.svg " />
                     </div>
-                    <img class="img-fluid img-round card-icon-img mb-3" src="/images/ori/day6/12-3.jpg" />
+                    <img class="img-fluid img-round card-icon-img mb-3" src="/images/ori/day6/12-4.jpg" />
                     <h5 class="mb-3 sec c_p ">Plan for your Shopping</h5>
                     <ul class="list list-left">
                         <li>Do a big grocery shop on the weekend when you have more time and do another 1 or 2 smaller shops during the week for your fresh fruit and vegetables and anything else you may need.</li>

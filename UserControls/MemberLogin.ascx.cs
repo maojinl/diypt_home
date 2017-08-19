@@ -1,26 +1,21 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
-
 using umbraco.cms.businesslogic.member;
-
 public partial class UserControls_MemberLogin : System.Web.UI.UserControl
 {
     protected PrizeDataAccess dbAccess = new PrizeDataAccess();
     protected void Page_Load(object sender, EventArgs e)
     {
-
     }
-
     protected void login_Click(object sender, ImageClickEventArgs e)
     {
      
     }
-
     protected void loginTest_Click(object sender, ImageClickEventArgs e)
     {
         bool bLogin = Membership.ValidateUser(username.Text, password.Text);
@@ -37,10 +32,8 @@ public partial class UserControls_MemberLogin : System.Web.UI.UserControl
                 return;
             }
         }
-
         errorLabel.Text = "Invalid UserId/password.";
     }
-
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         bool bLogin = Membership.ValidateUser(username.Text, password.Text);
@@ -52,7 +45,7 @@ public partial class UserControls_MemberLogin : System.Web.UI.UserControl
                 Session["taRegistration"] = uMember.Email;
                 System.Web.Security.FormsAuthentication.SetAuthCookie(uMember.LoginName, true);
                 Member.AddMemberToCache(uMember);
-                MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(uMember.Id);
+                MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(uMember.Id);
                 int myPlanId = 0;
                 if (myPlan != null)
                     myPlanId = myPlan.ExercisePlanId;
@@ -77,7 +70,6 @@ public partial class UserControls_MemberLogin : System.Web.UI.UserControl
                     else
                         Response.Redirect(String.Format("{0}?loginName={1}&memberId={2}", PrizeConstants.URL_MEMBER_LANDING, uMember.LoginName, uMember.Id));
                 }
-
                 //var log = new MemberVisitLogs();
                 //log.UmbracoId = uMember.Id;
                 //log.Page = HttpContext.Current.Request.Url.AbsolutePath;
@@ -85,7 +77,6 @@ public partial class UserControls_MemberLogin : System.Web.UI.UserControl
                 //log.MembersReference.EntityKey = new EntityKey("SydneyCatalystMemberEntities.Members", "Id", member.Id);
                 //db.AddToMemberVisitLogs(log);
                 //db.SaveChanges();
-
                 return;
             }
         }

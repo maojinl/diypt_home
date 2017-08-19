@@ -6,7 +6,7 @@
 </style>
 
 <div class="row">
-        <div class="col-sm-4 push-sm-4">
+        <div class="col-md-6 push-md-3 col-sm-8 push-sm-2">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             
     

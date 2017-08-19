@@ -13,10 +13,14 @@ public partial class UserControls_MemberLanding_MemberFoodPlanView : System.Web.
         int memberId = PrizeMemberAuthUtils.GetMemberID();
         MemberExercisePlanWeek memberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId);
         if (memberPlanWeek == null)
+        {
+            divMealPlanContent.Visible = false;
+            divNotStarted.Visible = true;
             return;
-
+        }
         int iWeekNum = memberPlanWeek.Week;
         lblWeekNum.Text = "Week " + iWeekNum;
+        divMainMealPlan.Attributes.Add("class", "tab-inner-content nodisplay wk" + iWeekNum);
         lblDateDuration.Text = PrizeCommonUtils.ParseDateToEnglish(memberPlanWeek.StartDate) + " - "
             + PrizeCommonUtils.ParseDateToEnglish(memberPlanWeek.EndDate);
 

@@ -92,11 +92,11 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
 
     protected void ShowNewPlan(PrizeExercisePlan plan, MemberExercisePlan myPlan)
     {
-        if (myPlan.StartDate != null)
-            lblPlan.Text = dbAccess.GetPlanName(plan);   //plan.PlanName +" Start on " + PrizeCommonUtils.ParseDateTime((DateTime)myPlan.StartDate);
+        //if (myPlan.StartDate != null)
+        //    lblPlan.Text = dbAccess.GetPlanName(plan);   //plan.PlanName +" Start on " + PrizeCommonUtils.ParseDateTime((DateTime)myPlan.StartDate);
     }
 
-    protected void CheckoutBtn_Click(object sender, ImageClickEventArgs e)
+    protected void btnSubmit_Click(object sender, EventArgs e)
     {
         /*
         NVPAPICaller payPalCaller = new NVPAPICaller();
