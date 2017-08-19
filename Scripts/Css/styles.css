@@ -1,0 +1,140 @@
+ body
+        {
+            padding: 10px;
+            padding-top: 50px;
+        }
+        .clear
+        {
+            clear: both;
+        }
+        .headerLabel
+        {
+           /*float: left; */
+           padding: 1px 20px 5px 1px; 
+           width: 100px;
+        }.days-1
+        {
+           /*float: left; */
+            width: 100%;
+            text-align: center;
+           padding: 20px 0px 10px 1px; 
+            font-weight: bold;
+        }
+        .days-2
+        {
+          /*float: left; */
+            width: 100%;
+            text-align: center;
+            padding: 10px 5px 0 0;
+            font-weight: bold;
+        }
+        .days-3
+        {
+            float: left;
+        }
+        .inputBox
+        {
+            width: 250px;
+            height: 150px;
+        }
+        .error
+        {
+            color: Red;
+        }
+
+ .shown
+    {
+        display: block;
+    }
+    .hidden
+    {
+        display: none;
+    }
+    .popup-bg
+    {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.8);
+    }
+    /* line 1022,../sass/screen.scss */.popup-content
+    {
+        display: none;
+        position: absolute;
+        width: 100%;
+        top: 100px;
+        left: 0;
+        text-align: center;
+    }
+    /* line 1030,../sass/screen.scss */.popup-window
+    {
+        display: inline-block;
+        width: 300px;
+        margin: 0 auto;
+        padding: 30px;
+        border: 1px solid #1C75BB;
+        background: #fff;
+    }
+    .close
+    {
+        display: block;
+        text-align: right;
+        padding: 0 0 10px;
+        text-decoration: none;
+        color: #111;
+    }
+    
+    .exercise-header
+    {
+        background-color: #ccc;
+        height: 50px;
+        font-size: 22px;
+        font-weight: bold;
+        padding-left: 10px;
+        width: 50%;
+    }
+    .exercise
+    {
+        height: 50px;
+        font-size: 22px;
+        padding-left: 10px;
+        width: 50%;
+         border: 1px solid #ccc;
+}
+
+
+
+/* End *//* EDITOR PROPERTIES - PLEASE DON'T DELETE THIS LINE TO AVOID DUPLICATE PROPERTIES */
+.testdiv {
+font-weight: bold;
+}
+
+.blog-image {
+img-fluid
+}
+
+.recipe-steps {
+    color: #e69531;     display: block;     font-size: 0.83em;     -webkit-margin-before: 1.67em;     -webkit-margin-after: 1.67em;     -webkit-margin-start: 0px;     -webkit-margin-end: 0px;     font-weight: bold;     font-size: 1.25rem
+}
+
+.pull-out-quote {
+font-size: 1.2em
+}
+
+h2 {
+=
+}
+
+h4 {
+color: #e69531;
+}
+
+h4 {
+color: #e69531;
+}
+

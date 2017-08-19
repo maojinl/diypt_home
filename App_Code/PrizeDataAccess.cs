@@ -756,7 +756,7 @@ public class PrizeDataAccess
         PrizeExercisePlanWeek planWeek = GetExercisePlanWeek(memberPlanWeek.ExercisePlanWeekId);
         if (planWeek == null)
             return result;
-        String.Format("{0}?PlanWeekId={1}&MemberPlanWeekId={2}&PlanDayNumber={3}", PrizeConstants.URL_MEMBER_DAY_VIEW, planWeek.Id, memberPlanWeek.Id, PrizeCommonUtils.GetSystemDate().GetDayOfWeek());
+        result = String.Format("{0}?PlanWeekId={1}&MemberPlanWeekId={2}&PlanDayNumber={3}", PrizeConstants.URL_MEMBER_DAY_VIEW, planWeek.Id, memberPlanWeek.Id, PrizeCommonUtils.GetSystemDate().GetDayOfWeek());
         return result;
     }
 
