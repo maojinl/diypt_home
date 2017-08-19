@@ -104,7 +104,7 @@ public partial class UserControls_Orientation_Day_1_Get_Familiar_with_the_squat 
         MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
         if (myPlan == null)
         {
-            Response.Write("<script>alert('Your plan has not started yet.');</script>");
+            Response.Write("<script>alert('Your plan will start on next Monday.');</script>");
             return;
         }
         dbAccess.UpdateOrientationWeekDayResult(myPlan.Id, 1, 3, true);
