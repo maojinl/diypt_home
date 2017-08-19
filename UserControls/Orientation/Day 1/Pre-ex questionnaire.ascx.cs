@@ -12,6 +12,12 @@ public partial class UserControls_Orientation_Day_1_Pre_ex_questionnaire : BaseO
         DateTime myDate = GetOrientationDate(1);
         lblDay.Text = myDate.ToString("dddd d").ToUpper();
         lblDate.Text = myDate.ToString("MMMM, yyyy");
+        MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
+        if (myPlan == null)
+        {
+            Response.Write("<script>alert('Your plan will start on next Monday.');</script>");
+            return;
+        }
 
     }
 
