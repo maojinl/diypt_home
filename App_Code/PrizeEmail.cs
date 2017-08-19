@@ -55,7 +55,7 @@ Comment:
         client.Send(mm);
     }
 
-	static public void SendEmailByType(string email, PrizeConstants.EmailType emailType, string emailSubject, List<string> additionalContents)
+	static public bool SendEmailByType(string email, PrizeConstants.EmailType emailType, string emailSubject, List<string> additionalContents)
 	{
 		int nodeId = 0;
         int templateNodeId = 5332;
@@ -105,8 +105,8 @@ Comment:
         else if (emailType == PrizeConstants.EmailType.MileStoneGoalWeek13)
             nodeId = 9675;
 
-        if (templateNodeId == 5332)
-            return;
+        if (nodeId == 0)
+            return false;
 
         var node = new Node(nodeId);
 		var templateNode = new Node(templateNodeId);
@@ -131,6 +131,7 @@ Comment:
         }
 
         PrizeEmail.SendEmail(email, subject, (header + body + footer).Replace("/images/", "http://web106.sand.studiocoast.com.au/images/"));
+        return true;
 	}
 
 	static public void SendEmail(string email, string subject, string content)
