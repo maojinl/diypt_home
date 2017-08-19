@@ -114,7 +114,7 @@ public partial class UserControls_Orientation_Day_6_Twist : BaseOrientation
             Response.Write("<script>alert('Your plan has not started yet.');</script>");
             return;
         }
-        dbAccess.UpdateOrientationWeekDayResult(myPlan.Id, 6, 5, true);
+        dbAccess.UpdateOrientationWeekDayResult(myPlan.Id, 6, 2, true);
         Response.Redirect("/orientation/day-6");
     }
 }
