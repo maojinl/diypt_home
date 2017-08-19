@@ -33,7 +33,7 @@
                         <div class="col-md-6 mb-2">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input"> ACTION COMPLETED
+                                    <asp:CheckBox id="CheckBox1" type="checkbox" class="form-check-input" runat="server" AutoPostBack="true" OnCheckedChanged="OnCheckedChangedMethod"/> ACTION COMPLETED
                                 </label>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                         <div class="col-md-6 mb-2">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input"> ACTION COMPLETED
+                                    <asp:CheckBox id="CheckBox2" type="checkbox" class="form-check-input" runat="server" AutoPostBack="true" OnCheckedChanged="OnCheckedChangedMethod"/> ACTION COMPLETED
                                 </label>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                         <div class="col-md-6 mb-2">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input"> ACTION COMPLETED
+                                    <asp:CheckBox id="CheckBox3" type="checkbox" class="form-check-input" runat="server" AutoPostBack="true" OnCheckedChanged="OnCheckedChangedMethod"/> ACTION COMPLETED
                                 </label>
                             </div>
                         </div>
