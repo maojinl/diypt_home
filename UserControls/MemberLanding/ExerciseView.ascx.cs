@@ -300,10 +300,10 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
             {
                 foreach (DataRow row in dsDaily.Tables[j].Rows)
                 {
-                    iTimeDuration += int.Parse(row["TimeDuration"].ToString());
+                    iTimeDuration += int.Parse(row["TimeDuration"].ToString()) / 60;
                 }
             }
-            iTimeDuration = iTimeDuration / 60;
+            iTimeDuration = iTimeDuration + 10; // +10 warm up; +5 cool down
             lblTimeDuration[i].Text = "" + iTimeDuration;
         }
     }
