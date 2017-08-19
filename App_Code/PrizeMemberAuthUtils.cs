@@ -202,7 +202,9 @@ public class PrizeMemberAuthUtils
                 i++;
             sb.Clear();
             sb.Append(i.ToString());
-            string s = string.Copy(memberUpdating.UserSettings);
+            string s = null;
+            if (memberUpdating.UserSettings != null)
+                s = string.Copy(memberUpdating.UserSettings);
             SetMemberSetting(ref s, PrizeConstants.MemberSettings.ShowedWeek1NotificationTimes, sb[0]);
             memberUpdating.UserSettings = s;
             db.SaveChanges();

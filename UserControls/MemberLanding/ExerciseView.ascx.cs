@@ -340,4 +340,10 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
 
     }
 
+
+    protected void Button1_Click1(object sender, EventArgs e)
+    {
+        PrizeMember member = PrizeMemberAuthUtils.GetMemberData();
+        PrizeMemberAuthUtils.AddMemberWeek1NotifiedTimes(member);
+    }
 }
