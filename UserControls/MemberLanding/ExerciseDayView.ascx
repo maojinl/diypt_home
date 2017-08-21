@@ -53,7 +53,8 @@
                 <span class="plan-time c_b">10 mins</span>
             </div>
             <div class="row row-plan">
-                <a href="/exercise#t0" target="_blank">Click here for more details</a>
+			<p>Warmup is very important and should not be skipped. Because as the name suggests it warms up your body and gets you ready for your workout. There are 3 main sections that all warmups should have.</p>
+                <a href="/exercise#t0" target="_blank" class="c_y">Click here for more details</a>
             </div>
         </div>
         <div runat="server" id="Div1" class="plan-container">
@@ -93,7 +94,7 @@
                                 <%#DataBinder.Eval(Container.DataItem,"Rest")%>
                             </div>
                             <div class="plan-info">
-                                <span class="c_b">Weights:</span>
+                                <span class="c_b">Weight:</span>
                                 <%#DataBinder.Eval(Container.DataItem,"Weight")%>
                             </div>
                             <div class="plan-info">
@@ -149,7 +150,7 @@
                                 <%#DataBinder.Eval(Container.DataItem,"Rest")%>
                             </div>
                             <div class="plan-info">
-                                <span class="c_b">Weights:</span>
+                                <span class="c_b">Weight:</span>
                                 <%#DataBinder.Eval(Container.DataItem,"Weight")%>
                             </div>
                             <div class="plan-info">
@@ -205,7 +206,7 @@
                                 <%#DataBinder.Eval(Container.DataItem,"Rest")%>
                             </div>
                             <div class="plan-info">
-                                <span class="c_b">Weights:</span>
+                                <span class="c_b">Weight:</span>
                                 <%#DataBinder.Eval(Container.DataItem,"Weight")%>
                             </div>
                             <div class="plan-info">

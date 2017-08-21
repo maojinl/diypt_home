@@ -36,7 +36,7 @@
                     <ul class="list list-left">
                         <li>Early morning training is best because you can get it out of the way and you’ll be less likely be interrupted by a phone call or event that requires your urgent attention.</li>
                         <li>Prepare your workout times by checking your schedule regularly.</li>
-                        <li>Fill your sandbags with sand. One bag should weigh 20kg and the other should weigh 10kg. Make sure you gohper tape them to increase durability. Click this video - How to make a sandbag for instruction. If it's easier for you to purchase one, you can get one from a department store like K-Mart or Aldi for less than $40 each.</li>
+                        <li>Fill your sandbags with sand. One bag should weigh 20kg and the other should weigh 10kg. Make sure you gohper tape them to increase durability. Click this video - <a href="#" data-toggle="modal" data-target="#timeModal3" class="c_y">How to make a sandbag</a> for instruction. If it's easier for you to purchase one, you can get one from a department store like K-Mart or Aldi for less than $40 each.</li>
                     </ul>
                     <div class="bg_grey d-flex justify-content-start bd-highlight mb-3">
                         <div class="p-2 bd-highlight">
@@ -103,6 +103,23 @@
             </div>
             <hr/>
             <asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="timeModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+             <div class="modal-header">
+                <h5 class="modal-title" >How to make a sandbag</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+           </div>
+            <div class="modal-body">
+                <div class='embed-container'>
+                    <iframe src="https://player.vimeo.com/video/219772449" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
+                </div>
+            </div>
         </div>
     </div>
 </div>

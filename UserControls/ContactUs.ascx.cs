@@ -24,7 +24,7 @@ Message {3}", first_name.Text, last_name.Text, email.Text, message.Text, "<br />
         last_name.Text = "";
         email.Text = "";
         message.Text = "";
-        PrizeEmail.SendContactEmail(temp);
+       PrizeEmail.SendContactEmail(temp);
         Response.Write("<script>alert('Thank you. Your message has been sent. We will get back to you within 24 hours');</script>");
         //confirmation.Visible = true;
     }

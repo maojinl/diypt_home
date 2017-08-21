@@ -14,11 +14,7 @@ public partial class UserControls_Orientation_Day_2_Fitness_test : BaseOrientati
         lblDate.Text = myDate.ToString("MMMM, yyyy");
         MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
         if (myPlan == null)
-        {
-            Response.Write("<script>alert('Your plan will start on next Monday.');</script>");
-            Response.Redirect("/orientation/day-1");
-        }
-
+            return;
         var acc = new PrizeDataAccess();
         PrizeExercisePlan plan = acc.GetExercisePlan(myPlan.ExercisePlanId);
         divMuscle.Visible = false;
@@ -39,7 +35,7 @@ public partial class UserControls_Orientation_Day_2_Fitness_test : BaseOrientati
         MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
         if (myPlan == null)
         {
-            Response.Write("<script>alert('Your plan will start on next Monday.');</script>");
+            Response.Write("<script>alert('Your plan has not started yet.');</script>");
             return;
         }
 

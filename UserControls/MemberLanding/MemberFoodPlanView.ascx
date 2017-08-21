@@ -64,6 +64,7 @@ display: block;
         <a id="dayPre1" class="day-pre c_y" href="#">Back</a>
         <a id="dayNext1" class="day-next c_y" href="#">Next</a>
     </!--div-->
+	<p >For one week, play with the My Fitness Pal app by diarising your food and playing with <a href="#" data-toggle="modal" data-target="#timeModal3" class="c_y">macro counting</a> using the following macronutrient goals. Watch the Macro counting video. This is the key to the success of your program. When I say ‘play’, don’t feel the pressure that you need to diarise everyday, just have a go and get into the habit of diarising your food and have a go at following the macro goals below.
     <div class="plan-container meal-week-view">
         <div class="row">
             <div id="divNotStarted" class="text-center" runat="server" Visible="false"><h2 class="text-center">Your program will not start until the next Monday</h2></div>
@@ -71,6 +72,7 @@ display: block;
 			
     
 	
+                </p>
                 <h5 class="c_y mb-2">FITNESS GOAL <span class="c_black"><asp:Label ID="lblPlanProgram" runat="server" Text=""></asp:Label></span></h5>
                 <h5 class="c_y ">FOOD GOAL </h5>
                 <p class=" wk1 wk2">Just focus on your training and make one of my video meals </p>
@@ -279,7 +281,7 @@ display: block;
            </div>
             <div class="modal-body">
                 <div class='embed-container'>
-                    <iframe src="https://player.vimeo.com/external/219773052.hd.mp4?s=8ef31aac3d6b7dfd906b36a49839d6df5f2f44fb&profile_id=174" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/TxBQD5JlRoc?start=310" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

@@ -109,7 +109,7 @@ public partial class UserControls_Orientation_Day_3_Chest_press : BaseOrientatio
         MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
         if (myPlan == null)
         {
-            Response.Write("<script>alert('Your plan will start on next Monday.');</script>");
+            Response.Write("<script>alert('Your plan has not started yet.');</script>");
             return;
         }
         dbAccess.UpdateOrientationWeekDayResult(myPlan.Id, 3, 3, true);

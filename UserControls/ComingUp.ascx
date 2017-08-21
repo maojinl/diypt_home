@@ -153,13 +153,13 @@
     <table class="coming-table ">
         <tr>
             <th class="no-border-top no-border-left"></th>
-            <th>Sunday</th>
             <th>Monday</th>
             <th>Tuesday</th>
             <th>Wednesday</th>
             <th>Thursday</th>
             <th>Friday</th>
             <th>Saturday</th>
+            <th>Sunday</th>
         </tr>
         <tr>
             <td>Week 0

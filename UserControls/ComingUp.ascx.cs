@@ -52,16 +52,16 @@ public partial class UserControls_ComingUp : System.Web.UI.UserControl
 
         var nextSunday = exercisePlan.StartDate;
         int counter = 0;
-        for (int i = 1; i < 14; i++)
+        for (int i = 0; i < 14; i++)
         {
             Label dateLabel = this.FindControl(string.Format("week{0}Date", i)) as Label;
             if (dateLabel != null)
             {
-                dateLabel.Text = nextSunday.AddDays((i - 1) * 7).Date.ToString("dd/MM") + "-" + nextSunday.AddDays(i * 7 - 1).Date.ToString("dd/MM");
+                dateLabel.Text = nextSunday.AddDays((i-1) * 7).Date.ToString("dd/MM") + "-" + nextSunday.AddDays((i* 7)-1).Date.ToString("dd/MM");
             }
             for (int d = 1; d <= 7; d++)
             {
-                if (nextSunday.AddDays(counter).Date == PrizeCommonUtils.GetSystemDate())
+                if (nextSunday.AddDays(counter-7).Date == PrizeCommonUtils.GetSystemDate())
                 {
 
                     HtmlTableCell tempLabel = this.FindControl(string.Format("w{0}d{1}", i, d)) as HtmlTableCell;

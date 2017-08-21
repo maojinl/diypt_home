@@ -314,7 +314,7 @@
            </div>
             <div class="modal-body">
                 <div class='embed-container'>
-                    <iframe src="https://player.vimeo.com/external/219773052.hd.mp4?s=8ef31aac3d6b7dfd906b36a49839d6df5f2f44fb&profile_id=174" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
+                    <iframe src="https://player.vimeo.com/video/227018029" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
                 </div>
             </div>
         </div>

@@ -117,6 +117,20 @@ public class PrizeDataAccess
         }
     }
 
+    public PrizeExercisePlan GetCurrentOrStartingExercisePlanInfo(int iMemberId)
+    {
+        try
+        {
+            MemberExercisePlan myPlan = GetCurrentMemberPlanOrStartingPlan(iMemberId);
+            if (myPlan == null)
+                return null;
+            return GetExercisePlan(myPlan.ExercisePlanId);
+        }
+        finally
+        {
+        }
+    }
+
     public DataSet GetMemberWeeklyInfo(int iPlanWeekId)
     {
         db.Database.Connection.Open();
