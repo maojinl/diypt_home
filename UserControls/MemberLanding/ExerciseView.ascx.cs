@@ -295,15 +295,17 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
         for (int i = 0; i < 7; i++)
         {
             DataSet dsDaily = dbAccess.GetExerciseUnitsSetDetail(planWeek.Id, i + 1);
+            double dTimeDuration = 0;
             int iTimeDuration = 0;
             for (int j = 1; j < dsDaily.Tables.Count; j++)
             {
                 foreach (DataRow row in dsDaily.Tables[j].Rows)
                 {
-                    iTimeDuration += int.Parse(row["TimeDuration"].ToString()) / 60;
+                    dTimeDuration += double.Parse(row["TimeDuration"].ToString());
+                    iTimeDuration = (int)Math.Ceiling((double)dTimeDuration / 60);       
                 }
             }
-            iTimeDuration = iTimeDuration + 10; // +10 warm up; +5 cool down
+            iTimeDuration = iTimeDuration + 10 + 5; // +10 warm up; +5 cool down
             lblTimeDuration[i].Text = "" + iTimeDuration;
         }
     }

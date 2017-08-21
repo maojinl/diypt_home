@@ -144,13 +144,14 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
             {
                 counter = 0;
                 divs[i].Visible = true;
+                double dTimeDuration = 0;
                 int iTimeDuration = 0;
                 labels[i].Text = tblDayGroupInfo.Rows[i]["DayGroupName"].ToString();
                 if (ds.Tables[labels[i].Text] != null)
                 {
                     foreach (DataRow row in ds.Tables[labels[i].Text].Rows)
                     {
-                        iTimeDuration += int.Parse(row["TimeDuration"].ToString());
+                        dTimeDuration += double.Parse(row["TimeDuration"].ToString());
                         tempScript += @"$( '#modalPopup" + (i+1) + "_" + counter + @"' ).click(function() {
 				                    $('#theModal').load('/exercise/" + row["Exercise"].ToString().Replace(" ", "-").Replace(".", "") + @"');
 
@@ -167,7 +168,8 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
                                     }); ";
                         counter++;
                     }
-                    iTimeDuration = iTimeDuration / 60;
+
+                    iTimeDuration = (int)Math.Ceiling((double)dTimeDuration / 60);
                     labelsTimeDuration[i].Text = "" + iTimeDuration;
                     repeaters[i].DataSource = ds.Tables[labels[i].Text].DefaultView;
                     repeaters[i].DataBind();
