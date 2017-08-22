@@ -28,6 +28,7 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
             divs.Add(this.Div1);
             divs.Add(this.Div2);
             divs.Add(this.Div3);
+            divs.Add(this.Div4);
         }
         foreach (HtmlGenericControl div in divs)
             div.Visible = false;
@@ -38,6 +39,7 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
             repeaters.Add(this.DailyTaskRepeater1);
             repeaters.Add(this.DailyTaskRepeater2);
             repeaters.Add(this.DailyTaskRepeater3);
+            repeaters.Add(this.DailyTaskRepeater4);
         }
 
         if (labels == null)
@@ -46,6 +48,7 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
             labels.Add(this.lblDayGroupName1);
             labels.Add(this.lblDayGroupName2);
             labels.Add(this.lblDayGroupName3);
+            labels.Add(this.lblDayGroupName4);
         }
 
         if (labelsTimeDuration == null)
@@ -54,6 +57,7 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
             labelsTimeDuration.Add(this.lblTimeDuration1);
             labelsTimeDuration.Add(this.lblTimeDuration2);
             labelsTimeDuration.Add(this.lblTimeDuration3);
+            labelsTimeDuration.Add(this.lblTimeDuration4);
         }
     }
 

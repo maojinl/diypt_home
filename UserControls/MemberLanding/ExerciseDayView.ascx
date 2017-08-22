@@ -225,6 +225,62 @@
                 </ItemTemplate>
             </asp:Repeater>
         </div>
+        <div runat="server" id="Div4" class="plan-container">
+            <div class="plan-title ">
+                <asp:Label ID="lblDayGroupName4" runat="server"></asp:Label>
+                <img class="icon-time" src="/images/icon-time-b.svg" />
+                <span class="plan-time c_b">
+                <asp:Label ID="lblTimeDuration4" runat="server"></asp:Label>
+                mins</span>
+            </div>
+            <asp:Repeater ID="DailyTaskRepeater4" runat="server" OnItemDataBound="DailyTaskRepeater1_ItemDataBound">
+                <ItemTemplate>
+                    <div class="row row-plan">
+                        <div class="col-sm-4">
+                            <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup3_<%# Container.ItemIndex %>'>
+                            <asp:Image ID="image1" runat="server" class="img-fluid" ImageUrl='<%#DataBinder.Eval(Container.DataItem,"Exercise")%>' /></a>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="plan-name">
+                                <%#DataBinder.Eval(Container.DataItem,"Sequence")+"."%>
+                                    <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup3A_<%# Container.ItemIndex %>'>
+                                        <%#DataBinder.Eval(Container.DataItem,"Exercise")%>
+                                    </a>
+                            </div>
+                            <div class="plan-info">or alternatively
+                                <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup3B_<%# Container.ItemIndex %>'>
+                                    <%#DataBinder.Eval(Container.DataItem,"AlternateExercise")%>
+                                </a>
+                            </div>
+                            <div class="plan-info">
+                                <span class="c_b">Reps & Sets: </span>
+                                <%#DataBinder.Eval(Container.DataItem,"Reps")%> x
+                                    <%#DataBinder.Eval(Container.DataItem,"Trainning_Set")%> Sets
+                            </div>
+                            <div class="plan-info">
+                                <span class="c_b">Rest (sec):</span> </span>
+                                <%#DataBinder.Eval(Container.DataItem,"Rest")%>
+                            </div>
+                            <div class="plan-info">
+                                <span class="c_b">Weight:</span>
+                                <%#DataBinder.Eval(Container.DataItem,"Weight")%>
+                            </div>
+                            <div class="plan-info">
+                                <span class="c_b">Tempo:</span> </span>
+                                <%#DataBinder.Eval(Container.DataItem,"Tempo")%>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="c_b plan-info-comments">Comments:</div>
+                            <div class="plan-comments  plan-info">
+                                </span>
+                                <%#DataBinder.Eval(Container.DataItem,"Comments")%>
+                            </div>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
         <div runat="server" class="plan-container" id="divCooldown">
             <div class="plan-title ">
                 Cooldown and stretch
