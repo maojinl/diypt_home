@@ -129,7 +129,7 @@ Comment:
             body = body.Replace("[carb]", additionalContents[3]);
             body = body.Replace("[fat]", additionalContents[4]);
         }
-
+body = body.Replace("/login", "http://web106.sand.studiocoast.com.au/login/");
         PrizeEmail.SendEmail(email, subject, (header + body + footer).Replace("/images/", "http://web106.sand.studiocoast.com.au/images/"));
         return true;
 	}

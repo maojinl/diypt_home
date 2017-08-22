@@ -19,6 +19,7 @@ public partial class UserControls_TrialSignUp : System.Web.UI.UserControl
     }
 
 
+
     protected string GetErrorMessage(MembershipCreateStatus status)
     {
         switch (status)
@@ -33,7 +34,7 @@ public partial class UserControls_TrialSignUp : System.Web.UI.UserControl
                 return "The password provided is invalid. Please enter a valid password value.";
 
             case MembershipCreateStatus.InvalidEmail:
-                return "The email address provided is invalid. Please check the value and try again.";
+                return "The e-mail address provided is invalid. Please check the value and try again.";
 
             case MembershipCreateStatus.InvalidAnswer:
                 return "The password retrieval answer provided is invalid. Please check the value and try again.";
@@ -62,28 +63,23 @@ public partial class UserControls_TrialSignUp : System.Web.UI.UserControl
         Page.Response.Redirect(Page.Request.Url.ToString(), true);
     }
 
-    protected void Register()
+    protected void btnSubmit_Click(object sender, EventArgs e)
     {
         try
-        { 
-            string username = txtFirstName.Text + " " + tbLastName.Text;
-
-            string password = "";
-            if (Session["pwd"] != null)
+        {
+            if (!txtPassword.Text.Equals(txtConfirmPwd.Text))
             {
-                password = Session["pwd"].ToString();
-                //txtConfirmPwd.Text = txtPassword.Text;
-                Session["pwd"] = null;
-            }
-            else
+                lblMsg.Text = "The password and the confirmation password are not equal.";
                 return;
+            }
 
-            MembershipUser newUser = Membership.CreateUser(txtEmail.Text, password, txtEmail.Text);
+            string username = txtFirstName.Text + " " + tbLastName.Text;
+            MembershipUser newUser = Membership.CreateUser(txtEmail.Text, txtPassword.Text, txtEmail.Text);
 
-            bool bLogin = Membership.ValidateUser(txtEmail.Text, password);
+            bool bLogin = Membership.ValidateUser(txtEmail.Text, txtPassword.Text);
             if (bLogin != false)
             {
-                Member uMember = Member.GetMemberFromLoginNameAndPassword(txtEmail.Text, password);
+                Member uMember = Member.GetMemberFromLoginNameAndPassword(txtEmail.Text, txtPassword.Text);
                 if (uMember != null)
                 {
                     AddNewUserDetails(uMember.Id);
@@ -92,9 +88,8 @@ public partial class UserControls_TrialSignUp : System.Web.UI.UserControl
                     Member.AddMemberToCache(uMember);   //, true, new TimeSpan(0, timeout, 0));
                     string sLocation = ddlLocation.Text;
                     string sProgram = ddlProgram.Text;
-                    string sLevel = ddlLevel.Text;
                     PrizeEmailWrapper.SendWelcomeEmail(PrizeMemberAuthUtils.GetMemberData(uMember.Id), uMember.LoginName);
-                    Response.Redirect(String.Format("{0}?program={1}&location={2}&level={3}&experience={4}&Trial=1", PrizeConstants.URL_MEMBER_BUY_PLAN, sProgram, sLocation, sLevel, "Semester 1"));
+                    Response.Redirect(String.Format("{0}?program={1}&location={2}&level={3}&experience={4}&Trial=1", PrizeConstants.URL_MEMBER_BUY_PLAN, sProgram, sLocation, "Beginner", "Semester 1"));
                     return;
                 }
             }
@@ -108,42 +103,6 @@ public partial class UserControls_TrialSignUp : System.Web.UI.UserControl
         {
             lblMsg.Text = httpe.Message;
         }
-    }
-
-    protected void btnSubmit_Click(object sender, EventArgs e)
-    {
-
-        if (txtFirstName.ReadOnly != true)
-        {
-            if (!txtPassword.Text.Equals(txtConfirmPwd.Text))
-            {
-                lblMsg.Text = "The password and the confirmation password are not equal.";
-                return;
-            }
-            Session["pwd"] = txtPassword.Text;
-            txtFirstName.ReadOnly = true;
-            tbLastName.ReadOnly = true;
-            txtEmail.ReadOnly = true;
-
-            tbStreetAddress.ReadOnly = true;
-            tbSuburb.ReadOnly = true;
-            tbState.ReadOnly = true;
-            ddCountry.Enabled = false;
-            tbPostCode.ReadOnly = true;
-            tbMobile.ReadOnly = true;
-            tbPhone.ReadOnly = true;
-
-            txtPassword.Visible = false;
-            txtConfirmPwd.Visible = false;
-
-            ddlLocation.Enabled = false;
-            ddlProgram.Enabled = false;
-            ddlLevel.Enabled = false;
-            Response.Write(
-                       @"<SCRIPT LANGUAGE=""JavaScript"">alert('Please confirm your information')</SCRIPT>");
-        }
-        else
-            Register();
     }
 
     private void AddNewUserDetails(int newUserId)
@@ -190,6 +149,7 @@ public partial class UserControls_TrialSignUp : System.Web.UI.UserControl
                 sb.Append("\r\n");
 
                 member.Questions = sb.ToString();
+                
                 member.UmbracoId = newUserId;
                 member.RegisterDateTime = PrizeCommonUtils.GetSystemDate();
                 db.PrizeMembers.Add(member);
@@ -201,4 +161,7 @@ public partial class UserControls_TrialSignUp : System.Web.UI.UserControl
             }
         }
     }
+
 }
+
+
