@@ -23,6 +23,9 @@ public partial class UserControls_Orientation_Week : BaseOrientation
             return;
         }
         var exercisePlan = db.GetCurrentMemberPlanOrStartingPlan(memberId);
+        if (exercisePlan == null)
+            return;
+
         var nextMonday = exercisePlan.StartDate;
         //.Value.Next(DayOfWeek.Monday);
         int counter = 0;
@@ -57,13 +60,9 @@ public partial class UserControls_Orientation_Week : BaseOrientation
 
         if (!IsPostBack)
         {
-            MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(PrizeMemberAuthUtils.GetMemberID());
-            if (myPlan == null)
-                return;
-
             for (int i = 1; i < 7; i++)
             {
-                string result = dbAccess.GetOrientationWeekDayResult(myPlan.Id, i);
+                string result = dbAccess.GetOrientationWeekDayResult(exercisePlan.Id, i);
                 string controlName = "";
                 for (int j = 1; j <= 10; j++)
                 {
