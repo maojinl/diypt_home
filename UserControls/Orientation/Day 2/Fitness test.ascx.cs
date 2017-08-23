@@ -15,6 +15,7 @@ public partial class UserControls_Orientation_Day_2_Fitness_test : BaseOrientati
         MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
         if (myPlan == null)
         {
+            Response.Write(PrizeConstants.CONST_JS_WARNING_PLAN_NOT_START);
             this.div1.Visible = false;
             return;
         }
