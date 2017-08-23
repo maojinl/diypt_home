@@ -11,7 +11,18 @@ public partial class UserControls_Orientation_Week : BaseOrientation
     protected void Page_Load(object sender, EventArgs e)
     {
         PrizeDataAccess db = new PrizeDataAccess();
-        var exercisePlan = db.GetCurrentMemberPlanOrStartingPlan(PrizeMemberAuthUtils.GetMemberID());
+        int memberId = PrizeMemberAuthUtils.GetMemberID();
+        var plan = dbAccess.GetCurrentOrStartingExercisePlanInfo(memberId);
+        if (plan != null && plan.IsTrialPlan == 1)
+        {
+            divTrial.Visible = true;
+            divOrientation.Visible = false;
+            divHeader.Visible = false;
+            dayView2.Visible = false;
+            printWeek.Visible = false;
+            return;
+        }
+        var exercisePlan = db.GetCurrentMemberPlanOrStartingPlan(memberId);
         var nextMonday = exercisePlan.StartDate;
         //.Value.Next(DayOfWeek.Monday);
         int counter = 0;

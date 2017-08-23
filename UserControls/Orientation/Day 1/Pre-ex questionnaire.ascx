@@ -57,7 +57,7 @@
                     <div class="tri-card c_y_tri">
                         <div class="tri-number sec c_y_b">3</div>
                     </div>
-                    <p class="mt-3"> Why is this goal important to you. If yes, how many?
+                    <p class="mt-3"> Why is this goal important to you.
                     </p>
                     <textarea class="form-control" id="oriTextarea3" rows="3"></textarea>
                 </div>

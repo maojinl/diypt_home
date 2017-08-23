@@ -4,15 +4,16 @@
         <!--<a id="dayView1" class="c_grey" href="#" runat="server"> <img src="/images/icon-back-g.svg" /><span class="hidden-sm-down sec">BACK TO DAY VIEW ></span></a>-->
         <a class="c_grey" href="javascript:window.print()"> <img src="/images/icon-print-g.svg" /><span class="hidden-sm-down sec">PRINT PLAN ></span></a>
     </div>
-    <div class="text-center mb-4">
+    <div class="text-center mb-4" runat="server" id="divHeader">
         <h1><strong>Week 0 - Orientation </strong></h1>
         <div class="ori-date"> 
             <asp:Label ID="lblWeekly" runat="server"></asp:Label>
 
         </div>
     </div>
+        <div id="divTrial" runat="server" visible="false" class="text-center" ><h2>This function is only available on the full plan</h2></div>
     <div class="row mb-4">
-    <div id="divNotStarted" class="text-center" runat="server" Visible="false"><h2>Your program will not start until the next Monday</h2></div>
+        <div id="divNotStarted" class="text-center" runat="server" Visible="false"><h2>Your program will not start until the next Monday</h2></div>
         <div style="margin: 0 auto" id="divOrientation" runat="server">
             <table class="table-week-ori table-sm table-responsive">
                 <tr>
@@ -165,6 +166,6 @@
     </div>
     <div class="row pb-4 pt-4">
         <a id="dayView2" href="#" runat="server" class="c_y btn btn-secondary m-1 col-lg-3 push-lg-3 col-sm-4 push-sm-2">SWITCH TO DAY VIEW ></a>
-        <a href="javascript:window.print()" class="c_y btn btn-secondary m-1 col-lg-3 col-sm-4 push-lg-3 push-sm-2">PRINT WEEKLY PLAN ></a>
+        <a id="printWeek" runat="server" href="javascript:window.print()" class="c_y btn btn-secondary m-1 col-lg-3 col-sm-4 push-lg-3 push-sm-2">PRINT WEEKLY PLAN ></a>
     </div>
 </div>

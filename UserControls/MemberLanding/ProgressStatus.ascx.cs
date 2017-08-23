@@ -533,8 +533,8 @@ public partial class UserControls_MemberLanding_ProgressStatus : System.Web.UI.U
 
         if (tempFileupload != null && !string.IsNullOrEmpty(tempFileupload.FileName))
         {
-            //string uploadPath = @"d:\sites\jrguico\diypt.club\home\member_images";
-            string uploadPath = @"C:\workspace\asp_project\diypt.club\home\member_images";
+            string uploadPath = @"d:\sites\jrguico\diypt.club\home\member_images";
+            //string uploadPath = @"C:\workspace\asp_project\diypt.club\home\member_images";
             attachmentServerPath = String.Format(@"http://{0}/member_images/{1}", HttpContext.Current.Request.Url.Authority, sServerFileName);
             decimal attachmentFileSize = Math.Round(Convert.ToDecimal(tempFileupload.PostedFile.ContentLength / 1024), 2);
 

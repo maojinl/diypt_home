@@ -27,7 +27,7 @@
                 <div class="col-sm-7">
                     <h5 class="f-sec c_y sec">ACTION 1</h5>
                     <h4 class="mb-3">Create a profile</h4>
-                    <p>Important note: when you click on ‘Show my Fitness program’ and ‘Show my goal’ in My Profile, you will be connected with other DIYPTers who have ticked the same boxes so you can ask, answer questions and share things with others on the same journey.</p>
+                    <p>Important note: when you click on 'Show my goal' and 'Show my level' in My Profile, you will be connected with other DIYPTers who have ticked the same boxes so you can ask, answer questions and share things with others on the same journey.</p>
                     <div class="row">
                         <div class="col-md-6 mb-2"><a href="/my-account/profile.aspx" class="btn btn-secondary btn-block c_y" target="_blank">UPDATE MY PROFILE ></a></div>
                         <div class="col-md-6 mb-2">
