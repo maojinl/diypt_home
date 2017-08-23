@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 /// <summary>
 /// Summary description for PrizeCommonUtils
@@ -118,5 +120,19 @@ public static class PrizeCommonUtils
         if (date.AddDays(days) >= targetDate && date.AddDays(days -1) <= targetDate)
             result = true;
         return result;
+    }
+
+    static public void SetAllControlsEnable(Control control, bool value)
+    {
+        Type c = typeof(WebControl);
+        if (control.GetType().IsAssignableFrom(c))
+            (control as WebControl).Enabled = value;
+        else if (control.HasControls())
+        {
+            foreach (System.Web.UI.Control s in control.Controls)
+            {
+                SetAllControlsEnable(s, value);
+            }
+        }
     }
 }

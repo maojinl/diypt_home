@@ -88,6 +88,7 @@ public class PrizeConstants
 
     public const String DEFAULT_MEMBER_SETTINGS = "11111111111111111111";
     public const String DEFAULT_MEMBER_TASKS_CONFIG = "0000000000000000000000000000000";
+    public const String CONST_JS_WARNING_PLAN_NOT_START = "<script>alert('Your plan will start on next Monday.');</script>";
 
     public enum EmailType
     {

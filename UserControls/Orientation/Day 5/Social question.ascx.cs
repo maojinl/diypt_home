@@ -12,7 +12,12 @@ public partial class UserControls_Orientation_Day_5_Social_question : BaseOrient
         DateTime myDate = GetOrientationDate(5);
         lblDay.Text = myDate.ToString("dddd d").ToUpper();
         lblDate.Text = myDate.ToString("MMMM, yyyy");
-
+        MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
+        if (myPlan == null)
+        {
+            Response.Write(PrizeConstants.CONST_JS_WARNING_PLAN_NOT_START);
+            return;
+        }
     }
 
     protected void btnTaskDone_Click(object sender, EventArgs e)
@@ -20,7 +25,7 @@ public partial class UserControls_Orientation_Day_5_Social_question : BaseOrient
         MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
         if (myPlan == null)
         {
-            Response.Write("<script>alert('Your plan has not started yet.');</script>");
+            Response.Write(PrizeConstants.CONST_JS_WARNING_PLAN_NOT_START);
             return;
         }
         dbAccess.UpdateOrientationWeekDayResult(myPlan.Id, 5, 1, true);

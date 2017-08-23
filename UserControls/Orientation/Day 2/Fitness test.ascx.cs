@@ -14,7 +14,10 @@ public partial class UserControls_Orientation_Day_2_Fitness_test : BaseOrientati
         lblDate.Text = myDate.ToString("MMMM, yyyy");
         MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
         if (myPlan == null)
+        {
+            this.div1.Visible = false;
             return;
+        }
         var acc = new PrizeDataAccess();
         PrizeExercisePlan plan = acc.GetExercisePlan(myPlan.ExercisePlanId);
         divMuscle.Visible = false;
@@ -35,7 +38,7 @@ public partial class UserControls_Orientation_Day_2_Fitness_test : BaseOrientati
         MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
         if (myPlan == null)
         {
-            Response.Write("<script>alert('Your plan has not started yet.');</script>");
+            Response.Write(PrizeConstants.CONST_JS_WARNING_PLAN_NOT_START);
             return;
         }
 

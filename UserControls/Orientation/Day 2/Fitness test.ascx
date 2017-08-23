@@ -24,7 +24,7 @@
             <p>If you don't complete this test then you will receive the default program.</p>
         </div>
     </div>
-    <div class="row">
+    <div runat="server" id="div1" class="row">
         <div class="push-sm-1 col-sm-5 mb-4">
             <div class="tri-card mb-3">
                 <div class="tri-number sec">1</div>

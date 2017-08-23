@@ -19,7 +19,7 @@
         <a id="dayNext" class="day-next c_y" href="/orientation/day-1/get-familiar-with-the-squat">Next</a>
     </div>
     <h1 class="text-center pb-4">PRE EXERCISE QUESTIONNAIRE</h1>
-    <div class="row">
+    <div runat="server" class="row" id="div1">
         <div class="col-lg-10 push-lg-1">
             <div class="row">
                 <div class="col-sm-6 mb-4 mt-4">
@@ -27,7 +27,7 @@
                         <div class="tri-number sec c_y_b">1</div>
                     </div>
                     <p class="mt-3">What is your training goal and when do you want to achieve it by?</p>
-                    <textarea class="form-control" id="oriTextarea1" rows="3"></textarea>
+                    <asp:TextBox runat="server" class="form-control" id="oriTextarea1" rows="3"></asp:TextBox>
                 </div>
                 <div class="col-sm-6  mb-4 mt-4">
                     <div class="tri-card c_y_tri">
@@ -37,19 +37,14 @@
                     </p>
                     <fieldset class="form-group row">
                         <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q2"> No
-                            </label>
-                        </div>
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q2"> Yes
-                            </label>
-                        </div>
+                        <asp:RadioButtonList class="form-check-input" ID="radioButtonListGoalBefore" runat="server">
+                            <asp:ListItem>No</asp:ListItem>
+                            <asp:ListItem>Yes</asp:ListItem>
+                        </asp:RadioButtonList>
                     </fieldset>
                     <p class="mt-3">If yes, explain why you didn't succeed.
                     </p>
-                    <textarea class="form-control" id="oriTextarea2" rows="3"></textarea>
+                    <asp:TextBox runat="server" class="form-control" id="oriTextarea2" rows="3"></asp:TextBox>
                 </div>
             </div>
             <div class="row">
@@ -57,9 +52,9 @@
                     <div class="tri-card c_y_tri">
                         <div class="tri-number sec c_y_b">3</div>
                     </div>
-                    <p class="mt-3"> Why is this goal important to you.
+                    <p class="mt-3"> Why is this goal important to you. If yes, how many?
                     </p>
-                    <textarea class="form-control" id="oriTextarea3" rows="3"></textarea>
+                    <asp:TextBox runat="server" class="form-control" id="oriTextarea3" rows="3"></asp:TextBox>
                 </div>
                 <div class="col-sm-6 mb-4 mt-4">
                     <div class="tri-card c_y_tri">
@@ -68,16 +63,10 @@
                     <p class="mt-3">Have you ever exercised previously?
                     </p>
                     <fieldset class="form-group row">
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q4"> No
-                            </label>
-                        </div>
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q4"> Yes
-                            </label>
-                        </div>
+                        <asp:RadioButtonList class="form-check-input" ID="radioButtonListEverExercise" runat="server">
+                            <asp:ListItem>Yes</asp:ListItem>
+                            <asp:ListItem>No</asp:ListItem>
+                        </asp:RadioButtonList>
                     </fieldset>
                     <p>If no, move on to question 7.</p>
                 </div>
@@ -90,41 +79,13 @@
                     <p class="mt-3">What type of exercise have you been doing in the last 3 months until today? Choose the answer which reflects the predominant part of your weekly routine.
                     </p>
                     <fieldset class="form-group row">
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q5"> Low intensity cardio
-                            </label>
-                        </div>
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q5"> High intensity cardio
-                            </label>
-                        </div>
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q5"> Light resistance training
-                            </label>
-                        </div>
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q5"> Medium resistance training
-                            </label>
-                        </div>
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q5"> Heavy resistance training
-                            </label>
-                        </div>
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q5"> Yoga/pilates
-                            </label>
-                        </div>
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q5"> Classes
-                            </label>
-                        </div>
+                        <asp:RadioButtonList class="form-check-input" ID="radioButtonListExerciseType" runat="server">
+                            <asp:ListItem>Low intensity cardioLow intensity cardio</asp:ListItem>
+                            <asp:ListItem>High intensity cardio</asp:ListItem>
+                            <asp:ListItem>Light resistance training</asp:ListItem>
+                            <asp:ListItem>Medium resistance training</asp:ListItem>
+                            <asp:ListItem>Heavy resistance training</asp:ListItem>
+                        </asp:RadioButtonList>
                     </fieldset>
                 </div>
                 <div class="col-sm-6 mb-4 mt-4">
@@ -133,36 +94,19 @@
                     </div>
                     <p class="mt-3">Where do you exercise majority of the time?</p>
                     <fieldset class="form-group row">
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q6"> Gym
-                            </label>
-                        </div>
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q6"> Gym classes
-                            </label>
-                        </div>
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q6"> Home
-                            </label>
-                        </div>
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="q6"> Park
-                            </label>
-                        </div>
+                        <asp:RadioButtonList class="form-check-input" ID="radioButtonListLocation" runat="server">
+                            <asp:ListItem>Gym</asp:ListItem>
+                            <asp:ListItem>Gym classes</asp:ListItem>
+                            <asp:ListItem>Home</asp:ListItem>
+                            <asp:ListItem>Park</asp:ListItem>
+                        </asp:RadioButtonList>
                     </fieldset>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 mb-4 mt-4">
-                    <div class="tri-card c_y_tri">
-                        <div class="tri-number sec c_y_b">7</div>
-                    </div>
                     <p class="mt-3">What obstacles do you foresee stopping you from achieving your goals?</p>
-                    <textarea class="form-control" id="oriTextarea7" rows="3"></textarea>
+                    <asp:TextBox runat="server" class="form-control" id="oriTextarea7" rows="3"></asp:TextBox>
                 </div>
             </div>
             <hr>
@@ -178,12 +122,10 @@
         $(".form-check-input:checked").each(function () {
             arr.push($(this).val());
         });
-
         $.each(arr, function () {
             sum += parseFloat(this) || 0;
         });
         alert(sum);
     });
-
 
 </script>
