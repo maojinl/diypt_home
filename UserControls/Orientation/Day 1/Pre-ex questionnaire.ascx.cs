@@ -10,6 +10,8 @@ public partial class UserControls_Orientation_Day_1_Pre_ex_questionnaire : BaseO
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (this.IsPostBack)
+            return;
         DateTime myDate = GetOrientationDate(1);
         lblDay.Text = myDate.ToString("dddd d").ToUpper();
         lblDate.Text = myDate.ToString("MMMM, yyyy");
