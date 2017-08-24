@@ -305,7 +305,8 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
                     iTimeDuration = (int)Math.Ceiling((double)dTimeDuration / 60);       
                 }
             }
-            iTimeDuration = iTimeDuration + 10 + 5; // +10 warm up; +5 cool down
+            if (dsDaily.Tables.Count > 1)
+                iTimeDuration = iTimeDuration + 10 + 5; // +10 warm up; +5 cool down
             lblTimeDuration[i].Text = "" + iTimeDuration;
         }
     }

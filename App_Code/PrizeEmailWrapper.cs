@@ -51,13 +51,23 @@ public class PrizeEmailWrapper
 			myEmail.EmailAddress = sEmail;
 			myEmail.Title = "Night before Day 1 of Week 4";
 			myEmail.Status = (int)PrizeConstants.EmailStatus.Shceduled;
+            myEmail.Content1 = member.Firstname;
             PrizeDataAccess dbAccess = new PrizeDataAccess();
             MemberFoodPlanWeek foodPlan = dbAccess.GetMemberFoodPlanWeek(memberId, 0, 0);
-			myEmail.Content1 = member.Firstname;
-            myEmail.Content2 = foodPlan.Food1;
-            myEmail.Content3 = foodPlan.Food2;
-            myEmail.Content4 = foodPlan.Food3;
-            myEmail.Content5 = foodPlan.Food4;
+            if (foodPlan != null)
+            {
+                myEmail.Content2 = foodPlan.Food1;
+                myEmail.Content3 = foodPlan.Food2;
+                myEmail.Content4 = foodPlan.Food3;
+                myEmail.Content5 = foodPlan.Food4;
+            }
+            else
+            {
+                myEmail.Content2 = "";
+                myEmail.Content3 = "";
+                myEmail.Content4 = "";
+                myEmail.Content5 = "";
+            }
             myEmail.ScheduleDate = PrizeCommonUtils.GetSystemDate();
             db.MemberEmails.Add(myEmail);
 			db.SaveChanges();
