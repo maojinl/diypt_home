@@ -61,7 +61,7 @@ public class RegisteredEvents: ApplicationEventHandler
                  where c.TaskDate >= today && c.TaskType == (int)PrizeConstants.TasksType.DailyRedoAble
                  select c).FirstOrDefault();
             
-            if (task == null || task.Count < 20)
+            if (task == null || task.Count < 1)
             {
                 PrizeMemberPlanManager.UpdateMemberPlans();                    
 

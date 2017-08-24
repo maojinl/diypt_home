@@ -266,16 +266,16 @@ public class PrizeEmailWrapper
                 availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
                 dtBegin = now.AddDays(0);
                 dtEnd = now.AddDays(1);
-                var memberPlanWithWeeks = from c in db.MemberExercisePlans
-                                          join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
-                                          where c.Status.Equals(availableStatus) && b.Week == 4 && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
-                                          select new
-                                          {
-                                              MemberId = c.MemberId,
-                                              MemberPlanWeekId = b.Id,
-                                              WeekStartDate = b.StartDate,
-                                              MemberExercisePlanId = c.Id,
-                                          };
+                var memberPlanWithWeeks = (from c in db.MemberExercisePlans
+                                           join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
+                                           where c.Status.Equals(availableStatus) && b.Week == 4 && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
+                                           select new
+                                           {
+                                               MemberId = c.MemberId,
+                                               MemberPlanWeekId = b.Id,
+                                               WeekStartDate = b.StartDate,
+                                               MemberExercisePlanId = c.Id,
+                                           }).ToList();
 
                 foreach (var memberPlanWithWeek in memberPlanWithWeeks)
                 {
@@ -288,7 +288,7 @@ public class PrizeEmailWrapper
                         char[] arr = memberPlanWeekResult.Tasks.ToArray();
                         arr[0] = '1';
                         memberPlanWeekResult.Tasks = new string(arr);
-
+                        db.SaveChanges();
                     }
                 }
             }
@@ -307,7 +307,7 @@ public class PrizeEmailWrapper
                 availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
                 dtBegin = now.AddDays(0);
                 dtEnd = now.AddDays(1);
-                var memberPlanWithWeeks = from c in db.MemberExercisePlans
+                var memberPlanWithWeeks = (from c in db.MemberExercisePlans
 									  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
 									  where c.Status.Equals(availableStatus) && b.Week == 11 && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
                                       select new
@@ -316,7 +316,7 @@ public class PrizeEmailWrapper
 										  MemberPlanWeekId = b.Id,
 										  WeekStartDate = b.StartDate,
 										  MemberExercisePlanId = c.Id,
-									  };
+									  }).ToList();
 
                 foreach (var memberPlanWithWeek in memberPlanWithWeeks)
                 {
@@ -330,7 +330,7 @@ public class PrizeEmailWrapper
                         char[] arr = memberPlanWeekResult.Tasks.ToArray();
                         arr[0] = '1';
                         memberPlanWeekResult.Tasks = new string(arr);
-
+                        db.SaveChanges();
                     }
                 }
             }
