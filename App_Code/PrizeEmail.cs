@@ -104,6 +104,8 @@ Comment:
             nodeId = 6683;
         else if (emailType == PrizeConstants.EmailType.MileStoneGoalWeek13)
             nodeId = 9675;
+        else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week1)
+            nodeId = 5378;
 
         if (nodeId == 0)
             return false;
