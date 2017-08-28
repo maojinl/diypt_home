@@ -209,13 +209,13 @@ public class PrizeEmailWrapper
         }
 	}
 
-	static protected void ExercisePlanEmailTask()
+    static public void ExercisePlan2DaysPriorToStartEmailTask()
     {
         string availableStatus;
         List<MemberExercisePlan> memberPlans;
         availableStatus = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAID;
         DateTime now = PrizeCommonUtils.GetSystemDate();
-        DateTime dtBegin = now.AddDays(1);
+        DateTime dtBegin = now.AddDays(-3);
         DateTime dtEnd = now.AddDays(2);
         DateTime dtSendEmailBegin = now.AddDays(-10);
 
@@ -227,6 +227,9 @@ public class PrizeEmailWrapper
                 db.Database.Connection.Open();
                 memberPlans = (from c in db.MemberExercisePlans
                                where c.Status.Equals(availableStatus) && dtBegin <= c.StartDate && dtEnd >= c.StartDate  //PrizeCommonUtils.LessThanDaysAhead(now, c.StartDate, 2)
+                               && !(from d in db.MemberEmails
+                                    where d.EmailType == (int)PrizeConstants.EmailType.TwoDaysPrior2Start && d.ScheduleDate > dtSendEmailBegin
+                                    select d.MemberId).Contains(c.MemberId)
                                orderby c.MemberId
                                select c).ToList();
 
@@ -254,9 +257,22 @@ public class PrizeEmailWrapper
         }
         catch (Exception ex)
         {
-            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(), 
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(),
                 "DailyEmailTask 2 days prior to Orientation week", ex);
         }
+    }
+
+
+
+    static protected void ExercisePlanEmailTask()
+    {
+        string availableStatus;
+        List<MemberExercisePlan> memberPlans;
+        availableStatus = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAID;
+        DateTime now = PrizeCommonUtils.GetSystemDate();
+        DateTime dtBegin = now.AddDays(1);
+        DateTime dtEnd = now.AddDays(2);
+        DateTime dtSendEmailBegin = now.AddDays(-10);
 
         try
         {

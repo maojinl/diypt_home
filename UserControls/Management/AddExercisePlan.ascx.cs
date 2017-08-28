@@ -304,6 +304,7 @@ public partial class UserControls_Management_AddExercisePlan : System.Web.UI.Use
                     addplan.LocationId = locationid;
                     addplan.Price = dPrice;
                     addplan.IsTrialPlan = trialFlag;
+                    addplan.Description = "";
                     db.PrizeExercisePlans.Add(addplan);
                     db.SaveChanges();
                     this.BindGrid();

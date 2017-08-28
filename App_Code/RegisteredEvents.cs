@@ -53,6 +53,7 @@ public class RegisteredEvents: ApplicationEventHandler
         DIYPTEntities db = new DIYPTEntities();
         try
         {
+            PrizeEmailWrapper.ExercisePlan2DaysPriorToStartEmailTask();
 
             db.Database.Connection.Open();
             DateTime today = PrizeCommonUtils.GetDayStart(PrizeCommonUtils.GetSystemDate());
