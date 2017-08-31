@@ -147,7 +147,7 @@ public class PrizeEmailWrapper
                     if (!member.DoB.HasValue)
                         continue;
                     dtBirthday = PrizeCommonUtils.GetThisYearDate(member.DoB.Value);
-                    if (PrizeCommonUtils.LessThanDaysAhead(now, dtBirthday, 1))
+                    if (PrizeCommonUtils.LessThanDaysAhead(now, dtBirthday, 0))
                         PrepareSimpleEmailByType(member, PrizeConstants.EmailType.BirthdayEmail, "Happy Birthday", member.Firstname);
 				}
 
