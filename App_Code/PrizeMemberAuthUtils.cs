@@ -252,6 +252,14 @@ public class PrizeMemberAuthUtils
 
             DateTime dtYesterdayStart = PrizeCommonUtils.GetDayStart(log.LogDate.AddDays(-1));
             DateTime dtYesterdayEnd = PrizeCommonUtils.GetDayEnd(log.LogDate.AddDays(-1));
+            DateTime dtTodayStart = PrizeCommonUtils.GetDayStart(log.LogDate);
+            DateTime dtTodayterdayEnd = PrizeCommonUtils.GetDayEnd(log.LogDate);
+
+            PrizeMemberLog todayLogin = (from table in db.PrizeMemberLogs
+                                         where table.MemberId == memberId && table.LogDate >= dtTodayStart && table.LogDate <= dtTodayterdayEnd
+                                         select table).FirstOrDefault();
+            if (todayLogin != null)
+                return;
 
             PrizeMemberLog yesterdayLogin = (from table in db.PrizeMemberLogs
                                              where table.MemberId == memberId && table.LogDate >= dtYesterdayStart && table.LogDate <= dtYesterdayEnd

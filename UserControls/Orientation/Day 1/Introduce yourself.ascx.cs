@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,10 +14,8 @@ public partial class UserControls_Orientation_Day_1_Introduce_yourself : BaseOri
         lblDate.Text = myDate.ToString("MMMM, yyyy");
 
         var member = PrizeMemberAuthUtils.GetMemberData();
-        if(member.Photo != "")
+        if(member.Photo != null && member.Photo != "")
             imgProfile.ImageUrl = member.Photo;
-        else
-            imgProfile.ImageUrl = "/images/icon-member.svg";
 
         if (IsPostBack)
             return;

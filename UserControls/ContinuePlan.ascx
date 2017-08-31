@@ -28,7 +28,7 @@
 <div class="container-fluid container-fluid-w">
     <div class="container container-registration-form">
         <h1 class="c_y">General Details
-                <asp:Label ID="lblMsg" runat="server" ForeColor="#CC3300"></asp:Label>
+                <asp:Label ID="lblMsg" runat="server"></asp:Label>
 
         </h1>
         <div class="row form-group">
@@ -124,10 +124,10 @@
         </div>
         <h1 class="c_y">Your next plan is:</h1>
         <br/>
-        <p>Program: <strong><asp:Label ID="lblProg" runat="server" ForeColor="#CC3300"></asp:Label></strong></p>
-        <p>Location: <strong><asp:Label ID="lblLoc" runat="server" ForeColor="#CC3300"></asp:Label></strong></p>
-        <p>Level: <strong><asp:Label ID="lblLvl" runat="server" ForeColor="#CC3300"></asp:Label></strong></p>
-        <p>Semester: <strong><asp:Label ID="lblSem" runat="server" ForeColor="#CC3300"></asp:Label></strong></p>
+        <p>Program: <strong><asp:Label ID="lblProg" runat="server"></asp:Label></strong></p>
+        <p>Location: <strong><asp:Label ID="lblLoc" runat="server"></asp:Label></strong></p>
+        <p>Level: <strong><asp:Label ID="lblLvl" runat="server"></asp:Label></strong></p>
+        <p>Semester: <strong><asp:Label ID="lblSem" runat="server"></asp:Label></strong></p>
         <div></div>
         &nbsp;
         <h6>1. What is your training goal?</h6>

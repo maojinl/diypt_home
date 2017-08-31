@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ProgressStatus.ascx.cs" Inherits="UserControls_MemberLanding_ProgressStatus" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ProgressStatus.ascx.cs" Inherits="UserControls_MemberLanding_ProgressStatus" %>
          <script type="text/javascript" src="https://www.google.com/jsapi?autoload={
         'modules':[{
           'name':'visualization',
@@ -15,10 +15,10 @@
     <div class="row row-chart-intro">
     <div id="divNotStarted" class="text-center" runat="server" Visible="false"><h2>Your program will not start until the next Monday</h2></div>
         <div class="col-sm-12" id="divMeasurement" runat="server">
-           <p>Oooh yeah, it's that time... measurement time! Some of you have been looking forward to it and others dread it. </p>
-<p>Either way, what's the point of having a goal if you can't measure how you're going? </p>
-<p>Click here to view the video on how to perform your <a href="#" data-toggle="modal" data-target="#takeGirth">Girth Measurements.</a></p>
-<p>If applicable, <a href="#" data-toggle="modal" data-target="#takeHeartRate">click here for instructions on how to take your resting heart rate</a>.</p>
+           <p><strong>Oooh yeah, it's that time... measurement time! </strong>Some of you have been looking forward to it and others dread it. <br />
+Either way, what's the point of having a goal if you can't measure how you're going? <br />
+Click here to view the video on how to perform your <a href="#" data-toggle="modal" data-target="#takeGirth">Girth Measurements.</a><br />
+If applicable, <a href="#" data-toggle="modal" data-target="#takeHeartRate">click here for instructions on how to take your resting heart rate</a>.</p><br /><br />
 
         </div>
     </div>
@@ -84,26 +84,26 @@
             </div>
             <div class="col col-progress-form">
                 <div class="form-group">
-                    <label>Hip</label>
+		    <asp:Label ID="lblMeasurement3" runat="server"></asp:Label>
                     <asp:TextBox ID="txtHip" class="form-control" placeholder="0" type="text" runat="server"></asp:TextBox>
                 </div>
             </div>
             <div class="col col-progress-form">
                 <div class="form-group">
-                    <label>Current chest (cm)</label>
+		    <asp:Label ID="lblMeasurement4" runat="server"></asp:Label>
                     <asp:TextBox ID="txtChest" class="form-control" placeholder="0" type="text" runat="server"></asp:TextBox>
                 </div>
             </div>
             <div class="col col-progress-form">
                 <div class="form-group">
-                    <label>Current heart rate </label>
+		    <asp:Label ID="lblMeasurement5" runat="server"></asp:Label>
                     <asp:TextBox ID="txtHeartRate" class="form-control" placeholder="0" type="text" runat="server"></asp:TextBox>
                 </div>
             </div>
         </div>
         
         <div class="row">
-            <div class="col text-center">
+            <div class="col text-center mb-5">
                  <div>
                      <asp:Button ID="btnUpdateProgress" class="btn btn-p mb-5 sec" runat="server" Text="SHOW MY PROGRESS RESULTS" 
                                 onclick="btnUpdateProgress_Click" />
@@ -114,55 +114,61 @@
     <!-- end PROGRESS INPUT -->
     <!--  PROGRESS CHART -->
     <div class="row row-chart">
-        <div class="col">
+        <div class="col col-group-chart">
             <div class="group-chart text-xs-center">
                 <div class="chart-easurement">Weight</div>
-                <div class="chart-unit hidden-sm-down">(kilogram/kg)</div>
+                <div class="chart-unit hidden-sm-down">(kg)</div>
                 <div class="chart-result chart-result-sp"><asp:Label ID="lblWeight" runat="server" Text=" "></asp:Label></div>
                 <div class="chart-result-different"><asp:Label ID="lblWeightDiff" runat="server" Text=" "></asp:Label></div>
-                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawWeight" class="btn btn-p btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
+                <span ><asp:Button ID="btnDrawWeight" class="btn btn-p btn-sm btn-default btn-primary btn-block sec mb-5" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
             </div>
         </div>
-        <div class="col">
+        <div class="col col-group-chart">
             <div class="group-chart text-xs-center">
                 <div class="chart-easurement">Waist</div>
-                <div class="chart-unit hidden-sm-down">(centimeter/cm)</div>
+                <div class="chart-unit hidden-sm-down">(cm)</div>
                 <div class="chart-result chart-result-sp"><asp:Label ID="lblWaist" runat="server" Text=" "></asp:Label></div>
                 <div class="chart-result-different"><asp:Label ID="lblWaistDiff" runat="server" Text=" "></asp:Label></div>
-                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawWaist" class="btn btn-p btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
+                <span ><asp:Button ID="btnDrawWaist" class="btn btn-p btn-sm btn-default btn-primary btn-block sec mb-5" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
             </div>
         </div>
-        <div class="col">
+        <div class="col col-group-chart">
             <div class="group-chart text-xs-center">
-                <div class="chart-easurement">Hip</div>
-                <div class="chart-unit hidden-sm-down">(centimeter/cm)</div>
+                <div class="chart-easurement">
+		    <asp:Label ID="lblMeasurementGraph3" runat="server"></asp:Label></div>
+                <div class="chart-unit hidden-sm-down">
+		    <asp:Label ID="lblMeasurementMetricGraph3" runat="server"></asp:Label></div>
                 <div class="chart-result chart-result-sp"><asp:Label ID="lblHip" runat="server" Text=" "></asp:Label></div>
                 <div class="chart-result-different"><asp:Label ID="lblHipDiff" runat="server" Text=" "></asp:Label></div>
-                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawHip" class="btn btn-p btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
+                <span ><asp:Button ID="btnDrawHip" class="btn btn-p btn-sm btn-default btn-primary btn-block sec mb-5" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
             </div>
         </div>
-        <div class="col">
+        <div class="col col-group-chart">
             <div class="group-chart text-xs-center">
-                <div class="chart-easurement">Chest</div>
-                <div class="chart-unit hidden-sm-down">(centimeter/cm)</div>
+                <div class="chart-easurement">
+		    <asp:Label ID="lblMeasurementGraph4" runat="server"></asp:Label></div>
+                <div class="chart-unit hidden-sm-down">
+		    <asp:Label ID="lblMeasurementMetricGraph4" runat="server"></asp:Label></div>
                 <div class="chart-result chart-result-sp"><asp:Label ID="lblChest" runat="server" Text=" "></asp:Label></div>
                 <div class="chart-result-different"><asp:Label ID="lblChestDiff" runat="server" Text=" "></asp:Label></div>
-                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawChest" class="btn btn-p btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
+                <span ><asp:Button ID="btnDrawChest" class="btn btn-p btn-sm btn-default btn-primary btn-block sec mb-5" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
             </div>
         </div>
-        <div class="col">
+        <div class="col col-group-chart">
             <div class="group-chart text-xs-center">
-                <div class="chart-easurement chart-easurement-s">Heart Rate</div>
-                <div class="chart-unit hidden-sm-down">(times/minute)</div>
+                <div class="chart-easurement chart-easurement-s">
+		    <asp:Label ID="lblMeasurementGraph5" runat="server"></asp:Label></div>
+                <div class="chart-unit hidden-sm-down">
+		    <asp:Label ID="lblMeasurementMetricGraph5" runat="server"></asp:Label></div>
                 <div class="chart-result chart-result-sp"><asp:Label ID="lblHeartRate" runat="server" Text=" "></asp:Label></div>
                 <div class="chart-result-different"><asp:Label ID="lblHeartRateDiff" runat="server" Text=" "></asp:Label></div>
-                &nbsp;<span class="hidden-sm-down"><asp:Button ID="btnDrawHeartRate" class="btn btn-p btn-sm btn-default btn-primary btn-block sec" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
+                <span ><asp:Button ID="btnDrawHeartRate" class="btn btn-p btn-sm btn-default btn-primary btn-block sec mb-5" runat="server" Text="SEE ON GRAPH" OnClick="btnDrawWeight_Click" /></span>
             </div>
         </div>
     </div>
     <div class="row row-chart-svg">
         <div class="col">
-            <div id="curve_chart" style="width: 900px; height: 500px">
+            <div id="curve_chart" >
             </div>
         </div>
     </div>
@@ -183,7 +189,22 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p></p>
+                <p><b>VERY IMPORTANT: When it’s time to do your measurements and progress photos once a month, make sure you take the photo on the same day, same time and same place.</b><br />
+-	arms straight and by your side with palms facing up<br />
+-	Men take shirt off showing bare chest. Women take shirt off with sports bra on.<br />
+-	Wear plain dark clothes, preferably all black but must be wearing short shorts (must be able to see thighs)<br />
+-	wear the same outfit for every progress photo<br />
+</p>
+<p>
+Taking front and side photo:<br />
+-	Take photos in front of a full length mirror which shows your whole body from head to toe.<br />
+-	Take the photo from the same distance every time.<br />
+-	You can hold the camera with one hand to the side of your face, for example. Just make it the same every time.<br />
+-	No filter<br />
+</p>
+<p><b>NOTE: The back shot will always be the hardest one to take.</b></p>
+
+
                 <img class="img-fluid  img-round mb-2" src="/images/measurements/selfie-front.jpg">
                 <img class="img-fluid  img-round" src="/images/measurements/selfie-side.jpg">
                 <img class="img-fluid  img-round" src="/images/measurements/selfie-back.jpg">

@@ -21,15 +21,31 @@ public partial class UserControls_Orientation_Day_2_Fitness_test : BaseOrientati
         }
         var acc = new PrizeDataAccess();
         PrizeExercisePlan plan = acc.GetExercisePlan(myPlan.ExercisePlanId);
-        divMuscle.Visible = false;
-        divTone.Visible = false;
-        divWeight.Visible = false;
         if (plan.PlanName.ToLower().Contains("muscle"))
-            divMuscle.Visible = true;
+		{
+            divMuscle.Attributes.Add("class", "show-pg-b");
+			hiddenPlan.Text = "muscle";
+		}
         if (plan.PlanName.ToLower().Contains("tone"))
-            divTone.Visible = true;
+		{
+            divTone.Attributes.Add("class", "show-pg-t");
+			hiddenPlan.Text = "tone";
+		}
         if (plan.PlanName.ToLower().Contains("weight"))
-            divWeight.Visible = true;
+		{
+            divWeight.Attributes.Add("class", "show-pg-l");
+			hiddenPlan.Text = "weight";
+		}
+		
+		
+		var planName = acc.GetPlanName(plan);
+		var sPlanName = planName.Split('_');
+		hiddenLocation.Text = sPlanName[1].ToLower();
+		if(sPlanName[1].ToLower() == "gym")
+			divFitness.Attributes.Add("class","tab-inner-content show-gym");
+		else
+			divFitness.Attributes.Add("class","tab-inner-content show-home");
+		
     }
 
     protected void btnTaskDone_Click(object sender, EventArgs e)

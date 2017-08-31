@@ -26,11 +26,14 @@ public partial class UserControls_ResetPassword : System.Web.UI.UserControl
         if (mem != null)
         {
             var pass = Membership.GeneratePassword(6, 1);
-            //ApplicationContext.Current.Services.MemberService.SavePassword(mem, pass);
+			
+            //ApplicationContext.Services.UserService.SavePassword(mem, pass);
+            ApplicationContext.Current.Services.MemberService.SavePassword(mem, pass);
+			//user.ChangePassword(user.GetPassword(), newpw);
             //mem.Password = pass;
            //mem.ChangePassword(pass);
            //mem.Save();
-            //PrizeEmail.SendPasswordReminder(txtEmail.Text, pass);
+            PrizeEmail.SendPasswordReminder(txtEmail.Text, pass);
             lblReset.Text = "A new password has been sent to your email";
 
         }

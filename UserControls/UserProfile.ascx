@@ -17,11 +17,16 @@
 
                 </div>
                 <div class="col-md-8">
+				<div>
+                <asp:Label ID="lblMsgTop" runat="server" ForeColor="#CC3300"></asp:Label>
+				</div>
                     <h1 class="c_y">Public Profile</h1>
                     <div id="divViewProfile" runat="server">
-                        <asp:LinkButton ID="lbEditProfile" runat="server" Text="Edit >" OnClick="lbEditProfile_Click"></asp:LinkButton>
+                        <p class="text-right">
+							<asp:LinkButton ID="lbEditProfile" runat="server" Text="Edit >" OnClick="lbEditProfile_Click"></asp:LinkButton>
+						</p>
                         <div class="form-group row">
-                            <label for="profile-text-input" class="col-3 col-form-label">Screen Name</label>
+                            <label for="profile-text-input" class="col-3 col-form-label"><b>Screen Name</b></label>
                             <div class="col-9">
                                 <asp:Label ID="lblFirstName" runat="server"></asp:Label>
 
@@ -29,27 +34,27 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="profile-search-input" class="col-3 col-form-label">My Goal</label>
+                            <label for="profile-search-input" class="col-3 col-form-label"><b>My Goal</b></label>
                             <div class="col-9">
                                 <asp:Label ID="lblGoalDec" runat="server"></asp:Label>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="profile-url-input" class="col-3 col-form-label">Facebook</label>
+                            <label for="profile-url-input" class="col-3 col-form-label"><b>Facebook</b></label>
                             <div class="col-9">
                                 <asp:Label ID="lblFacebook" runat="server"></asp:Label>
                             </div>
-                            <label for="profile-url-input" class="col-3 col-form-label">Instagram</label>
+                            <label for="profile-url-input" class="col-3 col-form-label"><b>Instagram</b></label>
                             <div class="col-9">
                                 <asp:Label ID="lblInstagram" runat="server"></asp:Label>
                             </div>
-                            <label for="profile-url-input" class="col-3 col-form-label">Twitter</label>
+                            <label for="profile-url-input" class="col-3 col-form-label"><b>Twitter</b></label>
                             <div class="col-9">
                                 <asp:Label ID="lblTwitter" runat="server"></asp:Label>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="profile-why" class="col-3 col-form-label">Why DIYPT</label>
+                            <label for="profile-why" class="col-3 col-form-label"><b>Why I've joined DIYPT</b></label>
                             <div class="col-9">
                                 <asp:Label ID="lblWhyDiypt" runat="server" TextMode="MultiLine"></asp:Label>
                             </div>
@@ -57,17 +62,19 @@
 
                         <div class="form-group row">
                             <div class="form-check col-sm-6">
-                                Show My Goal:
+                                <b>Show My Goal:</b>
                                 <asp:Label ID="lblShowProgram" runat="server" />
                             </div>
                             <div class="form-check col-sm-6">
-                                Show My Level:
+                                <b>Show My Level:</b>
                                 <asp:Label ID="lblShowLevel" runat="server" />
                             </div>
                         </div>
                     </div>
                     <div id="divEditProfile" runat="server" visible="false">
+                        <p class="text-right">
                         <asp:LinkButton ID="lbCancelEditProfile" runat="server" Text="Cancel >" OnClick="lbCancelEditProfile_Click" CausesValidation="false"></asp:LinkButton>
+						</p>
                         <div class="form-group row">
                             <label for="profile-text-input" class="col-3 col-form-label">Screen Name</label>
                             <div class="col-9">
@@ -139,21 +146,25 @@
                 <div class="col-md-8 push-md-4">
                     <h1 class="c_y">Account</h1>
                     <div id="divViewAccount" runat="server">
+                        <p class="text-right">
                         <asp:LinkButton ID="lbEditAccount" runat="server" Text="Edit >" OnClick="lbEditAccount_Click"></asp:LinkButton>
-                        <div class="form-group row">
-                            <label for="profile-email-input" class="col-3 col-form-label">Email</label>
+                        </p>
+						<div class="form-group row">
+                            <label for="profile-email-input" class="col-3 col-form-label"><b>Email</b></label>
                             <div class="col-9">
                                 <asp:Label ID="lblEmail" runat="server"></asp:Label>
                             </div>
-                            <label for="profile-email-input" class="col-3 col-form-label">Password</label>
+                            <label for="profile-email-input" class="col-3 col-form-label"><b>Password</b></label>
                             <div class="col-9 mb-2">
                                 <asp:Label ID="lblPassword" runat="server" Text="********"></asp:Label>
                             </div>
                         </div>
                     </div>
                     <div id="divEditAccount" runat="server" visible="false">
+                        <p class="text-right">
                         <asp:LinkButton ID="lbCancelEditAccount" runat="server" Text="Cancel >" OnClick="lbCancelEditAccount_Click" CausesValidation="false"></asp:LinkButton>
-                        <div class="form-group row">
+                        </p>
+						<div class="form-group row">
                             <label for="profile-email-input" class="col-3 col-form-label">Email</label>
                             <div class="col-9">
                                 <asp:TextBox ID="txtEmail" runat="server" class="form-control"></asp:TextBox>
@@ -178,16 +189,18 @@
                     <a name="personal"></a>
                     <h1 class="c_y">Personal Information</h1>
                     <div id="divViewPersonal" runat="server">
+                        <p class="text-right">
                         <asp:LinkButton ID="lbEditPersonal" runat="server" Text="Edit >" OnClick="lbEditPersonal_Click"></asp:LinkButton>
-                        <div class="form-group row">
-                            <label for="profile-search-input" class="col-3 col-form-label">Gender</label>
+                        </p>
+						<div class="form-group row">
+                            <label for="profile-search-input" class="col-3 col-form-label"><b>Gender</b></label>
                             <div class="col-9">
                                 <asp:Label ID="lblGender" runat="server">
                                 </asp:Label>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="profile-email-input" class="col-3 col-form-label">Birthday</label>
+                            <label for="profile-email-input" class="col-3 col-form-label"><b>Birthday</b></label>
                             <div class="col-9">
 
                                 <asp:Label ID="lblDoB" runat="server"></asp:Label>
@@ -197,56 +210,58 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="profile-text-input" class="col-3 col-form-label">Mobile</label>
+                            <label for="profile-text-input" class="col-3 col-form-label"><b>Mobile</b></label>
                             <div class="col-9">
                                 <asp:Label ID="lblMobile" runat="server"></asp:Label>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="profile-url-input" class="col-3 col-form-label">Phone</label>
+                            <label for="profile-url-input" class="col-3 col-form-label"><b>Phone</b></label>
                             <div class="col-md-4 col-12">
                                 <asp:Label ID="lblPhone" runat="server"></asp:Label>
                             </div>
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-3 col-form-label">Street Address</div>
+                            <div class="col-3 col-form-label"><b>Street Address</b></div>
                             <div class="col-md-4 col-12">
                                 <asp:Label ID="lblStreetAddress" runat="server"></asp:Label>
                             </div>
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-3 col-form-label">Suburb</div>
+                            <div class="col-3 col-form-label"><b>Suburb</b></div>
                             <div class="col-md-4 col-12">
                                 <asp:Label ID="lblSuburb" runat="server"></asp:Label>
                             </div>
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-3 col-form-label">State</div>
+                            <div class="col-3 col-form-label"><b>State</b></div>
                             <div class="col-md-4 col-12">
                                 <asp:Label ID="lblState" runat="server"></asp:Label>
                             </div>
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-3 col-form-label">Country</div>
+                            <div class="col-3 col-form-label"><b>Country</b></div>
                             <div class="col-md-4 col-12">
                                 <asp:Label ID="lblCountry" runat="server"></asp:Label>
                             </div>
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-3 col-form-label">Postcode</div>
+                            <div class="col-3 col-form-label"><b>Postcode</b></div>
                             <div class="col-md-4 col-12">
                                 <asp:Label ID="lblPostCode" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
                     <div id="divEditPersonal" runat="server" visible="false">
+                        <p class="text-right">
                         <asp:LinkButton ID="lbCancelEditPersonal" runat="server" Text="Cancel >" OnClick="lbCancelEditPersonal_Click" CausesValidation="false"></asp:LinkButton>
-                        <div class="form-group row">
+                        </p>
+						<div class="form-group row">
                             <label for="profile-search-input" class="col-3 col-form-label">Gender</label>
                             <div class="col-9">
                                 <asp:RadioButtonList ID="RdoGender" runat="server" RepeatDirection="Horizontal" Width="176px">

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,7 +7,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Data;
 
-public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.UserControl
+public partial class UserControls_MemberLanding_ExerciseView : BaseOrientation
 {
     protected List<Label> labels;
     protected List<Label> lblDates;
@@ -65,8 +65,11 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (PrizeMemberAuthUtils.CurrentUserLogin() != true)
+         /*
+		//Handled in BaseOrientation//
+		if (PrizeMemberAuthUtils.CurrentUserLogin() != true)
             return;
+		*/
 
         InitLables();
         //var member = PrizeMemberAuthUtils.GetMemberData();
@@ -226,7 +229,8 @@ public partial class UserControls_MemberLanding_ExerciseView : System.Web.UI.Use
                 string tempLiteral = "<ul class='equipment-list'>";
                 foreach (var e in strEquipments)
                 {
-                    tempLiteral += "<li>" + e + "</li>";
+					if(e != " ")
+						tempLiteral += "<li>" + e + "</li>";
                 }
                 tempLiteral += "</ul>";
                 equipmentLiteral.Text = tempLiteral;

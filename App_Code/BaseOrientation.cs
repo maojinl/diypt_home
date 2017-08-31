@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,8 +14,17 @@ public class BaseOrientation : System.Web.UI.UserControl
         //
         // TODO: Add constructor logic here
         //
-
+		this.Load += this.Page_Load;
     }
+
+	private void Page_Load(object sender, EventArgs e)
+	{
+		
+		if (PrizeMemberAuthUtils.CurrentUserLogin() != true)
+            Response.Redirect("~/login?returnUrl=" + HttpContext.Current.Request.Url.AbsoluteUri);
+		//if (MySession.Current.isEmailAuthenticated)
+		//    Response.Redirect("~/login.aspx");
+	}
 
     public static DateTime GetOrientationDate(int day)
     {

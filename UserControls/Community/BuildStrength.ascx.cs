@@ -64,7 +64,7 @@ public partial class UserControls_Community_BuildStrength : System.Web.UI.UserCo
                 divChatLevel.Attributes.Add("class", "chat-level chat-level-y");
                 linkBeginner.HRef = "/community/build-strength-group?type=strength&level=beginner";
                 linkIntermediate.HRef = "/community/build-strength-group?type=strength&level=intermediate";
-                linkAdvance.HRef = "/community/build-strength-group?type=strength&level=advance";
+                linkAdvance.HRef = "/community/build-strength-group?type=strength&level=advanced";
                 break;
             case "weight":
                 dvMain.Attributes.Add("class", "col-lg-8 chat-group chat-group-p");
@@ -81,7 +81,7 @@ public partial class UserControls_Community_BuildStrength : System.Web.UI.UserCo
                 divChatLevel.Attributes.Add("class", "chat-level chat-level-p");
                 linkBeginner.HRef = "/community/weight-loss-group?type=weight&level=beginner";
                 linkIntermediate.HRef = "/community/weight-loss-group?type=weight&level=intermediate";
-                linkAdvance.HRef = "/community/weight-loss-group?type=weight&level=advance";
+                linkAdvance.HRef = "/community/weight-loss-group?type=weight&level=advanced";
                 break;
             case "tone":
                 dvMain.Attributes.Add("class", "col-lg-8 chat-group chat-group-b");
@@ -98,7 +98,7 @@ public partial class UserControls_Community_BuildStrength : System.Web.UI.UserCo
                 divChatLevel.Attributes.Add("class", "chat-level chat-level-b");
                 linkBeginner.HRef = "/community/tone-up-group?type=tone&level=beginner";
                 linkIntermediate.HRef = "/community/tone-up-group?type=tone&level=intermediate";
-                linkAdvance.HRef = "/community/tone-up-group?type=tone&level=advance";
+                linkAdvance.HRef = "/community/tone-up-group?type=tone&level=advanced";
 
                 break;
             default:
@@ -116,7 +116,7 @@ public partial class UserControls_Community_BuildStrength : System.Web.UI.UserCo
                 divChatLevel.Attributes.Add("class", "chat-level chat-level-y");
                 linkBeginner.HRef = "/community/build-strength-group?type=strength&level=beginner";
                 linkIntermediate.HRef = "/community/build-strength-group?type=strength&level=intermediate";
-                linkAdvance.HRef = "/community/build-strength-group?type=strength&level=advance";
+                linkAdvance.HRef = "/community/build-strength-group?type=strength&level=advanced";
                 break;
         }
         //List < Comments > coms = new List<Comments>();
@@ -140,6 +140,22 @@ public partial class UserControls_Community_BuildStrength : System.Web.UI.UserCo
                 break;
             case "tone":
                 tempCategory = 3;
+                break;
+            default:
+                break;
+        }
+		
+        switch (GroupLevel)
+        {
+            case "beginner":
+                tempCategory = (tempCategory*10) + 1;
+                break;
+            case "intermediate":
+                tempCategory = (tempCategory*10) + 2;
+                break;
+            case "advanced":
+            case "advance":
+                tempCategory = (tempCategory*10) + 3;
                 break;
             default:
                 break;
@@ -174,6 +190,21 @@ public partial class UserControls_Community_BuildStrength : System.Web.UI.UserCo
                 break;
             case "tone":
                 chat.Catergory = 3;
+                break;
+            default:
+                break;
+        }
+        switch (GroupLevel)
+        {
+            case "beginner":
+                chat.Catergory = (chat.Catergory*10) + 1;
+                break;
+            case "intermediate":
+                chat.Catergory = (chat.Catergory*10) + 2;
+                break;
+            case "advanced":
+            case "advance":
+                chat.Catergory = (chat.Catergory*10) + 3;
                 break;
             default:
                 break;

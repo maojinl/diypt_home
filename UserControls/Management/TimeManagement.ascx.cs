@@ -58,13 +58,13 @@ public partial class UserControls_Management_TimeManagement : System.Web.UI.User
             db.SaveChanges();*/
             string s = txtDate.Text;
             DateTime dt = DateTime.Parse(s);
-
+/*
             if (dt < currentTime)
             {
                 Response.Write("<script>alert('Time can't go backward.');</script>");
                 return;
             }
-
+*/
             DateTime start = DateTime.Parse(dt.ToString("yyyy-MM-dd") + " 00:00:00");
             DateTime end = DateTime.Parse(dt.ToString("yyyy-MM-dd") + " 23:59:59");
             DbCommand cmd = db.Database.Connection.CreateCommand();

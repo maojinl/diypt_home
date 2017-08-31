@@ -469,25 +469,37 @@
     <div class="row">
         <div class="col-lg-10 push-lg-1 ">
             <div class="k-result" id="k-result-1" style="display: none;">
+			<div class="rating">
+                <span class="star">☆</span><span class="star">☆</span><span>☆</span><span>☆</span><span>☆</span>
+                </div>
                 <h5>32 to 63 points - needs improvement</h5>
                 <p>You scored high on the kitchen makeover questionnaire. But this high score means you may need some adjustments to your kitchen set-up or your shopping habits. That’s no problem though. Watch my video, <a href="/orientation/day-4/video-5-kitchen-makeover-tips">5 kitchen makeover tips</a> for some proven strategies you can implement to help get your kitchen into shape.</p>
             </div>
             <div class="k-result" id="k-result-2" style="display: none;">
+			<div class="rating">
+                <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span>☆</span><span>☆</span>
+                </div>
                 <h5>0 to 31 points - average</h5>
                 <p>Your kitchen environment could also use some improvements. Watch my video, <a href="/orientation/day-4/video-5-kitchen-makeover-tips">5 kitchen makeover tips</a> for some proven strategies. Just choose 2 of the strategies and your kitchen will be back in tip top shape.</p>
             </div>
             <div class="k-result" id="k-result-3" style="display: none;">
+			<div class="rating">
+                <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span>☆</span>
+                </div>
                 <h5>-31 to -1 points - above average</h5>
                 <p>You’re doing pretty well in the kitchen department. With just a few tweaks, it'll be easier than ever to improve your body composition, energy levels and performance. Watch my video, <a href="/orientation/day-4/video-5-kitchen-makeover-tips">5 kitchen makeover tips</a> to help you with the small tweaks.</p>
             </div>
             <div class="k-result" id="k-result-4" style="display: none;">
+			<div class="rating">
+                <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
+                </div>
                 <h5>-32 to -63 points - excellent</h5>
                 <p>Don’t let negative scores fool you. In this questionnaire, negative scores means a great kitchen environment. Nice work. In the coming weeks I’ll be happy to share even more strategies for keeping the great kitchen environment going. You can start by watching my video, <a href="/orientation/day-4/video-5-kitchen-makeover-tips">5 kitchen makeover tips</a>.</p>
             </div>
         </div>
     </div>
             <div class="mt-5 text-center" id="k-submit" style="display: none;">
-                <asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/>
+                <div class="text-center"><asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/></div>
             </div>
 </div>
 <script>

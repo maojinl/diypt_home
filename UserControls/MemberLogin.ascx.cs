@@ -64,6 +64,8 @@ public partial class UserControls_MemberLogin : System.Web.UI.UserControl
                 }
                 else
                 {
+					if (Request.QueryString["returnUrl"] != null)
+                            Response.Redirect(Request.QueryString["returnUrl"]);
                     PrizeExercisePlan plan = dbAccess.GetExercisePlan(myPlan.ExercisePlanId);
                     if (plan.IsTrialPlan != 1)
                         Response.Redirect(String.Format("{0}?loginName={1}&memberId={2}", PrizeConstants.URL_MEMBER_COMING_UP, uMember.LoginName, uMember.Id));

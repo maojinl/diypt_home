@@ -8,7 +8,7 @@ using System.IO;
 using System.Text;
 using System.Web.UI.HtmlControls;
 
-public partial class UserControls_MemberLanding_ProgressStatus : System.Web.UI.UserControl
+public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 {
     MemberExercisePlanWeek _MemberPlanWeek;
     PrizeExercisePlanWeek _PlanWeek;
@@ -21,9 +21,11 @@ public partial class UserControls_MemberLanding_ProgressStatus : System.Web.UI.U
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (PrizeMemberAuthUtils.CurrentUserLogin() != true)
+        /*
+		//Handled in BaseOrientation//
+		if (PrizeMemberAuthUtils.CurrentUserLogin() != true)
             return;
-
+		*/
         int memberId = PrizeMemberAuthUtils.GetMemberID();
 
         _MemberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId); //(MemberExercisePlanWeek)Session["MemberPlanWeek"];
@@ -47,21 +49,14 @@ public partial class UserControls_MemberLanding_ProgressStatus : System.Web.UI.U
 
             _PlanWeek = dbAccess.GetExercisePlanWeek(_MemberPlanWeek.ExercisePlanWeekId);
 
-            if (_PlanWeek == null)
-                iWeekNum = 1;
-            else
-                iWeekNum = _MemberPlanWeek.Week + 1;
+            iWeekNum = _MemberPlanWeek.Week;
 
-            if (!(_MemberPlanWeek.Week == 0 ||
-                _MemberPlanWeek.Week == 4 ||
-                _MemberPlanWeek.Week == 7 ||
-                _MemberPlanWeek.Week == 10 ||
-                _MemberPlanWeek.Week == 12))
+            if (!PrizeConstants.WEEKS_NEEDS_RESULT.Contains(iWeekNum))
                 divMeasurement.Visible = false;
 
             //lblWeekNum.Text = iWeekNum.ToString();
             //lblWeekNum2.Text = lblWeekNum.Text;
-            //lblWeekNum3.Text = lblWeekNum.Text;
+            lblWeekNum3.Text = iWeekNum.ToString();
 
             List<MemberPlanWeekResult> weekResults = dbAccess.GetMemberPlanResults(_MemberPlanWeek.MemberExercisePlanId);
 
@@ -74,6 +69,51 @@ public partial class UserControls_MemberLanding_ProgressStatus : System.Web.UI.U
                 DrawProgressGraph((int)_MemberPlanWeek.MemberExercisePlanId, weekResults);
             }
 
+			
+	        MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
+			if(myPlan != null)
+			{
+				PrizeExercisePlan plan = dbAccess.GetExercisePlan(myPlan.ExercisePlanId);
+				if(plan != null)
+				{
+					if (plan.PlanName.ToLower().Contains("muscle"))
+					{
+						lblMeasurement3.Text = "Right arm biceps (cm)";
+						lblMeasurementGraph3.Text = "Right arm biceps";
+						lblMeasurementMetricGraph3.Text = "(cm)";
+						lblMeasurement4.Text = "Chest (cm)";
+						lblMeasurementGraph4.Text = "Chest";
+						lblMeasurementMetricGraph4.Text = "(cm)";
+						lblMeasurement5.Text = "Right thigh (cm)";
+						lblMeasurementGraph5.Text = "Right thigh";
+						lblMeasurementMetricGraph5.Text = "(cm)";
+					}
+					if (plan.PlanName.ToLower().Contains("tone"))
+					{
+						lblMeasurement3.Text = "Right arm biceps (cm)";
+						lblMeasurementGraph3.Text = "Right arm biceps";
+						lblMeasurementMetricGraph3.Text = "(cm)";
+						lblMeasurement4.Text = "Hips (cm)";
+						lblMeasurementGraph4.Text = "Hips";
+						lblMeasurementMetricGraph4.Text = "(cm)";
+						lblMeasurement5.Text = "Right thigh (cm)";
+						lblMeasurementGraph5.Text = "Right thigh";
+						lblMeasurementMetricGraph5.Text = "(cm)";
+					}
+					if (plan.PlanName.ToLower().Contains("weight"))
+					{
+						lblMeasurement3.Text = "Chest (cm)";
+						lblMeasurementGraph3.Text = "Chest";
+						lblMeasurementMetricGraph3.Text = "(cm)";
+						lblMeasurement4.Text = "Hips (cm)";
+						lblMeasurementGraph4.Text ="Hips";
+						lblMeasurementMetricGraph4.Text = "(cm)";
+						lblMeasurement5.Text = "Heart rate (per min)";
+						lblMeasurementGraph5.Text = "Heart rate";
+						lblMeasurementMetricGraph5.Text = "(per min)";
+					}
+				}
+			}
             db.Database.Connection.Close();
         }
     }
@@ -301,14 +341,14 @@ public partial class UserControls_MemberLanding_ProgressStatus : System.Web.UI.U
         else
         {
             this.photoPanelUpload.Visible = true;
-            if (weekResults[iWeekNum - 1] != null)
+            if (weekResults[iWeekNum] != null)
             {
-                if (weekResults[iWeekNum - 1].FrontPhoto != null)
-                    Image1.ImageUrl = weekResults[iWeekNum - 1].FrontPhoto;
-                if (weekResults[iWeekNum - 1].BackPhoto != null)
-                    Image2.ImageUrl = weekResults[iWeekNum - 1].BackPhoto;
-                if (weekResults[iWeekNum - 1].SidePhoto != null)
-                    Image3.ImageUrl = weekResults[iWeekNum - 1].SidePhoto;
+                if (weekResults[iWeekNum].FrontPhoto != null)
+                    Image1.ImageUrl = weekResults[iWeekNum].FrontPhoto;
+                if (weekResults[iWeekNum].BackPhoto != null)
+                    Image2.ImageUrl = weekResults[iWeekNum].BackPhoto;
+                if (weekResults[iWeekNum].SidePhoto != null)
+                    Image3.ImageUrl = weekResults[iWeekNum].SidePhoto;
             }
         }
 

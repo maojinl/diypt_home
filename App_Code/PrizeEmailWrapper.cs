@@ -226,7 +226,7 @@ public class PrizeEmailWrapper
             {
                 db.Database.Connection.Open();
                 memberPlans = (from c in db.MemberExercisePlans
-                               where c.Status.Equals(availableStatus) && dtBegin <= c.StartDate && dtEnd >= c.StartDate  //PrizeCommonUtils.LessThanDaysAhead(now, c.StartDate, 2)
+                               where c.Status.EndsWith(PrizeConstants.STATUS_PLAN_PAID) && dtBegin <= c.StartDate && dtEnd >= c.StartDate  //PrizeCommonUtils.LessThanDaysAhead(now, c.StartDate, 2)
                                && !(from d in db.MemberEmails
                                     where d.EmailType == (int)PrizeConstants.EmailType.TwoDaysPrior2Start && d.ScheduleDate > dtSendEmailBegin
                                     select d.MemberId).Contains(c.MemberId)

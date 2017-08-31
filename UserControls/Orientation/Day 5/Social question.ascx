@@ -326,25 +326,36 @@
     <div class="row pb-4 pt-4">
         <a href="#" id="btn-result" class="c_b btn btn-secondary m-1 col-sm-4 push-sm-4">VIEW RESULTS ></a>
         
-    </div>>
+    </div>
     <div class="row">
         <div class="col-lg-10 push-lg-1 ">
             <div class="k-result" id="k-result-1" style="display: none;">
+			<div class="rating">
+                <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
+                </div>
                 <h5>28 to 38 total points - Excellent:</h5>
                 <p>Congratulations, it looks like you've got a great social support network around you, a group of people that'll help support your desire to change some of your daily practices. Of course, thats not all you'll need to be successful. But it’s a great start. Check out our video - <a href="/orientation/day-5/video-social-support-crew">Your Social Support crew</a>
                 </p>
             </div>
             <div class="k-result" id="k-result-2" style="display: none;">
+			<div class="rating">
+                <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span>☆</span>
+                </div>
                 <h5>5 to 27 total points - average:</h5>
                 <p>It looks like you’ve got some social support around you but there may be a few areas that will present challenges. Being aware of your social temptations, as indicated above, is a great place to begin. Also check out our video - <a href="/orientation/day-5/video-social-support-crew">Your Social Support crew</a>, and together with other DIYPTers, we can work on strategies for being successful in the face of your challenges.
                 </p>
             </div>
             <div class="k-result" id="k-result-3" style="display: none;">
+			<div class="rating">
+                <span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span>☆</span><span>☆</span>
+                </div>
                 <h5>4 to -14 total points - needs improvement:</h5>
                 <p>Your social support is lacking and may need a makeover. However, you’re not alone here. Many people struggle with social support. And that’s why I encourage you to be vocal in your Community Chat because there are many more like you so I want us all to be in each others social support crew. Also, check out our video - <a href="/orientation/day-5/video-social-support-crew">Your Social Support crew</a> for more ideas on how you can improve your social support crew.
                 </p>
             </div>
-            <div class="k-result" id="k-result-4" style="display: none;">
+            <div class="k-result" id="k-result-4" style="display: none;"><div class="rating">
+                <span class="star">☆</span><span class="star">☆</span><span>☆</span><span>☆</span><span>☆</span>
+                </div>
                 <h5>-15 to -31 total points - poor:</h5>
                 <p>This score is quite low and may signal some definite challenges in your work and at - home environments, as well as in your relationships. These can lead to old habits surfacing as many food related problems are really relationship and environment problems. Watch our video - <a href="/orientation/day-5/video-social-support-crew">Your Social Support crew</a> for tips on how to improve your social support crew and be vocal in your Community Chat. Make comments and ask as many questions as you want because together we’ll work on overcoming your challenges. 
                 </p>
@@ -352,7 +363,7 @@
         </div>
     </div>
             <div class="mt-5 text-center" id="k-submit" style="display: none;">
-                <asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/>
+                <div class="text-center"><asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/></div>
             </div>
 </div>
 <script>

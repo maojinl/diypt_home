@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ExerciseView.ascx.cs" Inherits="UserControls_MemberLanding_ExerciseView" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ExerciseView.ascx.cs" Inherits="UserControls_MemberLanding_ExerciseView" %>
 <div class="tab-inner-content">
     <div class="d-flex justify-content-end content-nav-action sec mb-4">
         <a id="weekView1" class="c_grey" href="/exercise#t0">
@@ -60,9 +60,10 @@
             </div>
         </div>
     </div>
-    <div class="plan-container row no-gutters">
+    <div id="divNotStarted" class="col" runat="server" visible="false"><h2 class="text-center">Your program will not start until the next Monday</h2></div>
+    <div class="plan-container row no-gutters"> <div class="table-hint col">
         <div class="col-lg-10 push-lg-1 table-responsive">
-    <div id="divNotStarted" class="text-center" runat="server" visible="false"><h2>Your program will not start until the next Monday</h2></div>
+       
             <table class="table-weekly-detail  margin-center ">
                 <tr>
                     <th>
@@ -204,7 +205,8 @@
                 </tr>
             </table>
         </div>
-		<div class="col-12">
+        </div>
+		<div class="col-12 mt-3">
         <div class="row row-equipment no-gutters" id="equipmentDiv" runat="server" visible="false">
 		<div class="col-lg-10 push-lg-1">
 		<div class="row">
@@ -331,7 +333,7 @@
            </div>
             <div class="modal-body">
                 <div class='embed-container'>
-                    <iframe src="https://player.vimeo.com/external/219773052.hd.mp4?s=8ef31aac3d6b7dfd906b36a49839d6df5f2f44fb&profile_id=174" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
+                    <iframe src="https://player.vimeo.com/video/231008976" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
                 </div>
             </div>
         </div>
@@ -348,7 +350,7 @@
            </div>
             <div class="modal-body">
                 <div class='embed-container'>
-                    <iframe src="https://player.vimeo.com/external/219773052.hd.mp4?s=8ef31aac3d6b7dfd906b36a49839d6df5f2f44fb&profile_id=174" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
+                    <iframe src="https://player.vimeo.com/video/230548973" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
                 </div>
             </div>
         </div>

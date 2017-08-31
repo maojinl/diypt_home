@@ -19,7 +19,7 @@
             <h1 class="text-center pb-4"> Mark on your calendar/diary your milestone celebrations</h1>
             <p> at the end of week 5,9 and 13.</p>
             <hr/>
-            <asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/>
+            <div class="text-center"><asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/></div>
         </div>
     </div>
 </div>

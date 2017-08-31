@@ -64,10 +64,10 @@ display: block;
         <a id="dayPre1" class="day-pre c_y" href="#">Back</a>
         <a id="dayNext1" class="day-next c_y" href="#">Next</a>
     </!--div-->
-	<p >For one week, play with the My Fitness Pal app by diarising your food and playing with <a href="#" data-toggle="modal" data-target="#timeModal3" class="c_y">macro counting</a> using the following macronutrient goals. Watch the Macro counting video. This is the key to the success of your program. When I say ‘play’, don’t feel the pressure that you need to diarise everyday, just have a go and get into the habit of diarising your food and have a go at following the macro goals below.
+	
     <div class="plan-container meal-week-view">
         <div class="row">
-            <div id="divNotStarted" class="text-center" runat="server" Visible="false"><h2 class="text-center">Your program will not start until the next Monday</h2></div>
+            <div id="divNotStarted" class="col" runat="server" Visible="false"><h2 class="text-center">Your program will not start until the next Monday</h2></div>
             <div class="col-sm-10 push-sm-1" id="divMealPlanContent" runat="server">
 			
     

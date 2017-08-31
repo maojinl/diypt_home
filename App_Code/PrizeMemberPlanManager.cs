@@ -108,15 +108,15 @@ public class PrizeMemberPlanManager
                     return PrizeErrorCode.ERROR_PLAN_NOT_EXIST;
                 }
 
-                MemberExercisePlan myExistingPlan = (from c in db.MemberExercisePlans
+                MemberExercisePlan myExistingPaidPlan = (from c in db.MemberExercisePlans
                                                      where c.MemberId == memberId && 
                                                      ( c.Status.Equals(PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID) 
                                                      || c.Status.Equals(PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAID))
                                                      orderby c.EndDate descending
                                                      select c).FirstOrDefault();
                 DateTime currentEndDate;
-                if (myExistingPlan != null)
-                    currentEndDate = myExistingPlan.EndDate.Value;
+                if (myExistingPaidPlan != null)
+                    currentEndDate = myExistingPaidPlan.EndDate.Value;
                 else
                     currentEndDate = PrizeCommonUtils.GetSystemDate();
 
@@ -363,6 +363,28 @@ public class PrizeMemberPlanManager
                 myPlan = db.MemberExercisePlans.Single(o => o.Id == myCurrentOrder.MemberPlanId);
 
                 myPlan.Status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAID;
+                DateTime currentEndDate = PrizeCommonUtils.GetSystemDate();
+                if (myPlan.StartDate < currentEndDate)
+                {
+                    DateTime startDate = PrizeCommonUtils.GetNextWeekStart(currentEndDate);
+                    DateTime endDate = PrizeCommonUtils.GetWeekEnd(startDate);
+                    myPlan.StartDate = startDate;
+                    IList<MemberExercisePlanWeek> myPlanWeeks = (from c in db.MemberExercisePlanWeeks
+                                                    where c.MemberExercisePlanId == myPlan.Id
+                                                    orderby c.StartDate
+                                                    select c).ToList();
+                    foreach (MemberExercisePlanWeek myPlanWeek in myPlanWeeks)
+                    {
+                        myPlanWeek.StartDate = startDate;
+                        myPlanWeek.EndDate = endDate;
+                        myPlanWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_NOT_STARTED;
+                        myPlan.EndDate = endDate;
+                        db.SaveChanges();
+
+                        startDate = startDate.AddDays(7);
+                        endDate = endDate.AddDays(7);
+                    }
+                }
                 // Save to DB.
                 db.SaveChanges();
             }

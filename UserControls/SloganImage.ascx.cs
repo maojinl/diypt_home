@@ -47,7 +47,7 @@ public partial class UserControls_SloganImage : System.Web.UI.UserControl
                     tempScript += @"
 .container-fluid-header { background-image: url('/images/login/lose-weight/hero-lose-weight.jpg');}
 @media (max-width:767px) {
-.container-fluid-header { background-image: url('/images/login/lose-weight/hero-lose-weight-m.jpg');}
+.container-fluid-header { background-image: url('/images/login/lose-weight/m-hero-lose-weight.jpg');}
 }
 ";
                     break;
@@ -58,7 +58,7 @@ public partial class UserControls_SloganImage : System.Web.UI.UserControl
                     tempScript += @"
 .container-fluid-header { background-image: url('/images/login/build-strength/hero-build-strength.jpg');}
 @media (max-width:767px) {
-.container-fluid-header { background-image: url('/images/login/build-strength/hero-build-strength-m.jpg');}
+.container-fluid-header { background-image: url('/images/login/build-strength/m-hero-build-strength.jpg');}
 }";
                     //muscle
                     break;
@@ -70,7 +70,7 @@ public partial class UserControls_SloganImage : System.Web.UI.UserControl
 .container-fluid-header { background-image: url('/images/login/toneup/hero-tone-up.jpg');}
 
 @media (max-width:767px) {
-.container-fluid-header { background-image: url('/images/login/toneup/hero-tone-up-m.jpg');}
+.container-fluid-header { background-image: url('/images/login/toneup/m-hero-tone-up.jpg');}
 }
 
 @media (min-width:1560px) {

@@ -242,6 +242,6 @@
 
 
         <hr class="mt-5 mb-2" />
-        <asp:Button ID="btnSubmit" runat="server" class="btn btn-secondary c_y mt-5 sec" Text="Register Now" OnClick="btnSubmit_Click" />
+        <asp:Button ID="btnSubmit" runat="server" class="btn btn-secondary c_y mt-5 sec" Text="Register for Trial" OnClick="btnSubmit_Click" />
     </div>
 </div>

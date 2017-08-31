@@ -20,6 +20,8 @@
         </div>
         </div>
     <div class="row pb-4 pt-4">
-        <asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/>
-    </div>
+		<div class="col">
+			<div class="text-center"><asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/></div>
+		</div>
+	</div>
 </div>

@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Introduce yourself.ascx.cs" Inherits="UserControls_Orientation_Day_1_Introduce_yourself" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Introduce yourself.ascx.cs" Inherits="UserControls_Orientation_Day_1_Introduce_yourself" %>
 <div class="tab-inner-content">
     <div class="d-flex justify-content-end content-nav-action f-sec mb-4">
         <a id="dayView2" class="c_grey" href="/orientation/day-1"> <img src="/images/icon-back-g.svg" /><span class="hidden-sm-down sec">BACK TO DAY VIEW ></span></a>
@@ -27,7 +27,7 @@
                 <div class="col-sm-7">
                     <h5 class="f-sec c_y sec">ACTION 1</h5>
                     <h4 class="mb-3">Create a profile</h4>
-                    <p>Important note: when you click on 'Show my goal' and 'Show my level' in My Profile, you will be connected with other DIYPTers who have ticked the same boxes so you can ask, answer questions and share things with others on the same journey.</p>
+                    <p>If you want to get the most out of your DIYPT experience, update your profile so people can get to know you. Achieving your fitness goal alone is very difficult.</p>
                     <div class="row">
                         <div class="col-md-6 mb-2"><a href="/my-account/profile.aspx" class="btn btn-secondary btn-block c_y" target="_blank">UPDATE MY PROFILE ></a></div>
                         <div class="col-md-6 mb-2">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="col-sm-5">
-                    <asp:Image ID="imgProfile" runat="server" class="my-profile-intro-icon" />
+                    <asp:Image ID="imgProfile" runat="server" class="my-profile-intro-icon" ImageUrl="/images/profile.jpg"  />
                 </div>
             </div>
             <hr/>
@@ -67,16 +67,16 @@
             <div class="row mb-4">
                 <div class="col-sm-7">
                     <h5 class="f-sec c_y sec">ACTION 3</h5>
-                     <h4 class="mb-3">Post something</h4>
-                    <p>This is one of the most valuable things you can do to get the most out of your program. You may feel embarrassed or hesitant to post something. That’s completely normal. So i suggest you start with a question or reply to someone else’s question.</p>
+                     <h4 class="mb-3">Connect with others</h4>
+                    <p>This is one of the most valuable things you can do to get the most out of your program. You may feel embarrassed or hesitant to post something in our Facebook private group chat. That's completely normal. So I suggest you start with a question or reply to someone else's question</p>
                     
                     <h5><strong>Guidelines for your post:</strong></h5>
                     
-                    <p>1. Post an update, question, comment or reply. Absolutely no bullying as I won’t hesitate to kick you off our team.</p>
+                    <p>1. Post an update, question, comment or reply. Absolutely no bullying as I won't hesitate to kick you off our team.</p>
                     
                     <p>2. End with a question to encourage more responses</p>
                     <div class="row">
-                        <div class="col-md-6 mb-2"><a href="/community" target="_blank" class="btn btn-secondary btn-block c_y">WRITE A POST ></a></div>
+                        <div class="col-md-6 mb-2"><a href="https://www.facebook.com/diypersonaltraining/" target="_blank" class="btn btn-secondary btn-block c_y">WRITE A POST ></a></div>
                         <div class="col-md-6 mb-2">
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -90,7 +90,7 @@
                 </div>
             </div>
  <hr/>
-            <asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/>
+            <div class="text-center"><asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/></div>
         </div>
     </div>
 </div>

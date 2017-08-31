@@ -47,7 +47,7 @@ public class PrizeConstants
         { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
     };
 
-    public static readonly int[] WEEKS_NEEDS_RESULT = { 1, 5, 8, 11, 13};
+    public static readonly int[] WEEKS_NEEDS_RESULT = { 0, 4, 7, 10, 12};
 
     public const String STR_NO_TRAINNING = "REST DAY";
 

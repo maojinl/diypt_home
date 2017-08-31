@@ -64,7 +64,7 @@
 
             </a>
             <a class="chat-level-3" runat="server" id="linkAdvance">
-                <h5 class="c_w" id="h5Advance" runat="server">Join Advance ></h5>
+                <h5 class="c_w" id="h5Advance" runat="server">Join Advanced ></h5>
 
             </a>
             <a href="/community">See all groups ></a>
