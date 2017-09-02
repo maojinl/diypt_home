@@ -201,6 +201,23 @@ public class PrizeEmailWrapper
 				{
 					PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ThirdMonthEmail, "Anniversary 3 month", member.Firstname);
 				}
+
+                if (PrizeCommonUtils.GetDayOfWeek(now) == 7)
+                {
+                    dtSendEmailBegin = now.AddDays(-6);
+                    membersList = (from a in db.PrizeMembers
+                                   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
+                                   where !(from c in db.MemberEmails
+                                        where c.EmailType == (int)PrizeConstants.EmailType.ReviveMeEmail && c.ScheduleDate > dtSendEmailBegin
+                                        select c.MemberId).Contains(a.UmbracoId)
+                                   orderby a.UmbracoId
+                                   select a).ToList();
+
+                    foreach (PrizeMember member in membersList)
+                    {
+                        PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ReviveMeEmail, "Revive Me", member.Firstname);
+                    }
+                }
 			}
 		}
 		catch (Exception e)
@@ -691,7 +708,7 @@ public class PrizeEmailWrapper
 
                 foreach (PrizePresetTask task in tasks)
                 {
-                    if (PrizeCommonUtils.LessThanDaysAhead(now, task.TaskDate, 1))
+                    if (PrizeCommonUtils.LessThanDaysAhead(now, task.TaskDate, 0))
                     {
                         if (task.PresetTaskType == (int)PrizeConstants.PresetTasksType.YearlyEmailNewYear)
                         {

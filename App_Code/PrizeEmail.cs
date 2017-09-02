@@ -106,6 +106,8 @@ Comment:
             nodeId = 9675;
         else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week1)
             nodeId = 5378;
+        else if (emailType == PrizeConstants.EmailType.ReviveMeEmail)
+            nodeId = 9707;
 
         if (nodeId == 0)
             return false;
@@ -115,7 +117,9 @@ Comment:
 		string header = templateNode.GetProperty("templateheader").Value;
 		string footer = templateNode.GetProperty("templateFooter").Value;
 		string body = node.GetProperty("bodyContent").Value;
-		string subject = emailSubject;
+		string subject = templateNode.GetProperty("subject").Value;
+        if (String.IsNullOrEmpty(subject))
+            subject = emailSubject;
 
         if (additionalContents.Count > 0)
             body = body.Replace("[name]", additionalContents[0]);
