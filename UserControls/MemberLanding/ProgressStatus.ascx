@@ -189,7 +189,7 @@ If applicable, <a href="#" data-toggle="modal" data-target="#takeHeartRate">clic
                 </button>
             </div>
             <div class="modal-body">
-                <p><b>VERY IMPORTANT: When it’s time to do your measurements and progress photos once a month, make sure you take the photo on the same day, same time and same place.</b><br />
+                <p><b>VERY IMPORTANT: When it's time to do your measurements and progress photos once a month, make sure you take the photo on the same day, same time and same place.</b><br />
 -	arms straight and by your side with palms facing up<br />
 -	Men take shirt off showing bare chest. Women take shirt off with sports bra on.<br />
 -	Wear plain dark clothes, preferably all black but must be wearing short shorts (must be able to see thighs)<br />

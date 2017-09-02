@@ -28,10 +28,10 @@
                 </div>
                 <div class="col-sm-6">
                     <img class="img-fluid mb-4 img-round" src="/images/ori/day3/2.jpg">
-                    <p><strong><span class="c_y">2.</span> Get into the good habit of recording and counting your macros</strong> because this is the single most important tool for the success of your program as you need sufficient amount of maconutirents thorughout your program and the amounts differs depending on a few factors. There is a science behind getting that banging body you desire.</p>
+                    <p><strong><span class="c_y">2.</span> Get into the good habit of recording and counting your macros</strong> because this is the single most important tool for the success of your program as you need sufficient amount of macronutrients thorughout your program and the amounts differs depending on a few factors. There is a science behind getting that banging body you desire.</p>
                 </div>
             </div>
-            <h2 class="text-center pb-4">STEPS TO RECORD YOUR CALORIES</h2>
+            <h2 class="text-center pb-4">STEPS TO RECORD YOUR MACROS</h2>
             <div class="row mb-4">
                 <table class="table">
                     <tr>
@@ -54,7 +54,7 @@
                         <td scope="row">
                             <h5 class="c_y">STEP 3</h5></td>
                         <td>
-                            <p><strong>Record what you eat the night before</strong> because it will allow you to plan what you’re going to eat the next day, so you don't binge eat or buy unhealthy food on an impulse. Also, you’ll have the time to complete the entire diary and add detail, than if you were to record as you ate your meals. You may be rushing or you may not have your phone on you or you may forget to do it completely.</p>
+                            <p><strong>Record what you eat the night before because it will allow you to plan what you're going to eat the next day ie. For Fridays meals, record them on Thursday night.</p>
                         </td>
                     </tr>
                     <tr>

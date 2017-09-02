@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Day4.ascx.cs" Inherits="UserControls_Orientation_Day_4_Day4" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Day4.ascx.cs" Inherits="UserControls_Orientation_Day_4_Day4" %>
 <div class="tab-inner-content">
     <div class="d-flex justify-content-end content-nav-action sec mb-4">
         <a id="weekView1" class="c_grey" href="/orientation"> <img src="/images/icon-back-g.svg" /><span class="hidden-sm-down sec">BACK TO WEEK VIEW ></span></a>
@@ -17,10 +17,10 @@
         <div class="col-lg-10 push-lg-1 ">
             <div class="row">
                 <div class="col-sm-7 ">
-                    <p>Here’s a fact for you:</p>
+                    <p>Here's a fact for you:</p>
                     <p>More often than not, if a food is in your possession or located in your house, you will eventually eat it.</p>
-                    <p>Whether you plan to or not, whether you want to or not, you’ll eventually eat it! Trust us.</p>
-                    <p>Therefore, according to this fundamental law, if you wish to achieve your goal, you must remove all foods that aren't part of your healthy eating program and replace them with a variety of before, healthier choices.</p>
+                    <p>Whether you plan to or not, whether you want to or not, you'll eventually eat it! Trust me.</p>
+                    <p>Therefore, according to this fundamental law, if you wish to achieve your goal, you must remove all foods that aren't part of your healthy eating program and replace them with a variety of better, healthier choices.</p>
                     <p>How do you stack up against a healthy kitchen environment? Simply complete the questionnaire below and watch the video - 5 kitchen makeover tips.</p>
                 </div>
                 <div class="col-sm-5">

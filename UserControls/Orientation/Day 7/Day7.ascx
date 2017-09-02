@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-sm-5">
                     <h5 class="underline">Rest Day <img class="icon-s" src="/images/icon-time-y.svg" /><span class="c_y"> All Day </span></h5>
-                    <p>It has been a big start to your program, so put your feet up, sit back and relax today. You deserve the reward</p>
+                    <p>It has been a big start to your program, so put your feet up, sit back and relax today. You deserve the reward.</p>
                 </div>
             </div>
      

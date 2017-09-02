@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="UserProfile.ascx.cs" Inherits="UserControls_UserProfile" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="UserProfile.ascx.cs" Inherits="UserControls_UserProfile" %>
 
 
 <div class="row-offcanvas row-offcanvas-right left-content no-padding">
@@ -216,7 +216,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="profile-url-input" class="col-3 col-form-label"><b>Phone</b></label>
+                            <label for="profile-url-input" class="col-3 col-form-label"><b>Other</b></label>
                             <div class="col-md-4 col-12">
                                 <asp:Label ID="lblPhone" runat="server"></asp:Label>
                             </div>
@@ -276,7 +276,7 @@
                             <label for="profile-email-input" class="col-3 col-form-label">Birthday</label>
                             <div class="col-9">
                                 <asp:TextBox ID="txtDob" runat="server"></asp:TextBox>
-                                &nbsp;<asp:Label ID="Label1" runat="server" Text="(dd/mm/yyyy)"></asp:Label>
+                                &nbsp;<asp:Label ID="Label1" runat="server" Text="(mm/dd/yyyy)"></asp:Label>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -295,12 +295,6 @@
                             <label for="profile-url-input" class="col-3 col-form-label">Phone</label>
                             <div class="col-md-4 col-12">
                                 <asp:TextBox ID="tbPhone" runat="server" class="form-control"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="* Required&nbsp;<br />"
-                                    ForeColor="#FF3300" ControlToValidate="tbPhone"></asp:RequiredFieldValidator>
-                                
-                                <asp:RegularExpressionValidator ID="RegularExpressionValidator9" runat="server"
-                                    ValidationExpression="^\d*\.?\d+$" ControlToValidate="tbPhone"
-                                    ErrorMessage="* Value must be a  number" ForeColor="Red"></asp:RegularExpressionValidator>
                             </div>
                         </div>
 

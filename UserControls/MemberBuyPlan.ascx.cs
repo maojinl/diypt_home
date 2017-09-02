@@ -19,8 +19,14 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
 
             string sPlanId = Request.QueryString["targetplanid"];
             string sMyPlanId = Request.QueryString["targetmemberplanid"];
-
-
+			if(Request.UrlReferrer != null)
+			{
+				string referer = Request.UrlReferrer.ToString();
+				if(referer.Contains("signup"))
+					lblMsg.Text = "Please click Pay with PayPal button below.";
+				else
+					lblMsg.Text = "Whoops, you've missed the payment step. Please click Pay with PayPal button below.";
+			}
             var member = PrizeMemberAuthUtils.GetMemberData();
 			txtFirstName.Text = member.Firstname;
 			tbLastName.Text = member.Surname;

@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ContinuePlan.ascx.cs" Inherits="UserControls_ContinuePlan" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ContinuePlan.ascx.cs" Inherits="UserControls_ContinuePlan" %>
 <style>
     .radioButtonList {
         width: 100%;
@@ -35,26 +35,17 @@
             <div class="col-md-2 col-12 col-form-label">First Name</div>
             <div class="col-md-4 col-12">
                 <asp:TextBox ID="txtFirstName" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RfvFirstName" runat="server" ErrorMessage="* Required"
-                    ForeColor="#FF3300" ControlToValidate="txtFirstName"></asp:RequiredFieldValidator>
             </div>
             <div class="col-md-2 col-12 col-form-label">Surname</div>
             <div class="col-md-4 col-12">
 
                 <asp:TextBox ID="tbLastName" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* Required"
-                    ForeColor="#FF3300" ControlToValidate="tbLastName"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row form-group">
             <div class="col-md-2 col-12 col-form-label">Email</div>
             <div class="col-md-4 col-12">
                 <asp:TextBox ID="txtEmail" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RfvUserName" runat="server" ErrorMessage="* Required"
-                    ForeColor="#FF3300" ControlToValidate="txtEmail"></asp:RequiredFieldValidator>
-                <br />
-                <asp:RegularExpressionValidator ID="RxvEmail" runat="server" ControlToValidate="txtEmail"
-                    ErrorMessage="Invalid E-mail" ForeColor="#FF3300" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
             </div>
 
 
@@ -63,44 +54,26 @@
             <div class="col-md-2 col-12 col-form-label">Mobile Number</div>
             <div class="col-md-4 col-12">
                 <asp:TextBox ID="tbMobile" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="* Required"
-                    ForeColor="#FF3300" ControlToValidate="tbMobile"></asp:RequiredFieldValidator>
-                &nbsp;<br />
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator8" runat="server"
-                    ValidationExpression="^\d*\.?\d+$" ControlToValidate="tbMobile"
-                    ErrorMessage="* Value must be a  number" ForeColor="Red"></asp:RegularExpressionValidator>
             </div>
             <div class="col-md-2 col-12 col-form-label">Other Contact</div>
             <div class="col-md-4 col-12">
                 <asp:TextBox ID="tbPhone" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="* Required"
-                    ForeColor="#FF3300" ControlToValidate="tbPhone"></asp:RequiredFieldValidator>
-                &nbsp;<br />
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator9" runat="server"
-                    ValidationExpression="^\d*\.?\d+$" ControlToValidate="tbPhone"
-                    ErrorMessage="* Value must be a  number" ForeColor="Red"></asp:RegularExpressionValidator>
             </div>
         </div>
         <div class="row form-group">
             <div class="col-md-2 col-12 col-form-label">Street Address</div>
             <div class="col-md-4 col-12">
                 <asp:TextBox ID="tbStreetAddress" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="* Required"
-                    ForeColor="#FF3300" ControlToValidate="tbStreetAddress"></asp:RequiredFieldValidator>
             </div>
             <div class="col-md-2 col-12 col-form-label">Suburb</div>
             <div class="col-md-4 col-12">
                 <asp:TextBox ID="tbSuburb" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="* Required"
-                    ForeColor="#FF3300" ControlToValidate="tbSuburb"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row form-group">
             <div class="col-md-2 col-12 col-form-label">State</div>
             <div class="col-md-4 col-12">
                 <asp:TextBox ID="tbState" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="* Required"
-                    ForeColor="#FF3300" ControlToValidate="tbState"></asp:RequiredFieldValidator>
             </div>
             <div class="col-md-2 col-12 col-form-label">Country</div>
             <div class="col-md-4 col-12">
@@ -114,8 +87,6 @@
             <div class="col-md-2 col-12 col-form-label">Postcode</div>
             <div class="col-md-4 col-12">
                 <asp:TextBox ID="tbPostCode" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="* Required"
-                    ForeColor="#FF3300" ControlToValidate="tbPostCode"></asp:RequiredFieldValidator>
             </div>
             <div class="col-md-2 col-12 col-form-label"></div>
             <div class="col-md-4 col-12">

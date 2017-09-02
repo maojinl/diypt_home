@@ -64,7 +64,7 @@ public partial class UserControls_Orientation_Day_4_Row : BaseOrientation
                     imgExercise2.ImageUrl = "/media/15138/landscape_lat_pulldown_step1.jpg";
                     imgExercise3.ImageUrl = "/media/15073/landscape_assisted_powerband_pullups_step1.jpg";
                     lblExercise1.Text = "Seated row NG";
-                    lblExercise2.Text = "Lat pulldown machine PG";
+                    lblExercise2.Text = "Lat pulldown machine";
                     lblExercise3.Text = "Assisted Powerband pullups";
                 }
                 break;
@@ -92,8 +92,8 @@ public partial class UserControls_Orientation_Day_4_Row : BaseOrientation
                     imgExercise1.ImageUrl = "/media/14705/landscape_seated_row_step1.jpg";
                     imgExercise2.ImageUrl = "/media/15138/landscape_lat_pulldown_step1.jpg";
                     imgExercise3.ImageUrl = "/media/14787/landscape_pullup_negatives_step1w.jpg";
-                    lblExercise1.Text = "Seated row NG";
-                    lblExercise2.Text = "Lat pulldown machine PG";
+                    lblExercise1.Text = "Seated row";
+                    lblExercise2.Text = "Lat pulldown machine";
                     lblExercise3.Text = "Pullup negatives";
                 }
                 break;

@@ -14,7 +14,7 @@
             </span>
                 <img src="/images/icon-member.svg" /></a>
             <div class="dropdown-menu" aria-labelledby="dropdown04">
-                <a class="dropdown-item" href="/my-account/coming-up/">My Account</a>
+                <a class="dropdown-item" href="/my-account/coming-up/">My Program</a>
                 <a class="dropdown-item" href="/my-account/profile/">My Profile</a>
                 <asp:LinkButton ID="LinkButtonLogout" class="dropdown-item" runat="server" OnClick="LinkButtonLogout_Click" CausesValidation="false">Log out</asp:LinkButton>
 

@@ -93,8 +93,8 @@ public partial class UserControls_Orientation_Day_3_Chest_press : BaseOrientatio
                     imgExercise2.ImageUrl = "/media/13331/landscape_bb_flat_bench_press_step1.jpg";
                     imgExercise3.ImageUrl = "/media/13328/landscape_bb_incline_bench_press_step1.jpg";
                     lblExercise1.Text = "Pushups on toes";
-                    lblExercise2.Text = "BB flat bench press PG";
-                    lblExercise3.Text = "BB incline bench press PG";
+                    lblExercise2.Text = "BB flat bench press";
+                    lblExercise3.Text = "BB incline bench press";
                 }
                 break;
             default:

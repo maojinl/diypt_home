@@ -15,6 +15,17 @@ public partial class UserControls_UserProfile : BaseOrientation
     protected void Page_Load(object sender, EventArgs e)
     {
         member = PrizeMemberAuthUtils.GetMemberData();
+		var exercisePlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(member.UmbracoId);
+        if (exercisePlan == null)
+		{
+			var myPlan = dbAccess.GetNextMemberPlanNeedToPay(member.UmbracoId);
+			if (myPlan != null)
+			{
+				Response.Redirect(String.Format("{0}?targetplanid={1}&targetmemberplanid={2}", PrizeConstants.URL_MEMBER_BUY_PLAN, myPlan.ExercisePlanId, myPlan.Id));
+			}
+			else
+				return;
+		}
 		lblMsg.Text = "";
         LoadMemberDetails();
         if (!Page.IsPostBack)

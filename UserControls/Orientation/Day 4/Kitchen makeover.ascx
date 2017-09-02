@@ -20,9 +20,11 @@
     <div class="row">
         <div class="col-sm-10 push-sm-1">
             <h1 class="text-center pb-4">Watch video - 5 kitchen makeover tips</h1>
-            <iframe src="https://player.vimeo.com/video/225783472" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/225783472" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
         </div>
-        <div class="col-sm-10 push-sm-1 text-center">
+        <div class="col-sm-10 push-sm-1 text-center mt-3">
         <div class="text-center"><asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/></div>
     </div>  </div>
 </div>

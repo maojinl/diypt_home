@@ -20,9 +20,11 @@
     <div class="row">
         <div class="col-sm-10 push-sm-1">
             <h1 class="text-center pb-4">Watch video - Counting macros the DIYPT way</h1>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/TxBQD5JlRoc" frameborder="0" allowfullscreen></iframe>
+            <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TxBQD5JlRoc" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
-        <div class="col-sm-10 push-sm-1 text-center">
+        <div class="col-sm-10 push-sm-1 text-center mt-3">
          <div class="text-center"><asp:Button ID="btnTaskDone" class="text-center-sp btn btn-secondary  c_y sec" runat="server" Text="TASK COMPLETED >" OnClick="btnTaskDone_Click"/></div>
     </div>
         </div>

@@ -11,6 +11,19 @@ public partial class UserControls_MemberLanding_MemberFoodPlanView : BaseOrienta
     protected void Page_Load(object sender, EventArgs e)
     {
         int memberId = PrizeMemberAuthUtils.GetMemberID();
+		
+		var exercisePlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
+        if (exercisePlan == null)
+		{
+			var myPlan = dbAccess.GetNextMemberPlanNeedToPay(memberId);
+			if (myPlan != null)
+			{
+				Response.Redirect(String.Format("{0}?targetplanid={1}&targetmemberplanid={2}", PrizeConstants.URL_MEMBER_BUY_PLAN, myPlan.ExercisePlanId, myPlan.Id));
+			}
+			else
+				return;
+		}
+		
         MemberExercisePlanWeek memberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId);
         if (memberPlanWeek == null)
         {

@@ -52,10 +52,19 @@ public partial class UserControls_ComingUp : BaseOrientation
         //var nextSunday = tempdate.Next(DayOfWeek.Sunday);
         PrizeDataAccess db = new PrizeDataAccess();
 
-        var exercisePlan = db.GetCurrentMemberPlanOrStartingPlan(PrizeMemberAuthUtils.GetMemberID());
+       var memberId = PrizeMemberAuthUtils.GetMemberID();
+        var exercisePlan = db.GetCurrentMemberPlanOrStartingPlan(memberId);
         //var nextSunday = exercisePlan.StartDate.NextDay(DayOfWeek.Monday);
         if (exercisePlan == null)
-            return;
+		{
+			var myPlan = db.GetNextMemberPlanNeedToPay(memberId);
+			if (myPlan != null)
+			{
+				Response.Redirect(String.Format("{0}?targetplanid={1}&targetmemberplanid={2}", PrizeConstants.URL_MEMBER_BUY_PLAN, myPlan.ExercisePlanId, myPlan.Id));
+			}
+			else
+				return;
+		}
 
         //var nextSunday = exercisePlan.StartDate.NextDay(DayOfWeek.Sunday);
 

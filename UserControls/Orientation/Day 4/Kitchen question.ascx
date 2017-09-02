@@ -162,7 +162,7 @@
                 <li>Regular or low-fat cookies</li>
                 <li>Crackers</li>
                 <li>Instant foods like cake mixes and mashed potatoes</li>
-                <li>Chocolcates or candy</li>
+                <li>Chocolates or candy</li>
                 <li>Fruit drink or juice</li>
                 <li>Soft drinks</li>
                 <li>Regular peanut butter</li>

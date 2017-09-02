@@ -7,10 +7,10 @@
 
 <div class="container-fluid container-fluid-w">
     <div class="container container-registration-form">
-        <h1 class="c_y">General Details
-                <asp:Label ID="lblMsg" runat="server" ForeColor="#CC3300"></asp:Label>
+        <h1 class="c_y"><asp:Label ID="lblBuyHeader" runat="server">Review and pay</asp:Label>
 
         </h1>
+                <div><asp:Label ID="lblMsg" runat="server" ForeColor="#CC3300" class="row form-group ml-4"></asp:Label></div>
         <div class="row form-group">
             <div class="col-md-2 col-12 col-form-label">First Name</div>
             <div class="col-md-4 col-12">

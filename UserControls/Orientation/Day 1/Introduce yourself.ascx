@@ -76,7 +76,7 @@
                     
                     <p>2. End with a question to encourage more responses</p>
                     <div class="row">
-                        <div class="col-md-6 mb-2"><a href="https://www.facebook.com/diypersonaltraining/" target="_blank" class="btn btn-secondary btn-block c_y">WRITE A POST ></a></div>
+                        <div class="col-md-6 mb-2"><a href="https://www.facebook.com/groups/223811351480822/" target="_blank" class="btn btn-secondary btn-block c_y">WRITE A POST ></a></div>
                         <div class="col-md-6 mb-2">
                             <div class="form-check">
                                 <label class="form-check-label">

@@ -165,7 +165,7 @@
                 </div>
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q6" id="" value="0"> No, i dont
+                        <input type="radio" class="form-check-input" name="q6" id="" value="0"> No, I dont
                     </label>
                 </div>
             </fieldset>
@@ -181,7 +181,7 @@
             <fieldset class="form-group row">
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q7" id="" value="2"> yes, I’ve been doing this for at least 1 year
+                        <input type="radio" class="form-check-input" name="q7" id="" value="2">Yes, I’ve been doing this for at least 1 year
                     </label>
                 </div>
                 <div class="form-check col-sm-6">
@@ -191,7 +191,7 @@
                 </div>
                 <div class="form-check col-sm-6">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="q7" id="" value="0">No, i don’t
+                        <input type="radio" class="form-check-input" name="q7" id="" value="0">No, I don’t
                     </label>
                 </div>
             </fieldset>
