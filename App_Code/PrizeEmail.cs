@@ -104,7 +104,7 @@ Comment:
             nodeId = 6683;
         else if (emailType == PrizeConstants.EmailType.MileStoneGoalWeek13)
             nodeId = 9675;
-        else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week1)
+        else if (emailType == PrizeConstants.EmailType.FisrtDayOnWeek1)
             nodeId = 5378;
         else if (emailType == PrizeConstants.EmailType.ReviveMeEmail)
             nodeId = 9707;

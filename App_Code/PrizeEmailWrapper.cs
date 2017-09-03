@@ -297,8 +297,8 @@ public class PrizeEmailWrapper
             {
                 // send email 1 day prior to week 1
                 availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-                dtBegin = now.AddDays(0);
-                dtEnd = now.AddDays(1);
+                dtBegin = now.AddDays(-1);
+                dtEnd = now.AddDays(0);
                 var memberPlanWithWeeks = (from c in db.MemberExercisePlans
                                            join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
                                            where c.Status.Equals(availableStatus) && b.Week == 1 && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 1)
@@ -318,7 +318,7 @@ public class PrizeEmailWrapper
                     if (memberPlanWeekResult.Tasks != null && memberPlanWeekResult.Tasks.Length > 1 && memberPlanWeekResult.Tasks[0] == '0')
                     {
                         PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberPlanWithWeek.MemberId);
-                        PrepareSimpleEmailByType(member, PrizeConstants.EmailType.OneDaysPrior2Week1, "Night before Day 1 of Week 1", member.Firstname);
+                        PrepareSimpleEmailByType(member, PrizeConstants.EmailType.FisrtDayOnWeek1, "Night before Day 1 of Week 1", member.Firstname);
                         char[] arr = memberPlanWeekResult.Tasks.ToArray();
                         arr[0] = '1';
                         memberPlanWeekResult.Tasks = new string(arr);
@@ -451,8 +451,8 @@ public class PrizeEmailWrapper
             {
                 // send email 1 day prior to end of trial plan
                 availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-                dtBegin = now.AddDays(1);
-                dtEnd = now.AddDays(2);
+                dtBegin = now.AddDays(0);
+                dtEnd = now.AddDays(1);
                 memberPlans = (from c in db.MemberExercisePlans
 								join e in db.PrizeExercisePlans on c.ExercisePlanId equals e.Id
 								where c.Status.Equals(availableStatus) && c.EndDate.HasValue && dtBegin <= c.EndDate.Value && dtEnd >= c.EndDate.Value //&& PrizeCommonUtils.LessThanDaysAhead(now, c.EndDate.Value, 2)
