@@ -138,4 +138,22 @@ public partial class UserControls_Management_Orders : System.Web.UI.UserControl
         this.BindGrid();
     }
 
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        int i = (int)PrizeConstants.EmailType.WelcomeEmail;
+        int end = (int)PrizeConstants.EmailType.ReviveMeEmail;
+        
+        for (; i <= end; i++ )
+        {
+            PrizeMember member = PrizeMemberAuthUtils.GetMemberData(10779);
+            PrizeEmailWrapper.PrepareSimpleEmailByType(member, (PrizeConstants.EmailType)i, "", member.Firstname, "", "", "", "");
+            member = PrizeMemberAuthUtils.GetMemberData(10815);
+            PrizeEmailWrapper.PrepareSimpleEmailByType(member, (PrizeConstants.EmailType)i, "", member.Firstname, "", "", "", "");
+            member = PrizeMemberAuthUtils.GetMemberData(10798);
+            PrizeEmailWrapper.PrepareSimpleEmailByType(member, (PrizeConstants.EmailType)i, "", member.Firstname, "", "", "", "");
+            member = PrizeMemberAuthUtils.GetMemberData(10796);
+            PrizeEmailWrapper.PrepareSimpleEmailByType(member, (PrizeConstants.EmailType)i, "", member.Firstname, "", "", "", "");
+        }
+    }
 }

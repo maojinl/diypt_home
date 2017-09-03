@@ -117,9 +117,9 @@ Comment:
 		string header = templateNode.GetProperty("templateheader").Value;
 		string footer = templateNode.GetProperty("templateFooter").Value;
 		string body = node.GetProperty("bodyContent").Value;
-		string subject = templateNode.GetProperty("subject").Value;
-        if (String.IsNullOrEmpty(subject))
-            subject = emailSubject;
+        string subject = emailSubject;
+        if (node.GetProperty("subject") != null)
+            subject = node.GetProperty("subject").Value;
 
         if (additionalContents.Count > 0)
             body = body.Replace("[name]", additionalContents[0]);

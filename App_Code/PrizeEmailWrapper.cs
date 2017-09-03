@@ -318,7 +318,7 @@ public class PrizeEmailWrapper
                     if (memberPlanWeekResult.Tasks != null && memberPlanWeekResult.Tasks.Length > 1 && memberPlanWeekResult.Tasks[0] == '0')
                     {
                         PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberPlanWithWeek.MemberId);
-                        PrepareSimpleEmailByType(member, PrizeConstants.EmailType.OneDaysPrior2Week11, "Night before Day 1 of Week 1", member.Firstname);
+                        PrepareSimpleEmailByType(member, PrizeConstants.EmailType.OneDaysPrior2Week1, "Night before Day 1 of Week 1", member.Firstname);
                         char[] arr = memberPlanWeekResult.Tasks.ToArray();
                         arr[0] = '1';
                         memberPlanWeekResult.Tasks = new string(arr);
