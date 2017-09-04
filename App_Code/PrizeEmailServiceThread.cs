@@ -56,7 +56,7 @@ public class PrizeEmailServiceThread : ApplicationEventHandler
 
             db.Database.Connection.Open();
             IQueryable<MemberEmail> emails = (from c in db.MemberEmails
-                                              where c.Status == (int)PrizeConstants.EmailStatus.Shceduled
+                                              where c.Status == (int)PrizeConstants.EmailStatus.Shceduled || c.Status == (int)PrizeConstants.EmailStatus.Failed
                                               select c);
             bool bSent = false;
             foreach (MemberEmail email in emails.ToList())

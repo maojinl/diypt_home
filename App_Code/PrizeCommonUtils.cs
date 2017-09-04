@@ -82,6 +82,11 @@ public static class PrizeCommonUtils
         return s;
     }
 
+    static public string ParseShortDateToEnglish(DateTime date)
+    {
+        string s = date.ToString("dd MMM", new CultureInfo("en-GB"));
+        return s;
+    }
     static public string ParseWeekDayToEnglish(int day)
     {
         return PrizeConstants.WEEK_DAY_NAMES[day - 1];
@@ -101,7 +106,7 @@ public static class PrizeCommonUtils
     static public DateTime GetSystemDate()
     {
         DateTime dt = DateTime.Now;
-        bool bTest = true;
+        bool bTest = false;
         if (!bTest)
             return dt;
         using (DIYPTEntities db = new DIYPTEntities())

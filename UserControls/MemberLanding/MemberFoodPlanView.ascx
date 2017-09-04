@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="MemberFoodPlanView.ascx.cs" Inherits="UserControls_MemberLanding_MemberFoodPlanView" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="MemberFoodPlanView.ascx.cs" Inherits="UserControls_MemberLanding_MemberFoodPlanView" %>
 <style>
 
 .nodisplay .wk1,
@@ -75,11 +75,10 @@ display: block;
                 </p>
                 <h5 class="c_y mb-2">FITNESS GOAL <span class="c_black"><asp:Label ID="lblPlanProgram" runat="server" Text=""></asp:Label></span></h5>
                 <h5 class="c_y ">FOOD GOAL </h5>
-                <p class=" wk1 wk2">Just focus on your training and make one of my video meals </p>
-                <p class=" wk1 wk2"><a class="c_y" target="_blank" href="/meal-plans#t1">DIYPT video meals</a></p>
+                <p class=" wk1 wk2">Just focus on your training and make one of my <a class="c_y" target="_blank" href="/meal-plans#t1">easy recipes.</a></p>
                 <p class=" wk3">Focus on 2 things:</p>
                 <p class=" wk3">1. Focus on eating slowly; approximately 15 minutes for a snack and approximately 25 minutes for a main meal. Stop eating when you're about 80% full. 80% full means that after waiting 5 minutes you can still eat more but don't have to because you are satisfied. You don’t feel stomach discomfort, bloating or lethargic.</p>
-                <p class=" wk3">2. Make another one of my delicious, quick and easy <a class="c_y" target="_blank" href="/meal-plans#t1">video meals.</a></p>
+                <p class=" wk3">2. Make another one of my delicious, quick and <a class="c_y" target="_blank" href="/meal-plans#t1">easy recipes.</a></p>
                 <p class=" wk4">For one week, play with the My Fitness Pal app by diarising your food and playing with <a href="#" data-toggle="modal" data-target="#timeModal3" class="c_y">macro counting</a> using the following macronutrient goals. Watch the Macro counting video. This is the key to the success of your program. When I say ‘play’, don’t feel the pressure that you need to diarise everyday, just have a go and get into the habit of diarising your food and have a go at following the macro goals below.
                 </p>
                 <p class=" wk5">Complete food diary every day and maintain calories for the week using My Fitness Pal</p>
@@ -142,7 +141,7 @@ display: block;
                     <ul>
                         <li class=" wk4 wk5 wk6 wk7 wk8 wk9 wk10 wk11 wk12">- If you believe you are following my food plan 100% but feel like you're not achieving your goal, see how your body reacts after food ie. are you bloated, produce excessive gas or are lethargic? If so, I suggest you do a food allergy test. </li>
                         <li class=" wk5 wk6 wk7 wk8 wk9 wk10 wk11 wk12">- buy a food scale as weighing your food will make it easier to reach your macronutrient goals</li>
-                        <li class=" wk4 wk5 wk6 wk7 wk8 wk9 wk10 wk11 wk12">- Make another one of my delicious, quick and easy <a class="c_y" target="_blank" href="/meal-plans#t1">video meals</a>.</li>
+                        <li class=" wk4 wk5 wk6 wk7 wk8 wk9 wk10 wk11 wk12">- Make another one of my delicious, quick and easy <a class="c_y" target="_blank" href="/meal-plans#t1">recipes</a>.</li>
                     </ul>
                 </div>
                 <h5 class="c_y  wk4 wk5 wk6 wk7 wk8 wk9 wk10 wk11 wk12">MACRONUTRIENTS LIST </h5>

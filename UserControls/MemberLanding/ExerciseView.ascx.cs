@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Text.RegularExpressions;
 
 public partial class UserControls_MemberLanding_ExerciseView : BaseOrientation
 {
@@ -176,7 +177,7 @@ public partial class UserControls_MemberLanding_ExerciseView : BaseOrientation
 
             for (int i = 0; i < lblDates.Count; i++)
             {
-                lblDates[i].Text = PrizeCommonUtils.ParseDateToEnglish(memberPlanWeek.StartDate.AddDays(i));
+                lblDates[i].Text = PrizeCommonUtils.ParseShortDateToEnglish(memberPlanWeek.StartDate.AddDays(i));
                 HyperLink linkDay = FindControl("linkDay" + (i + 1)) as HyperLink;
                 if (linkDay != null && planWeek != null)
                     linkDay.NavigateUrl = (String.Format("{0}?PlanWeekId={1}&MemberPlanWeekId={2}&PlanDayNumber={3}", PrizeConstants.URL_MEMBER_DAY_VIEW, planWeek.Id, memberPlanWeek.Id, i + 1));
@@ -228,7 +229,7 @@ public partial class UserControls_MemberLanding_ExerciseView : BaseOrientation
                     }
                 }
 
-                if (bEquipmentSession && !planWeekDesc[i].Equals(""))
+                if (bEquipmentSession && Regex.Matches(planWeekDesc[i], @"[a-zA-Z]").Count > 0)
                 {
                     strEquipments.Add(planWeekDesc[i]);
                     continue;

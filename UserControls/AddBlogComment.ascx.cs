@@ -11,8 +11,8 @@ public partial class UserControls_AddBlogComment : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (HttpContext.Current.User.Identity.IsAuthenticated)
-        {
+        //if (HttpContext.Current.User.Identity.IsAuthenticated)
+        //{
             var member = PrizeMemberAuthUtils.GetMemberData();
             if (member != null)
             {
@@ -24,16 +24,17 @@ public partial class UserControls_AddBlogComment : System.Web.UI.UserControl
                     commentImage.ImageUrl = @"\images\profile.jpg";
 
             }
+			else
+				divReply.Visible = false;
 
-        }
-        else
-            divReply.Visible = false;
+        //}
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         var member = PrizeMemberAuthUtils.GetMemberData();
-        if (HttpContext.Current.User.Identity.IsAuthenticated)
+        //if (HttpContext.Current.User.Identity.IsAuthenticated)
+			if(member != null)
         {
             var memberName = member.Firstname + " " + member.Surname;
             Node current = Node.GetCurrent();
@@ -46,10 +47,11 @@ public partial class UserControls_AddBlogComment : System.Web.UI.UserControl
             else
                 doc.getProperty("commentImage").Value = @"\images\profile.jpg";
             doc.getProperty("commentText").Value = commentText.Text;
-            doc.Save();
+            //doc.Save();
+			doc.Publish(u);
             PrizeEmail.SendBlogComment(current.Name, memberName, commentText.Text);
-
-            commentText.Text = "";
+            //commentText.Text = "";
+			Response.Redirect(Request.RawUrl);
         }
     }
 }

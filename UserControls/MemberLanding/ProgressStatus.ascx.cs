@@ -370,14 +370,14 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
             if (iWeekNum > PrizeConstants.WEEKS_NEEDS_RESULT[i])
             {
                 divs[i].Visible = true;
-                if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i] - 1] != null)
+                if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]] != null)
                 {
-                    if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i] - 1].FrontPhoto != null)
-                        imagesByWeek[i][0].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i] - 1].FrontPhoto;
-                    if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i] - 1].BackPhoto != null)
-                        imagesByWeek[i][1].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i] - 1].BackPhoto;
-                    if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i] - 1].SidePhoto != null)
-                        imagesByWeek[i][2].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i] - 1].SidePhoto;
+                    if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].FrontPhoto != null)
+                        imagesByWeek[i][0].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].FrontPhoto;
+                    if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].BackPhoto != null)
+                        imagesByWeek[i][1].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].BackPhoto;
+                    if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].SidePhoto != null)
+                        imagesByWeek[i][2].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].SidePhoto;
                 }
             }  
         }

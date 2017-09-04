@@ -277,6 +277,46 @@ Taking front and side photo:<br />
     <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click"  style="display: none;" />
 </div>
 <script>
+    $('#<%= Image11.ClientID %>').click(function () {
+        document.getElementById('<%= frontUpload.ClientID %>').click();
+    });
+    $('#<%= Image12.ClientID %>').click(function () {
+        document.getElementById('<%= sideUpload.ClientID %>').click();
+    });
+    $('#<%= Image13.ClientID %>').click(function () {
+        document.getElementById('<%= backUpload.ClientID %>').click();
+    });
+
+    $('#<%= Image51.ClientID %>').click(function () {
+        document.getElementById('<%= frontUpload.ClientID %>').click();
+    });
+    $('#<%= Image52.ClientID %>').click(function () {
+        document.getElementById('<%= sideUpload.ClientID %>').click();
+    });
+    $('#<%= Image53.ClientID %>').click(function () {
+        document.getElementById('<%= backUpload.ClientID %>').click();
+    });
+	
+    $('#<%= Image81.ClientID %>').click(function () {
+        document.getElementById('<%= frontUpload.ClientID %>').click();
+    });
+    $('#<%= Image82.ClientID %>').click(function () {
+        document.getElementById('<%= sideUpload.ClientID %>').click();
+    });
+    $('#<%= Image83.ClientID %>').click(function () {
+        document.getElementById('<%= backUpload.ClientID %>').click();
+    });
+	
+    $('#<%= Image111.ClientID %>').click(function () {
+        document.getElementById('<%= frontUpload.ClientID %>').click();
+    });
+    $('#<%= Image112.ClientID %>').click(function () {
+        document.getElementById('<%= sideUpload.ClientID %>').click();
+    });
+    $('#<%= Image113.ClientID %>').click(function () {
+        document.getElementById('<%= backUpload.ClientID %>').click();
+    });
+	
     $('#<%= Image1.ClientID %>').click(function () {
         document.getElementById('<%= frontUpload.ClientID %>').click();
     });
@@ -286,7 +326,6 @@ Taking front and side photo:<br />
     $('#<%= Image3.ClientID %>').click(function () {
         document.getElementById('<%= backUpload.ClientID %>').click();
     });
-
     function UploadFile(fileUpload)
     {
         if(fileUpload.value != "")
