@@ -494,4 +494,37 @@ public class PrizeMemberPlanManager
             db.Database.Connection.Close();
         }
     }
+
+    protected MemberExercisePlan GetNextMemberPlanNeedToPay(int iMemberId)
+    {
+        try
+        {
+            db.Database.Connection.Open();
+            string status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_NOT_PAID;
+            MemberExercisePlan myPlan = (from c in db.MemberExercisePlans
+                                         where c.MemberId == iMemberId && c.Status.Equals(status)
+                                         orderby c.Id descending
+                                         select c).FirstOrDefault();
+            return myPlan;
+        }
+        finally
+        {
+            db.Database.Connection.Close();
+        }
+    }
+
+    public string GetEmptyPlanJumpURL(PrizeMember member)
+    {
+        string sURL = "";
+        MemberExercisePlan myPlan = GetNextMemberPlanNeedToPay(member.UmbracoId);
+        if (myPlan == null)
+        {
+            sURL = String.Format("{0}?loginName={1}&memberId={2}", PrizeConstants.URL_MEMBER_CONTINUE_PLAN, member.Email, member.UmbracoId);
+        }
+        else
+        {
+            sURL = String.Format("{0}?targetplanid={1}&targetmemberplanid={2}", PrizeConstants.URL_MEMBER_BUY_PLAN, myPlan.ExercisePlanId, myPlan.Id);
+        }
+        return sURL;
+    }
 }

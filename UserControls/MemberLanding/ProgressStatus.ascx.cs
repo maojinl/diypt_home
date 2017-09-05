@@ -31,14 +31,10 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 		var exercisePlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
         if (exercisePlan == null)
 		{
-			var myPlan = dbAccess.GetNextMemberPlanNeedToPay(memberId);
-			if (myPlan != null)
-			{
-				Response.Redirect(String.Format("{0}?targetplanid={1}&targetmemberplanid={2}", PrizeConstants.URL_MEMBER_BUY_PLAN, myPlan.ExercisePlanId, myPlan.Id));
-			}
-			else
-				return;
-		}	
+            PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberId);
+            PrizeMemberPlanManager planMan = new PrizeMemberPlanManager();
+            Response.Redirect(planMan.GetEmptyPlanJumpURL(member));
+        }	
         
         _MemberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId); //(MemberExercisePlanWeek)Session["MemberPlanWeek"];
 

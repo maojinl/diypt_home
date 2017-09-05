@@ -256,23 +256,6 @@ public class PrizeDataAccess
         }
     }
 
-    public MemberExercisePlan GetNextMemberPlanNeedToPay(int iMemberId)
-    {
-        try
-        {
-            db.Database.Connection.Open();
-            string status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_NOT_PAID;
-            MemberExercisePlan myPlan = (from c in db.MemberExercisePlans
-                                         where c.MemberId == iMemberId && c.Status.Equals(status) orderby c.Id descending
-                                         select c).FirstOrDefault();
-            return myPlan;
-        }
-        finally
-        {
-            db.Database.Connection.Close();
-        }
-    }
-
     public bool MemberInOrientation(int memberId)
     {
         try

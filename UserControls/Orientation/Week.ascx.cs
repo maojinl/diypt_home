@@ -25,14 +25,10 @@ public partial class UserControls_Orientation_Week : BaseOrientation
         var exercisePlan = db.GetCurrentMemberPlanOrStartingPlan(memberId);
         if (exercisePlan == null)
 		{
-			var myPlan = db.GetNextMemberPlanNeedToPay(memberId);
-			if (myPlan != null)
-			{
-				Response.Redirect(String.Format("{0}?targetplanid={1}&targetmemberplanid={2}", PrizeConstants.URL_MEMBER_BUY_PLAN, myPlan.ExercisePlanId, myPlan.Id));
-			}
-			else
-				return;
-		}
+            PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberId);
+            PrizeMemberPlanManager planMan = new PrizeMemberPlanManager();
+            Response.Redirect(planMan.GetEmptyPlanJumpURL(member));
+        }
             
 			
         var nextMonday = exercisePlan.StartDate;

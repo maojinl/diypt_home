@@ -22,7 +22,7 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
 			if(Request.UrlReferrer != null)
 			{
 				string referer = Request.UrlReferrer.ToString();
-				if(referer.Contains("signup"))
+				if(referer.Contains("signup")|| referer.Contains("continue"))
 					lblMsg.Text = "Please click Pay with PayPal button below.";
 				else
 					lblMsg.Text = "Whoops, you've missed the payment step. Please click Pay with PayPal button below.";
