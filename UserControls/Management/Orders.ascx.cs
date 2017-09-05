@@ -32,17 +32,16 @@ public partial class UserControls_Management_Orders : System.Web.UI.UserControl
 
                 var gamename = from a in db.PrizeOrders
                                join b in db.PrizeExercisePlans on a.ExercisePlanId equals b.Id
+                               join dic in db.PrizeMembers on a.Email equals dic.Email
                                select new
                                {
-                                   FirstName = a.FirstName,
-                                   LastName = a.LastName,
+                                   FirstName = dic.Firstname,
+                                   LastName = dic.Surname,
                                    Email = a.Email,
                                    Total = a.Total,
                                    PaymentTransactionId = a.PaymentTransactionId,
                                    OrderDate = a.OrderDate,
                                    PlanName = b.PlanName,
-
-
                                };
 
                 if (tbFrom.Text != "" && tbFrom.Text != null)

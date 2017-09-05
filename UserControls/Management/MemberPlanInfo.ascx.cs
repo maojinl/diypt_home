@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class UserControls_Management_MemberInfo : System.Web.UI.UserControl
+public partial class UserControls_Management_MemberPlanInfo : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, System.EventArgs e)
     {
@@ -28,45 +28,41 @@ public partial class UserControls_Management_MemberInfo : System.Web.UI.UserCont
             db.Database.Connection.Open();
             {
 
-                var languages = from dic in db.PrizeMembers
+                var memberPlans = from a in db.MemberExercisePlans
+                                  join dic in db.PrizeMembers on a.MemberId equals dic.UmbracoId
+                                  join b in db.PrizeExercisePlans on a.ExercisePlanId equals b.Id
+                                  join Program in db.PrizePlanPrograms on b.ProgramId equals Program.Id
+                                  join Location in db.PrizePlanLocations on b.LocationId equals Location.Id
+                                  join Experience in db.PrizePlanExperiences on b.ExperienceId equals Experience.Id
+                                  join Level in db.PrizePlanLevels on b.LevelId equals Level.Id
+                                  join c in db.PrizeOrders on a.Id equals c.MemberPlanId into gj from subOrder in gj.DefaultIfEmpty()
+                                  orderby a.StartDate descending
+                                  where !a.Status.EndsWith("C")
                                 select new
                                 {
                                     Id = dic.UmbracoId,
                                     Firstname = dic.Firstname,
                                     Surname = dic.Surname,
-                                    DoB = dic.DoB,
-                                    Gender = dic.Gender,
-                                    Country = dic.Country,
                                     Email = dic.Email,
-                                    StreetAddress = dic.StreetAddress,
-                                    Suburb = dic.Suburb,
-                                    City = dic.City,
-                                    Postcode = dic.Postcode,
-                                    State = dic.State,
-                                    Height = dic.Height,
-                                    Weight = dic.Weight,
-                                    Password = dic.Password,
-                                    Waist = dic.Waist,
-                                    BodyFat = dic.BodyFat,
-                                    GoalDescription = dic.GoalDescription,
-                                    GoalWeight = dic.GoalWeight,
-                                    GoalWaist = dic.GoalWaist,
-                                    GoalBodyFat = dic.GoalBodyFat,
-
+                                    IsTrialPlan = b.IsTrialPlan,
+                                    PlanName = Program.Name + "_" + Location.Name + "_" + Level.Name + "_" + Experience.Name,
+                                    StartDate = a.StartDate,
+                                    EndDate = a.EndDate,
+                                    Status = a.Status,
+                                    PaidDate = subOrder!=null?subOrder.OrderDate.ToString():"",
                                 };
+
 
                 if (tbfistname.Text != "")
                 {
-                    languages = languages.Where(m => m.Firstname.Contains(tbfistname.Text));
+                    memberPlans = memberPlans.Where(m => m.Firstname.Contains(tbfistname.Text));
                 }
                 if (tbemail.Text != "")
                 {
-                    languages = languages.Where(m => m.Email.Contains(tbemail.Text));
+                    memberPlans = memberPlans.Where(m => m.Email.Contains(tbemail.Text));
                 }
 
-                GridView1.DataSource = languages.ToList();
-
-
+                GridView1.DataSource = memberPlans.ToList();
 
                 GridView1.DataBind();
 
