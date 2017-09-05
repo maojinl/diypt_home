@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.HtmlControls;
@@ -95,7 +95,8 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
         if (iDay > 1)
         {
             preDay.NavigateUrl = (String.Format("{0}?PlanWeekId={1}&MemberPlanWeekId={2}&PlanDayNumber={3}", PrizeConstants.URL_MEMBER_DAY_VIEW, iPlanWeekId, memberPlanWeekId, iDay - 1));
-            preDay.Text = "Previous Day " + PrizeCommonUtils.ParseWeekDayToEnglish(iDay - 1);
+            //preDay.Text = "Previous Day " + PrizeCommonUtils.ParseWeekDayToEnglish(iDay - 1);
+			preDay.Text = "Previous Day";
         }
         else
             preDay.Attributes.Add("class", "no-arrow");
@@ -103,7 +104,8 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
         if (iDay < 7)
         {
             nextDay.NavigateUrl = (String.Format("{0}?PlanWeekId={1}&MemberPlanWeekId={2}&PlanDayNumber={3}", PrizeConstants.URL_MEMBER_DAY_VIEW, iPlanWeekId, memberPlanWeekId, iDay + 1));
-            nextDay.Text = "Next Day " + PrizeCommonUtils.ParseWeekDayToEnglish(iDay + 1);
+            //nextDay.Text = "Next Day " + PrizeCommonUtils.ParseWeekDayToEnglish(iDay + 1);
+			nextDay.Text = "Next Day";
         }
         else
             nextDay.Attributes.Add("class", "no-arrow");
