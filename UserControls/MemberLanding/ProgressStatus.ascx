@@ -12,6 +12,10 @@
 <div class="tab-inner-content">
     <h2 class="progress-title text-center">Progress Results Week <span><asp:Label ID="lblWeekNum" runat="server"></asp:Label></span></h2>
     <!-- PROGRESS INTRO -->
+    <div class="d-flex justify-content-between align-items-center pb-4 pre-next">
+        <asp:hyperlink id="dayPre" runat="server" class="day-pre c_b"></asp:hyperlink>
+        <asp:hyperlink id="dayNext" runat="server" class="day-next c_b"></asp:hyperlink>
+    </div>
     <div class="row row-chart-intro">
     <div id="divNotStarted" class="text-center" runat="server" Visible="false"><h2>Your program will not start until the next Monday</h2></div>
         <div class="col-sm-12" id="divMeasurement" runat="server">
@@ -217,7 +221,7 @@ Taking front and side photo:<br />
 </div>
     <div runat="server" id="divProgressPhotoWeek1" class="d-flex row mb-4">
         <div class="align-self-sm-center flex-column col-md-3">
-            <h3 class="c_p">WEEK 1</h3>
+            <h3 class="c_p">WEEK 0</h3>
             
             
         </div>
@@ -228,7 +232,7 @@ Taking front and side photo:<br />
 
     <div runat="server" id="divProgressPhotoWeek5" class="d-flex row mb-4">
         <div class="align-self-sm-center flex-column  col-md-3">
-            <h3 class="c_p">WEEK 5</h3>
+            <h3 class="c_p">WEEK 4</h3>
             
             
         </div>
@@ -239,7 +243,7 @@ Taking front and side photo:<br />
 
     <div runat="server" id="divProgressPhotoWeek8" class="d-flex row mb-4">
         <div class="align-self-sm-center flex-column  col-md-3">
-            <h3 class="c_p">WEEK 8</h3>
+            <h3 class="c_p">WEEK 7</h3>
             
             
         </div>
@@ -250,7 +254,7 @@ Taking front and side photo:<br />
 
     <div runat="server" id="divProgressPhotoWeek11" class="d-flex row mb-4">
         <div class="align-self-sm-center flex-column  col-md-3">
-            <h3 class="c_p">WEEK 11</h3>
+            <h3 class="c_p">WEEK 10</h3>
             
             
         </div>
@@ -276,47 +280,7 @@ Taking front and side photo:<br />
 <asp:FileUpload ID="backUpload" runat="server" style="display: none;" />
     <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click"  style="display: none;" />
 </div>
-<script>
-    $('#<%= Image11.ClientID %>').click(function () {
-        document.getElementById('<%= frontUpload.ClientID %>').click();
-    });
-    $('#<%= Image12.ClientID %>').click(function () {
-        document.getElementById('<%= sideUpload.ClientID %>').click();
-    });
-    $('#<%= Image13.ClientID %>').click(function () {
-        document.getElementById('<%= backUpload.ClientID %>').click();
-    });
-
-    $('#<%= Image51.ClientID %>').click(function () {
-        document.getElementById('<%= frontUpload.ClientID %>').click();
-    });
-    $('#<%= Image52.ClientID %>').click(function () {
-        document.getElementById('<%= sideUpload.ClientID %>').click();
-    });
-    $('#<%= Image53.ClientID %>').click(function () {
-        document.getElementById('<%= backUpload.ClientID %>').click();
-    });
-	
-    $('#<%= Image81.ClientID %>').click(function () {
-        document.getElementById('<%= frontUpload.ClientID %>').click();
-    });
-    $('#<%= Image82.ClientID %>').click(function () {
-        document.getElementById('<%= sideUpload.ClientID %>').click();
-    });
-    $('#<%= Image83.ClientID %>').click(function () {
-        document.getElementById('<%= backUpload.ClientID %>').click();
-    });
-	
-    $('#<%= Image111.ClientID %>').click(function () {
-        document.getElementById('<%= frontUpload.ClientID %>').click();
-    });
-    $('#<%= Image112.ClientID %>').click(function () {
-        document.getElementById('<%= sideUpload.ClientID %>').click();
-    });
-    $('#<%= Image113.ClientID %>').click(function () {
-        document.getElementById('<%= backUpload.ClientID %>').click();
-    });
-	
+<script>	
     $('#<%= Image1.ClientID %>').click(function () {
         document.getElementById('<%= frontUpload.ClientID %>').click();
     });

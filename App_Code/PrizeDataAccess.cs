@@ -256,6 +256,22 @@ public class PrizeDataAccess
         }
     }
 
+    public MemberExercisePlanWeek GetMemberPlanWeekByMemberPlanAndWeek(int memberPlanId, int week)
+    {
+        try
+        {
+            db.Database.Connection.Open();
+            MemberExercisePlanWeek memberPlanWeek = (from c in db.MemberExercisePlanWeeks
+                                                     where c.MemberExercisePlanId == memberPlanId && c.Week == week
+                                                     select c).FirstOrDefault();
+            return memberPlanWeek;
+        }
+        finally
+        {
+            db.Database.Connection.Close();
+        }
+    }
+
     public bool MemberInOrientation(int memberId)
     {
         try

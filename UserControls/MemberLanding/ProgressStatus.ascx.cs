@@ -12,6 +12,7 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 {
     MemberExercisePlanWeek _MemberPlanWeek;
     PrizeExercisePlanWeek _PlanWeek;
+    int memberPlanWeekId;
 
     PrizeDataAccess dbAccess = new PrizeDataAccess();
 
@@ -21,11 +22,6 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        /*
-		//Handled in BaseOrientation//
-		if (PrizeMemberAuthUtils.CurrentUserLogin() != true)
-            return;
-		*/
         int memberId = PrizeMemberAuthUtils.GetMemberID();
 
 		var exercisePlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
@@ -34,9 +30,13 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
             PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberId);
             PrizeMemberPlanManager planMan = new PrizeMemberPlanManager();
             Response.Redirect(planMan.GetEmptyPlanJumpURL(member));
-        }	
-        
-        _MemberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId); //(MemberExercisePlanWeek)Session["MemberPlanWeek"];
+        }
+
+        if (int.TryParse(Request["MemberPlanWeekId"], out memberPlanWeekId))
+            _MemberPlanWeek = dbAccess.GetMemberPlanWeekById(memberPlanWeekId);
+
+        if (_MemberPlanWeek == null)
+            _MemberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId); 
 
         if (_MemberPlanWeek == null)
         {
@@ -57,12 +57,15 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 
             _PlanWeek = dbAccess.GetExercisePlanWeek(_MemberPlanWeek.ExercisePlanWeekId);
 
-            iWeekNum = _MemberPlanWeek.Week;
+            iWeekNum = this.GetLatestMeasurementWeekNum(_MemberPlanWeek.Week);
+
+            if (iWeekNum != _MemberPlanWeek.Week)
+                _MemberPlanWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(_MemberPlanWeek.MemberExercisePlanId, iWeekNum);
 
             if (!PrizeConstants.WEEKS_NEEDS_RESULT.Contains(iWeekNum))
                 divMeasurement.Visible = false;
 
-            //lblWeekNum.Text = iWeekNum.ToString();
+            lblWeekNum.Text = iWeekNum.ToString();
             //lblWeekNum2.Text = lblWeekNum.Text;
             lblWeekNum3.Text = iWeekNum.ToString();
 
@@ -75,6 +78,8 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
                 LoadMemberPhotos(iWeekNum, weekResults);
 
                 DrawProgressGraph((int)_MemberPlanWeek.MemberExercisePlanId, weekResults);
+
+                LoadPreNextLinks();
             }
 
 			
@@ -228,6 +233,34 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
             weekResult.EndHeartRate = heartRate;
         }
         db.SaveChanges();
+    }
+
+    protected void LoadPreNextLinks()
+    {
+        int iWeek = this.GetLatestMeasurementWeekNum(iWeekNum - 1);
+        if (iWeek != iWeekNum && iWeek >= 0)
+        {
+            var prevWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(_MemberPlanWeek.MemberExercisePlanId, iWeek);
+            dayPre.NavigateUrl = "/my-account/progress-status?MemberPlanWeekID=" + prevWeek.Id;
+            dayPre.Text = "Week " + (iWeek);
+        }
+        else
+            dayPre.Attributes.Add("class", "no-arrow");
+
+        iWeek = this.GetNextMeasurementWeekNum(iWeekNum);
+        if (iWeek != iWeekNum)
+        {
+            var nextWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(_MemberPlanWeek.MemberExercisePlanId, iWeek);
+            if (nextWeek != null && !nextWeek.Status.Equals(PrizeConstants.STATUS_PLAN_NOT_STARTED))
+            {
+                dayNext.NavigateUrl = "/my-account/progress-status?MemberPlanWeekID=" + nextWeek.Id;
+                dayNext.Text = "Week " + (iWeek);
+            }
+            else
+                dayNext.Attributes.Add("class", "no-arrow");
+        }
+        else
+            dayNext.Attributes.Add("class", "no-arrow");
     }
 
     protected void LoadWeeklyResult(DIYPTEntities db)
@@ -663,7 +696,6 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 
     }
 
-
     protected string GetDrawText(PrizeConstants.GraphDrawType drawType)
     {
         string s = "";
@@ -679,4 +711,32 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
             s = "Chest (cm)";
         return s;
     }
+
+    protected int GetLatestMeasurementWeekNum(int iWeek)
+    {
+        int i = PrizeConstants.WEEKS_NEEDS_RESULT.Length - 1;
+        for (; i >= 0; i--)
+        {
+            if (iWeek >= PrizeConstants.WEEKS_NEEDS_RESULT[i])
+            {
+                iWeek = PrizeConstants.WEEKS_NEEDS_RESULT[i];
+                return iWeek;
+            }
+        }
+        return iWeek;
+    }
+
+    protected int GetNextMeasurementWeekNum(int iWeek)
+    {
+        for (int i = 0; i < PrizeConstants.WEEKS_NEEDS_RESULT.Length; i++)
+        {
+            if (iWeek < PrizeConstants.WEEKS_NEEDS_RESULT[i])
+            {
+                iWeek = PrizeConstants.WEEKS_NEEDS_RESULT[i];
+                return iWeek;
+            }
+        }
+        return iWeek;
+    }
+
 }
