@@ -507,8 +507,8 @@ public class PrizeEmailWrapper
 							break;
 					}
 					availableStatus = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-                    dtBegin = now.AddDays(-1);
-                    dtEnd = now.AddDays(0);
+                    dtBegin = now.AddDays(0);
+                    dtEnd = now.AddDays(1);
                     var memberPlanWithWeeks = from c in db.MemberExercisePlans
 										  join b in db.MemberExercisePlanWeeks on c.Id equals b.MemberExercisePlanId
 										  where c.Status.Equals(availableStatus) && b.Week == weekNum && dtBegin <= b.StartDate && dtEnd >= b.StartDate //&& PrizeCommonUtils.LessThanDaysAhead(now, b.StartDate, 0)
