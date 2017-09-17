@@ -144,7 +144,6 @@
                             <div class="weekly-td-time" id="timeDay1" runat="server">
                                 <img class="icon-time" src="/images/icon-time-b.svg" />
                                 <asp:label id="lblTimeDuration1" runat="server" />
-                                mins
                             </div>
                         </td>
                         <td>
@@ -155,7 +154,6 @@
                             <div class="weekly-td-time" id="timeDay2" runat="server">
                                 <img class="icon-time" src="/images/icon-time-b.svg" />
                                 <asp:label id="lblTimeDuration2" runat="server" />
-                                mins
                             </div>
                         </td>
                         <td>
@@ -166,7 +164,6 @@
                             <div class="weekly-td-time" id="timeDay3" runat="server">
                                 <img class="icon-time" src="/images/icon-time-b.svg" />
                                 <asp:label id="lblTimeDuration3" runat="server" />
-                                mins
                             </div>
                         </td>
                         <td>
@@ -177,7 +174,6 @@
                             <div class="weekly-td-time" id="timeDay4" runat="server">
                                 <img class="icon-time" src="/images/icon-time-b.svg" />
                                 <asp:label id="lblTimeDuration4" runat="server" />
-                                mins
                             </div>
                         </td>
                         <td>
@@ -188,7 +184,6 @@
                             <div class="weekly-td-time" id="timeDay5" runat="server">
                                 <img class="icon-time" src="/images/icon-time-b.svg" />
                                 <asp:label id="lblTimeDuration5" runat="server" />
-                                mins
                             </div>
                         </td>
                         <td>
@@ -199,7 +194,6 @@
                             <div class="weekly-td-time" id="timeDay6" runat="server">
                                 <img class="icon-time" src="/images/icon-time-b.svg" />
                                 <asp:label id="lblTimeDuration6" runat="server" />
-                                mins
                             </div>
                         </td>
                         <td>
@@ -210,7 +204,6 @@
                             <div class="weekly-td-time" id="timeDay7" runat="server">
                                 <img class="icon-time" src="/images/icon-time-b.svg" />
                                 <asp:label id="lblTimeDuration7" runat="server" />
-                                mins
                             </div>
                         </td>
                     </tr>
@@ -233,7 +226,7 @@
                         </div>
                         <div class="col-12 hidden-md-up" >
                             <div class="row">
-                                <div class="col-12 col-arrow-blue" data-toggle="collapse" data-target="#collapseExample"
+                                <div class="col-12 col-arrow-blue collapsed" data-toggle="collapse" data-target="#collapseExample"
                             aria-expanded="false" aria-controls="collapseExample">
                                     <h5 class="pt-3 ">
                                         <img class="icon-equip" src="/images/icon-equip.svg"><strong>Equipment Needed</strong></h5>

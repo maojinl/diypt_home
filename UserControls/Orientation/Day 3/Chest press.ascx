@@ -18,26 +18,30 @@
             <h1 class="text-center mb-3">GET FAMILIAR WITH THE PUSH EXERCISE</h1>
            
             <p>Today’s movement from the 7 primal movement patterns is a push exercise. However, depending on your program, I want you to focus on a particular variation of a push exercise.</p>
-            <div class="row loc-home pg-t pg-l">
+        <div class="row loc-home pg-t pg-l">
                 <div class="col-md-4 ori-1-3-demo mb-4">
                     <a href="#" data-toggle="modal" data-target="#exerciseModal1">
                         <asp:Image runat="server" ID="imgExercise1" CssClass="img-fluid" /></a>
-                    <h4 class="sec c_y mt-2 mb-2">BEGINNER</h4>
-                    <p><strong><asp:Label ID="lblExercise1" runat="server"></asp:Label></strong></p>
+                    <h4 class="sec c_y mt-2 text-center">BEGINNER</h4>
+                    <p class="text-center"><strong><asp:Label ID="lblExercise1" runat="server"></asp:Label></strong></p>
+                     <p class="text-center"><a class="c_y " href="#" data-toggle="modal" data-target="#exerciseModal1">view demo > </a></p>
                 </div>
                 <div class="col-md-4 ori-1-3-demo mb-4">
                     <a href="#" data-toggle="modal" data-target="#exerciseModal2">
                         <asp:Image runat="server" ID="imgExercise2" CssClass="img-fluid" /></a>
-                    <h4 class="sec c_y mt-2 mb-2">INTERMEDIATE</h4>
-                    <p><strong><asp:Label ID="lblExercise2" runat="server"></asp:Label></strong></p>
+                    <h4 class="sec c_y mt-2 text-center">INTERMEDIATE</h4>
+                    <p class="text-center"><strong><asp:Label ID="lblExercise2" runat="server"></asp:Label></strong></p>
+                     <p class="text-center"><a class="c_y " href="#" data-toggle="modal" data-target="#exerciseModal2">view demo > </a></p>
                 </div>
                 <div class="col-md-4 ori-1-3-demo mb-4">
                     <a href="#" data-toggle="modal" data-target="#exerciseModal3">
                         <asp:Image runat="server" ID="imgExercise3" CssClass="img-fluid" /></a>
-                    <h4 class="sec c_y mt-2 mb-2">ADVANCED</h4>
-                    <p><strong><asp:Label ID="lblExercise3" runat="server"></asp:Label></strong></p>
+                    <h4 class="sec c_y mt-2 text-center">ADVANCED</h4>
+                    <p class="text-center"><strong><asp:Label ID="lblExercise3" runat="server"></asp:Label></strong></p>
+                     <p class="text-center"><a class="c_y " href="#" data-toggle="modal" data-target="#exerciseModal3">view demo > </a></p>
                 </div>
             </div>
+
 
 
             <hr />

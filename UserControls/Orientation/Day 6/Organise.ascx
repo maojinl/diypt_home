@@ -36,7 +36,7 @@
                     <ul class="list list-left">
                         <li>Early morning training is best because you can get it out of the way and you’ll be less likely be interrupted by a phone call or event that requires your urgent attention.</li>
                         <li>Prepare your workout times by checking your schedule regularly.</li>
-                        <li>Fill your sandbags with sand. One bag should weigh 20kg and the other should weigh 10kg. Make sure you gohper tape them to increase durability. Click this video - <a href="#" data-toggle="modal" data-target="#timeModal3" class="c_y">How to make a sandbag</a> for instruction. If it's easier for you to purchase one, you can get one from a department store like K-Mart or Aldi for less than $40 each.</li>
+						<li>Fill your sandbag with sand or pool salt ($7.90 for 25kg from Bunnings).You should have three bags, 10kg, 15kg and 20kg. Make sure you gaffa tape them to increase durability. Click here for instructions on <a href="#" data-toggle="modal" data-target="#timeModal3" class="c_y">how to create your sandbag</a>.</li>
                     </ul>
                     <div class="bg_grey d-flex justify-content-start bd-highlight mb-3">
                         <div class="p-2 bd-highlight">

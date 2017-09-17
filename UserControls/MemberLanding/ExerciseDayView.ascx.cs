@@ -83,13 +83,49 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
         }
         if (lblDayTypeName.Text.ToLower() == PrizeConstants.STR_NO_TRAINNING.ToLower())
 		{
-            divWarmup.Visible = divCooldown.Visible = false;
+            divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
 			divRest.Visible = true;
 		}
-		if(lblDayTypeName.Text == "Time to celebrate")
+		switch(lblDayTypeName.Text.Trim())
 		{
-            divWarmup.Visible = divCooldown.Visible = false;
-			divRest.Visible = true;
+			case "Time to celebrate":
+		        divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divRest.Visible = true;
+				break;
+			case "30min brisk walk":
+			case "Brisk walk":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divWalk.Visible = true;
+				break;
+			case "30-60min weekend physical activity":
+			case "Weekend physical activity":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divWeekend.Visible = true;
+				break;
+			case "Own 1hr cardio":
+			case "Own training":
+			case "Own cardio":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divCardio.Visible = true;
+				break;
+			case "Milestone workout = 20x pushups, squats, situps":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divSquat.Visible = true;
+				break;
+			case "Milestone workout = 20 pushups & make your bed":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divPushup.Visible = true;
+				break;
+			case "Measurement day and rest":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divMeasurement.Visible = true;
+				break;
+			case "Milestone workout = 20 star jumps & make your bed":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				//divMeasurement.Visible = true;
+				break;
+			default:
+				break;
 		}
         lblDay.Text = PrizeCommonUtils.ParseWeekDayToEnglish(iDay);
         if (iDay > 1)

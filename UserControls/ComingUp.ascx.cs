@@ -70,9 +70,8 @@ public partial class UserControls_ComingUp : BaseOrientation
             }
             for (int d = 1; d <= 7; d++)
             {
-                if (nextSunday.AddDays(counter-7).Date == PrizeCommonUtils.GetSystemDate())
+                if (nextSunday.AddDays(counter).Date == PrizeCommonUtils.GetSystemDate().Date)
                 {
-
                     HtmlTableCell tempLabel = this.FindControl(string.Format("w{0}d{1}", i, d)) as HtmlTableCell;
                     if (tempLabel != null)
                         tempLabel.Attributes.Add("class", tempLabel.Attributes["class"] + " active");

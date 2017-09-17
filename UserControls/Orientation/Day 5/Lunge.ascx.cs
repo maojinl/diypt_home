@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -47,9 +47,9 @@ public partial class UserControls_Orientation_Day_5_Lunge : BaseOrientation
                     tempScript += @"$('#exerciseModal1').load('/exercise/Alternate-lunges');
                     $('#exerciseModal2').load('/exercise/Walking-lunges');
                     $('#exerciseModal3').load('/exercise/Alternating-reverse-lunge');";
-                    imgExercise1.ImageUrl = "/media/14979/landscape_alternate_lunges_step1.jpg";
-                    imgExercise2.ImageUrl = "/media/15076/landscape_walking_lunges.jpg";
-                    imgExercise3.ImageUrl = "/media/14979/landscape_alternate_lunges_step1.jpg";
+                    imgExercise1.ImageUrl = "/media/14977/landscape_alternate_lunges_step3.jpg";
+                    imgExercise2.ImageUrl = "/media/15198/landscape_walking_lunges.jpg";
+                    imgExercise3.ImageUrl = "/media/14977/landscape_alternate_lunges_step3.jpg";
 
                     lblExercise1.Text = "Alternate lunges";
                     lblExercise2.Text = "Walking lunges";
@@ -60,9 +60,9 @@ public partial class UserControls_Orientation_Day_5_Lunge : BaseOrientation
                     tempScript += @"$('#exerciseModal1').load('/exercise/Alternate-lunges');
                     $('#exerciseModal2').load('/exercise/Walking-lunges');
                     $('#exerciseModal3').load('/exercise/Alternating-reverse-lunge');";
-                    imgExercise1.ImageUrl = "/media/14979/landscape_alternate_lunges_step1.jpg";
-                    imgExercise2.ImageUrl = "/media/15076/landscape_walking_lunges.jpg";
-                    imgExercise3.ImageUrl = "/media/14979/landscape_alternate_lunges_step1.jpg";
+                    imgExercise1.ImageUrl = "/media/14977/landscape_alternate_lunges_step3.jpg";
+                    imgExercise2.ImageUrl = "/media/15198/landscape_walking_lunges.jpg";
+                    imgExercise3.ImageUrl = "/media/14977/landscape_alternate_lunges_step3.jpg";
 
                     lblExercise1.Text = "Alternate lunges";
                     lblExercise2.Text = "Walking lunges";
@@ -77,9 +77,9 @@ public partial class UserControls_Orientation_Day_5_Lunge : BaseOrientation
                     tempScript += @"$('#exerciseModal1').load('/exercise/Alternate-lunges');
                     $('#exerciseModal2').load('/exercise/Walking-lunges');
                     $('#exerciseModal3').load('/exercise/side-lunge');";
-                    imgExercise1.ImageUrl = "/media/14979/landscape_alternate_lunges_step1.jpg";
-                    imgExercise2.ImageUrl = "/media/15076/landscape_walking_lunges.jpg";
-                    imgExercise3.ImageUrl = "/media/13769/landscape_side_lunge_step1.jpg";
+                    imgExercise1.ImageUrl = "//media/14977/landscape_alternate_lunges_step3.jpg";
+                    imgExercise2.ImageUrl = "/media/15198/landscape_walking_lunges.jpg";
+                    imgExercise3.ImageUrl = "/media/14977/landscape_alternate_lunges_step3.jpg";
 
                     lblExercise1.Text = "Alternate lunges";
                     lblExercise2.Text = "Walking lunges";
@@ -91,9 +91,9 @@ public partial class UserControls_Orientation_Day_5_Lunge : BaseOrientation
                     tempScript += @"$('#exerciseModal1').load('/exercise/Alternate-lunges');
                     $('#exerciseModal2').load('/exercise/Walking-lunges');
                     $('#exerciseModal3').load('/exercise/side-lunge');";
-                    imgExercise1.ImageUrl = "/media/14979/landscape_alternate_lunges_step1.jpg";
-                    imgExercise2.ImageUrl = "/media/15076/landscape_walking_lunges.jpg";
-                    imgExercise3.ImageUrl = "/media/13769/landscape_side_lunge_step1.jpg";
+                    imgExercise1.ImageUrl = "/media/14977/landscape_alternate_lunges_step3.jpg";
+                    imgExercise2.ImageUrl = "/media/15198/landscape_walking_lunges.jpg";
+                    imgExercise3.ImageUrl = "/media/14977/landscape_alternate_lunges_step3.jpg";
 
                     lblExercise1.Text = "Alternate lunges";
                     lblExercise2.Text = "Walking lunges";

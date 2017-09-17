@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Measurement.ascx.cs" Inherits="UserControls_Orientation_Day_2_Measurement" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Measurement.ascx.cs" Inherits="UserControls_Orientation_Day_2_Measurement" %>
 <div class="tab-inner-content">
     <div class="d-flex justify-content-end content-nav-action sec mb-4">
         <a id="dayView2" class="c_grey" href="/orientation/day-2"> <img src="/images/icon-back-g.svg" /><span class="hidden-sm-down sec">BACK TO DAY VIEW ></span></a>
@@ -15,8 +15,9 @@
     </div>
   <h1 class="text-center pb-4">MEASUREMENT</h1>
     <div class="row">
-        <div class="col-12 text-center">
-        <a href="/my-account/progress-status#tab-bx-progress" target="_blank">Update my measurements</a>
+        <div class="col-12 text-center">To know how far you need to go, you need to know where you started. 
+<br />Enter your first set of measurements.
+        <a href="/my-account/progress-status#tab-bx-progress" target="_blank" style="color:#e69531">Enter Now></a>
         </div>
         </div>
     <div class="row pb-4 pt-4">

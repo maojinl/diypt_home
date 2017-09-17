@@ -44,7 +44,7 @@ public partial class UserControls_Orientation_Day_1_Get_Familiar_with_the_squat 
                     tempScript += @"$('#exerciseModal1').load('/exercise/squat');
                     $('#exerciseModal2').load('/exercise/powerband-front-squat');
                     $('#exerciseModal3').load('/exercise/powerband-back-squat');";
-                    imgExercise1.ImageUrl = "/media/13731/landscape_body_weight_squat_step1.jpg";
+                    imgExercise1.ImageUrl = "/media/15196/landscape_bw_squat_step1.jpg";
                     imgExercise2.ImageUrl = "/media/14724/landscape_powerband_front_raise_step1.jpg";
                     imgExercise3.ImageUrl = "/media/14739/landscape_powerband_back_squat_step1.jpg";
 
@@ -57,7 +57,7 @@ public partial class UserControls_Orientation_Day_1_Get_Familiar_with_the_squat 
                     tempScript += @"$('#exerciseModal1').load('/exercise/squat');
                     $('#exerciseModal2').load('/exercise/bb-back-squat');
                     $('#exerciseModal3').load('/exercise/bb-front-squat');";
-                    imgExercise1.ImageUrl = "/media/13731/landscape_body_weight_squat_step1.jpg";
+                    imgExercise1.ImageUrl = "/media/15196/landscape_bw_squat_step1.jpg";
                     imgExercise2.ImageUrl = "/media/13366/landscape_bb_back_squat_step1.jpg";
                     imgExercise3.ImageUrl = "/media/13373/landscape_bb_front_squat_step1.jpg";
                     lblExercise1.Text = "BW squat";
@@ -72,7 +72,7 @@ public partial class UserControls_Orientation_Day_1_Get_Familiar_with_the_squat 
                     tempScript += @"$('#exerciseModal1').load('/exercise/squat');
                     $('#exerciseModal2').load('/exercise/bb-pulse-squat');
                     $('#exerciseModal3').load('/exercise/bb-front-squat');";
-                    imgExercise1.ImageUrl = "/media/13731/landscape_body_weight_squat_step1.jpg";
+                    imgExercise1.ImageUrl = "/media/15196/landscape_bw_squat_step1.jpg";
                     imgExercise2.ImageUrl = "/media/14673/landscape_bb_pulse_squat.jpg";
                     imgExercise3.ImageUrl = "/media/13373/landscape_bb_front_squat_step1.jpg";
                     lblExercise1.Text = "BW squat";
@@ -84,7 +84,7 @@ public partial class UserControls_Orientation_Day_1_Get_Familiar_with_the_squat 
                     tempScript += @"$('#exerciseModal1').load('/exercise/squat');
                     $('#exerciseModal2').load('/exercise/bb-back-squat');
                     $('#exerciseModal3').load('/exercise/bb-front-squat');";
-                    imgExercise1.ImageUrl = "/media/13731/landscape_body_weight_squat_step1.jpg";
+                    imgExercise1.ImageUrl = "/media/15196/landscape_bw_squat_step1.jpg";
                     imgExercise2.ImageUrl = "/media/13366/landscape_bb_back_squat_step1.jpg";
                     imgExercise3.ImageUrl = "/media/13373/landscape_bb_front_squat_step1.jpg";
                     lblExercise1.Text = "BW squat";

@@ -18,7 +18,7 @@
         <div class="col-10 push-sm-1">
             <div class="row mb-4">
                 <div class="col-12">
-                    <p> Welcome to DIYPT. You’ve joined a thousand plus strong community of DIYPTers. If you are like me and want to get the biggest bang for your buck and get the best results from your program, then I highly recommend you get involved with our community by completing the <strong>“Introduce yourself” </strong>actions and actively using your <strong>Revitalise Me</strong> zone.</p>
+                    <p> Welcome to DIYPT. You've joined a thousand plus strong community of DIYPTers. If you are like me and want to get the biggest bang for your buck and get the best results from your program, then I highly recommend you get involved with our community by completing the <strong>“Introduce yourself” </strong>actions and actively using your <strong>Revitalise Me</strong> zone.</p>
                     <p>I would like you to do 3 ACTIONS to allow you to get the most out of your program:</p>
                 </div>
             </div>

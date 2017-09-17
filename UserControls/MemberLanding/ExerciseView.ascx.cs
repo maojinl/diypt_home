@@ -321,6 +321,34 @@ public partial class UserControls_MemberLanding_ExerciseView : BaseOrientation
                 iTimeDuration = iTimeDuration + 10 + 5; // +10 warm up; +5 cool down
             lblTimeDuration[i].Text = "" + iTimeDuration;
         }
+		
+        for (int i = 0; i < 7; i++)
+        {
+			switch(labels[i].Text)
+			{
+				case "Brisk walk":
+					lblTimeDuration[i].Text = "30 mins";
+					break;
+					
+				case "Own 1hr cardio":
+				case "Own training":
+				case "Own cardio":
+					lblTimeDuration[i].Text = "60 mins";
+					break;
+					
+				case "30-60min weekend physical activity":
+				case "Weekend physical activity":
+					lblTimeDuration[i].Text = "30-60 mins";
+					break;
+				case "Rest Day":
+					lblTimeDuration[i].Text = "All Day";
+					break;
+					
+				default:
+					lblTimeDuration[i].Text += " mins";
+					break;
+			}
+		}
     }
 
 
