@@ -128,6 +128,7 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
 				break;
 		}
         lblDay.Text = PrizeCommonUtils.ParseWeekDayToEnglish(iDay);
+        MemberExercisePlan myPlan = dbAccess.GetMemberExercisePlan(memberPlanWeek.MemberExercisePlanId);
         if (iDay > 1)
         {
             preDay.NavigateUrl = (String.Format("{0}?PlanWeekId={1}&MemberPlanWeekId={2}&PlanDayNumber={3}", PrizeConstants.URL_MEMBER_DAY_VIEW, iPlanWeekId, memberPlanWeekId, iDay - 1));
@@ -135,7 +136,7 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
         }
         else
         {
-            MemberExercisePlan myPlan = dbAccess.GetMemberExercisePlan(memberPlanWeek.MemberExercisePlanId);
+            
             MemberExercisePlanWeek prevWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(myPlan.Id, memberPlanWeek.Week - 1);
             if (prevWeek != null)
             {
@@ -153,7 +154,6 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
         }
         else
         {
-            MemberExercisePlan myPlan = dbAccess.GetMemberExercisePlan(memberPlanWeek.MemberExercisePlanId);
             MemberExercisePlanWeek nextWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(myPlan.Id, memberPlanWeek.Week + 1);
             if (nextWeek != null)
             {

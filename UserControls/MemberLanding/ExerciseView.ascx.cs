@@ -121,23 +121,21 @@ public partial class UserControls_MemberLanding_ExerciseView : BaseOrientation
         dayView.HRef = dbAccess.GetCurrentDailyViewURL(memberId);
         LoadWeeklyInfo(memberId, planWeek, memberPlanWeek);
 
-        dbAccess.GetNextAndPrevPlanWeek(memberPlanWeek, ref prevMemberPlanWeekId, ref nextMemberPlanWeekId);
-        if (prevMemberPlanWeekId != -1)
+        MemberExercisePlan myPlan = dbAccess.GetMemberExercisePlan(memberPlanWeek.MemberExercisePlanId);
+        MemberExercisePlanWeek prevWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(myPlan.Id, memberPlanWeek.Week - 1);
+        if (prevWeek != null)
         {
-            dayPre.NavigateUrl = "/my-account/exercise-view?MemberPlanWeekID=" + prevMemberPlanWeekId;
-            if (planWeek != null)
-                dayPre.Text = "Week " + (memberPlanWeek.Week -1);
+            dayPre.NavigateUrl = "/my-account/exercise-view?MemberPlanWeekID=" + prevWeek.Id;
+            dayPre.Text = "Week " + (memberPlanWeek.Week -1);
         }
         else
             dayPre.Attributes.Add("class", "no-arrow");
 
-        if (nextMemberPlanWeekId != -1)
+        MemberExercisePlanWeek nextWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(myPlan.Id, memberPlanWeek.Week + 1);
+        if (nextWeek != null)
         {
-            dayNext.NavigateUrl = "/my-account/exercise-view?MemberPlanWeekID=" + nextMemberPlanWeekId;
-            if (planWeek != null)
-                dayNext.Text = "Week " + (memberPlanWeek.Week + 1);
-            else
-                dayNext.Text = "Week 1";
+            dayNext.NavigateUrl = "/my-account/exercise-view?MemberPlanWeekID=" + nextWeek.Id;
+            dayNext.Text = "Week " + (memberPlanWeek.Week + 1);
         }
         else
             dayNext.Attributes.Add("class", "no-arrow");
