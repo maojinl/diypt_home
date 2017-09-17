@@ -7,16 +7,14 @@ using System.Web.UI.WebControls;
 
 public partial class UserControls_Management_MemberResult : System.Web.UI.UserControl
 {
+    int memberId;
     protected void Page_Load(object sender, System.EventArgs e)
     {
+        
         if (!this.IsPostBack)
         {
-
-
-
+            memberId = Convert.ToInt32(Session["MID"]);
             this.BindGrid();
-
-
         }
     }
 
@@ -27,13 +25,13 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
         {
             db.Database.Connection.Open();
             {
-                int id = Convert.ToInt32(Session["MID"]);
+                
                 var languages = from a in db.MemberPlanWeekResults
                                 join b in db.PrizeMembers on a.MemberId equals b.UmbracoId
                                 join c in db.MemberExercisePlanWeeks on a.MemberExercisePlanWeekId equals c.Id
                                 join d in db.MemberExercisePlans on c.MemberExercisePlanId equals d.Id
                                 join e in db.PrizeExercisePlans on d.ExercisePlanId equals e.Id
-                                where a.MemberId == id
+                                where a.MemberId == memberId
                                 orderby c.StartDate
                                 select new
                                 {
@@ -144,4 +142,21 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
         this.BindGrid();
     }
 
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        var sTargetLevel = ddlLevel.Text;
+        PrizeMemberPlanManager man = new PrizeMemberPlanManager();
+        PrizeDataAccess dbAccess = new PrizeDataAccess();
+        MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(memberId);
+        if (myPlan == null)
+        {
+            Response.Write("<script>alert('Can't find the user's plan.');</script>");
+            return;
+        }
+
+        man.ChangeMemberPlanLevel(myPlan.Id, sTargetLevel);
+        Response.Write("<script>alert('The user's level has been changed to "+sTargetLevel+");</script>");
+
+    }
 }
