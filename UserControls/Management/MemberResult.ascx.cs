@@ -128,7 +128,7 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
     }
 
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void btnChangeLevel_Click(object sender, EventArgs e)
     {
         var sTargetLevel = ddlLevel.Text;
         PrizeMemberPlanManager man = new PrizeMemberPlanManager();
