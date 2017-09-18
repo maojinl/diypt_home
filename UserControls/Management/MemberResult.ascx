@@ -1,4 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="MemberResult.ascx.cs" Inherits="UserControls_Management_MemberResult" %>
+<style type="text/css">
+    .auto-style1 {
+        width: 308px;
+    }
+</style>
 <table>
     <tr>
         <td>
@@ -9,7 +14,7 @@
         <td>
           <asp:Label ID="Label1" runat="server" Text="Calories:" />
         </td>
-        <td>
+        <td class="auto-style1">
             <asp:TextBox ID="tbFood1" runat="server" Width="300px" />
 
         </td>
@@ -20,7 +25,7 @@
         <td>
           <asp:Label ID="Label2" runat="server" Text="Protein:" />
         </td>
-        <td>
+        <td class="auto-style1">
             <asp:TextBox ID="tbFood2" runat="server" Width="300px" />
         </td>
     </tr>
@@ -28,7 +33,7 @@
         <td>
           <asp:Label ID="Label3" runat="server" Text="Carbohydrate:" />
         </td>
-        <td>
+        <td class="auto-style1">
             <asp:TextBox ID="tbFood3" runat="server" Width="300px" />
         </td>
     </tr>
@@ -37,7 +42,7 @@
         <td>
           <asp:Label ID="Label4" runat="server" Text="Fats:" />
         </td>
-        <td>
+        <td class="auto-style1">
             <asp:TextBox ID="tbFood4" runat="server" Width="300px" />
         </td>
     </tr>
@@ -45,9 +50,25 @@
          <td>
             
         </td>
-         <td>
+         <td class="auto-style1">
               <asp:Button runat="server" ID="btnSave" OnClick="Save" Text="Save" />
              &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button runat="server" ID="btnrefresh" OnClick="refresh" Text="Refresh" />
+        </td>
+
+    </tr>
+
+
+          <tr>
+         <td>
+            
+             Change Level</td>
+         <td class="auto-style1">
+              <asp:DropDownList ID="ddlLevel" runat="server" Height="16px" Width="197px">
+                  <asp:ListItem>Beginner</asp:ListItem>
+                  <asp:ListItem>Intermediate</asp:ListItem>
+                  <asp:ListItem>Advanced</asp:ListItem>
+              </asp:DropDownList>
+              <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
         </td>
 
     </tr>

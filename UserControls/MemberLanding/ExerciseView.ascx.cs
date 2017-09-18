@@ -17,6 +17,8 @@ public partial class UserControls_MemberLanding_ExerciseView : BaseOrientation
     protected PrizeDataAccess dbAccess = new PrizeDataAccess();
     protected int currentPlanWeekId;
     protected int currentPlanId;
+    protected int prevMemberPlanWeekId;
+    protected int nextMemberPlanWeekId;
     protected int dayNumber;
     protected List<string> strEquipments;
     PrizeExercisePlanWeek planWeek;
@@ -129,7 +131,6 @@ public partial class UserControls_MemberLanding_ExerciseView : BaseOrientation
         else
             dayPre.Attributes.Add("class", "no-arrow");
 
-        
         MemberExercisePlanWeek nextWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(myPlan.Id, memberPlanWeek.Week + 1);
         if (nextWeek != null)
         {
