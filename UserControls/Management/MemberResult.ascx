@@ -68,7 +68,7 @@
                   <asp:ListItem>Intermediate</asp:ListItem>
                   <asp:ListItem>Advanced</asp:ListItem>
               </asp:DropDownList>
-              <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+              <asp:Button ID="btnChangeLevel" runat="server" Text="Change Level" OnClick="btnChangeLevel_Click" />
         </td>
 
     </tr>

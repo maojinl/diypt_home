@@ -10,12 +10,8 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
     int memberId;
     protected void Page_Load(object sender, System.EventArgs e)
     {
-        
-        if (!this.IsPostBack)
-        {
-            memberId = Convert.ToInt32(Session["MID"]);
-            this.BindGrid();
-        }
+        memberId = Convert.ToInt32(Session["MID"]);
+        this.BindGrid();
     }
 
 
@@ -90,14 +86,10 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
             db.Database.Connection.Open();
             {
                 int id = Convert.ToInt32(Session["MID"]);
-
-
-
                 var foodplanweek = db.MemberFoodPlanWeeks.FirstOrDefault(a => a.MemberId == id);
 
                 if (foodplanweek == null)
                 {
-
                     MemberFoodPlanWeek MemFoodPW = new MemberFoodPlanWeek();
                     MemFoodPW.MemberId = id;
                     MemFoodPW.MemberExercisePlanId = 1;
@@ -108,20 +100,13 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
                     MemFoodPW.StartWeek = 1;
                     MemFoodPW.EndWeek = 1;
                     db.MemberFoodPlanWeeks.Add(MemFoodPW);
-
-
                 }
                 else
                 {
-
-
-
                     foodplanweek.Food1 = tbFood1.Text;
                     foodplanweek.Food2 = tbFood2.Text;
                     foodplanweek.Food3 = tbFood3.Text;
                     foodplanweek.Food4 = tbFood4.Text;
-
-
                 }
 
                 db.SaveChanges();
@@ -143,7 +128,7 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
     }
 
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void btnChangeLevel_Click(object sender, EventArgs e)
     {
         var sTargetLevel = ddlLevel.Text;
         PrizeMemberPlanManager man = new PrizeMemberPlanManager();
@@ -152,11 +137,13 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
         if (myPlan == null)
         {
             Response.Write("<script>alert('Can't find the user's plan.');</script>");
-            return;
         }
-
-        man.ChangeMemberPlanLevel(myPlan.Id, sTargetLevel);
-        Response.Write("<script>alert('The user's level has been changed to "+sTargetLevel+");</script>");
-
+        else
+        {
+            if (!man.ChangeMemberPlanLevel(myPlan.Id, sTargetLevel))
+                Response.Write("<script>alert('The level of the current program not in the database.');</script>");
+            else
+                Response.Write("<script>alert('The user's level has been changed to " + sTargetLevel + ");</script>");
+        }
     }
 }
