@@ -63,7 +63,7 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
                 GridView1.DataBind();
 
 
-                var foodplanweek = db.MemberFoodPlanWeeks.FirstOrDefault(a => a.MemberId == id);
+                var foodplanweek = db.MemberFoodPlanWeeks.FirstOrDefault(a => a.MemberId == memberId);
 
 
                 if (foodplanweek != null)

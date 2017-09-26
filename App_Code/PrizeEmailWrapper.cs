@@ -587,8 +587,8 @@ public class PrizeEmailWrapper
 					switch (i)
 					{
 						case 1:
-							weekNum = 8;
-							emailType = PrizeConstants.EmailType.MeasurmentWeek8;
+							weekNum = 7;
+							emailType = PrizeConstants.EmailType.MeasurmentWeek7;
 							break;
 						case 2:
 							weekNum = 12;
@@ -639,8 +639,8 @@ public class PrizeEmailWrapper
 					switch (i)
 					{
 						case 1:
-							weekNum = 9;
-							emailType = PrizeConstants.EmailType.MeasurmentMissedWeek8;
+							weekNum = 8;
+							emailType = PrizeConstants.EmailType.MeasurmentMissedWeek7;
 							break;
 						case 2:
                             weekNum = 13;

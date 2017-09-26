@@ -94,8 +94,7 @@ public class PrizeEmailServiceThread : ApplicationEventHandler
     {
         try
         {
-            PrizeEmail.SendEmailByType(email.EmailAddress, emailType, emailSubject, additionalContents);
-            return true;
+            return PrizeEmail.SendEmailByType(email.EmailAddress, emailType, emailSubject, additionalContents);
         }
         catch (Exception e)
         {

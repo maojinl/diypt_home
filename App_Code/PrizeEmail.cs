@@ -104,6 +104,22 @@ Comment:
             nodeId = 6683;
         else if (emailType == PrizeConstants.EmailType.MileStoneGoalWeek13)
             nodeId = 9675;
+        else if (emailType == PrizeConstants.EmailType.MileStoneWeek6)
+            nodeId = 5381;
+        else if (emailType == PrizeConstants.EmailType.MileStoneWeek10)
+            nodeId = 5382;
+        else if (emailType == PrizeConstants.EmailType.MeasurmentWeek4)
+            nodeId = 6682;
+        else if (emailType == PrizeConstants.EmailType.MeasurmentWeek7)
+            nodeId = 9673;
+        else if (emailType == PrizeConstants.EmailType.MeasurmentWeek12)
+            nodeId = 9674;
+        else if (emailType == PrizeConstants.EmailType.MeasurmentMissedWeek4)
+            nodeId = 5383;
+        else if (emailType == PrizeConstants.EmailType.MeasurmentMissedWeek7)
+            nodeId = 5383;
+        else if (emailType == PrizeConstants.EmailType.MeasurmentMissedWeek12)
+            nodeId = 5383;
         else if (emailType == PrizeConstants.EmailType.FisrtDayOnWeek1)
             nodeId = 5378;
         else if (emailType == PrizeConstants.EmailType.ReviveMeEmail)
