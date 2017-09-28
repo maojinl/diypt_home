@@ -19,6 +19,7 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
     List<HtmlGenericControl> divs;
     List<List<Image>> imagesByWeek;
     int iWeekNum = 0;
+    List<MemberPlanWeekResult> WeekResults;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -51,83 +52,78 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
         sideUpload.Attributes["onchange"] = "UploadFile(this)";
         backUpload.Attributes["onchange"] = "UploadFile(this)";
 
-       
-        using (DIYPTEntities db = new DIYPTEntities())
+        _PlanWeek = dbAccess.GetExercisePlanWeek(_MemberPlanWeek.ExercisePlanWeekId);
+
+        iWeekNum = this.GetLatestMeasurementWeekNum(_MemberPlanWeek.Week);
+
+        if (iWeekNum != _MemberPlanWeek.Week)
+            _MemberPlanWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(_MemberPlanWeek.MemberExercisePlanId, iWeekNum);
+
+        if (!PrizeConstants.WEEKS_NEEDS_RESULT.Contains(iWeekNum))
+            divMeasurement.Visible = false;
+
+        lblWeekNum.Text = iWeekNum.ToString();
+        //lblWeekNum2.Text = lblWeekNum.Text;
+        lblWeekNum3.Text = iWeekNum.ToString();
+
+        if (!IsPostBack)
         {
+            WeekResults = dbAccess.GetMemberPlanResults(_MemberPlanWeek.MemberExercisePlanId);
 
-            _PlanWeek = dbAccess.GetExercisePlanWeek(_MemberPlanWeek.ExercisePlanWeekId);
+            LoadWeeklyResult(WeekResults);
 
-            iWeekNum = this.GetLatestMeasurementWeekNum(_MemberPlanWeek.Week);
+            LoadMemberPhotos(iWeekNum, WeekResults);
 
-            if (iWeekNum != _MemberPlanWeek.Week)
-                _MemberPlanWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(_MemberPlanWeek.MemberExercisePlanId, iWeekNum);
+            DrawProgressGraph((int)_MemberPlanWeek.MemberExercisePlanId, WeekResults);
 
-            if (!PrizeConstants.WEEKS_NEEDS_RESULT.Contains(iWeekNum))
-                divMeasurement.Visible = false;
-
-            lblWeekNum.Text = iWeekNum.ToString();
-            //lblWeekNum2.Text = lblWeekNum.Text;
-            lblWeekNum3.Text = iWeekNum.ToString();
-
-            List<MemberPlanWeekResult> weekResults = dbAccess.GetMemberPlanResults(_MemberPlanWeek.MemberExercisePlanId);
-
-            if (!IsPostBack)
-            {
-                LoadWeeklyResult(db);
-
-                LoadMemberPhotos(iWeekNum, weekResults);
-
-                DrawProgressGraph((int)_MemberPlanWeek.MemberExercisePlanId, weekResults);
-
-                LoadPreNextLinks();
-            }
+            LoadPreNextLinks();
+        }
 
 			
-	        MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
-			if(myPlan != null)
+	    MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
+		if(myPlan != null)
+		{
+			PrizeExercisePlan plan = dbAccess.GetExercisePlan(myPlan.ExercisePlanId);
+			if(plan != null)
 			{
-				PrizeExercisePlan plan = dbAccess.GetExercisePlan(myPlan.ExercisePlanId);
-				if(plan != null)
+				if (plan.PlanName.ToLower().Contains("muscle"))
 				{
-					if (plan.PlanName.ToLower().Contains("muscle"))
-					{
-						lblMeasurement3.Text = "Right arm biceps (cm)";
-						lblMeasurementGraph3.Text = "Right arm biceps";
-						lblMeasurementMetricGraph3.Text = "(cm)";
-						lblMeasurement4.Text = "Chest (cm)";
-						lblMeasurementGraph4.Text = "Chest";
-						lblMeasurementMetricGraph4.Text = "(cm)";
-						lblMeasurement5.Text = "Right thigh (cm)";
-						lblMeasurementGraph5.Text = "Right thigh";
-						lblMeasurementMetricGraph5.Text = "(cm)";
-					}
-					if (plan.PlanName.ToLower().Contains("tone"))
-					{
-						lblMeasurement3.Text = "Right arm biceps (cm)";
-						lblMeasurementGraph3.Text = "Right arm biceps";
-						lblMeasurementMetricGraph3.Text = "(cm)";
-						lblMeasurement4.Text = "Hips (cm)";
-						lblMeasurementGraph4.Text = "Hips";
-						lblMeasurementMetricGraph4.Text = "(cm)";
-						lblMeasurement5.Text = "Right thigh (cm)";
-						lblMeasurementGraph5.Text = "Right thigh";
-						lblMeasurementMetricGraph5.Text = "(cm)";
-					}
-					if (plan.PlanName.ToLower().Contains("weight"))
-					{
-						lblMeasurement3.Text = "Chest (cm)";
-						lblMeasurementGraph3.Text = "Chest";
-						lblMeasurementMetricGraph3.Text = "(cm)";
-						lblMeasurement4.Text = "Hips (cm)";
-						lblMeasurementGraph4.Text ="Hips";
-						lblMeasurementMetricGraph4.Text = "(cm)";
-						lblMeasurement5.Text = "Heart rate (per min)";
-						lblMeasurementGraph5.Text = "Heart rate";
-						lblMeasurementMetricGraph5.Text = "(per min)";
-					}
+					lblMeasurement3.Text = "Right arm biceps (cm)";
+					lblMeasurementGraph3.Text = "Right arm biceps";
+					lblMeasurementMetricGraph3.Text = "(cm)";
+					lblMeasurement4.Text = "Chest (cm)";
+					lblMeasurementGraph4.Text = "Chest";
+					lblMeasurementMetricGraph4.Text = "(cm)";
+					lblMeasurement5.Text = "Right thigh (cm)";
+					lblMeasurementGraph5.Text = "Right thigh";
+					lblMeasurementMetricGraph5.Text = "(cm)";
+				}
+				if (plan.PlanName.ToLower().Contains("tone"))
+				{
+					lblMeasurement3.Text = "Right arm biceps (cm)";
+					lblMeasurementGraph3.Text = "Right arm biceps";
+					lblMeasurementMetricGraph3.Text = "(cm)";
+					lblMeasurement4.Text = "Hips (cm)";
+					lblMeasurementGraph4.Text = "Hips";
+					lblMeasurementMetricGraph4.Text = "(cm)";
+					lblMeasurement5.Text = "Right thigh (cm)";
+					lblMeasurementGraph5.Text = "Right thigh";
+					lblMeasurementMetricGraph5.Text = "(cm)";
+				}
+				if (plan.PlanName.ToLower().Contains("weight"))
+				{
+					lblMeasurement3.Text = "Chest (cm)";
+					lblMeasurementGraph3.Text = "Chest";
+					lblMeasurementMetricGraph3.Text = "(cm)";
+					lblMeasurement4.Text = "Hips (cm)";
+					lblMeasurementGraph4.Text ="Hips";
+					lblMeasurementMetricGraph4.Text = "(cm)";
+					lblMeasurement5.Text = "Heart rate (per min)";
+					lblMeasurementGraph5.Text = "Heart rate";
+					lblMeasurementMetricGraph5.Text = "(per min)";
 				}
 			}
-            db.Database.Connection.Close();
+
         }
     }
 
@@ -170,77 +166,79 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 
     protected void btnUpdateProgress_Click(object sender, EventArgs e)
     {
-        using (DIYPTEntities db = new DIYPTEntities())
-        {
-            UpdateWeeklyResultToDB(db);
-            List<MemberPlanWeekResult> weekResults = dbAccess.GetMemberPlanResults(_MemberPlanWeek.MemberExercisePlanId);
-            LoadMemberPhotos(iWeekNum, weekResults);
-            LoadWeeklyResult(db);
-            DrawProgressGraph((int)_MemberPlanWeek.MemberExercisePlanId, weekResults);
-        }
+        UpdateWeeklyResultToDB();
+        LoadMemberPhotos(iWeekNum, WeekResults);
+        LoadWeeklyResult(WeekResults);
+        DrawProgressGraph((int)_MemberPlanWeek.MemberExercisePlanId, WeekResults);
     }
 
-    protected void UpdateWeeklyResultToDB(DIYPTEntities db)
+    protected void UpdateWeeklyResultToDB()
     {
-        if (_MemberPlanWeek == null)
-            return;
-
-        MemberPlanWeekResult weekResult;
-
-        weekResult = (from c in db.MemberPlanWeekResults
-                        where c.MemberExercisePlanWeekId == _MemberPlanWeek.Id
-                        select c).FirstOrDefault();
-        if (weekResult == null)
-            throw new Exception();
-
-        decimal weight = 0;
-        if (txtWeight.Text != "" && decimal.TryParse(txtWeight.Text, out weight))
+        using (DIYPTEntities db = new DIYPTEntities())
         {
-            if (!weekResult.StartWeight.HasValue)
-                weekResult.StartWeight = weight;
-            weekResult.EndWeight = weight;
+            if (_MemberPlanWeek == null)
+                return;
+
+            MemberPlanWeekResult weekResult;
+
+            weekResult = (from c in db.MemberPlanWeekResults
+                          where c.MemberExercisePlanWeekId == _MemberPlanWeek.Id
+                          select c).FirstOrDefault();
+            if (weekResult == null)
+                throw new Exception();
+
+            decimal weight = 0;
+            if (txtWeight.Text != "" && decimal.TryParse(txtWeight.Text, out weight))
+            {
+                if (!weekResult.StartWeight.HasValue)
+                    weekResult.StartWeight = weight;
+                weekResult.EndWeight = weight;
+            }
+
+            decimal hip = 0;
+            if (txtHip.Text != "" && decimal.TryParse(txtHip.Text, out hip))
+            {
+                if (!weekResult.StartHip.HasValue)
+                    weekResult.StartHip = hip;
+                weekResult.EndHip = hip;
+            }
+
+            decimal waist = 0;
+            if (txtWaist.Text != "" && decimal.TryParse(txtWaist.Text, out waist))
+            {
+                if (!weekResult.StartWaist.HasValue)
+                    weekResult.StartWaist = waist;
+                weekResult.EndWaist = waist;
+            }
+
+            decimal chest = 0;
+            if (txtChest.Text != "" && decimal.TryParse(txtChest.Text, out chest))
+            {
+                if (!weekResult.StartChest.HasValue)
+                    weekResult.StartChest = chest;
+                weekResult.EndChest = chest;
+            }
+
+            decimal heartRate = 0;
+            if (txtHeartRate.Text != "" && decimal.TryParse(txtHeartRate.Text, out heartRate))
+            {
+                if (!weekResult.StartHeartRate.HasValue)
+                    weekResult.StartHeartRate = heartRate;
+                weekResult.EndHeartRate = heartRate;
+            }
+            db.SaveChanges();
         }
 
-        decimal hip = 0;
-        if (txtHip.Text != "" && decimal.TryParse(txtHip.Text, out hip))
-        {
-            if (!weekResult.StartHip.HasValue)
-                weekResult.StartHip = hip;
-            weekResult.EndHip = hip;
-        }
-
-        decimal waist = 0;
-        if (txtWaist.Text != "" && decimal.TryParse(txtWaist.Text, out waist))
-        {
-            if (!weekResult.StartWaist.HasValue)
-                weekResult.StartWaist = waist;
-            weekResult.EndWaist = waist;
-        }
-
-        decimal chest = 0;
-        if (txtChest.Text != "" && decimal.TryParse(txtChest.Text, out chest))
-        {
-            if (!weekResult.StartChest.HasValue)
-                weekResult.StartChest = chest;
-            weekResult.EndChest = chest;
-        }
-
-        decimal heartRate = 0;
-        if (txtHeartRate.Text != "" && decimal.TryParse(txtHeartRate.Text, out heartRate))
-        {
-            if (!weekResult.StartHeartRate.HasValue)
-                weekResult.StartHeartRate = heartRate;
-            weekResult.EndHeartRate = heartRate;
-        }
-        db.SaveChanges();
+        WeekResults = dbAccess.GetMemberPlanResults(_MemberPlanWeek.MemberExercisePlanId);
     }
 
     protected void LoadPreNextLinks()
     {
         int iWeek = this.GetLatestMeasurementWeekNum(iWeekNum - 1);
+        MemberExercisePlanWeek prevWeek = null;
         if (iWeek != iWeekNum && iWeek >= 0)
         {
-            var prevWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(_MemberPlanWeek.MemberExercisePlanId, iWeek);
+            prevWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(_MemberPlanWeek.MemberExercisePlanId, iWeek);
             dayPre.NavigateUrl = "/my-account/progress-status?MemberPlanWeekID=" + prevWeek.Id;
             dayPre.Text = "Week " + (iWeek);
         }
@@ -263,16 +261,17 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
             dayNext.Attributes.Add("class", "no-arrow");
     }
 
-    protected void LoadWeeklyResult(DIYPTEntities db)
+    protected void LoadWeeklyResult(List<MemberPlanWeekResult> weekResults)
     {
         if (_MemberPlanWeek == null)
             return;
 
-        MemberPlanWeekResult weekResult;
+        MemberPlanWeekResult weekResult = weekResults[iWeekNum];
+        MemberPlanWeekResult prevWeekResult = null;
 
-        weekResult = (from c in db.MemberPlanWeekResults
-                      where c.MemberExercisePlanWeekId == _MemberPlanWeek.Id
-                      select c).FirstOrDefault();
+        int iWeek = this.GetLatestMeasurementWeekNum(iWeekNum - 1);
+        if (iWeek >= 0)
+            prevWeekResult = weekResults[iWeek];
         if (weekResult == null)
             throw new Exception();
 
@@ -280,9 +279,9 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
         if (weekResult.EndWeight.HasValue)
         {
             lblWeight.Text = weekResult.EndWeight.Value.ToString("0,0.00");
-            if (weekResult.StartWeight.HasValue)
+            if (prevWeekResult != null && prevWeekResult.EndWeight.HasValue)
             {
-                iDiff = weekResult.EndWeight.Value - weekResult.StartWeight.Value;
+                iDiff = weekResult.EndWeight.Value - prevWeekResult.EndWeight.Value;
                 lblWeightDiff.Text = iDiff.ToString("0,0.00");
             }
             else
@@ -299,9 +298,9 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
         if (weekResult.EndWaist.HasValue)
         {
             lblWaist.Text = weekResult.EndWaist.Value.ToString("0,0.00");
-            if (weekResult.StartWaist.HasValue)
+            if (prevWeekResult != null && prevWeekResult.EndWaist.HasValue)
             {
-                iDiff = weekResult.EndWaist.Value - weekResult.StartWaist.Value;
+                iDiff = weekResult.EndWaist.Value - prevWeekResult.EndWaist.Value;
                 lblWaistDiff.Text = iDiff.ToString("0,0.00");
             }
             else
@@ -318,9 +317,9 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
         if (weekResult.EndHip.HasValue)
         {
             lblHip.Text = weekResult.EndHip.Value.ToString("0,0.00");
-            if (weekResult.StartHip.HasValue)
+            if (prevWeekResult != null && prevWeekResult.EndHip.HasValue)
             {
-                iDiff = weekResult.EndHip.Value - weekResult.StartHip.Value;
+                iDiff = weekResult.EndHip.Value - prevWeekResult.EndHip.Value;
                 lblHipDiff.Text = iDiff.ToString("0,0.00");
             }
             else
@@ -337,9 +336,9 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
         if (weekResult.EndChest.HasValue)
         {
             lblChest.Text = weekResult.EndChest.Value.ToString("0,0.00");
-            if (weekResult.StartChest.HasValue)
+            if (prevWeekResult != null && prevWeekResult.EndChest.HasValue)
             {
-                iDiff = weekResult.EndChest.Value - weekResult.StartChest.Value;
+                iDiff = weekResult.EndChest.Value - prevWeekResult.EndChest.Value;
                 lblChestDiff.Text = iDiff.ToString("0,0.00");
             }
             else
@@ -356,9 +355,9 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
         if (weekResult.EndHeartRate.HasValue)
         {
             lblHeartRate.Text = weekResult.EndHeartRate.Value.ToString("0,0.00");
-            if (weekResult.StartHeartRate.HasValue)
+            if (prevWeekResult != null && prevWeekResult.EndHeartRate.HasValue)
             {
-                iDiff = weekResult.EndHeartRate.Value - weekResult.StartHeartRate.Value;
+                iDiff = weekResult.EndHeartRate.Value - prevWeekResult.EndHeartRate.Value;
                 lblHeartRateDiff.Text = iDiff.ToString("0,0.00");
             }
             else
@@ -524,13 +523,9 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
         if (sender == this.btnDrawHeartRate)
             drawType = PrizeConstants.GraphDrawType.DrawHeartRate;
 
-        using (DIYPTEntities db = new DIYPTEntities())
-        {
-            List<MemberPlanWeekResult> weekResults = dbAccess.GetMemberPlanResults(_MemberPlanWeek.MemberExercisePlanId);
-            LoadMemberPhotos(iWeekNum, weekResults);
-            LoadWeeklyResult(db);
-            DrawProgressGraph((int)_MemberPlanWeek.MemberExercisePlanId, weekResults, drawType);
-        }
+        LoadMemberPhotos(iWeekNum, WeekResults);
+        LoadWeeklyResult(WeekResults);
+        DrawProgressGraph((int)_MemberPlanWeek.MemberExercisePlanId, WeekResults, drawType);
     }
 
     public List<decimal> GetGraphData(int memberPlanId, List<MemberPlanWeekResult> weekResults, PrizeConstants.GraphDrawType type)
@@ -664,6 +659,8 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
             Response.Write("<script>alert('Please choose a file to attach.');</script>");
         }
 
+        WeekResults = dbAccess.GetMemberPlanResults(_MemberPlanWeek.MemberExercisePlanId);
+
         return attachmentServerPath;
     }
 
@@ -688,10 +685,9 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 
         using (DIYPTEntities db = new DIYPTEntities())
         {
-            List<MemberPlanWeekResult> weekResults = dbAccess.GetMemberPlanResults(_MemberPlanWeek.MemberExercisePlanId);
-            LoadMemberPhotos(iWeekNum, weekResults);
-            LoadWeeklyResult(db);
-            DrawProgressGraph((int)_MemberPlanWeek.MemberExercisePlanId, weekResults);
+            LoadMemberPhotos(iWeekNum, WeekResults);
+            LoadWeeklyResult(WeekResults);
+            DrawProgressGraph((int)_MemberPlanWeek.MemberExercisePlanId, WeekResults);
         }
 
     }

@@ -220,8 +220,6 @@ public class PrizeDataAccess
 
     public List<MemberPlanWeekResult> GetMemberPlanResults(int memberPlanId)
     {
-        List<decimal> graphDataList = new List<decimal>();
-
         try
         {
             db.Database.Connection.Open();
@@ -230,7 +228,7 @@ public class PrizeDataAccess
                                                       where d.MemberExercisePlanId == memberPlanId
                                                       && !d.Status.Equals(PrizeConstants.STATUS_PLAN_WEEK_NOT_STARTED)
                                                       orderby d.StartDate
-                                                      select c).ToList<MemberPlanWeekResult>();
+                                                      select c).ToList();
             return weekResults;
         }
         finally
