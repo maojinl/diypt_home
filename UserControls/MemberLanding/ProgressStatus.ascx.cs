@@ -523,6 +523,7 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
         if (sender == this.btnDrawHeartRate)
             drawType = PrizeConstants.GraphDrawType.DrawHeartRate;
 
+        WeekResults = dbAccess.GetMemberPlanResults(_MemberPlanWeek.MemberExercisePlanId);
         LoadMemberPhotos(iWeekNum, WeekResults);
         LoadWeeklyResult(WeekResults);
         DrawProgressGraph((int)_MemberPlanWeek.MemberExercisePlanId, WeekResults, drawType);
