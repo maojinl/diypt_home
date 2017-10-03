@@ -145,8 +145,10 @@ Comment:
 
         if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Normal 
             || emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Vegan
-            || emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Lactose)
+            || emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Lactose
+            || emailType == PrizeConstants.EmailType.OneDaysPrior2Week11)
         {
+            body = body.Replace("[calories]", additionalContents[1]);
             body = body.Replace("[protein]", additionalContents[2]);
             body = body.Replace("[carb]", additionalContents[3]);
             body = body.Replace("[fat]", additionalContents[4]);
