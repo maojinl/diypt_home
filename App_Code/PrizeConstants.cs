@@ -82,9 +82,9 @@ public class PrizeConstants
 
     public const int MAX_CONTINUOUS_LOGIN = 21;
 
-    public const String WALLET_USER_NAME = "jerry.mao.au-facilitator_api1.gmail.com";
-    public const String WALLET_PASSWORD = "T38GAH7S9YD7HDFG";
-    public const String WALLET_SIGNATURE = "AFcWxV21C7fd0v3bYYYRCpSSRl31AAb7Ba0pk35icr1MyMz8i3EN1IOW";
+    public const String WALLET_USER_NAME = "jonathan.guico_api1.gmail.com";
+    public const String WALLET_PASSWORD = "MLZFQT92E3F453GD";
+    public const String WALLET_SIGNATURE = "AFcWxV21C7fd0v3bYYYRCpSSRl31AF2zdK7rGKe5UJO3wYPYC3wjo4UZ";
 
     public const String DEFAULT_MEMBER_SETTINGS = "11111111111111111111";
     public const String DEFAULT_MEMBER_TASKS_CONFIG = "0000000000000000000000000000000";

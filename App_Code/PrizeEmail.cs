@@ -163,7 +163,9 @@ body = body.Replace("/login", "http://web106.sand.studiocoast.com.au/login/");
 		SmtpClient client = new SmtpClient();
 
 		client.Timeout = 10000;
-		MailMessage mm = new MailMessage("no-reply@diypt.com", email);
+        MailMessage mm = new MailMessage();
+        mm.From = new MailAddress("no-reply@diypt.com", "DIYPT");
+        mm.To.Add(new MailAddress(email));
 		mm.Subject = subject;
 		mm.Body = content;
 		mm.BodyEncoding = UTF8Encoding.UTF8;

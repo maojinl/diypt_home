@@ -104,8 +104,7 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        /*
-        NVPAPICaller payPalCaller = new NVPAPICaller();
+        /*NVPAPICaller payPalCaller = new NVPAPICaller();
         string retMsg = "";
         string token = "";
 

@@ -30,7 +30,7 @@ public class BaseOrientation : System.Web.UI.UserControl
     {
         PrizeDataAccess db = new PrizeDataAccess();
         var exercisePlan = db.GetCurrentMemberPlanOrStartingPlan(PrizeMemberAuthUtils.GetMemberID());
-        var nextMonday = exercisePlan.StartDate.Next(DayOfWeek.Monday);
+        var nextMonday = exercisePlan.StartDate;//.Next(DayOfWeek.Monday);
         
         return nextMonday.AddDays(day-1);
     }

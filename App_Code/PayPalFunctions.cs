@@ -15,7 +15,7 @@ using System.Security.Cryptography.X509Certificates;
 public class NVPAPICaller
 {
   //Flag that determines the PayPal environment (live or sandbox)
-  private const bool bSandbox = true;
+  private const bool bSandbox = false;
   private const string CVV2 = "CVV2";
 
   // Live strings.
@@ -66,7 +66,7 @@ public class NVPAPICaller
     encoder["METHOD"] = "SetExpressCheckout";
     encoder["RETURNURL"] = returnURL;
     encoder["CANCELURL"] = cancelURL;
-    encoder["BRANDNAME"] = "DIYPT Application";
+    encoder["BRANDNAME"] = "DIYPT";
     encoder["PAYMENTREQUEST_0_AMT"] = amt;
     encoder["PAYMENTREQUEST_0_ITEMAMT"] = amt;
     encoder["PAYMENTREQUEST_0_PAYMENTACTION"] = "Sale";
