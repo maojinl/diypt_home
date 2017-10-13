@@ -63,5 +63,17 @@ public partial class UserControls_MemberLanding_MemberFoodPlanView : BaseOrienta
             this.fats.Visible = false;
         else
             lblFood4.Text = foodWeek.Food4;
+
+        string[] sPersentage = foodWeek.Food5.Split(';');
+        if (sPersentage.Length > 0)
+        {
+            lblFood5.Text = sPersentage[0];
+            if (sPersentage.Length > 1)
+            {
+                lblFood6.Text = sPersentage[1];
+                if (sPersentage.Length > 2)
+                    lblFood7.Text = sPersentage[2];
+            }
+        }
     }
 }

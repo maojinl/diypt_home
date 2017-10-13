@@ -19,6 +19,9 @@
 .wk1 .wk1 {
 display: block;
 }
+.wk2 .wk2 {
+display: block;
+}
 .wk3 .wk3 {
 display: block;
 }
@@ -77,9 +80,9 @@ display: block;
                 <h5 class="c_y ">FOOD GOAL </h5>
                 <p class=" wk1 wk2">Just focus on your training and make one of my <a class="c_y" target="_blank" href="/meal-plans#t1">easy recipes.</a></p>
                 <p class=" wk3">Focus on 2 things:</p>
-                <p class=" wk3">1. Focus on eating slowly; approximately 15 minutes for a snack and approximately 25 minutes for a main meal. Stop eating when you're about 80% full. 80% full means that after waiting 5 minutes you can still eat more but don't have to because you are satisfied. You don’t feel stomach discomfort, bloating or lethargic.</p>
+                <p class=" wk3">1. Focus on eating slowly; approximately 15 minutes for a snack and approximately 25 minutes for a main meal. Stop eating when you're about 80% full. 80% full means that after waiting 5 minutes you can still eat more but don't have to because you are satisfied. You don't feel stomach discomfort, bloating or lethargic.</p>
                 <p class=" wk3">2. Make another one of my delicious, quick and <a class="c_y" target="_blank" href="/meal-plans#t1">easy recipes.</a></p>
-                <p class=" wk4">For one week, play with the My Fitness Pal app by diarising your food and playing with <a href="#" data-toggle="modal" data-target="#timeModal3" class="c_y">macro counting</a> using the following macronutrient goals. Watch the Macro counting video. This is the key to the success of your program. When I say ‘play’, don’t feel the pressure that you need to diarise everyday, just have a go and get into the habit of diarising your food and have a go at following the macro goals below.
+                <p class=" wk4">For one week, play with the My Fitness Pal app by diarising your food and playing with <a href="#" data-toggle="modal" data-target="#timeModal3" class="c_y">macro counting</a> using the following macronutrient goals. Watch the Macro counting video. This is the key to the success of your program. When I say 'play', don't feel the pressure that you need to diarise everyday, just have a go and get into the habit of diarising your food and have a go at following the macro goals below.
                 </p>
                 <p class=" wk5">Complete food diary every day and maintain calories for the week using My Fitness Pal</p>
                 <p class=" wk6">Meet protein goal below and maintain calories for the week using My Fitness Pal.</p>
@@ -87,50 +90,53 @@ display: block;
                 <p class=" wk8">Meet fats goal plus maintain all other macro goals below.</p>
                 <p class=" wk9 wk10">Consistently meet macro goals below.</p>
                 <p class=" wk11 wk12">Consistently meet new macro goals below.</p>
-                <h5 class="c_y  mt-4  wk4 wk5">MACRONUTRIENTS GOALS </h5>
-                <div class="week-view-intro mb-3  wk4 wk5 ">
+                <h5 class="c_y  mt-4  wk4 wk5 wk6 wk7 wk8 wk9 wk10 wk11 wk12">DAILY MACRONUTRIENT GOALS </h5>
+                <div class="week-view-intro mb-3  wk4 wk5 wk6 wk7 wk8 wk9 wk10 wk11 wk12 ">
                 <div class="row">
-                 <div class="col-3" runat="server" ID="colories">
+                 <div class="col-sm-3 col-6" runat="server" ID="colories">
                         <div class="row">
                             <div class="col-md-4 ">
                                 <img src="/images/icon-calories-y.svg">
                             </div>
                             <div class="col-md-6 pull-md-1 right-0-m-s">
                                 <p>Calories</p>
-                                <p><asp:Label ID="lblFood1" runat="server" Text=""></asp:Label></p>
+                                <p><asp:Label ID="lblFood1" runat="server" Text=""></asp:Label> kcal</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-3" runat="server" ID="protein">
+                    <div class="col-sm-3 col-6" runat="server" ID="protein">
                         <div class="row">
                             <div class="col-md-4 ">
                                 <img src="/images/icon-protein-y.svg">
                             </div>
                             <div class="col-md-6 pull-md-1 right-0-m-s">
                                 <p>Protein</p>
-                                <p><asp:Label ID="lblFood2" runat="server" Text=""></asp:Label></p>
+                                <p><asp:Label ID="lblFood2" runat="server" Text=""></asp:Label> g</p>
+                                <p><asp:Label ID="lblFood5" runat="server" Text=""></asp:Label> %</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-3" runat="server" ID="carbo">
+                    <div class="col-sm-3 col-6" runat="server" ID="carbo">
                         <div class="row">
                             <div class="col-md-4">
                                 <img src="/images/icon-carbohydrate.svg">
                             </div>
                             <div class="col-md-6 pull-md-1 right-0-m-s">
                                 <p>Carbohydrate</p>
-                                <p><asp:Label ID="lblFood3" runat="server" Text=""></asp:Label></p>
+                                <p><asp:Label ID="lblFood3" runat="server" Text=""></asp:Label> g</p>
+                                <p><asp:Label ID="lblFood6" runat="server" Text=""></asp:Label> %</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-3" runat="server" ID="fats">
+                    <div class="col-sm-3 col-6" runat="server" ID="fats">
                         <div class="row">
                             <div class="col-md-4">
                                 <img  src="/images/icon-fats-y.svg">
                             </div>
                             <div class="col-md-6 pull-md-1 right-0-m-s">
                                 <p>Fats</p>
-                                <p><asp:Label ID="lblFood4" runat="server" Text=""></asp:Label></p>
+                                <p><asp:Label ID="lblFood4" runat="server" Text=""></asp:Label> g</p>
+                                <p><asp:Label ID="lblFood7" runat="server" Text=""></asp:Label> %</p>
                             </div>
                         </div>
                     </div>
@@ -179,7 +185,7 @@ display: block;
                         <img class="img-fluid" src="/images/login/meal-plan/fats_1.jpg">
                         <h5>FATS 
                         </h5>
-                        <div style="font-size: 10px;padding-top: 5px;text-align:center;">(1 serve = 1 x tablespoon)</div>
+                        
                         <ul class="macro-list ">
                             <li>Coconut oil <span>(preferred)</span></li>
                             <li>Olive oil</li>
@@ -190,7 +196,7 @@ display: block;
                     <div class="meal-list   wk4 wk5 wk6 wk7 wk8 wk9 wk10 wk11 wk12">
                         <img class="img-fluid" src="/images/login/meal-plan/carbohydrates_1.jpg">
                         <h5>CARBOHYDRATES </h5>
-                        <div style="font-size: 10px;padding-top: 5px;text-align:center;">(serving size is cooked)</div>
+                        
                         <ul class="macro-list ">
                             <li>White basmati rice</li>
                             <li>Brown basmati rice</li>

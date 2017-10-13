@@ -45,6 +45,30 @@
         <td class="auto-style1">
             <asp:TextBox ID="tbFood4" runat="server" Width="300px" />
         </td>
+   </tr>
+       <tr>
+        <td>
+          <asp:Label ID="Label5" runat="server" Text="Carbohydrate %:" />
+        </td>
+        <td class="auto-style1">
+            <asp:TextBox ID="tbFood5" runat="server" Width="300px" />
+        </td>
+    </tr>
+       <tr>
+        <td>
+          <asp:Label ID="Label6" runat="server" Text="Fats %:" />
+        </td>
+        <td class="auto-style1">
+            <asp:TextBox ID="tbFood6" runat="server" Width="300px" />
+        </td>
+    </tr>
+       <tr>
+        <td>
+          <asp:Label ID="Label7" runat="server" Text="Fats %:" />
+        </td>
+        <td class="auto-style1">
+            <asp:TextBox ID="tbFood7" runat="server" Width="300px" />
+        </td>
     </tr>
           <tr>
          <td>

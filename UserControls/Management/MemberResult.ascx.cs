@@ -68,6 +68,17 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
                     tbFood2.Text = foodplanweek.Food2;
                     tbFood3.Text = foodplanweek.Food3;
                     tbFood4.Text = foodplanweek.Food4;
+                    string[] sPersentage = foodplanweek.Food5.Split(';');
+                    if (sPersentage.Length > 0)
+                    {
+                        tbFood5.Text = sPersentage[0];
+                        if (sPersentage.Length > 1)
+                        {
+                            tbFood6.Text = sPersentage[1];
+                            if (sPersentage.Length > 2)
+                                tbFood7.Text = sPersentage[2];
+                        }
+                    }
                 }
 
 
@@ -97,6 +108,7 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
                     MemFoodPW.Food2 = tbFood2.Text;
                     MemFoodPW.Food3 = tbFood3.Text;
                     MemFoodPW.Food4 = tbFood4.Text;
+                    MemFoodPW.Food5 = tbFood5.Text + ";" + tbFood6.Text + ";" + tbFood7.Text;
                     MemFoodPW.StartWeek = 1;
                     MemFoodPW.EndWeek = 1;
                     db.MemberFoodPlanWeeks.Add(MemFoodPW);
@@ -107,6 +119,7 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
                     foodplanweek.Food2 = tbFood2.Text;
                     foodplanweek.Food3 = tbFood3.Text;
                     foodplanweek.Food4 = tbFood4.Text;
+                    foodplanweek.Food5 = tbFood5.Text + ";" + tbFood6.Text + ";" + tbFood7.Text;
                 }
 
                 db.SaveChanges();
