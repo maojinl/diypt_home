@@ -68,15 +68,18 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
                     tbFood2.Text = foodplanweek.Food2;
                     tbFood3.Text = foodplanweek.Food3;
                     tbFood4.Text = foodplanweek.Food4;
-                    string[] sPersentage = foodplanweek.Food5.Split(';');
-                    if (sPersentage.Length > 0)
+                    if (foodplanweek.Food5 != null)
                     {
-                        tbFood5.Text = sPersentage[0];
-                        if (sPersentage.Length > 1)
+                        string[] sPersentage = foodplanweek.Food5.Split(';');
+                        if (sPersentage.Length > 0)
                         {
-                            tbFood6.Text = sPersentage[1];
-                            if (sPersentage.Length > 2)
-                                tbFood7.Text = sPersentage[2];
+                            tbFood5.Text = sPersentage[0];
+                            if (sPersentage.Length > 1)
+                            {
+                                tbFood6.Text = sPersentage[1];
+                                if (sPersentage.Length > 2)
+                                    tbFood7.Text = sPersentage[2];
+                            }
                         }
                     }
                 }
