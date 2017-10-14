@@ -80,7 +80,7 @@
                     </p>
                     <fieldset class="form-group">
                         <asp:RadioButtonList class="form-check-input" ID="radioButtonListExerciseType" runat="server">
-                            <asp:ListItem>Low intensity cardioLow intensity cardio</asp:ListItem>
+                            <asp:ListItem>Low intensity cardio</asp:ListItem>
                             <asp:ListItem>High intensity cardio</asp:ListItem>
                             <asp:ListItem>Light resistance training</asp:ListItem>
                             <asp:ListItem>Medium resistance training</asp:ListItem>

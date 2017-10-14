@@ -3,9 +3,9 @@
 <div class="tab-inner-content">
     <div class="d-flex justify-content-end content-nav-action sec">
         <a class="c_grey" href="/exercise#t0">
-            <img src="/images/icon-recipe-g.svg" />VIEW EXERCISE LIBRARY ></a> <a class="c_grey"
+            <img src="/images/icon-recipe-g.svg" /><span class="hidden-sm-down">VIEW EXERCISE LIBRARY ></span></a> <a class="c_grey"
                 href="javascript:window.print()">
-                <img src="/images/icon-print-g.svg" />PRINT PLAN ></a>
+                <img src="/images/icon-print-g.svg" /><span class="hidden-sm-down">PRINT PLAN ></span></a>
     </div>
     <div class="text-center">
         <h1>
@@ -65,7 +65,7 @@
                 <img class="icon-s" src="/images/icon-time-b.svg" /><span class="c_b"> All Day </span>
             </h5>
             <p>
-                Congratulations, you've finished the first 4 weeks of the program, today I just want you to do 20 pushups and make your bed.</p>
+                Congratulations, you've finished the first 5 weeks of the program, today I just want you to do 20 pushups and make your bed.</p>
         </div>
     </div>
 	
@@ -149,19 +149,17 @@
         </div>
     </div>
     <div runat="server" id="DivAdvanceEquipment" class="plan-container">
-        If your home equipment is not enough to increase the difficulty of the workouts,
-        you can increase it at a level of your liking:
+        If your home equipment is not enough to increase the difficulty of the workouts, you can increase it at a level of your liking:
         <br />
-        L1 = Add more powerbands to the exercise e.g. double up or triple your powerband
-        when doing powerband front squat
+        Level 1 = Add more powerbands to the exercise e.g. double up or triple your powerband when doing powerband front squat
         <br />
-        L2 = Buy a dumbbell set. In Australia, K-Mart has it for $60-$80.
+        Level 2 = Buy a barbell and dumbbell set currently for $199 from Rebel sport. You can buy just a dumbbell set currently for $50 from Kmart.
         <br />
-        L3 = Join a gym
+        Level 3 = Join a gym
     </div>
     <div runat="server" class="plan-container" id="divWarmup">
         <div class="plan-title ">
-            Warm up
+            WARM UP
             <img class="icon-time" src="/images/icon-time-b.svg" />
             <span class="plan-time c_b">10 mins</span>
         </div>
@@ -170,7 +168,7 @@
                 Warmup is very important and should not be skipped. Because as the name suggests
                 it warms up your body and gets you ready for your workout. There are 3 main sections
                 that all warmups should have.</p>
-            <a href="/exercise#t0" target="_blank" class="c_y">Click here for more details</a>
+            <a href="/exercise#t0" target="_blank" class="c_b" >Click here for more details ></a>
         </div>
     </div>
     <div runat="server" id="Div1" class="plan-container">
@@ -190,7 +188,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="plan-name">
-                                <%#DataBinder.Eval(Container.DataItem,"Sequence")+"."%>
+                                <%#DataBinder.Eval(Container.DataItem,"Sequence")%>
                                     <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1A_<%# Container.ItemIndex %>'>
                                         <%#DataBinder.Eval(Container.DataItem,"Exercise")%>
                                     </a>
@@ -246,7 +244,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="plan-name">
-                                <%#DataBinder.Eval(Container.DataItem,"Sequence")+"."%>
+                                <%#DataBinder.Eval(Container.DataItem,"Sequence")%>
                                     <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup2A_<%# Container.ItemIndex %>'>
                                         <%#DataBinder.Eval(Container.DataItem,"Exercise")%>
                                     </a>
@@ -302,7 +300,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="plan-name">
-                                <%#DataBinder.Eval(Container.DataItem,"Sequence")+"."%>
+                                <%#DataBinder.Eval(Container.DataItem,"Sequence")%>
                                     <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup3A_<%# Container.ItemIndex %>'>
                                         <%#DataBinder.Eval(Container.DataItem,"Exercise")%>
                                     </a>
@@ -353,18 +351,18 @@
                 <ItemTemplate>
                     <div class="row row-plan">
                         <div class="col-sm-4">
-                            <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup3_<%# Container.ItemIndex %>'>
+                            <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup4_<%# Container.ItemIndex %>'>
                             <asp:Image ID="image1" runat="server" class="img-fluid" ImageUrl='<%#DataBinder.Eval(Container.DataItem,"Exercise")%>' /></a>
                         </div>
                         <div class="col-sm-4">
                             <div class="plan-name">
-                                <%#DataBinder.Eval(Container.DataItem,"Sequence")+"."%>
-                                    <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup3A_<%# Container.ItemIndex %>'>
+                                <%#DataBinder.Eval(Container.DataItem,"Sequence")%>
+                                    <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup4A_<%# Container.ItemIndex %>'>
                                         <%#DataBinder.Eval(Container.DataItem,"Exercise")%>
                                     </a>
                             </div>
                             <div class="plan-info">or alternatively
-                                <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup3B_<%# Container.ItemIndex %>'>
+                                <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup4B_<%# Container.ItemIndex %>'>
                                     <%#DataBinder.Eval(Container.DataItem,"AlternateExercise")%>
                                 </a>
                             </div>
@@ -399,7 +397,7 @@
     </div>
     <div runat="server" class="plan-container" id="divCooldown">
         <div class="plan-title ">
-            Cooldown and stretch
+            COOL DOWN & STRETCH
             <img class="icon-time" src="/images/icon-time-b.svg" />
             <span class="plan-time c_b">5 mins</span>
         </div>
@@ -416,28 +414,47 @@
                 Legend</h5>
         </div>
         <div class="col-sm-5">
-            <p>
-                SG = Supinated Grip (palm facing you)</p>
-            <p>
-                PG = Pronated Grip (back of palm facing you)</p>
-            <p>
-            NG = Neutral Grip (hammer grip)
+            <!--<p><a class="c_b" href="#" data-toggle="modal" data-target="#tempo" id="modalPopupTempo">Tempo explained ></a></p>-->
+            <p>SG = Supinated Grip (palm facing you)</p>
+            <p>PG = Pronated Grip (back of palm facing you)</p>
+            <p>NG = Neutral Grip (hammer grip)</p>
+			
         </div>
         <div class="col-sm-2">
-            <p>
-                DB = Dumb Bell</p>
-            <p>
-                BB = Barbell</p>
-            <p>
-                KB = Kettlebell</p>
+            <p>DB = Dumb Bell</p>
+            <p>BB = Barbell</p>
+            <p>KB = Kettlebell</p>
+			<p>BW = Bodyweight</p>
         </div>
         <div class="col-sm-5 mb-3">
-            <p>
-                Cable = Cable Machine</p>
-            <p>
-                FE = Feet Elevated</p>
-            <p>
-                UBE = Upper Body Elevated</p>
+            <p>Cable = Cable Machine</p>
+            <p>FE = Feet Elevated</p>
+            <p>UBE = Upper Body Elevated</p>
+            <p>PB = Powerband</p>
+        </div>
+    </div>
+</div>
+
+                    
+        <!-- Modal -->
+
+<div class="modal fade" id="tempo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tempo explained</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class='embed-container'>
+                <iframe src="https://player.vimeo.com/video/227216567" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>

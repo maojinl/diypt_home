@@ -39,6 +39,17 @@
                                 <asp:Label ID="lblGoalDec" runat="server"></asp:Label>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <div class="form-check col-sm-6">
+                                <b>Program level:</b>
+                                <asp:Label ID="lblLevel" runat="server" />
+                            </div>
+                            <div class="form-check col-sm-6">
+                                <b>Program location:</b>
+                                <asp:Label ID="lblLocation" runat="server" />
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="profile-url-input" class="col-3 col-form-label"><b>Facebook</b></label>
                             <div class="col-9">
@@ -57,17 +68,6 @@
                             <label for="profile-why" class="col-3 col-form-label"><b>Why I've joined DIYPT</b></label>
                             <div class="col-9">
                                 <asp:Label ID="lblWhyDiypt" runat="server" TextMode="MultiLine"></asp:Label>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="form-check col-sm-6">
-                                <b>Show My Goal:</b>
-                                <asp:Label ID="lblShowProgram" runat="server" />
-                            </div>
-                            <div class="form-check col-sm-6">
-                                <b>Show My Level:</b>
-                                <asp:Label ID="lblShowLevel" runat="server" />
                             </div>
                         </div>
                     </div>
@@ -117,18 +117,6 @@
                             <label for="profile-why" class="col-3 col-form-label">Why DIYPT</label>
                             <div class="col-9">
                                 <asp:TextBox ID="tbWhyDiypt" class="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="form-check col-sm-6">
-                                <label class="form-check-label"></label>
-                                <asp:CheckBox ID="cbShowProgram" runat="server" class="form-check-input" Text=" Show My Goal" />
-
-                            </div>
-                            <div class="form-check col-sm-6">
-                                <label class="form-check-label"></label>
-                                <asp:CheckBox ID="cbShowLevel" runat="server" class="form-check-input" Text=" Show My Level" />
                             </div>
                         </div>
                     <asp:Button ID="Button3" runat="server" class="btn btn-secondary c_y mt-5" Text="Save changes" OnClick="btnSubmitProfile_Click" />

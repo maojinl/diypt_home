@@ -322,7 +322,7 @@ public partial class UserControls_MemberLanding_ExerciseView : BaseOrientation
 		
         for (int i = 0; i < 7; i++)
         {
-			switch(labels[i].Text)
+			switch(labels[i].Text.Trim())
 			{
 				case "Brisk walk":
 					lblTimeDuration[i].Text = "30 mins";

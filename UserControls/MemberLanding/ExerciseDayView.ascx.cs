@@ -109,10 +109,12 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
 				divCardio.Visible = true;
 				break;
 			case "Milestone workout = 20x pushups, squats, situps":
+			case "Milestone workout 2":
 				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
 				divSquat.Visible = true;
 				break;
 			case "Milestone workout = 20 pushups & make your bed":
+			case "Milestone workout 1":
 				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
 				divPushup.Visible = true;
 				break;
@@ -213,17 +215,17 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
                     {
                         dTimeDuration += double.Parse(row["TimeDuration"].ToString());
                         tempScript += @"$( '#modalPopup" + (i+1) + "_" + counter + @"' ).click(function() {
-				                    $('#theModal').load('/exercise/" + row["Exercise"].ToString().Replace(" ", "-").Replace(".", "") + @"');
+				                    $('#theModal').load('/exercise/" + row["Exercise"].ToString().Trim().Replace("- ", "").Replace(" ", "-").Replace(".", "") + @"');
 
                                     }); ";
 
                         tempScript += @"$( '#modalPopup" + (i + 1) + "A_" + counter + @"' ).click(function() {
-				                    $('#theModal').load('/exercise/" + row["Exercise"].ToString().Replace(" ", "-").Replace(".", "") + @"');
+				                    $('#theModal').load('/exercise/" + row["Exercise"].ToString().Trim().Replace("- ", "").Replace(" ", "-").Replace(".", "") + @"');
 
                                     }); ";
 
                         tempScript += @"$( '#modalPopup" + (i + 1) + "B_" + counter + @"' ).click(function() {
-				                    $('#theModal').load('/exercise/" + row["AlternateExercise"].ToString().Replace(" ", "-").Replace(".", "") + @"');
+				                    $('#theModal').load('/exercise/" + row["AlternateExercise"].ToString().Trim().Replace("- ", "").Replace(" ", "-").Replace(".", "") + @"');
 
                                     }); ";
                         counter++;

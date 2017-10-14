@@ -120,6 +120,17 @@ public partial class UserControls_UserProfile : BaseOrientation
             PrizeExercisePlan plan = dbAccess.GetExercisePlan(myPlan.ExercisePlanId);
             lblGoalDec.Text = plan.PrizePlanProgram.Name;
             tbGoalDec.Text = plan.PrizePlanProgram.Name;
+			
+			var planName = dbAccess.GetPlanName(plan);
+	    string[] sPlanName = planName.Split('_');
+		//lblProg.Text = sPlanName[0];
+		//lblSem.Text = sPlanName[3].Replace("Semester", "");
+		//lblLvl.Text = sPlanName[2];
+		//lblLoc.Text = sPlanName[1];
+		//ddlLocation.Text = sPlanName[1];
+			
+		lblLevel.Text = sPlanName[2];
+		lblLocation.Text = sPlanName[1];
         }
 
         lblFacebook.Text = member.Facebook;
@@ -129,6 +140,9 @@ public partial class UserControls_UserProfile : BaseOrientation
         tbInstagram.Text = member.Instagram;
         tbTwitter.Text = member.Twiter;
         profilePhoto.ImageUrl = member.Photo;
+		
+		
+		/*
         if (PrizeMemberAuthUtils.GetMemberSetting(member.UserSettings, PrizeConstants.MemberSettings.ShowProgram) == '1')
         {
             cbShowProgram.Checked = true;
@@ -150,6 +164,7 @@ public partial class UserControls_UserProfile : BaseOrientation
             cbShowLevel.Checked = false;
             lblShowLevel.Text = "No";
         }
+		*/
     }
     protected void lbEditProfile_Click(Object sender, EventArgs e)
     {
@@ -246,6 +261,7 @@ public partial class UserControls_UserProfile : BaseOrientation
                     memberUpdating.Facebook = tbFacebook.Text;
                     memberUpdating.Instagram = tbInstagram.Text;
                     memberUpdating.Twiter = tbTwitter.Text;
+					/*
                     string s = null;
                     if (memberUpdating.UserSettings != null)
                         s = string.Copy(memberUpdating.UserSettings);
@@ -259,6 +275,7 @@ public partial class UserControls_UserProfile : BaseOrientation
                     else
                         PrizeMemberAuthUtils.SetMemberSetting(ref s, PrizeConstants.MemberSettings.ShowLevel, '0');
                     memberUpdating.UserSettings = s;
+					*/
                     // db.PrizeMembers(member);
 
                     //photoUpload
