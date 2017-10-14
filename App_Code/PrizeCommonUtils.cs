@@ -106,7 +106,7 @@ public static class PrizeCommonUtils
     static public DateTime GetSystemDate()
     {
         DateTime dt = DateTime.Now;
-        bool bTest = false;
+        bool bTest = true;
         if (!bTest)
             return dt;
         using (DIYPTEntities db = new DIYPTEntities())

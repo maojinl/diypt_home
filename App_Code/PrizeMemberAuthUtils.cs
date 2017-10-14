@@ -250,7 +250,9 @@ public class PrizeMemberAuthUtils
             log.Error = sError;
             db.PrizeMemberLogs.Add(log);
 
-            DateTime dtYesterdayStart = PrizeCommonUtils.GetDayStart(log.LogDate.AddDays(-1));
+            //No longer needed here.
+            /* 
+             * DateTime dtYesterdayStart = PrizeCommonUtils.GetDayStart(log.LogDate.AddDays(-1));
             DateTime dtYesterdayEnd = PrizeCommonUtils.GetDayEnd(log.LogDate.AddDays(-1));
             DateTime dtTodayStart = PrizeCommonUtils.GetDayStart(log.LogDate);
             DateTime dtTodayterdayEnd = PrizeCommonUtils.GetDayEnd(log.LogDate);
@@ -273,6 +275,7 @@ public class PrizeMemberAuthUtils
             {
                 PrizeEmailWrapper.SendMemberConintuousLoginEmail(member);
             }
+            */
 
             db.SaveChanges();
         }
