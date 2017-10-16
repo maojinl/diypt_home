@@ -48,7 +48,7 @@
    </tr>
        <tr>
         <td>
-          <asp:Label ID="Label5" runat="server" Text="Carbohydrate %:" />
+          <asp:Label ID="Label5" runat="server" Text="Protein %:" />
         </td>
         <td class="auto-style1">
             <asp:TextBox ID="tbFood5" runat="server" Width="300px" />
@@ -56,7 +56,7 @@
     </tr>
        <tr>
         <td>
-          <asp:Label ID="Label6" runat="server" Text="Fats %:" />
+          <asp:Label ID="Label6" runat="server" Text="Carb %:" />
         </td>
         <td class="auto-style1">
             <asp:TextBox ID="tbFood6" runat="server" Width="300px" />

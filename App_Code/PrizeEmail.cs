@@ -149,9 +149,20 @@ Comment:
             || emailType == PrizeConstants.EmailType.OneDaysPrior2Week11)
         {
             body = body.Replace("[calories]", additionalContents[1]);
-            body = body.Replace("[protein]", additionalContents[2]);
-            body = body.Replace("[carb]", additionalContents[3]);
-            body = body.Replace("[fat]", additionalContents[4]);
+            string[] sMealValue = additionalContents[2].Split(';');
+            body = body.Replace("[protein]", sMealValue[0]);
+            if (sMealValue.Length > 1)
+                body = body.Replace("[proteinpercentage]", sMealValue[1]);
+
+            sMealValue = additionalContents[3].Split(';');
+            body = body.Replace("[carb]", sMealValue[0]);
+            if (sMealValue.Length > 1)
+                body = body.Replace("[carbpercentage]", sMealValue[1]);
+
+            sMealValue = additionalContents[4].Split(';');
+            body = body.Replace("[fat]", sMealValue[0]);
+            if (sMealValue.Length > 1)
+                body = body.Replace("[fatpercentage]", sMealValue[1]);
         }
 body = body.Replace("/login", "http://web106.sand.studiocoast.com.au/login/");
         PrizeEmail.SendEmail(email, subject, (header + body + footer).Replace("/images/", "http://web106.sand.studiocoast.com.au/images/"));

@@ -56,10 +56,31 @@ public class PrizeEmailWrapper
             MemberFoodPlanWeek foodPlan = dbAccess.GetMemberFoodPlanWeek(memberId, 0, 0);
             if (foodPlan != null)
             {
+                string[] sPercentage = new string[3];
+                for (int i = 0; i < 3; i++)
+                {
+                    sPercentage[i] = "";
+                }
+
+                if (foodPlan.Food5 != null)
+                {
+                    string[] ss = foodPlan.Food5.Split(';');
+                    if (ss != null)
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (ss.Length > i)
+                            {
+                                sPercentage[i] = ss[i];
+                            }
+                        }
+                    }
+                }
+
                 myEmail.Content2 = foodPlan.Food1;
-                myEmail.Content3 = foodPlan.Food2;
-                myEmail.Content4 = foodPlan.Food3;
-                myEmail.Content5 = foodPlan.Food4;
+                myEmail.Content3 = foodPlan.Food2 + ";" + sPercentage[0];
+                myEmail.Content4 = foodPlan.Food3 + ";" + sPercentage[1];
+                myEmail.Content5 = foodPlan.Food4 + ";" + sPercentage[2];
             }
             else
             {
