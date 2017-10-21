@@ -455,9 +455,9 @@ public class PrizeMemberPlanManager
             PrizeExercisePlan targetPlan;
             if (plan.IsTrialPlan == 1)
                 targetPlan = (from c in db.PrizeExercisePlans
-                            where c.ProgramId == plan.ProgramId && c.LocationId == plan.LocationId && c.ExperienceId == plan.ExperienceId && c.LevelId == level.Id && c.IsTrialPlan == 1
-                            select c).FirstOrDefault();
-            else             
+                              where c.ProgramId == plan.ProgramId && c.LocationId == plan.LocationId && c.ExperienceId == plan.ExperienceId && c.LevelId == level.Id && c.IsTrialPlan == 1
+                              select c).FirstOrDefault();
+            else
                 targetPlan = (from c in db.PrizeExercisePlans
                               where c.ProgramId == plan.ProgramId && c.LocationId == plan.LocationId && c.ExperienceId == plan.ExperienceId && c.LevelId == level.Id && c.IsTrialPlan == 0
                               select c).FirstOrDefault();
@@ -468,17 +468,17 @@ public class PrizeMemberPlanManager
             }
 
             IQueryable<PrizeExercisePlanWeek> targetPlanWeeks = (from c in db.PrizeExercisePlanWeeks
-                                                        where c.ExercisePlanId == targetPlan.Id
-                                                        orderby c.StartWeek 
-                                                        select c);
+                                                                 where c.ExercisePlanId == targetPlan.Id
+                                                                 orderby c.StartWeek
+                                                                 select c);
 
             foreach (var targetPlanWeek in targetPlanWeeks)
             {
 
                 IQueryable<MemberExercisePlanWeek> myPlanWeeks = (from c in db.MemberExercisePlanWeeks
-                                                      join d in db.PrizeExercisePlanWeeks on c.ExercisePlanWeekId equals d.Id
-                                                      where c.MemberExercisePlanId == myPlan.Id && c.Week >= targetPlanWeek.StartWeek && c.Week <= targetPlanWeek.EndWeek
-                                                     select c);
+                                                                  join d in db.PrizeExercisePlanWeeks on c.ExercisePlanWeekId equals d.Id
+                                                                  where c.MemberExercisePlanId == myPlan.Id && c.Week >= targetPlanWeek.StartWeek && c.Week <= targetPlanWeek.EndWeek
+                                                                  select c);
                 foreach (var myPlanWeek in myPlanWeeks)
                     myPlanWeek.ExercisePlanWeekId = targetPlanWeek.Id;
             }
@@ -487,7 +487,11 @@ public class PrizeMemberPlanManager
 
             db.SaveChanges();
 
-            return ret;
+            return true;
+        }
+        catch
+        {
+            return false;
         }
         finally
         {

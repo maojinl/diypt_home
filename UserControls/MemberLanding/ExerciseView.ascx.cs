@@ -97,8 +97,15 @@ public partial class UserControls_MemberLanding_ExerciseView : BaseOrientation
         }
         else
         {
+            DateTime now = PrizeCommonUtils.GetSystemDate();
+           
             memberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId); //(MemberExercisePlanWeek)Session["MemberPlanWeek"];
-            if (memberPlanWeek == null)
+            if (memberPlanWeek == null && PrizeCommonUtils.LessThanDaysAhead(now, exercisePlan.StartDate, 1))
+            {
+                memberPlanWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(exercisePlan.Id, 0);
+            }
+
+            if (memberPlanWeek == null )
             {
 				HideLinks();
                 topInfo.Visible = false;

@@ -157,11 +157,11 @@ public class PrizeDataAccess
     {
         db.Database.Connection.Open();
         DbCommand cmd = db.Database.Connection.CreateCommand();
-        cmd.CommandText = "SELECT  d.Id as GroupNameId, d.DayGroupName, c.ExerciseDay " +
+        cmd.CommandText = "SELECT  d.Id as GroupNameId, d.DayGroupName, c.ExerciseDay, MAX(c.Id) as DayGroupId " +
              " FROM  PrizeExerciseUnitSetForDays c, PrizeExerciseDayGroupNames d " +
              " WHERE c.DayGroupNameId = d.Id " +
              " AND c.ExercisePlanWeekId = " + iPlanWeekId +
-             " AND c.ExerciseDay = " + iDay + " GROUP BY d.id, d.DayGroupName, c.ExerciseDay ORDER BY d.Id";
+             " AND c.ExerciseDay = " + iDay + " GROUP BY d.id, d.DayGroupName, c.ExerciseDay ORDER BY DayGroupId";
 
         try
         {
