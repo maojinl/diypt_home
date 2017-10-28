@@ -235,7 +235,41 @@ public class PrizeEmailWrapper
         catch (Exception ex)
         {
             PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(),
-                "DailyEmailTask Measurement Weeks", ex);
+                "DailyEmailTask Anniversary Email", ex);
+        }
+
+        //Revive me email
+        try
+        {
+            string availableStatus = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAID;
+            DateTime now = PrizeCommonUtils.GetSystemDate();
+            DateTime dtBegin = now.AddDays(-3);
+            DateTime dtEnd = now.AddDays(2);
+            DateTime dtSendEmailBegin = now.AddDays(-10);
+            using (var db = new DIYPTEntities())
+            {
+                if (PrizeCommonUtils.GetDayOfWeek(now) == 7)
+                {
+                    dtSendEmailBegin = now.AddDays(-6);
+                    var membersList = (from a in db.PrizeMembers
+                                   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
+                                   where !(from c in db.MemberEmails
+                                           where c.EmailType == (int)PrizeConstants.EmailType.ReviveMeEmail && c.ScheduleDate > dtSendEmailBegin
+                                           select c.MemberId).Contains(a.UmbracoId)
+                                   orderby a.UmbracoId
+                                   select a).ToList();
+
+                    foreach (PrizeMember member in membersList)
+                    {
+                        PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ReviveMeEmail, "Revive Me", member.Firstname);
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(),
+                "DailyEmailTask Anniversary Email", ex);
         }
     }
 
