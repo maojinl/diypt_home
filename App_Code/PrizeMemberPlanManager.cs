@@ -395,6 +395,36 @@ public class PrizeMemberPlanManager
         }
     }
 
+    public void WeeklyPaymentMemberPlanSetup(int currentOrderId)
+    {
+        try
+        {
+            db.Database.Connection.Open();
+
+            PrizeOrder myCurrentOrder;
+            MemberExercisePlan myPlan;
+            if (currentOrderId >= 0)
+            {
+                // Get the order based on order id.
+                myCurrentOrder = db.PrizeOrders.Single(o => o.OrderId == currentOrderId);
+                // Update the order to reflect payment has been completed.
+                myCurrentOrder.PaymentTransactionId = "Weekly Payment by JR";
+
+                myPlan = db.MemberExercisePlans.Single(o => o.Id == myCurrentOrder.MemberPlanId);
+
+                myPlan.Status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_WEEKLY_PAYMENT;
+
+
+                // Save to DB.
+                db.SaveChanges();
+            }
+        }
+        finally
+        {
+            db.Database.Connection.Close();
+        }
+    }
+
     public void PayMemberPlanCancel(int currentOrderId)
     {
         try

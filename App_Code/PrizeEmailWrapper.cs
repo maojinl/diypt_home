@@ -261,7 +261,12 @@ public class PrizeEmailWrapper
 
                     foreach (PrizeMember member in membersList)
                     {
-                        PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ReviveMeEmail, "Revive Me", member.Firstname);
+                        MemberExercisePlanWeek memberPlanWeek = (from c in db.MemberExercisePlanWeeks
+                                                                 where c.MemberId == member.UmbracoId && c.Status.Equals(PrizeConstants.STATUS_PLAN_WEEK_STARTED)
+                                                                 select c).FirstOrDefault();
+                        if (memberPlanWeek == null)
+                            continue;
+                        PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ReviveMeEmail, "Revive Me", member.Firstname, "" + memberPlanWeek.Week);
                     }
                 }
             }

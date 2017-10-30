@@ -60,12 +60,12 @@ Comment:
 		int nodeId = 0;
         int templateNodeId = 5332;
 
-		if (emailType == PrizeConstants.EmailType.WelcomeEmail)
-			nodeId = 5333;
-		else if (emailType == PrizeConstants.EmailType.TwoDaysPrior2Start)
-			nodeId = 6671;
-		else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Normal)
-			nodeId = 5377;
+        if (emailType == PrizeConstants.EmailType.WelcomeEmail)
+            nodeId = 5333;
+        else if (emailType == PrizeConstants.EmailType.TwoDaysPrior2Start)
+            nodeId = 6671;
+        else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Normal)
+            nodeId = 5377;
         else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Vegan)
             nodeId = 9669;
         else if (emailType == PrizeConstants.EmailType.OneDaysPrior2Week4Lactose)
@@ -80,14 +80,14 @@ Comment:
             nodeId = 6680;
         else if (emailType == PrizeConstants.EmailType.ChristmasEmail)
             nodeId = 5385;
-		else if (emailType == PrizeConstants.EmailType.BirthdayEmail)
-			nodeId = 5380;
-		else if (emailType == PrizeConstants.EmailType.FirstMonthEmail)
-			nodeId = 6673;
-		else if (emailType == PrizeConstants.EmailType.SecondMonthEmail)
-			nodeId = 6674;
-		else if (emailType == PrizeConstants.EmailType.ThirdMonthEmail)
-			nodeId = 6675;
+        else if (emailType == PrizeConstants.EmailType.BirthdayEmail)
+            nodeId = 5380;
+        else if (emailType == PrizeConstants.EmailType.FirstMonthEmail)
+            nodeId = 6673;
+        else if (emailType == PrizeConstants.EmailType.SecondMonthEmail)
+            nodeId = 6674;
+        else if (emailType == PrizeConstants.EmailType.ThirdMonthEmail)
+            nodeId = 6675;
         else if (emailType == PrizeConstants.EmailType.TwoDaysPrior2End)
             nodeId = 6678;
         else if (emailType == PrizeConstants.EmailType.OneDayPrior2TrialEnd)
@@ -123,7 +123,22 @@ Comment:
         else if (emailType == PrizeConstants.EmailType.FisrtDayOnWeek1)
             nodeId = 5378;
         else if (emailType == PrizeConstants.EmailType.ReviveMeEmail)
-            nodeId = 9707;
+        {
+            int weekNum = 0;
+            int.TryParse(additionalContents[2], out weekNum);
+            switch (weekNum)
+            {
+                case 1:
+                    nodeId = 9707;
+                    break;
+                case 2:
+                    nodeId = 9707;
+                    break;
+                default:
+                    break;
+            }
+            
+        }
 
         if (nodeId == 0)
             return false;

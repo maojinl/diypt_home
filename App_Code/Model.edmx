@@ -115,6 +115,25 @@
           <Property Name="BackPhoto" Type="varchar" MaxLength="255" />
           <Property Name="Tasks" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'diypt.dbo.MemberWeeklyPayments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MemberWeeklyPayments">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="MemberId" />
+            <PropertyRef Name="MemberExercisePlanId" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Comment" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="MemberExercisePlanId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="PaidDate" Type="datetime" />
+          <Property Name="Comment" Type="varchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="PrizeErrorLogs">
           <Key>
             <PropertyRef Name="Id" />
@@ -438,6 +457,17 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <EntitySet Name="PrizePlanPrograms" EntityType="Self.PrizePlanPrograms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrizePollingTasks" EntityType="Self.PrizePollingTasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrizePresetTasks" EntityType="Self.PrizePresetTasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberWeeklyPayments" EntityType="Self.MemberWeeklyPayments" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MemberWeeklyPayments].[Id] AS [Id], 
+    [MemberWeeklyPayments].[MemberId] AS [MemberId], 
+    [MemberWeeklyPayments].[MemberExercisePlanId] AS [MemberExercisePlanId], 
+    [MemberWeeklyPayments].[Status] AS [Status], 
+    [MemberWeeklyPayments].[CreatedDate] AS [CreatedDate], 
+    [MemberWeeklyPayments].[PaidDate] AS [PaidDate], 
+    [MemberWeeklyPayments].[Comment] AS [Comment]
+    FROM [dbo].[MemberWeeklyPayments] AS [MemberWeeklyPayments]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="PrizeSysConfigs" EntityType="Self.PrizeSysConfigs" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [PrizeSysConfigs].[Id] AS [Id], 
@@ -501,6 +531,7 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <EntitySet Name="MemberEmails" EntityType="diyptModel.MemberEmail" />
           <EntitySet Name="PrizePresetTasks" EntityType="diyptModel.PrizePresetTask" />
           <EntitySet Name="cmsMembers" EntityType="diyptModel.cmsMember" />
+          <EntitySet Name="MemberWeeklyPayments" EntityType="diyptModel.MemberWeeklyPayment" />
           </EntityContainer>
         <EntityType Name="PrizePlanProgram">
           <Key>
@@ -912,6 +943,23 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="LoginName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="MemberWeeklyPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="MemberId" />
+            <PropertyRef Name="MemberExercisePlanId" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Comment" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="MemberExercisePlanId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaidDate" Type="DateTime" Precision="3" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1310,6 +1358,19 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
                 <ScalarProperty Name="LoginName" ColumnName="LoginName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="nodeId" ColumnName="nodeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberWeeklyPayments">
+            <EntityTypeMapping TypeName="diyptModel.MemberWeeklyPayment">
+              <MappingFragment StoreEntitySet="MemberWeeklyPayments">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MemberExercisePlanId" ColumnName="MemberExercisePlanId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

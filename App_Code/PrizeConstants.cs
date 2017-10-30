@@ -67,10 +67,13 @@ public class PrizeConstants
     public const String STATUS_PLAN_NOT_PAID = "N";
     public const String STATUS_PLAN_PAID = "P";
     public const String STATUS_PLAN_PAYMENT_CANCELLED = "C";
+    public const String STATUS_PLAN_WEEKLY_PAYMENT = "W";
 
     public const String STATUS_PLAN_NOT_STARTED = "0";
     public const String STATUS_PLAN_STARTED = "1";
     public const String STATUS_PLAN_FINISHED = "2";
+    public const String STATUS_PLAN_SUSPENDED = "3";
+    public const String STATUS_PLAN_TERMINATED = "4";
 
     public const String STATUS_PLAN_WEEK_NOT_STARTED = "0";
     public const String STATUS_PLAN_WEEK_STARTED = "1";

@@ -83,5 +83,7 @@ public partial class DIYPTEntities : DbContext
 
     public virtual DbSet<cmsMember> cmsMembers { get; set; }
 
+    public virtual DbSet<MemberWeeklyPayment> MemberWeeklyPayments { get; set; }
+
 }
 
