@@ -414,6 +414,7 @@ public class PrizeMemberPlanManager
 
                 myPlan.Status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_WEEKLY_PAYMENT;
 
+                MemberExercisePlanWeek myPlanWeek = new MemberExercisePlanWeek();
 
                 // Save to DB.
                 db.SaveChanges();

@@ -136,33 +136,6 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
 
     protected void btnSubmitPayWeekly_Click(object sender, EventArgs e)
     {
-        /*NVPAPICaller payPalCaller = new NVPAPICaller();
-        string retMsg = "";
-        string token = "";
-
-        if (Session["payment_amt"] != null)
-        {
-            string amt = Session["payment_amt"].ToString();
-            string planName = Session["buying_plan_name"].ToString();
-            payPalCaller.SetCredentials(PrizeConstants.WALLET_USER_NAME, 
-                PrizeConstants.WALLET_PASSWORD,
-                PrizeConstants.WALLET_SIGNATURE);
-            bool ret = payPalCaller.ShortcutExpressCheckout(amt, planName, ref token, ref retMsg);
-            if (ret)
-            {
-                Session["token"] = token;
-                Response.Redirect(retMsg);
-            }
-            else
-            {
-                Response.Redirect(PrizeConstants.URL_CHECKOUT_ERROR+"?" + retMsg);
-            }
-        }
-        else
-        {
-            Response.Redirect(PrizeConstants.URL_CHECKOUT_ERROR + "?ErrorCode =AmtMissing");
-        }
-        */
         doWeeklyPaymentPlan();
     }
 
@@ -231,21 +204,6 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
         myOrder.MemberPlanId = Int32.Parse(Session["buying_my_plan_id"].ToString());
         myOrder.ExercisePlanId = Int32.Parse(Session["buying_plan_id"].ToString());
 
-        // Verify total payment amount as set on CheckoutStart.aspx.
-        try
-        {
-            decimal paymentAmountOnCheckout = 0;
-            decimal paymentAmoutFromPayPal = 0;
-            if (paymentAmountOnCheckout != paymentAmoutFromPayPal)
-            {
-                Response.Redirect("/Checkout/CheckoutError.aspx?" + "Desc=Amount%20total%20mismatch.");
-            }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("/Checkout/CheckoutError.aspx?" + "Desc=Amount%20total%20mismatch.");
-        }
-
         // Get DB context.
         DIYPTEntities _db = new DIYPTEntities();
         try
@@ -267,7 +225,7 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
         }
 
         PrizeMemberPlanManager planManager = new PrizeMemberPlanManager();
-        planManager.PayMemberPlans(currentOrderId, "");
+        planManager.WeeklyPaymentMemberPlanSetup(currentOrderId, "");
 
         Response.Redirect(PrizeConstants.URL_MEMBER_LANDING);
     }

@@ -162,7 +162,7 @@
                       Width="145" AlternateText="Check out with PayPal" 
                       OnClick="CheckoutBtn_Click" 
                       BackColor="Transparent" BorderWidth="0" />--%>
-        <asp:Button ID="btnSubmit0" runat="server" class="btn btn-secondary c_y mt-5 sec" Text="Pay Weekly" OnClick="btnSubmit_Click" />
+        <asp:Button ID="btnSubmit0" runat="server" class="btn btn-secondary c_y mt-5 sec" Text="Pay Weekly" OnClick="btnSubmitPayWeekly_Click" />
     </div>
 </div>
 
