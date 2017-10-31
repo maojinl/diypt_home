@@ -151,21 +151,6 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
         myOrder.MemberPlanId = Int32.Parse(Session["buying_my_plan_id"].ToString());          
         myOrder.ExercisePlanId = Int32.Parse(Session["buying_plan_id"].ToString());
 
-        // Verify total payment amount as set on CheckoutStart.aspx.
-        try
-        {
-            decimal paymentAmountOnCheckout = 0;
-            decimal paymentAmoutFromPayPal = 0;
-            if (paymentAmountOnCheckout != paymentAmoutFromPayPal)
-            {
-                Response.Redirect("/Checkout/CheckoutError.aspx?" + "Desc=Amount%20total%20mismatch.");
-            }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("/Checkout/CheckoutError.aspx?" + "Desc=Amount%20total%20mismatch.");
-        }
-
         // Get DB context.
         DIYPTEntities _db = new DIYPTEntities();
         try
@@ -225,7 +210,7 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
         }
 
         PrizeMemberPlanManager planManager = new PrizeMemberPlanManager();
-        planManager.WeeklyPaymentMemberPlanSetup(currentOrderId, "");
+        planManager.WeeklyPaymentMemberPlanSetup(currentOrderId);
 
         Response.Redirect(PrizeConstants.URL_MEMBER_LANDING);
     }

@@ -6,7 +6,7 @@ using System.Web;
 /// <summary>
 /// Summary description for PrizeConstants
 /// </summary>
-public class PrizeConstants
+public static class PrizeConstants
 {
     public enum GraphDrawType
     {
@@ -140,12 +140,4 @@ public class PrizeConstants
 		LevelMedium,
 		LevelSerious
 	}
-
-	public PrizeConstants()
-    {
-        //
-        // TODO: Add constructor logic here
-        //
-    }
-  
 }
