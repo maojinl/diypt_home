@@ -26,7 +26,7 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
                 }
                 if (tbTo.Text != "" && tbTo.Text != null)
                 {
-                    ed = DateTime.ParseExact(tbFrom.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    ed = DateTime.ParseExact(tbTo.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 }
 
                 var weeklyPayments = from w in db.MemberWeeklyPayments
