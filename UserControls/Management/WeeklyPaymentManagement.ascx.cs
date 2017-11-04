@@ -37,10 +37,9 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
                                   join Location in db.PrizePlanLocations on b.LocationId equals Location.Id
                                   join Experience in db.PrizePlanExperiences on b.ExperienceId equals Experience.Id
                                   join Level in db.PrizePlanLevels on b.LevelId equals Level.Id
-                                  join c in db.PrizeOrders on a.Id equals c.MemberPlanId into gj
-                                  from subOrder in gj.DefaultIfEmpty()
+                                  join c in db.PrizeOrders on a.Id equals c.MemberPlanId
                                   orderby a.StartDate descending
-                                  where !a.Status.EndsWith("C") && w.CreatedDate > st && w.CreatedDate < ed
+                                  where w.CreatedDate > st && w.CreatedDate < ed
                                   select new
                                   {
                                       Id = dic.UmbracoId,
@@ -52,7 +51,7 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
                                       CreatedDate = w.CreatedDate,
                                       StartDate = a.StartDate,
                                       Status = w.Status,
-                                      OrderId = subOrder != null ? subOrder.OrderId.ToString() : "",
+                                      OrderId = c.OrderId.ToString(),
                                   };
 
                 if (tbfistname.Text != "")
@@ -61,7 +60,6 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
                 }
 
                 GridView1.DataSource = weeklyPayments.ToList();
-
                 GridView1.DataBind();
             }
             db.Database.Connection.Close();
@@ -91,10 +89,12 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
     {
         if (e.CommandName == "Start")
         {
-            int id = Convert.ToInt32(e.CommandArgument);
-            Session["MID"] = Convert.ToString(id);
-
-            Response.Redirect("/management/member-result.aspx");
+            string[] args = e.CommandArgument.ToString().Split(new char[]{','});
+            int orderId = Convert.ToInt32(args[0]);
+            int memberPlanId = Convert.ToInt32(args[1]);
+            PrizeMemberPlanManager man = new PrizeMemberPlanManager();
+            man.PayMemberPlanWeekly(orderId, memberPlanId, "");
+            this.BindGrid();
         }
     }
 

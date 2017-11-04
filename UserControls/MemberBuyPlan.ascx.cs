@@ -140,7 +140,7 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
     }
 
     private void doNoPaymentPlan()
-    { 
+    {
         PrizeOrder myOrder = new PrizeOrder();
         myOrder.OrderDate = PrizeCommonUtils.GetSystemDate();
         myOrder.Username = PrizeMemberAuthUtils.GetMemberName();
@@ -179,40 +179,13 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
 
     private void doWeeklyPaymentPlan()
     {
-        PrizeOrder myOrder = new PrizeOrder();
-        myOrder.OrderDate = PrizeCommonUtils.GetSystemDate();
-        myOrder.Username = PrizeMemberAuthUtils.GetMemberName();
-        myOrder.FirstName = "";
-        myOrder.LastName = "";
-        myOrder.Email = PrizeMemberAuthUtils.GetMemberEmail();
-        myOrder.Total = 0;
-        myOrder.MemberPlanId = Int32.Parse(Session["buying_my_plan_id"].ToString());
-        myOrder.ExercisePlanId = Int32.Parse(Session["buying_plan_id"].ToString());
-
-        // Get DB context.
-        DIYPTEntities _db = new DIYPTEntities();
-        try
-        {
-            // Add order to DB.
-            _db.Database.Connection.Open();
-            _db.PrizeOrders.Add(myOrder);
-            _db.SaveChanges();
-            Session["currentOrderId"] = myOrder.OrderId;
-        }
-        finally
-        {
-            _db.Database.Connection.Close();
-        }
-        int currentOrderId = -1;
-        if (Session["currentOrderId"] != string.Empty)
-        {
-            currentOrderId = Convert.ToInt32(Session["currentOrderID"]);
-        }
-
+        int memberPlanId = Int32.Parse(Session["buying_my_plan_id"].ToString());
+        int exercisePlanId = Int32.Parse(Session["buying_plan_id"].ToString());
+       
         PrizeMemberPlanManager planManager = new PrizeMemberPlanManager();
-        planManager.WeeklyPaymentMemberPlanSetup(currentOrderId);
+        planManager.WeeklyPaymentMemberPlanSetup(memberPlanId, exercisePlanId);
 
-        Response.Redirect(PrizeConstants.URL_MEMBER_LANDING);
+        Response.Redirect(PrizeConstants.URL_EZIDEBIT_LOGIN);
     }
 
 }

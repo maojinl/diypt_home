@@ -395,7 +395,7 @@ public class PrizeMemberPlanManager
         }
     }
 
-    public void WeeklyPaymentMemberPlanSetup(int currentOrderId)
+    public void PayMemberPlanWeekly(int currentOrderId, int memberPlanId, string PaymentConfirmation)
     {
         try
         {
@@ -408,9 +408,64 @@ public class PrizeMemberPlanManager
                 // Get the order based on order id.
                 myCurrentOrder = db.PrizeOrders.Single(o => o.OrderId == currentOrderId);
                 // Update the order to reflect payment has been completed.
-                myCurrentOrder.PaymentTransactionId = "Weekly Payment by JR";
+                myCurrentOrder.PaymentTransactionId = PaymentConfirmation;
 
                 myPlan = db.MemberExercisePlans.Single(o => o.Id == myCurrentOrder.MemberPlanId);
+
+                myPlan.Status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAID;
+                DateTime currentEndDate = PrizeCommonUtils.GetSystemDate();
+                if (myPlan.StartDate < currentEndDate)
+                {
+                    DateTime startDate = PrizeCommonUtils.GetNextWeekStart(currentEndDate);
+                    DateTime endDate = PrizeCommonUtils.GetWeekEnd(startDate);
+                    myPlan.StartDate = startDate;
+                    IList<MemberExercisePlanWeek> myPlanWeeks = (from c in db.MemberExercisePlanWeeks
+                                                                 where c.MemberExercisePlanId == myPlan.Id
+                                                                 orderby c.StartDate
+                                                                 select c).ToList();
+                    foreach (MemberExercisePlanWeek myPlanWeek in myPlanWeeks)
+                    {
+                        myPlanWeek.StartDate = startDate;
+                        myPlanWeek.EndDate = endDate;
+                        myPlanWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_NOT_STARTED;
+                        myPlan.EndDate = endDate;
+                        db.SaveChanges();
+
+                        startDate = startDate.AddDays(7);
+                        endDate = endDate.AddDays(7);
+                    }
+                }
+                // Save to DB.
+                db.SaveChanges();
+            }
+        }
+        finally
+        {
+            db.Database.Connection.Close();
+        }
+    }
+
+    public int WeeklyPaymentMemberPlanSetup(int memberPlanId, int exercisePlanId)
+    {
+        try
+        {
+            db.Database.Connection.Open();
+
+            PrizeOrder myOrder = new PrizeOrder();
+            myOrder.OrderDate = PrizeCommonUtils.GetSystemDate();
+            myOrder.Username = PrizeMemberAuthUtils.GetMemberName();
+            myOrder.FirstName = "";
+            myOrder.LastName = "";
+            myOrder.Email = PrizeMemberAuthUtils.GetMemberEmail();
+            myOrder.Total = 0;
+            myOrder.MemberPlanId = memberPlanId;
+            myOrder.ExercisePlanId = exercisePlanId;
+            db.PrizeOrders.Add(myOrder);
+               
+            MemberExercisePlan myPlan;
+            if (myOrder.OrderId >= 0)
+            {
+                myPlan = db.MemberExercisePlans.Single(o => o.Id == myOrder.MemberPlanId);
 
                 myPlan.Status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_WEEKLY_PAYMENT;
 
@@ -419,10 +474,10 @@ public class PrizeMemberPlanManager
                 weeklyPayment.MemberExercisePlanId = myPlan.Id;
                 weeklyPayment.CreatedDate = PrizeCommonUtils.GetSystemDate();
                 weeklyPayment.Status = PrizeConstants.STATUS_PLAN_NOT_PAID;
-
-                // Save to DB.
-                db.SaveChanges();
+                db.MemberWeeklyPayments.Add(weeklyPayment);
             }
+            db.SaveChanges();
+            return myOrder.OrderId;
         }
         finally
         {

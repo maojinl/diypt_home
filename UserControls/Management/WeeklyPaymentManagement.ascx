@@ -126,6 +126,16 @@ OnPageIndexChanging = "OnPaging" >
                     CommandArgument='<%# Eval("WeeklyPaymentId")+","+Eval("MemberPlanId")+","+Eval("OrderId")  %>' />
             </ItemTemplate>
         </asp:TemplateField>
+        <asp:TemplateField  HeaderText="Transaction"   >
+            <ItemTemplate>
+                <asp:TextBox ID="txtTransactionId" runat="server" Text='<%# Eval("programename") %>'></asp:TextBox>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField  HeaderText="First name"   >
+            <ItemTemplate >
+                <asp:Label ID="lbEN" runat="server" Text='<%# Eval("Firstname") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
         <asp:TemplateField  HeaderText="First name"   >
             <ItemTemplate >
                 <asp:Label ID="lbEN" runat="server" Text='<%# Eval("Firstname") %>'></asp:Label>
