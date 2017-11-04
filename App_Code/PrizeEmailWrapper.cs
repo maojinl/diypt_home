@@ -674,7 +674,7 @@ public class PrizeEmailWrapper
             using (var db = new DIYPTEntities())
             {
                 //Measurement Weeks
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 4; i++)
 				{
 					int weekNum = 4;
 					PrizeConstants.EmailType emailType = PrizeConstants.EmailType.MeasurmentWeek4;
@@ -684,7 +684,11 @@ public class PrizeEmailWrapper
 							weekNum = 7;
 							emailType = PrizeConstants.EmailType.MeasurmentWeek7;
 							break;
-						case 2:
+                        case 2:
+                            weekNum = 10;
+                            emailType = PrizeConstants.EmailType.MeasurmentWeek10;
+                            break;
+                        case 3:
 							weekNum = 12;
 							emailType = PrizeConstants.EmailType.MeasurmentWeek12;
 							break;
@@ -726,17 +730,21 @@ public class PrizeEmailWrapper
             using (var db = new DIYPTEntities())
             {
                 //Measurement Missed Weeks
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 4; i++)
 				{
 					int weekNum = 5;
 					PrizeConstants.EmailType emailType = PrizeConstants.EmailType.MeasurmentMissedWeek4;
 					switch (i)
 					{
-						case 1:
+                        case 1:
 							weekNum = 8;
 							emailType = PrizeConstants.EmailType.MeasurmentMissedWeek7;
 							break;
-						case 2:
+                        case 2:
+                            weekNum = 11;
+                            emailType = PrizeConstants.EmailType.MeasurmentMissedWeek10;
+                            break;
+                        case 3:
                             weekNum = 13;
 							emailType = PrizeConstants.EmailType.MeasurmentMissedWeek12;
 							break;

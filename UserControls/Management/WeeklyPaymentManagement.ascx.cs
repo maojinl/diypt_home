@@ -93,7 +93,6 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
             string[] args = e.CommandArgument.ToString().Split(new char[]{','});
             int orderId = Convert.ToInt32(args[0]);
             int memberPlanId = Convert.ToInt32(args[1]);
-            string memberPlanId = Convert.ToInt32(args[1]);
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = GridView1.Rows[rowIndex];
             string transaction = (row.FindControl("txtTransactionId") as TextBox).Text;

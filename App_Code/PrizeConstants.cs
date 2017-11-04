@@ -126,6 +126,8 @@ public static class PrizeConstants
 		MeasurmentMissedWeek12,
         FisrtDayOnWeek1,
         ReviveMeEmail,
+        MeasurmentWeek10,
+        MeasurmentMissedWeek10,
     }
 
     public enum EmailStatus
