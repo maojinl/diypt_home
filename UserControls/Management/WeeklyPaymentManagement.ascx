@@ -128,7 +128,7 @@ OnPageIndexChanging = "OnPaging" >
         </asp:TemplateField>
         <asp:TemplateField  HeaderText="Transaction"   >
             <ItemTemplate>
-                <asp:TextBox ID="txtTransactionId" runat="server" Text='<%# Eval("programename") %>'></asp:TextBox>
+                <asp:TextBox ID="txtTransactionId" runat="server" Text='<%# Eval("Transaction") %>'></asp:TextBox>
             </ItemTemplate>
         </asp:TemplateField>
         <asp:TemplateField  HeaderText="First name"   >
