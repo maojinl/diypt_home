@@ -42,7 +42,7 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
                                      where w.CreatedDate > st && w.CreatedDate < ed && w.Status.Equals(PrizeConstants.STATUS_PLAN_NOT_PAID)
                                      select new
                                      {
-                                         
+
                                          WeeklyPaymentId = w.Id,
                                          MemberPlanId = a.Id,
                                          Id = dic.UmbracoId,
@@ -56,7 +56,8 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
                                          Status = w.Status,
                                          OrderId = c.OrderId.ToString(),
                                          Transaction = c.PaymentTransactionId,
-                                  };
+                                         Comment = w.Comment,
+                                     };
 
                 if (tbfistname.Text != "")
                 {
@@ -70,6 +71,65 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
         }
     }
 
+    private void BindGridWeeklyPayStop()
+    {
+        using (DIYPTEntities db = new DIYPTEntities())
+        {
+            db.Database.Connection.Open();
+            {
+                DateTime st = DateTime.MinValue;
+                DateTime ed = DateTime.MaxValue;
+                if (tbFrom2.Text != "" && tbFrom2.Text != null)
+                {
+                    st = DateTime.ParseExact(tbFrom.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                if (tbTo2.Text != "" && tbTo2.Text != null)
+                {
+                    ed = DateTime.ParseExact(tbTo.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+
+                var weeklyPayments = from w in db.MemberWeeklyPayments
+                                     join a in db.MemberExercisePlans on w.MemberExercisePlanId equals a.Id
+                                     join dic in db.PrizeMembers on a.MemberId equals dic.UmbracoId
+                                     join b in db.PrizeExercisePlans on a.ExercisePlanId equals b.Id
+                                     join Program in db.PrizePlanPrograms on b.ProgramId equals Program.Id
+                                     join Location in db.PrizePlanLocations on b.LocationId equals Location.Id
+                                     join Experience in db.PrizePlanExperiences on b.ExperienceId equals Experience.Id
+                                     join Level in db.PrizePlanLevels on b.LevelId equals Level.Id
+                                     join c in db.PrizeOrders on a.Id equals c.MemberPlanId
+                                     orderby a.StartDate descending
+                                     where w.CreatedDate > st && w.CreatedDate < ed && w.Status.Equals(PrizeConstants.STATUS_PLAN_PAID)
+                                     select new
+                                     {
+                                         WeeklyPaymentId = w.Id,
+                                         MemberPlanId = a.Id,
+                                         Id = dic.UmbracoId,
+                                         Firstname = dic.Firstname,
+                                         Surname = dic.Surname,
+                                         Email = dic.Email,
+                                         IsTrialPlan = b.IsTrialPlan,
+                                         PlanName = Program.Name + "_" + Location.Name + "_" + Level.Name + "_" + Experience.Name,
+                                         CreatedDate = w.CreatedDate,
+                                         StartDate = a.StartDate,
+                                         Status = w.Status,
+                                         OrderId = c.OrderId.ToString(),
+                                         Transaction = c.PaymentTransactionId,
+                                         Comment = w.Comment,
+                                     };
+
+                if (tbFirstName2.Text != "")
+                {
+                    weeklyPayments = weeklyPayments.Where(m => m.Firstname.Contains(tbFirstName2.Text));
+                }
+
+                GridView1.DataSource = weeklyPayments.ToList();
+                GridView1.DataBind();
+            }
+            db.Database.Connection.Close();
+        }
+    }
+
+
 
     protected void search(object sender, EventArgs e)
     {
@@ -78,7 +138,7 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
 
     protected void search2(object sender, EventArgs e)
     {
-        this.BindGridWeeklyPayStart();
+        this.BindGridWeeklyPayStop();
     }
 
     protected void refresh(object sender, EventArgs e)
@@ -103,6 +163,7 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
 
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
+        GridView grid = sender as GridView;
         if (e.CommandName == "Start")
         {
             string[] args = e.CommandArgument.ToString().Split(new char[] { ',' });
@@ -110,10 +171,24 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
             int memberPlanId = Convert.ToInt32(args[1]);
             int orderId = Convert.ToInt32(args[2]);
             int rowIndex = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = GridView1.Rows[rowIndex];
+            GridViewRow row = grid.Rows[rowIndex];
             string transaction = (row.FindControl("txtTransactionId") as TextBox).Text;
+            string comment = (row.FindControl("txtComment") as TextBox).Text;
             PrizeMemberPlanManager man = new PrizeMemberPlanManager();
-            man.PayMemberPlanWeekly(weeklyPaymentId, orderId, memberPlanId, transaction);
+            man.PayMemberPlanWeekly(weeklyPaymentId, orderId, memberPlanId, transaction, comment);
+            this.BindGridWeeklyPayStart();
+        }
+        else if (e.CommandName == "Terminate")
+        {
+            string[] args = e.CommandArgument.ToString().Split(new char[] { ',' });
+            int weeklyPaymentId = Convert.ToInt32(args[0]);
+            int memberPlanId = Convert.ToInt32(args[1]);
+            int orderId = Convert.ToInt32(args[2]);
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = grid.Rows[rowIndex];
+            string comment = (row.FindControl("txtComment") as TextBox).Text;
+            PrizeMemberPlanManager man = new PrizeMemberPlanManager();
+            man.TerminateMemberPlanWeekly(weeklyPaymentId, memberPlanId, comment);
             this.BindGridWeeklyPayStart();
         }
     }

@@ -76,6 +76,8 @@ public static class PrizeConstants
     public const String STATUS_PLAN_SUSPENDED = "3";
     public const String STATUS_PLAN_TERMINATED = "4";
 
+    public const String STATUS_PLAN_WEEKLY_PAYMENT_TERMINATED = "T";
+
     public const String STATUS_PLAN_WEEK_NOT_STARTED = "0";
     public const String STATUS_PLAN_WEEK_STARTED = "1";
     public const String STATUS_PLAN_WEEK_FINISHED = "2";

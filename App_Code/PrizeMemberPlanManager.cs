@@ -452,6 +452,55 @@ public class PrizeMemberPlanManager
         }
     }
 
+    public void TerminateMemberPlanWeekly(int weeklyPaymentId, int memberPlanId, string comment = "")
+    {
+        try
+        {
+            db.Database.Connection.Open();
+
+            MemberExercisePlan myPlan;
+            MemberWeeklyPayment myWeeklyPayment;
+            DateTime currentEndDate = PrizeCommonUtils.GetSystemDate();
+  
+                // Get Weekly payment.
+                myWeeklyPayment = db.MemberWeeklyPayments.Single(o => o.Id == weeklyPaymentId);
+                myWeeklyPayment.TerminateDate = currentEndDate;
+                myWeeklyPayment.Comment = comment;
+                myWeeklyPayment.Status = PrizeConstants.STATUS_PLAN_WEEKLY_PAYMENT_TERMINATED;
+
+                myPlan = db.MemberExercisePlans.Single(o => o.Id == memberPlanId);
+                myPlan.Status = PrizeConstants.STATUS_PLAN_TERMINATED + PrizeConstants.STATUS_PLAN_PAID;
+
+                if (myPlan.StartDate < currentEndDate)
+                {
+                    DateTime startDate = PrizeCommonUtils.GetNextWeekStart(currentEndDate);
+                    DateTime endDate = PrizeCommonUtils.GetWeekEnd(startDate);
+                    myPlan.StartDate = startDate;
+                    IList<MemberExercisePlanWeek> myPlanWeeks = (from c in db.MemberExercisePlanWeeks
+                                                                 where c.MemberExercisePlanId == myPlan.Id
+                                                                 orderby c.StartDate
+                                                                 select c).ToList();
+                    foreach (MemberExercisePlanWeek myPlanWeek in myPlanWeeks)
+                    {
+                        myPlanWeek.StartDate = startDate;
+                        myPlanWeek.EndDate = endDate;
+                        myPlanWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_NOT_STARTED;
+                        myPlan.EndDate = endDate;
+                        db.SaveChanges();
+
+                        startDate = startDate.AddDays(7);
+                        endDate = endDate.AddDays(7);
+                    }
+                }
+                // Save to DB.
+                db.SaveChanges();
+        }
+        finally
+        {
+            db.Database.Connection.Close();
+        }
+    }
+
     public int WeeklyPaymentMemberPlanSetup(int memberPlanId, int exercisePlanId)
     {
         try
