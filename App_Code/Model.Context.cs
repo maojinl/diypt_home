@@ -33,6 +33,8 @@ public partial class DIYPTEntities : DbContext
 
     public virtual DbSet<MemberCommunityChat> MemberCommunityChats { get; set; }
 
+    public virtual DbSet<MemberEmail> MemberEmails { get; set; }
+
     public virtual DbSet<MemberExercisePlan> MemberExercisePlans { get; set; }
 
     public virtual DbSet<MemberExercisePlanWeek> MemberExercisePlanWeeks { get; set; }
@@ -40,6 +42,8 @@ public partial class DIYPTEntities : DbContext
     public virtual DbSet<MemberFoodPlanWeek> MemberFoodPlanWeeks { get; set; }
 
     public virtual DbSet<MemberPlanWeekResult> MemberPlanWeekResults { get; set; }
+
+    public virtual DbSet<PrizeErrorLog> PrizeErrorLogs { get; set; }
 
     public virtual DbSet<PrizeExerciseDayGroupName> PrizeExerciseDayGroupNames { get; set; }
 
@@ -61,6 +65,8 @@ public partial class DIYPTEntities : DbContext
 
     public virtual DbSet<PrizeMemberLog> PrizeMemberLogs { get; set; }
 
+    public virtual DbSet<PrizeMember> PrizeMembers { get; set; }
+
     public virtual DbSet<PrizeOrder> PrizeOrders { get; set; }
 
     public virtual DbSet<PrizePlanExperience> PrizePlanExperiences { get; set; }
@@ -71,15 +77,9 @@ public partial class DIYPTEntities : DbContext
 
     public virtual DbSet<PrizePollingTask> PrizePollingTasks { get; set; }
 
-    public virtual DbSet<PrizeSysConfig> PrizeSysConfigs { get; set; }
-
-    public virtual DbSet<PrizeErrorLog> PrizeErrorLogs { get; set; }
-
-    public virtual DbSet<PrizeMember> PrizeMembers { get; set; }
-
-    public virtual DbSet<MemberEmail> MemberEmails { get; set; }
-
     public virtual DbSet<PrizePresetTask> PrizePresetTasks { get; set; }
+
+    public virtual DbSet<PrizeSysConfig> PrizeSysConfigs { get; set; }
 
     public virtual DbSet<cmsMember> cmsMembers { get; set; }
 

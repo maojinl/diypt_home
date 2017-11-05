@@ -395,7 +395,7 @@ public class PrizeMemberPlanManager
         }
     }
 
-    public void PayMemberPlanWeekly(int currentOrderId, int memberPlanId, string PaymentConfirmation)
+    public void PayMemberPlanWeekly(int weeklyPaymentId, int currentOrderId, int memberPlanId, string paymentConfirmation, string comment = "")
     {
         try
         {
@@ -403,17 +403,24 @@ public class PrizeMemberPlanManager
 
             PrizeOrder myCurrentOrder;
             MemberExercisePlan myPlan;
+            MemberWeeklyPayment myWeeklyPayment;
+            DateTime currentEndDate = PrizeCommonUtils.GetSystemDate();
             if (currentOrderId >= 0)
             {
+                // Get Weekly payment.
+                myWeeklyPayment = db.MemberWeeklyPayments.Single(o => o.Id == weeklyPaymentId);
+                myWeeklyPayment.PaidDate = currentEndDate;
+                myWeeklyPayment.Comment = comment;
+                myWeeklyPayment.Status = PrizeConstants.STATUS_PLAN_PAID;
                 // Get the order based on order id.
                 myCurrentOrder = db.PrizeOrders.Single(o => o.OrderId == currentOrderId);
                 // Update the order to reflect payment has been completed.
-                myCurrentOrder.PaymentTransactionId = PaymentConfirmation;
+                myCurrentOrder.PaymentTransactionId = paymentConfirmation;
 
                 myPlan = db.MemberExercisePlans.Single(o => o.Id == myCurrentOrder.MemberPlanId);
-
                 myPlan.Status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAID;
-                DateTime currentEndDate = PrizeCommonUtils.GetSystemDate();
+
+                
                 if (myPlan.StartDate < currentEndDate)
                 {
                     DateTime startDate = PrizeCommonUtils.GetNextWeekStart(currentEndDate);

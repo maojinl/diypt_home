@@ -12,7 +12,7 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
     {
     }
 
-    private void BindGrid()
+    private void BindGridWeeklyPayStart()
     {
         using (DIYPTEntities db = new DIYPTEntities())
         {
@@ -39,9 +39,12 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
                                      join Level in db.PrizePlanLevels on b.LevelId equals Level.Id
                                      join c in db.PrizeOrders on a.Id equals c.MemberPlanId
                                      orderby a.StartDate descending
-                                     where w.CreatedDate > st && w.CreatedDate < ed
+                                     where w.CreatedDate > st && w.CreatedDate < ed && w.Status.Equals(PrizeConstants.STATUS_PLAN_NOT_PAID)
                                      select new
                                      {
+                                         
+                                         WeeklyPaymentId = w.Id,
+                                         MemberPlanId = a.Id,
                                          Id = dic.UmbracoId,
                                          Firstname = dic.Firstname,
                                          Surname = dic.Surname,
@@ -70,60 +73,73 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
 
     protected void search(object sender, EventArgs e)
     {
-        this.BindGrid();
+        this.BindGridWeeklyPayStart();
+    }
+
+    protected void search2(object sender, EventArgs e)
+    {
+        this.BindGridWeeklyPayStart();
     }
 
     protected void refresh(object sender, EventArgs e)
     {
         tbfistname.Text = string.Empty;
-        Calendar.SelectedDate = PrizeCommonUtils.GetSystemDate();
-        Calendar1.SelectedDate = PrizeCommonUtils.GetSystemDate();
+        clWeeklyPaymentStart1.SelectedDate = PrizeCommonUtils.GetSystemDate();
+        clWeeklyPaymentStart2.SelectedDate = PrizeCommonUtils.GetSystemDate();
+    }
+
+    protected void refresh2(object sender, EventArgs e)
+    {
+        tbFirstName2.Text = string.Empty;
+        clWeeklyPaymentStop1.SelectedDate = PrizeCommonUtils.GetSystemDate();
+        clWeeklyPaymentStop2.SelectedDate = PrizeCommonUtils.GetSystemDate();
     }
 
     protected void OnPaging(object sender, GridViewPageEventArgs e)
     {
         GridView1.PageIndex = e.NewPageIndex;
-        this.BindGrid();
+        this.BindGridWeeklyPayStart();
     }
 
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         if (e.CommandName == "Start")
         {
-            string[] args = e.CommandArgument.ToString().Split(new char[]{','});
-            int orderId = Convert.ToInt32(args[0]);
+            string[] args = e.CommandArgument.ToString().Split(new char[] { ',' });
+            int weeklyPaymentId = Convert.ToInt32(args[0]);
             int memberPlanId = Convert.ToInt32(args[1]);
+            int orderId = Convert.ToInt32(args[2]);
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = GridView1.Rows[rowIndex];
             string transaction = (row.FindControl("txtTransactionId") as TextBox).Text;
             PrizeMemberPlanManager man = new PrizeMemberPlanManager();
-            man.PayMemberPlanWeekly(orderId, memberPlanId, transaction);
-            this.BindGrid();
+            man.PayMemberPlanWeekly(weeklyPaymentId, orderId, memberPlanId, transaction);
+            this.BindGridWeeklyPayStart();
         }
     }
 
     protected void ImageButtonCalendar_Click(object sender, ImageClickEventArgs e)
     {
-        Calendar.Visible = true;
+        clWeeklyPaymentStart1.Visible = true;
     }
 
     protected void Calendar_SelectionChanged(object sender, EventArgs e)
     {
-        DateTime dt = Calendar.SelectedDate;
+        DateTime dt = clWeeklyPaymentStart1.SelectedDate;
         tbFrom.Text = dt.ToString("dd/MM/yyyy");
-        Calendar.Visible = false;
+        clWeeklyPaymentStart1.Visible = false;
     }
 
     protected void ImageButtonCalendar1_Click(object sender, ImageClickEventArgs e)
     {
-        Calendar1.Visible = true;
+        clWeeklyPaymentStart2.Visible = true;
     }
 
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)
     {
-        DateTime dt = Calendar1.SelectedDate;
+        DateTime dt = clWeeklyPaymentStart2.SelectedDate;
         tbTo.Text = dt.ToString("dd/MM/yyyy");
-        Calendar1.Visible = false;
+        clWeeklyPaymentStart2.Visible = false;
     }
 
 }

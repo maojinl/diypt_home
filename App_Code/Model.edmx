@@ -51,7 +51,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
           <Property Name="ExercisePlanId" Type="int" Nullable="false" />
-          <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
           <Property Name="StartWeight" Type="decimal" Precision="18" Scale="2" />
           <Property Name="StartWaist" Type="decimal" Precision="18" Scale="2" />
@@ -115,16 +115,9 @@
           <Property Name="BackPhoto" Type="varchar" MaxLength="255" />
           <Property Name="Tasks" Type="varchar" MaxLength="255" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'diypt.dbo.MemberWeeklyPayments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MemberWeeklyPayments">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="MemberId" />
-            <PropertyRef Name="MemberExercisePlanId" />
-            <PropertyRef Name="Status" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="Comment" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
@@ -132,7 +125,7 @@ warning 6002: The table/view 'diypt.dbo.MemberWeeklyPayments' does not have a pr
           <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="PaidDate" Type="datetime" />
-          <Property Name="Comment" Type="varchar(max)" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="PrizeErrorLogs">
           <Key>
@@ -438,6 +431,7 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <EntitySet Name="MemberExercisePlanWeeks" EntityType="Self.MemberExercisePlanWeeks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberFoodPlanWeeks" EntityType="Self.MemberFoodPlanWeeks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberPlanWeekResults" EntityType="Self.MemberPlanWeekResults" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberWeeklyPayments" EntityType="Self.MemberWeeklyPayments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrizeErrorLogs" EntityType="Self.PrizeErrorLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrizeExerciseDayGroupNames" EntityType="Self.PrizeExerciseDayGroupNames" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrizeExerciseDayTypes" EntityType="Self.PrizeExerciseDayTypes" Schema="dbo" store:Type="Tables" />
@@ -457,17 +451,6 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <EntitySet Name="PrizePlanPrograms" EntityType="Self.PrizePlanPrograms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrizePollingTasks" EntityType="Self.PrizePollingTasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrizePresetTasks" EntityType="Self.PrizePresetTasks" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MemberWeeklyPayments" EntityType="Self.MemberWeeklyPayments" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [MemberWeeklyPayments].[Id] AS [Id], 
-    [MemberWeeklyPayments].[MemberId] AS [MemberId], 
-    [MemberWeeklyPayments].[MemberExercisePlanId] AS [MemberExercisePlanId], 
-    [MemberWeeklyPayments].[Status] AS [Status], 
-    [MemberWeeklyPayments].[CreatedDate] AS [CreatedDate], 
-    [MemberWeeklyPayments].[PaidDate] AS [PaidDate], 
-    [MemberWeeklyPayments].[Comment] AS [Comment]
-    FROM [dbo].[MemberWeeklyPayments] AS [MemberWeeklyPayments]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="PrizeSysConfigs" EntityType="Self.PrizeSysConfigs" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [PrizeSysConfigs].[Id] AS [Id], 
@@ -494,10 +477,12 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
         <EntityContainer Name="DIYPTEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="PrizePlanPrograms" EntityType="diyptModel.PrizePlanProgram" />
           <EntitySet Name="MemberCommunityChats" EntityType="diyptModel.MemberCommunityChat" />
+          <EntitySet Name="MemberEmails" EntityType="diyptModel.MemberEmail" />
           <EntitySet Name="MemberExercisePlans" EntityType="diyptModel.MemberExercisePlan" />
           <EntitySet Name="MemberExercisePlanWeeks" EntityType="diyptModel.MemberExercisePlanWeek" />
           <EntitySet Name="MemberFoodPlanWeeks" EntityType="diyptModel.MemberFoodPlanWeek" />
           <EntitySet Name="MemberPlanWeekResults" EntityType="diyptModel.MemberPlanWeekResult" />
+          <EntitySet Name="PrizeErrorLogs" EntityType="diyptModel.PrizeErrorLog" />
           <EntitySet Name="PrizeExerciseDayGroupNames" EntityType="diyptModel.PrizeExerciseDayGroupName" />
           <EntitySet Name="PrizeExerciseDayTypes" EntityType="diyptModel.PrizeExerciseDayType" />
           <EntitySet Name="PrizeExercisePlans" EntityType="diyptModel.PrizeExercisePlan" />
@@ -508,11 +493,13 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <EntitySet Name="PrizeExerciseUnitSets" EntityType="diyptModel.PrizeExerciseUnitSet" />
           <EntitySet Name="PrizeFoodPlans" EntityType="diyptModel.PrizeFoodPlan" />
           <EntitySet Name="PrizeMemberLogs" EntityType="diyptModel.PrizeMemberLog" />
+          <EntitySet Name="PrizeMembers" EntityType="diyptModel.PrizeMember" />
           <EntitySet Name="PrizeOrders" EntityType="diyptModel.PrizeOrder" />
           <EntitySet Name="PrizePlanExperiences" EntityType="diyptModel.PrizePlanExperience" />
           <EntitySet Name="PrizePlanLevels" EntityType="diyptModel.PrizePlanLevel" />
           <EntitySet Name="PrizePlanLocations" EntityType="diyptModel.PrizePlanLocation" />
           <EntitySet Name="PrizePollingTasks" EntityType="diyptModel.PrizePollingTask" />
+          <EntitySet Name="PrizePresetTasks" EntityType="diyptModel.PrizePresetTask" />
           <EntitySet Name="PrizeSysConfigs" EntityType="diyptModel.PrizeSysConfig" />
           <AssociationSet Name="FK_PrizeExercisePlan_PrizePlanProgram" Association="diyptModel.FK_PrizeExercisePlan_PrizePlanProgram">
             <End Role="PrizePlanProgram" EntitySet="PrizePlanPrograms" />
@@ -526,10 +513,6 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
             <End Role="PrizeFoodPlan" EntitySet="PrizeFoodPlans" />
             <End Role="PrizeExercisePlanWeek" EntitySet="PrizeExercisePlanWeeks" />
           </AssociationSet>
-          <EntitySet Name="PrizeErrorLogs" EntityType="diyptModel.PrizeErrorLog" />
-          <EntitySet Name="PrizeMembers" EntityType="diyptModel.PrizeMember" />
-          <EntitySet Name="MemberEmails" EntityType="diyptModel.MemberEmail" />
-          <EntitySet Name="PrizePresetTasks" EntityType="diyptModel.PrizePresetTask" />
           <EntitySet Name="cmsMembers" EntityType="diyptModel.cmsMember" />
           <EntitySet Name="MemberWeeklyPayments" EntityType="diyptModel.MemberWeeklyPayment" />
           </EntityContainer>
@@ -555,6 +538,24 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Catergory" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="MemberEmail">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="EmailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EmailType" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="ScheduleDate" Type="DateTime" Precision="3" />
+          <Property Name="SendDate" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityType Name="MemberExercisePlan">
           <Key>
             <PropertyRef Name="Id" />
@@ -562,7 +563,7 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemberId" Type="Int32" Nullable="false" />
           <Property Name="ExercisePlanId" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StartWeight" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="StartWaist" Type="Decimal" Precision="18" Scale="2" />
@@ -625,6 +626,20 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="SidePhoto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="BackPhoto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Tasks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PrizeErrorLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="MemberExercisePlanId" Type="Int32" />
+          <Property Name="LogDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ErrorLevel" Type="Int32" Nullable="false" />
+          <Property Name="Page" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Event" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Error" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="InnerError" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PrizeExerciseDayGroupName">
           <Key>
@@ -757,6 +772,44 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="Event" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Error" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="PrizeMember">
+          <Key>
+            <PropertyRef Name="UmbracoId" />
+          </Key>
+          <Property Name="UmbracoId" Type="Int32" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DoB" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="StreetAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Suburb" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Postcode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Height" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Weight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Waist" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BodyFat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GoalDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GoalWeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GoalWaist" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GoalBodyFat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Twiter" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="Facebook" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="Instagram" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="WhyDIYPT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Questions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RegisterDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UserSettings" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tasks" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Name="ContinuousLogin" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="PrizeOrder">
           <Key>
             <PropertyRef Name="OrderId" />
@@ -811,6 +864,16 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="Count" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="PrizePresetTask">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PresetTaskType" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="PrizeSysConfig">
           <Key>
             <PropertyRef Name="Id" />
@@ -854,86 +917,6 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="PrizeErrorLog">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemberId" Type="Int32" Nullable="false" />
-          <Property Name="MemberExercisePlanId" Type="Int32" />
-          <Property Name="LogDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ErrorLevel" Type="Int32" Nullable="false" />
-          <Property Name="Page" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Event" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Error" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="InnerError" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="PrizeMember">
-          <Key>
-            <PropertyRef Name="UmbracoId" />
-          </Key>
-          <Property Name="UmbracoId" Type="Int32" Nullable="false" />
-          <Property Name="Firstname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="DoB" Type="DateTime" Precision="3" />
-          <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="StreetAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Suburb" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Postcode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Height" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Weight" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Waist" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="BodyFat" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="GoalDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="GoalWeight" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="GoalWaist" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="GoalBodyFat" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Twiter" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
-          <Property Name="Facebook" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
-          <Property Name="Instagram" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
-          <Property Name="WhyDIYPT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Questions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="RegisterDateTime" Type="DateTime" Precision="3" />
-          <Property Name="UserSettings" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Tasks" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
-          <Property Name="ContinuousLogin" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="MemberEmail">
-          <Key>
-            <PropertyRef Name="EmailId" />
-          </Key>
-          <Property Name="EmailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemberId" Type="Int32" Nullable="false" />
-          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="EmailType" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Content1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Content2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Content3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Content4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Content5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
-          <Property Name="ScheduleDate" Type="DateTime" Precision="3" />
-          <Property Name="SendDate" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="PrizePresetTask">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TaskDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="PresetTaskType" Type="Int32" Nullable="false" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="cmsMember">
           <Key>
             <PropertyRef Name="nodeId" />
@@ -946,11 +929,6 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
         <EntityType Name="MemberWeeklyPayment">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="MemberId" />
-            <PropertyRef Name="MemberExercisePlanId" />
-            <PropertyRef Name="Status" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="Comment" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemberId" Type="Int32" Nullable="false" />
@@ -958,7 +936,7 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PaidDate" Type="DateTime" Precision="3" />
-          <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -986,6 +964,25 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
                 <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberEmails">
+            <EntityTypeMapping TypeName="diyptModel.MemberEmail">
+              <MappingFragment StoreEntitySet="MemberEmails">
+                <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+                <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Content5" ColumnName="Content5" />
+                <ScalarProperty Name="Content4" ColumnName="Content4" />
+                <ScalarProperty Name="Content3" ColumnName="Content3" />
+                <ScalarProperty Name="Content2" ColumnName="Content2" />
+                <ScalarProperty Name="Content1" ColumnName="Content1" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="EmailType" ColumnName="EmailType" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1059,6 +1056,21 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
                 <ScalarProperty Name="StartWaist" ColumnName="StartWaist" />
                 <ScalarProperty Name="StartWeight" ColumnName="StartWeight" />
                 <ScalarProperty Name="MemberExercisePlanWeekId" ColumnName="MemberExercisePlanWeekId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrizeErrorLogs">
+            <EntityTypeMapping TypeName="diyptModel.PrizeErrorLog">
+              <MappingFragment StoreEntitySet="PrizeErrorLogs">
+                <ScalarProperty Name="InnerError" ColumnName="InnerError" />
+                <ScalarProperty Name="Error" ColumnName="Error" />
+                <ScalarProperty Name="Event" ColumnName="Event" />
+                <ScalarProperty Name="Page" ColumnName="Page" />
+                <ScalarProperty Name="ErrorLevel" ColumnName="ErrorLevel" />
+                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+                <ScalarProperty Name="MemberExercisePlanId" ColumnName="MemberExercisePlanId" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -1200,6 +1212,45 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PrizeMembers">
+            <EntityTypeMapping TypeName="diyptModel.PrizeMember">
+              <MappingFragment StoreEntitySet="PrizeMembers">
+                <ScalarProperty Name="ContinuousLogin" ColumnName="ContinuousLogin" />
+                <ScalarProperty Name="Tasks" ColumnName="Tasks" />
+                <ScalarProperty Name="UserSettings" ColumnName="UserSettings" />
+                <ScalarProperty Name="RegisterDateTime" ColumnName="RegisterDateTime" />
+                <ScalarProperty Name="Questions" ColumnName="Questions" />
+                <ScalarProperty Name="WhyDIYPT" ColumnName="WhyDIYPT" />
+                <ScalarProperty Name="Instagram" ColumnName="Instagram" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Twiter" ColumnName="Twiter" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="GoalBodyFat" ColumnName="GoalBodyFat" />
+                <ScalarProperty Name="GoalWaist" ColumnName="GoalWaist" />
+                <ScalarProperty Name="GoalWeight" ColumnName="GoalWeight" />
+                <ScalarProperty Name="GoalDescription" ColumnName="GoalDescription" />
+                <ScalarProperty Name="BodyFat" ColumnName="BodyFat" />
+                <ScalarProperty Name="Waist" ColumnName="Waist" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DoB" ColumnName="DoB" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="UmbracoId" ColumnName="UmbracoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PrizeOrders">
             <EntityTypeMapping TypeName="diyptModel.PrizeOrder">
               <MappingFragment StoreEntitySet="PrizeOrders">
@@ -1259,87 +1310,6 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PrizeSysConfigs">
-            <EntityTypeMapping TypeName="diyptModel.PrizeSysConfig">
-              <MappingFragment StoreEntitySet="PrizeSysConfigs">
-                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PrizeErrorLogs">
-            <EntityTypeMapping TypeName="diyptModel.PrizeErrorLog">
-              <MappingFragment StoreEntitySet="PrizeErrorLogs">
-                <ScalarProperty Name="InnerError" ColumnName="InnerError" />
-                <ScalarProperty Name="Error" ColumnName="Error" />
-                <ScalarProperty Name="Event" ColumnName="Event" />
-                <ScalarProperty Name="Page" ColumnName="Page" />
-                <ScalarProperty Name="ErrorLevel" ColumnName="ErrorLevel" />
-                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
-                <ScalarProperty Name="MemberExercisePlanId" ColumnName="MemberExercisePlanId" />
-                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PrizeMembers">
-            <EntityTypeMapping TypeName="diyptModel.PrizeMember">
-              <MappingFragment StoreEntitySet="PrizeMembers">
-                <ScalarProperty Name="ContinuousLogin" ColumnName="ContinuousLogin" />
-                <ScalarProperty Name="Tasks" ColumnName="Tasks" />
-                <ScalarProperty Name="UserSettings" ColumnName="UserSettings" />
-                <ScalarProperty Name="RegisterDateTime" ColumnName="RegisterDateTime" />
-                <ScalarProperty Name="Questions" ColumnName="Questions" />
-                <ScalarProperty Name="WhyDIYPT" ColumnName="WhyDIYPT" />
-                <ScalarProperty Name="Instagram" ColumnName="Instagram" />
-                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
-                <ScalarProperty Name="Twiter" ColumnName="Twiter" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="GoalBodyFat" ColumnName="GoalBodyFat" />
-                <ScalarProperty Name="GoalWaist" ColumnName="GoalWaist" />
-                <ScalarProperty Name="GoalWeight" ColumnName="GoalWeight" />
-                <ScalarProperty Name="GoalDescription" ColumnName="GoalDescription" />
-                <ScalarProperty Name="BodyFat" ColumnName="BodyFat" />
-                <ScalarProperty Name="Waist" ColumnName="Waist" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Suburb" ColumnName="Suburb" />
-                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="DoB" ColumnName="DoB" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
-                <ScalarProperty Name="UmbracoId" ColumnName="UmbracoId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MemberEmails">
-            <EntityTypeMapping TypeName="diyptModel.MemberEmail">
-              <MappingFragment StoreEntitySet="MemberEmails">
-                <ScalarProperty Name="SendDate" ColumnName="SendDate" />
-                <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Content5" ColumnName="Content5" />
-                <ScalarProperty Name="Content4" ColumnName="Content4" />
-                <ScalarProperty Name="Content3" ColumnName="Content3" />
-                <ScalarProperty Name="Content2" ColumnName="Content2" />
-                <ScalarProperty Name="Content1" ColumnName="Content1" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="EmailType" ColumnName="EmailType" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PrizePresetTasks">
             <EntityTypeMapping TypeName="diyptModel.PrizePresetTask">
               <MappingFragment StoreEntitySet="PrizePresetTasks">
@@ -1347,6 +1317,14 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
                 <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="PresetTaskType" ColumnName="PresetTaskType" />
                 <ScalarProperty Name="TaskDate" ColumnName="TaskDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrizeSysConfigs">
+            <EntityTypeMapping TypeName="diyptModel.PrizeSysConfig">
+              <MappingFragment StoreEntitySet="PrizeSysConfigs">
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
