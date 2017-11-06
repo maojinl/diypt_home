@@ -8,20 +8,16 @@ using System.Transactions;
 /// </summary>
 public class PrizeMemberPlanManager
 {
-    private DIYPTEntities db;
 
     public PrizeMemberPlanManager()
     {
-        //
-        // TODO: Add constructor logic here
-        //
 
-        db = new DIYPTEntities();
     }
 
     public int FindNewPlan(string sProgram, string sLocation, string sLevel, string sExp, bool bIsTrial = false)
     {
         int newPlanId = -1;
+        DIYPTEntities db = new DIYPTEntities();
         try
         {
             db.Database.Connection.Open();
@@ -35,8 +31,8 @@ public class PrizeMemberPlanManager
 
 
             PrizePlanLocation location = (from c in db.PrizePlanLocations
-                                          where c.Name == sLocation
-                                          select c).FirstOrDefault();
+                                            where c.Name == sLocation
+                                            select c).FirstOrDefault();
             if (location == null)
             {
                 return PrizeErrorCode.ERROR_WRONG_LOCATION;
@@ -51,20 +47,20 @@ public class PrizeMemberPlanManager
             }
 
             PrizePlanExperience exp = (from c in db.PrizePlanExperiences
-                                       where c.Name == sExp
-                                       select c).FirstOrDefault();
+                                        where c.Name == sExp
+                                        select c).FirstOrDefault();
             if (exp == null)
             {
                 return PrizeErrorCode.ERROR_WRONG_LEVEL;
             }
 
             PrizeExercisePlan plan;
-            
+
             if (bIsTrial == false)
                 plan = (from c in db.PrizeExercisePlans
-                    where c.ProgramId == program.Id && c.LocationId == location.Id
-                    && c.LevelId == level.Id && c.ExperienceId == exp.Id && c.IsTrialPlan == 0
-                    select c).FirstOrDefault();
+                        where c.ProgramId == program.Id && c.LocationId == location.Id
+                        && c.LevelId == level.Id && c.ExperienceId == exp.Id && c.IsTrialPlan == 0
+                        select c).FirstOrDefault();
             else
                 plan = (from c in db.PrizeExercisePlans
                         where c.ProgramId == program.Id && c.LocationId == location.Id
@@ -78,12 +74,13 @@ public class PrizeMemberPlanManager
         }
         finally
         {
-            db.Database.Connection.Close();
+            db.Dispose();
         }
     }
 
     public int BuyNewPlan(int newPlanId, ref PrizeExercisePlan prizePlan, ref MemberExercisePlan newMemberPlan)
     {
+        DIYPTEntities db = new DIYPTEntities();
         try
         {
             if (PrizeMemberAuthUtils.CurrentUserLogin() != true)
@@ -212,7 +209,7 @@ public class PrizeMemberPlanManager
         }
         finally
         {
-            db.Database.Connection.Close();
+            db.Dispose();
         }
     }
 
@@ -347,6 +344,7 @@ public class PrizeMemberPlanManager
 
     public void PayMemberPlans(int currentOrderId, string PaymentConfirmation)
     {
+        DIYPTEntities db = new DIYPTEntities();
         try
         {
             db.Database.Connection.Open();
@@ -391,27 +389,28 @@ public class PrizeMemberPlanManager
         }
         finally
         {
-            db.Database.Connection.Close();
+            db.Dispose();
         }
     }
 
-    public void PayMemberPlanWeekly(int weeklyPaymentId, int currentOrderId, int memberPlanId, string paymentConfirmation, string comment = "")
+    public void PayMemberManualPayment(int weeklyPaymentId, int currentOrderId, int memberPlanId, string paymentConfirmation, string comment = "")
     {
+        DIYPTEntities db = new DIYPTEntities();
         try
         {
             db.Database.Connection.Open();
 
             PrizeOrder myCurrentOrder;
             MemberExercisePlan myPlan;
-            MemberWeeklyPayment myWeeklyPayment;
+            MemberManualPayment myManualPayment;
             DateTime currentEndDate = PrizeCommonUtils.GetSystemDate();
             if (currentOrderId >= 0)
             {
                 // Get Weekly payment.
-                myWeeklyPayment = db.MemberWeeklyPayments.Single(o => o.Id == weeklyPaymentId);
-                myWeeklyPayment.PaidDate = currentEndDate;
-                myWeeklyPayment.Comment = comment;
-                myWeeklyPayment.Status = PrizeConstants.STATUS_PLAN_PAID;
+                myManualPayment = db.MemberManualPayments.Single(o => o.Id == weeklyPaymentId);
+                myManualPayment.PaidDate = currentEndDate;
+                myManualPayment.Comment = comment;
+                myManualPayment.Status = PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT_APPROVED + myManualPayment.Status[1];
                 // Get the order based on order id.
                 myCurrentOrder = db.PrizeOrders.Single(o => o.OrderId == currentOrderId);
                 // Update the order to reflect payment has been completed.
@@ -448,61 +447,52 @@ public class PrizeMemberPlanManager
         }
         finally
         {
-            db.Database.Connection.Close();
+            db.Dispose();
         }
     }
 
-    public void TerminateMemberPlanWeekly(int weeklyPaymentId, int memberPlanId, string comment = "")
+    public void TerminateMemberManualPaymentPlan(int weeklyPaymentId, int memberPlanId, string comment = "")
     {
+        DIYPTEntities db = new DIYPTEntities();
         try
         {
             db.Database.Connection.Open();
 
             MemberExercisePlan myPlan;
-            MemberWeeklyPayment myWeeklyPayment;
+            MemberManualPayment myManualPayment;
             DateTime currentEndDate = PrizeCommonUtils.GetSystemDate();
-  
-                // Get Weekly payment.
-                myWeeklyPayment = db.MemberWeeklyPayments.Single(o => o.Id == weeklyPaymentId);
-                myWeeklyPayment.TerminateDate = currentEndDate;
-                myWeeklyPayment.Comment = comment;
-                myWeeklyPayment.Status = PrizeConstants.STATUS_PLAN_WEEKLY_PAYMENT_TERMINATED;
 
-                myPlan = db.MemberExercisePlans.Single(o => o.Id == memberPlanId);
-                myPlan.Status = PrizeConstants.STATUS_PLAN_TERMINATED + PrizeConstants.STATUS_PLAN_PAID;
+            // Get Weekly payment.
+            myManualPayment = db.MemberManualPayments.Single(o => o.Id == weeklyPaymentId);
+            myManualPayment.TerminatedDate = currentEndDate;
+            myManualPayment.Comment = comment;
+            myManualPayment.Status = PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT_TERMINATED + myManualPayment.Status[1];
 
-                if (myPlan.StartDate < currentEndDate)
-                {
-                    DateTime startDate = PrizeCommonUtils.GetNextWeekStart(currentEndDate);
-                    DateTime endDate = PrizeCommonUtils.GetWeekEnd(startDate);
-                    myPlan.StartDate = startDate;
-                    IList<MemberExercisePlanWeek> myPlanWeeks = (from c in db.MemberExercisePlanWeeks
-                                                                 where c.MemberExercisePlanId == myPlan.Id
-                                                                 orderby c.StartDate
-                                                                 select c).ToList();
-                    foreach (MemberExercisePlanWeek myPlanWeek in myPlanWeeks)
-                    {
-                        myPlanWeek.StartDate = startDate;
-                        myPlanWeek.EndDate = endDate;
-                        myPlanWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_NOT_STARTED;
-                        myPlan.EndDate = endDate;
-                        db.SaveChanges();
+			myPlan = db.MemberExercisePlans.Single(o => o.Id == memberPlanId);
+			myPlan.Status = PrizeConstants.STATUS_PLAN_TERMINATED + myPlan.Status[1];
 
-                        startDate = startDate.AddDays(7);
-                        endDate = endDate.AddDays(7);
-                    }
-                }
-                // Save to DB.
-                db.SaveChanges();
+			IList<MemberExercisePlanWeek> myPlanWeeks = (from c in db.MemberExercisePlanWeeks
+															where c.MemberExercisePlanId == myPlan.Id && !c.Status.Equals(PrizeConstants.STATUS_PLAN_WEEK_FINISHED)
+															orderby c.StartDate
+															select c).ToList();
+			foreach (MemberExercisePlanWeek myPlanWeek in myPlanWeeks)
+			{
+				myPlanWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_TERMINATED;
+				db.SaveChanges();
+			}
+
+			// Save to DB.
+			db.SaveChanges();
         }
         finally
         {
-            db.Database.Connection.Close();
+            db.Dispose();
         }
     }
 
-    public int WeeklyPaymentMemberPlanSetup(int memberPlanId, int exercisePlanId)
+    public int ManualPaymentMemberPlanSetup(int memberPlanId, int exercisePlanId, string sManualPaymentMode)
     {
+        DIYPTEntities db = new DIYPTEntities();
         try
         {
             db.Database.Connection.Open();
@@ -523,26 +513,32 @@ public class PrizeMemberPlanManager
             {
                 myPlan = db.MemberExercisePlans.Single(o => o.Id == myOrder.MemberPlanId);
 
-                myPlan.Status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_WEEKLY_PAYMENT;
+                myPlan.Status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT;
+                string manualPaymentStatus = PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT_NOT_APPROVED + sManualPaymentMode;
+                MemberManualPayment manualPayment = db.MemberManualPayments.FirstOrDefault(o => o.Id == myOrder.MemberPlanId && o.Status.Equals(manualPaymentStatus));
+                if (manualPayment == null)
+                {
+                    manualPayment = new MemberManualPayment();
+                    manualPayment.MemberId = myPlan.MemberId;
+                    manualPayment.MemberExercisePlanId = myPlan.Id;
+                    manualPayment.CreatedDate = PrizeCommonUtils.GetSystemDate();
+                }
 
-                MemberWeeklyPayment weeklyPayment = new MemberWeeklyPayment();
-                weeklyPayment.MemberId = myPlan.MemberId;
-                weeklyPayment.MemberExercisePlanId = myPlan.Id;
-                weeklyPayment.CreatedDate = PrizeCommonUtils.GetSystemDate();
-                weeklyPayment.Status = PrizeConstants.STATUS_PLAN_NOT_PAID;
-                db.MemberWeeklyPayments.Add(weeklyPayment);
+                manualPayment.Status = manualPaymentStatus;
+                db.MemberManualPayments.Add(manualPayment);
             }
             db.SaveChanges();
             return myOrder.OrderId;
         }
         finally
         {
-            db.Database.Connection.Close();
+            db.Dispose();
         }
     }
 
     public void PayMemberPlanCancel(int currentOrderId)
     {
+        DIYPTEntities db = new DIYPTEntities();
         try
         {
             db.Database.Connection.Open();
@@ -563,13 +559,14 @@ public class PrizeMemberPlanManager
         }
         finally
         {
-            db.Database.Connection.Close();
+            db.Dispose();
         }
     }
 
     public bool ChangeMemberPlanLevel(int myPlanId, string sLevel)
     {
         bool ret = false;
+        DIYPTEntities db = new DIYPTEntities();
         try
         {
             db.Database.Connection.Open();
@@ -641,25 +638,27 @@ public class PrizeMemberPlanManager
         }
         finally
         {
-            db.Database.Connection.Close();
+            db.Dispose();
         }
     }
 
     protected MemberExercisePlan GetNextMemberPlanNeedToPay(int iMemberId)
     {
+        DIYPTEntities db = new DIYPTEntities();
         try
         {
             db.Database.Connection.Open();
-            string status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_NOT_PAID;
-            MemberExercisePlan myPlan = (from c in db.MemberExercisePlans
-                                         where c.MemberId == iMemberId && c.Status.Equals(status)
-                                         orderby c.Id descending
+            string statusNotPaid = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_NOT_PAID;
+			string statusWeekly = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT;
+			MemberExercisePlan myPlan = (from c in db.MemberExercisePlans
+                                         where c.MemberId == iMemberId && (c.Status.Equals(statusNotPaid) || c.Status.Equals(statusWeekly))
+										 orderby c.Id descending
                                          select c).FirstOrDefault();
             return myPlan;
         }
         finally
         {
-            db.Database.Connection.Close();
+            db.Dispose();
         }
     }
 

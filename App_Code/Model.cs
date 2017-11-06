@@ -159,6 +159,28 @@ public partial class MemberFoodPlanWeek
 }
 
 
+public partial class MemberManualPayment
+{
+
+    public int Id { get; set; }
+
+    public int MemberId { get; set; }
+
+    public int MemberExercisePlanId { get; set; }
+
+    public string Status { get; set; }
+
+    public System.DateTime CreatedDate { get; set; }
+
+    public Nullable<System.DateTime> PaidDate { get; set; }
+
+    public Nullable<System.DateTime> TerminatedDate { get; set; }
+
+    public string Comment { get; set; }
+
+}
+
+
 public partial class MemberPlanWeekResult
 {
 
@@ -201,26 +223,6 @@ public partial class MemberPlanWeekResult
     public string BackPhoto { get; set; }
 
     public string Tasks { get; set; }
-
-}
-
-
-public partial class MemberWeeklyPayment
-{
-
-    public int Id { get; set; }
-
-    public int MemberId { get; set; }
-
-    public int MemberExercisePlanId { get; set; }
-
-    public string Status { get; set; }
-
-    public System.DateTime CreatedDate { get; set; }
-
-    public Nullable<System.DateTime> PaidDate { get; set; }
-
-    public string Comment { get; set; }
 
 }
 

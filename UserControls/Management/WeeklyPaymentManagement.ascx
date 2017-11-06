@@ -107,20 +107,17 @@
 
 </table>
 
-
 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" EmptyDataText="No records has been added." PageSize="20" PagerSettings-Mode="NumericFirstLast" 
 AllowPaging="True" AlternatingRowStyle-CssClass="alt" CssClass="Grid" OnRowCommand="GridView1_RowCommand"
 OnPageIndexChanging = "OnPaging" >
-
     <Columns>
-
-        <asp:TemplateField>
+         <asp:TemplateField>
             <ItemTemplate>
                 <asp:Button ID="btnStart" runat="server" Text="Start" CommandName = "Start" 
-                     CommandArgument='<%# Eval("WeeklyPaymentId")+","+Eval("MemberPlanId")+","+Eval("OrderId")  %>' />
+                     CommandArgument='<%# Eval("ManualPaymentId")+","+Eval("MemberPlanId")+","+Eval("OrderId")  %>' />
             </ItemTemplate>
         </asp:TemplateField>
-        <asp:TemplateField  HeaderText="Transaction"   >
+                <asp:TemplateField  HeaderText="Transaction"   >
             <ItemTemplate>
                 <asp:TextBox ID="txtTransactionId" runat="server" Text='<%# Eval("Transaction") %>'></asp:TextBox>
             </ItemTemplate>
@@ -135,14 +132,14 @@ OnPageIndexChanging = "OnPaging" >
                 <asp:Label ID="lbEN" runat="server" Text='<%# Eval("Firstname") %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
-        <asp:TemplateField  HeaderText="First name"   >
-            <ItemTemplate >
-                <asp:Label ID="lbEN" runat="server" Text='<%# Eval("Firstname") %>'></asp:Label>
-            </ItemTemplate>
-        </asp:TemplateField>
         <asp:TemplateField HeaderText="Surname" >
             <ItemTemplate>
                 <asp:Label ID="lbBG" runat="server" Text='<%# Eval("Surname") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
+                <asp:TemplateField HeaderText="Payment Mode"  >
+            <ItemTemplate>
+                <asp:Label ID="lbPaymentMode" runat="server" Text='<%# Eval("Status").ToString().EndsWith("W")?"Weekly":"One-off" %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Email" >
@@ -160,24 +157,19 @@ OnPageIndexChanging = "OnPaging" >
                 <asp:CheckBox ID="lbTrialOrNot" Enabled="false" runat="server" Checked='<%# Eval("IsTrialPlan")!=null&&!Eval("IsTrialPlan").ToString().Equals("0")?true:false %>'></asp:CheckBox>
             </ItemTemplate>
         </asp:TemplateField>
-       <asp:TemplateField HeaderText="Plan Start Date"  >
-            <ItemTemplate>
-                <asp:Label ID="lbPD" runat="server" Text='<%# Eval("Status").Equals("W")?"":Eval("StartDate") %>' ></asp:Label>
-            </ItemTemplate>
-        </asp:TemplateField>
         <asp:TemplateField HeaderText="Created Date"  >
             <ItemTemplate>
-                <asp:Label ID="lbPD" runat="server" Text='<%# Eval("CreatedDate") %>'></asp:Label>
+                <asp:Label ID="lbCD" runat="server" Text='<%# Eval("CreatedDate") %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Paid or Not"  >
+                <asp:TemplateField HeaderText="Approved"  >
             <ItemTemplate>
-                <asp:Label ID="lbPAID" runat="server" Text='<%# Eval("Status").ToString()[0] %>'></asp:Label>
+                <asp:Label ID="lbApproved" runat="server" Text='<%# Eval("Status").ToString().StartsWith("0")?"No":"Yes" %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
-
-</Columns>
+    </Columns>
 </asp:GridView>
+
 <div>
 </div>
 <div>
@@ -303,37 +295,37 @@ OnPageIndexChanging = "OnPaging" >
        <asp:TemplateField>
             <ItemTemplate>
                 <asp:Button ID="btnTerminate" runat="server" Text="Terminate" CommandName = "Terminate" 
-                    CommandArgument='<%# Eval("WeeklyPaymentId")+","+Eval("MemberPlanId")+","+Eval("OrderId")  %>' />
+                    CommandArgument='<%# Eval("ManualPaymentId")+","+Eval("MemberPlanId")+","+Eval("OrderId")  %>' />
             </ItemTemplate>
         </asp:TemplateField>
         <asp:TemplateField  HeaderText="Transaction"   >
             <ItemTemplate>
-                <asp:TextBox ID="txtTransactionId" runat="server" Text='<%# Eval("Transaction") %>'></asp:TextBox>
+                <asp:Label ID="txtTransactionId2" runat="server" Text='<%# Eval("Transaction") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField  HeaderText="Comment"   >
+            <ItemTemplate>
+                <asp:TextBox ID="txtComment2" runat="server" Text='<%# Eval("Comment") %>'></asp:TextBox>
             </ItemTemplate>
         </asp:TemplateField>
         <asp:TemplateField  HeaderText="First name"   >
             <ItemTemplate >
-                <asp:Label ID="lbEN" runat="server" Text='<%# Eval("Firstname") %>'></asp:Label>
-            </ItemTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField  HeaderText="First name"   >
-            <ItemTemplate >
-                <asp:Label ID="lbEN" runat="server" Text='<%# Eval("Firstname") %>'></asp:Label>
+                <asp:Label ID="lbEN2" runat="server" Text='<%# Eval("Firstname") %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Surname" >
             <ItemTemplate>
-                <asp:Label ID="lbBG" runat="server" Text='<%# Eval("Surname") %>'></asp:Label>
+                <asp:Label ID="lbBG2" runat="server" Text='<%# Eval("Surname") %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Email" >
             <ItemTemplate>
-                <asp:Label ID="lbEl" runat="server" Text='<%# Eval("Email") %>'></asp:Label>
+                <asp:Label ID="lbEl2" runat="server" Text='<%# Eval("Email") %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Plan Name"  >
             <ItemTemplate>
-                <asp:Label ID="lbPN" runat="server" Text='<%# Eval("PlanName") %>'></asp:Label>
+                <asp:Label ID="lbPN2" runat="server" Text='<%# Eval("PlanName") %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
             <asp:TemplateField HeaderText="TrialOrNot" ItemStyle-Width="150">
@@ -343,19 +335,18 @@ OnPageIndexChanging = "OnPaging" >
         </asp:TemplateField>
        <asp:TemplateField HeaderText="Plan Start Date"  >
             <ItemTemplate>
-                <asp:Label ID="lbPD" runat="server" Text='<%# Eval("Status").Equals("W")?"":Eval("StartDate") %>' ></asp:Label>
+                <asp:Label ID="lbPD2" runat="server" Text='<%# Eval("StartDate") %>' ></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Created Date"  >
             <ItemTemplate>
-                <asp:Label ID="lbPD" runat="server" Text='<%# Eval("CreatedDate") %>'></asp:Label>
+                <asp:Label ID="lbCD2" runat="server" Text='<%# Eval("CreatedDate") %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Paid or Not"  >
+        <asp:TemplateField HeaderText="Approved"  >
             <ItemTemplate>
-                <asp:Label ID="lbPAID" runat="server" Text='<%# Eval("Status").ToString()[1] %>'></asp:Label>
+                <asp:Label ID="lbPAID2" runat="server" Text='<%# Eval("Status").ToString().StartsWith("0")?"No":"Yes" %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
-
 </Columns>
 </asp:GridView>

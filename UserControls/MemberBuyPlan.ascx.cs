@@ -136,7 +136,12 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
 
     protected void btnSubmitPayWeekly_Click(object sender, EventArgs e)
     {
-        doWeeklyPaymentPlan();
+        DoWeeklyPaymentPlan(PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT_WEEKLY);
+    }
+
+    protected void btnSubmitPayFully_Click(object sender, EventArgs e)
+    {
+        DoWeeklyPaymentPlan(PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT_FULLY);
     }
 
     private void doNoPaymentPlan()
@@ -177,13 +182,13 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
         Response.Redirect(PrizeConstants.URL_MEMBER_LANDING);
     }
 
-    private void doWeeklyPaymentPlan()
+    private void DoWeeklyPaymentPlan(string mode)
     {
         int memberPlanId = Int32.Parse(Session["buying_my_plan_id"].ToString());
         int exercisePlanId = Int32.Parse(Session["buying_plan_id"].ToString());
        
         PrizeMemberPlanManager planManager = new PrizeMemberPlanManager();
-        planManager.WeeklyPaymentMemberPlanSetup(memberPlanId, exercisePlanId);
+        planManager.ManualPaymentMemberPlanSetup(memberPlanId, exercisePlanId, mode);
 
         Response.Redirect(PrizeConstants.URL_EZIDEBIT_LOGIN);
     }

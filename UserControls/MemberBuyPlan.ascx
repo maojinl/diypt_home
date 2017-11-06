@@ -156,13 +156,14 @@
         <hr class="mt-5 mb-2" />
         <%--Plan:&nbsp;
                        <asp:Label ID="lblPlan" runat="server"></asp:Label>--%>
-        <asp:Button ID="btnSubmit" runat="server" class="btn btn-secondary c_y mt-5 sec" Text="Pay with PayPal" OnClick="btnSubmit_Click" />
+        <asp:Button ID="btnSubmit" runat="server" class="btn btn-secondary c_y mt-5 sec" Text="Pay with PayPal" OnClick="btnSubmit_Click" Visible="false" />
         <%--<asp:ImageButton ID="CheckoutImageBtn" runat="server" 
                       ImageUrl="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" 
                       Width="145" AlternateText="Check out with PayPal" 
                       OnClick="CheckoutBtn_Click" 
                       BackColor="Transparent" BorderWidth="0" />--%>
-        <asp:Button ID="btnSubmit0" runat="server" class="btn btn-secondary c_y mt-5 sec" Text="Pay Weekly" OnClick="btnSubmitPayWeekly_Click" />
+        <asp:Button ID="btnPayWeekly" runat="server" class="btn btn-secondary c_y mt-5 sec" Text="Pay Weekly Ezidebit" OnClick="btnSubmitPayWeekly_Click" />
+        <asp:Button ID="btnPayFully" runat="server" class="btn btn-secondary c_y mt-5 sec" Text="Pay Fully Ezidebit" OnClick="btnSubmitPayFully_Click" />
     </div>
 </div>
 

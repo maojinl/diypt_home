@@ -90,6 +90,19 @@
           <Property Name="StartWeek" Type="int" Nullable="false" />
           <Property Name="EndWeek" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="MemberManualPayments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="MemberExercisePlanId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="PaidDate" Type="datetime" />
+          <Property Name="TerminatedDate" Type="datetime" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="MemberPlanWeekResults">
           <Key>
             <PropertyRef Name="Id" />
@@ -114,18 +127,6 @@
           <Property Name="SidePhoto" Type="varchar" MaxLength="255" />
           <Property Name="BackPhoto" Type="varchar" MaxLength="255" />
           <Property Name="Tasks" Type="varchar" MaxLength="255" />
-        </EntityType>
-        <EntityType Name="MemberWeeklyPayments">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MemberId" Type="int" Nullable="false" />
-          <Property Name="MemberExercisePlanId" Type="int" Nullable="false" />
-          <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="PaidDate" Type="datetime" />
-          <Property Name="Comment" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="PrizeErrorLogs">
           <Key>
@@ -430,8 +431,8 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <EntitySet Name="MemberExercisePlans" EntityType="Self.MemberExercisePlans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberExercisePlanWeeks" EntityType="Self.MemberExercisePlanWeeks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberFoodPlanWeeks" EntityType="Self.MemberFoodPlanWeeks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberManualPayments" EntityType="Self.MemberManualPayments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberPlanWeekResults" EntityType="Self.MemberPlanWeekResults" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MemberWeeklyPayments" EntityType="Self.MemberWeeklyPayments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrizeErrorLogs" EntityType="Self.PrizeErrorLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrizeExerciseDayGroupNames" EntityType="Self.PrizeExerciseDayGroupNames" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrizeExerciseDayTypes" EntityType="Self.PrizeExerciseDayTypes" Schema="dbo" store:Type="Tables" />
@@ -514,7 +515,7 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
             <End Role="PrizeExercisePlanWeek" EntitySet="PrizeExercisePlanWeeks" />
           </AssociationSet>
           <EntitySet Name="cmsMembers" EntityType="diyptModel.cmsMember" />
-          <EntitySet Name="MemberWeeklyPayments" EntityType="diyptModel.MemberWeeklyPayment" />
+          <EntitySet Name="MemberManualPayments" EntityType="diyptModel.MemberManualPayment" />
           </EntityContainer>
         <EntityType Name="PrizePlanProgram">
           <Key>
@@ -926,16 +927,17 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="LoginName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="MemberWeeklyPayment">
+        <EntityType Name="MemberManualPayment">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemberId" Type="Int32" Nullable="false" />
           <Property Name="MemberExercisePlanId" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PaidDate" Type="DateTime" Precision="3" />
+          <Property Name="TerminatedDate" Type="DateTime" Precision="3" />
           <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
@@ -1339,10 +1341,11 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MemberWeeklyPayments">
-            <EntityTypeMapping TypeName="diyptModel.MemberWeeklyPayment">
-              <MappingFragment StoreEntitySet="MemberWeeklyPayments">
+          <EntitySetMapping Name="MemberManualPayments">
+            <EntityTypeMapping TypeName="diyptModel.MemberManualPayment">
+              <MappingFragment StoreEntitySet="MemberManualPayments">
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="TerminatedDate" ColumnName="TerminatedDate" />
                 <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />

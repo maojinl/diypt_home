@@ -29,7 +29,7 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
                     ed = DateTime.ParseExact(tbTo.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 }
 
-                var weeklyPayments = from w in db.MemberWeeklyPayments
+                var weeklyPayments = from w in db.MemberManualPayments
                                      join a in db.MemberExercisePlans on w.MemberExercisePlanId equals a.Id
                                      join dic in db.PrizeMembers on a.MemberId equals dic.UmbracoId
                                      join b in db.PrizeExercisePlans on a.ExercisePlanId equals b.Id
@@ -39,11 +39,11 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
                                      join Level in db.PrizePlanLevels on b.LevelId equals Level.Id
                                      join c in db.PrizeOrders on a.Id equals c.MemberPlanId
                                      orderby a.StartDate descending
-                                     where w.CreatedDate > st && w.CreatedDate < ed && w.Status.Equals(PrizeConstants.STATUS_PLAN_NOT_PAID)
+                                     where w.CreatedDate > st && w.CreatedDate < ed && w.Status.StartsWith(PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT_NOT_APPROVED)
                                      select new
                                      {
 
-                                         WeeklyPaymentId = w.Id,
+                                         ManualPaymentId = w.Id,
                                          MemberPlanId = a.Id,
                                          Id = dic.UmbracoId,
                                          Firstname = dic.Firstname,
@@ -88,7 +88,7 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
                     ed = DateTime.ParseExact(tbTo.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 }
 
-                var weeklyPayments = from w in db.MemberWeeklyPayments
+                var weeklyPayments = from w in db.MemberManualPayments
                                      join a in db.MemberExercisePlans on w.MemberExercisePlanId equals a.Id
                                      join dic in db.PrizeMembers on a.MemberId equals dic.UmbracoId
                                      join b in db.PrizeExercisePlans on a.ExercisePlanId equals b.Id
@@ -98,10 +98,10 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
                                      join Level in db.PrizePlanLevels on b.LevelId equals Level.Id
                                      join c in db.PrizeOrders on a.Id equals c.MemberPlanId
                                      orderby a.StartDate descending
-                                     where w.CreatedDate > st && w.CreatedDate < ed && w.Status.Equals(PrizeConstants.STATUS_PLAN_PAID)
+                                     where w.CreatedDate > st && w.CreatedDate < ed && w.Status.StartsWith(PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT_APPROVED)
                                      select new
                                      {
-                                         WeeklyPaymentId = w.Id,
+                                         ManualPaymentId = w.Id,
                                          MemberPlanId = a.Id,
                                          Id = dic.UmbracoId,
                                          Firstname = dic.Firstname,
@@ -164,18 +164,18 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         GridView grid = sender as GridView;
+        GridViewRow row = (GridViewRow)(((Button)e.CommandSource).NamingContainer);
+        int RowIndex = row.RowIndex;
         if (e.CommandName == "Start")
         {
             string[] args = e.CommandArgument.ToString().Split(new char[] { ',' });
             int weeklyPaymentId = Convert.ToInt32(args[0]);
             int memberPlanId = Convert.ToInt32(args[1]);
             int orderId = Convert.ToInt32(args[2]);
-            int rowIndex = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = grid.Rows[rowIndex];
             string transaction = (row.FindControl("txtTransactionId") as TextBox).Text;
             string comment = (row.FindControl("txtComment") as TextBox).Text;
             PrizeMemberPlanManager man = new PrizeMemberPlanManager();
-            man.PayMemberPlanWeekly(weeklyPaymentId, orderId, memberPlanId, transaction, comment);
+            man.PayMemberManualPayment(weeklyPaymentId, orderId, memberPlanId, transaction, comment);
             this.BindGridWeeklyPayStart();
         }
         else if (e.CommandName == "Terminate")
@@ -184,11 +184,9 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
             int weeklyPaymentId = Convert.ToInt32(args[0]);
             int memberPlanId = Convert.ToInt32(args[1]);
             int orderId = Convert.ToInt32(args[2]);
-            int rowIndex = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = grid.Rows[rowIndex];
             string comment = (row.FindControl("txtComment") as TextBox).Text;
             PrizeMemberPlanManager man = new PrizeMemberPlanManager();
-            man.TerminateMemberPlanWeekly(weeklyPaymentId, memberPlanId, comment);
+            man.TerminateMemberManualPaymentPlan(weeklyPaymentId, memberPlanId, comment);
             this.BindGridWeeklyPayStart();
         }
     }
