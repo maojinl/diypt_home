@@ -50,7 +50,6 @@ public partial class UserControls_Management_AddExercisePlan : System.Web.UI.Use
 
 				ddlLevel.DataBind();
 
-
 				var ExperienceQuery = from f in db.PrizePlanExperiences
 									  select new { f.Name, f.Id };
 				ddlExperience.DataValueField = "Id";
@@ -59,24 +58,16 @@ public partial class UserControls_Management_AddExercisePlan : System.Web.UI.Use
 
 				ddlExperience.DataBind();
 
-
 				ddlProgram.Items.Insert(0, new ListItem(string.Empty, string.Empty));
 				ddlProgram.SelectedIndex = 0;
 
 				ddlLocation.Items.Insert(0, new ListItem(string.Empty, string.Empty));
 				ddlLocation.SelectedIndex = 0;
 
-
 				ddlLevel.Items.Insert(0, new ListItem(string.Empty, string.Empty));
 				ddlLevel.SelectedIndex = 0;
-
-
 				ddlExperience.Items.Insert(0, new ListItem(string.Empty, string.Empty));
 				ddlExperience.SelectedIndex = 0;
-
-
-
-
 				db.Database.Connection.Close();
 			}
 		}

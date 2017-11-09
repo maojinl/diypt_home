@@ -125,7 +125,7 @@ Comment:
 		else if (emailType == PrizeConstants.EmailType.ReviveMeEmail)
 		{
 			int weekNum = 0;
-			int.TryParse(additionalContents[2], out weekNum);
+			int.TryParse(additionalContents[1], out weekNum);
 			switch (weekNum)
 			{
 				case 1:

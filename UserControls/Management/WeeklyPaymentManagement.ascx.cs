@@ -81,11 +81,11 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
 				DateTime ed = DateTime.MaxValue;
 				if (tbFrom2.Text != "" && tbFrom2.Text != null)
 				{
-					st = DateTime.ParseExact(tbFrom.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+					st = DateTime.ParseExact(tbFrom2.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 				}
 				if (tbTo2.Text != "" && tbTo2.Text != null)
 				{
-					ed = DateTime.ParseExact(tbTo.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+					ed = DateTime.ParseExact(tbTo2.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 				}
 
 				var weeklyPayments = from w in db.MemberManualPayments
@@ -193,26 +193,50 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
 
 	protected void ImageButtonCalendar_Click(object sender, ImageClickEventArgs e)
 	{
-		clWeeklyPaymentStart1.Visible = true;
+		if (sender == this.btnCalendarStart1)
+			clWeeklyPaymentStart1.Visible = true;
+		else
+			clWeeklyPaymentStart2.Visible = true;
 	}
 
 	protected void Calendar_SelectionChanged(object sender, EventArgs e)
 	{
-		DateTime dt = clWeeklyPaymentStart1.SelectedDate;
-		tbFrom.Text = dt.ToString("dd/MM/yyyy");
-		clWeeklyPaymentStart1.Visible = false;
+		if (sender == clWeeklyPaymentStart1)
+		{
+			DateTime dt = clWeeklyPaymentStart1.SelectedDate;
+			tbFrom.Text = dt.ToString("dd/MM/yyyy");
+			clWeeklyPaymentStart1.Visible = false;
+		}
+		else
+		{
+			DateTime dt = clWeeklyPaymentStart2.SelectedDate;
+			tbFrom2.Text = dt.ToString("dd/MM/yyyy");
+			clWeeklyPaymentStart2.Visible = false;
+		}
 	}
 
 	protected void ImageButtonCalendar1_Click(object sender, ImageClickEventArgs e)
 	{
-		clWeeklyPaymentStart2.Visible = true;
+		if (sender == this.btnCalendarEnd1)
+			clWeeklyPaymentStop1.Visible = true;
+		else
+			clWeeklyPaymentStop2.Visible = true;
 	}
 
 	protected void Calendar1_SelectionChanged(object sender, EventArgs e)
 	{
-		DateTime dt = clWeeklyPaymentStart2.SelectedDate;
-		tbTo.Text = dt.ToString("dd/MM/yyyy");
-		clWeeklyPaymentStart2.Visible = false;
+		if (sender == clWeeklyPaymentStop1)
+		{
+			DateTime dt = clWeeklyPaymentStop1.SelectedDate;
+			tbTo.Text = dt.ToString("dd/MM/yyyy");
+			clWeeklyPaymentStop1.Visible = false;
+		}
+		else
+		{
+			DateTime dt = clWeeklyPaymentStop2.SelectedDate;
+			tbTo2.Text = dt.ToString("dd/MM/yyyy");
+			clWeeklyPaymentStop2.Visible = false;
+		}
 	}
 
 }

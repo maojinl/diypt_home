@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="WeeklyPaymentManagement.ascx.cs" Inherits="UserControls_Management_WeeklyPaymentManagement" %>
 <table>
-	<tr>
+	<caption title="Start Paid Manually Plans" />
+		Start Manually Paid Plans<tr>
 		<td>
 			<asp:Label ID="lbsearch" runat="server" Text="Search Condition:" />
 		</td>
@@ -19,14 +20,14 @@
 	  </td>
 	   <td>
 			<asp:TextBox ID="tbFrom" runat="server" Font-Size="Small"
-			Height="10"
+			Height="20"
 			ReadOnly="true"
 			Width="120px" ></asp:TextBox> 
 
 	   </td>  
 	   <td>
-			<asp:ImageButton ID="ImageButtonCalendar" runat="server"
-			ImageUrl="~/images/calendar.gif"
+			<asp:ImageButton ID="btnCalendarStart1" runat="server"
+			ImageUrl="/images/calendar.gif"
 			OnClick="ImageButtonCalendar_Click" />
 
 		</td>
@@ -63,18 +64,18 @@
 	  </td>
 	   <td>
 			<asp:TextBox ID="tbTo" runat="server" Font-Size="Small"
-			Height="10"
+			Height="20"
 			ReadOnly="true"
 			Width="120px" ></asp:TextBox> 
 
 	   </td>  
 	   <td>
-			<asp:ImageButton ID="ImageButtonCalendar1" runat="server"
-			ImageUrl="~/images/calendar.gif"
+			<asp:ImageButton ID="btnCalendarEnd1" runat="server"
+			ImageUrl="/images/calendar.gif"
 			OnClick="ImageButtonCalendar1_Click" />
 		</td>
 		<td>
-			<asp:Calendar ID="clWeeklyPaymentStart2" runat="server"
+			<asp:Calendar ID="clWeeklyPaymentStop1" runat="server"
 			BackColor="#FFFFCC"
 			BorderColor="#FFCC66"
 			BorderWidth="1px"
@@ -179,7 +180,8 @@ OnPageIndexChanging = "OnPaging" >
 <div>
 </div>
 <table>
-	<tr>
+	<caption title="Start Paid Manually Plans" />
+		Terminate Unpaid Plans<tr>
 		<td>
 			<asp:Label ID="Label3" runat="server" Text="Search Condition:" />
 		</td>
@@ -198,19 +200,19 @@ OnPageIndexChanging = "OnPaging" >
 	  </td>
 	   <td>
 			<asp:TextBox ID="tbFrom2" runat="server" Font-Size="Small"
-			Height="10"
+			Height="20"
 			ReadOnly="true"
 			Width="120px" ></asp:TextBox> 
 
 	   </td>  
 	   <td>
-			<asp:ImageButton ID="ImageButton1" runat="server"
-			ImageUrl="~/images/calendar.gif"
+			<asp:ImageButton ID="btnCalendarStart2" runat="server"
+			ImageUrl="/images/calendar.gif"
 			OnClick="ImageButtonCalendar_Click" />
 
 		</td>
 		<td>
-			<asp:Calendar ID="clWeeklyPaymentStop1" runat="server"
+			<asp:Calendar ID="clWeeklyPaymentStart2" runat="server"
 			BackColor="#FFFFCC"
 			BorderColor="#FFCC66"
 			BorderWidth="1px"
@@ -242,14 +244,14 @@ OnPageIndexChanging = "OnPaging" >
 	  </td>
 	   <td>
 			<asp:TextBox ID="tbTo2" runat="server" Font-Size="Small"
-			Height="10"
+			Height="20"
 			ReadOnly="true"
 			Width="120px" ></asp:TextBox> 
 
 	   </td>  
 	   <td>
-			<asp:ImageButton ID="ImageButton2" runat="server"
-			ImageUrl="~/images/calendar.gif"
+			<asp:ImageButton ID="btnCalenderEnd2" runat="server"
+			ImageUrl="/images/calendar.gif"
 			OnClick="ImageButtonCalendar1_Click" />
 		</td>
 		<td>
