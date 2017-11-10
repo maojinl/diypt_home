@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Net;
 /// <summary>
 /// Summary description for ImageHelper
 /// </summary>
@@ -82,4 +83,21 @@ public static class ImageHelper
                 return RotateFlipType.Rotate270FlipNone;
         }
     }
+
+	public static bool CheckImageIsValid(string url)
+	{
+		bool exists = false;
+		try
+		{
+			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
+			request.Method = "HEAD";
+			request.GetResponse();
+			exists = true;
+		}
+		catch
+		{
+			exists = false;
+		}
+		return exists;
+	}
 }

@@ -381,15 +381,33 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 		else
 		{
 			this.photoPanelUpload.Visible = true;
+			string url = "";
 			if (weekResults[iWeekNum] != null)
 			{
 				if (weekResults[iWeekNum].FrontPhoto != null)
-					Image1.ImageUrl = weekResults[iWeekNum].FrontPhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+				{
+					url = weekResults[iWeekNum].FrontPhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+					if (ImageHelper.CheckImageIsValid(url))
+					{
+						Image1.ImageUrl = String.Copy(url);
+					}
+				}
 				if (weekResults[iWeekNum].SidePhoto != null)
-					Image2.ImageUrl = weekResults[iWeekNum].SidePhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+				{
+					url = weekResults[iWeekNum].SidePhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+					if (ImageHelper.CheckImageIsValid(url))
+					{
+						Image2.ImageUrl = String.Copy(url);
+					}
+				}
 				if (weekResults[iWeekNum].BackPhoto != null)
-					Image3.ImageUrl = weekResults[iWeekNum].BackPhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
-
+				{
+					url = weekResults[iWeekNum].BackPhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+					if (ImageHelper.CheckImageIsValid(url))
+					{
+						Image3.ImageUrl = String.Copy(url);
+					}
+				}
 			}
 		}
 
@@ -403,10 +421,11 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 				{
 					if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].FrontPhoto != null)
 						imagesByWeek[i][0].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].FrontPhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
-					if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].BackPhoto != null)
-						imagesByWeek[i][1].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].BackPhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
 					if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].SidePhoto != null)
-						imagesByWeek[i][2].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].SidePhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+						imagesByWeek[i][1].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].SidePhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+					if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].BackPhoto != null)
+						imagesByWeek[i][2].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].BackPhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+
 				}
 			}  
 		}
@@ -611,7 +630,7 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 
 		if (tempFileupload != null && !string.IsNullOrEmpty(tempFileupload.FileName))
 		{
-			string uploadPath = @"d:\sites\jrguico\diypt.club.com\home\member_images";
+			string uploadPath = @"d:\sites\jrguico\diypt.com.au\home\member_images";
 			//string uploadPath = @"C:\workspace\asp_project\diypt.club\home\member_images";
 			attachmentServerPath = String.Format(@"http://{0}/member_images/{1}", HttpContext.Current.Request.Url.Authority, sServerFileName);
 			decimal attachmentFileSize = Math.Round(Convert.ToDecimal(tempFileupload.PostedFile.ContentLength / 1024), 2);
