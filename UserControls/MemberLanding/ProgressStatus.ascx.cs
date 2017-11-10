@@ -385,10 +385,10 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 			{
 				if (weekResults[iWeekNum].FrontPhoto != null)
 					Image1.ImageUrl = weekResults[iWeekNum].FrontPhoto;
-				if (weekResults[iWeekNum].BackPhoto != null)
-					Image2.ImageUrl = weekResults[iWeekNum].BackPhoto;
 				if (weekResults[iWeekNum].SidePhoto != null)
-					Image3.ImageUrl = weekResults[iWeekNum].SidePhoto;
+					Image2.ImageUrl = weekResults[iWeekNum].SidePhoto;
+				if (weekResults[iWeekNum].BackPhoto != null)
+					Image3.ImageUrl = weekResults[iWeekNum].BackPhoto;
 			}
 		}
 
@@ -402,10 +402,10 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 				{
 					if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].FrontPhoto != null)
 						imagesByWeek[i][0].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].FrontPhoto;
-					if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].BackPhoto != null)
-						imagesByWeek[i][1].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].BackPhoto;
 					if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].SidePhoto != null)
-						imagesByWeek[i][2].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].SidePhoto;
+						imagesByWeek[i][1].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].SidePhoto;
+					if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].BackPhoto != null)
+						imagesByWeek[i][2].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].BackPhoto;
 				}
 			}  
 		}
