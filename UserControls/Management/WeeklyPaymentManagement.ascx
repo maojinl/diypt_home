@@ -1,17 +1,24 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="WeeklyPaymentManagement.ascx.cs" Inherits="UserControls_Management_WeeklyPaymentManagement" %>
+<h5>Start Manually Paid Plans</h5>
 <table>
 	<caption title="Start Paid Manually Plans" />
-		Start Manually Paid Plans<tr>
-		<td>
-			<asp:Label ID="lbsearch" runat="server" Text="Search Condition:" />
+		
+	<tr>
+		<td colspan="8">
+			<strong><asp:Label ID="lbsearch" runat="server" Text="Search Condition:" /></strong>
 		</td>
 	</tr>
 	 <tr>
 		<td>
 		  <asp:Label ID="Label1" runat="server" Text="first name:" />
 		</td>
-		<td>
+		<td colspan="7">
 			<asp:TextBox ID="tbfistname" runat="server" Width="300px" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="8">
+			&nbsp;
 		</td>
 	</tr>
    <tr valign="top">
@@ -55,13 +62,11 @@
 		</asp:Calendar> 
 		</td>
 
-		<td>
 
-		</td>
 
 	   <td>
 			<asp:Label ID="Label2" runat="server" Text="To:"></asp:Label>
-	  </td>
+	   </td>
 	   <td>
 			<asp:TextBox ID="tbTo" runat="server" Font-Size="Small"
 			Height="20"
@@ -98,6 +103,11 @@
 		</asp:Calendar> 
 		</td>
 	</tr>
+		<tr>
+		<td colspan="8">
+			&nbsp;
+		</td>
+	</tr>
 	<tr>
 		 <td>
 			  <asp:Button runat="server" ID="btnSearch" OnClick="search" Text="Search" />
@@ -107,14 +117,14 @@
 
 
 </table>
-
+<br/>
 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" EmptyDataText="No records has been added." PageSize="20" PagerSettings-Mode="NumericFirstLast" 
 AllowPaging="True" AlternatingRowStyle-CssClass="alt" CssClass="Grid" OnRowCommand="GridView1_RowCommand"
 OnPageIndexChanging = "OnPaging" >
 	<Columns>
 		 <asp:TemplateField>
 			<ItemTemplate>
-				<asp:Button ID="btnStart" runat="server" Text="Start" CommandName = "Start" 
+				<asp:Button ID="btnStart" runat="server" Text="Approve" CommandName = "Start" 
 					 CommandArgument='<%# Eval("ManualPaymentId")+","+Eval("MemberPlanId")+","+Eval("OrderId")  %>' />
 			</ItemTemplate>
 		</asp:TemplateField>
@@ -171,29 +181,27 @@ OnPageIndexChanging = "OnPaging" >
 	</Columns>
 </asp:GridView>
 
-<div>
-</div>
-<div>
-</div>
-<div>
-</div>
-<div>
-</div>
+<hr/>
+<h5>Terminate Unpaid Plans</h5>
 <table>
 	<caption title="Start Paid Manually Plans" />
-		Terminate Unpaid Plans<tr>
-		<td>
-			<asp:Label ID="Label3" runat="server" Text="Search Condition:" />
+		<tr>
+		<td colspan="8">
+			<strong><asp:Label ID="Label3" runat="server" Text="Search Condition:" /></strong>
 		</td>
 	</tr>
 	 <tr>
 		<td>
 		  <asp:Label ID="Label4" runat="server" Text="first name:" />
 		</td>
-		<td>
+		<td colspan="7">
 			<asp:TextBox ID="tbFirstName2" runat="server" Width="300px" />
 		</td>
 	</tr>
+		<tr>
+		<td colspan="8">
+			&nbsp;
+		</td></tr>
    <tr valign="top">
 	  <td>
 			<asp:Label ID="Label5" runat="server" Text="Date  From:"></asp:Label>
@@ -276,6 +284,11 @@ OnPageIndexChanging = "OnPaging" >
 			<TitleStyle BackColor="#990000" Font-Bold="True" Font-Size="9pt" ForeColor="#FFFFCC" />
 			<TodayDayStyle BackColor="#FFCC66" ForeColor="White" />
 		</asp:Calendar> 
+		</td>
+	</tr>
+		<tr>
+		<td colspan="8">
+			&nbsp;
 		</td>
 	</tr>
 	<tr>
