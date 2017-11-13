@@ -78,13 +78,13 @@ If applicable, <a href="#" data-toggle="modal" data-target="#takeHeartRate" styl
         <div class="row">
             <div class="col col-progress-form">
                 <div class="form-group">
-                    <label>Current weight (kg)</label>
+                    <span>Current weight (kg)</span>
                     <asp:TextBox ID="txtWeight" class="form-control" placeholder="0" type="text" runat="server"></asp:TextBox>
                 </div>
             </div>
             <div class="col col-progress-form">
                 <div class="form-group">
-                    <label>Current waist (cm)</label>
+                    <span>Current waist (cm)</span>
                     <asp:TextBox ID="txtWaist" class="form-control" placeholder="0" type="text" runat="server"></asp:TextBox>
                 </div>
             </div>

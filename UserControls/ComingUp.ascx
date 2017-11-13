@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ComingUp.ascx.cs" Inherits="UserControls_ComingUp" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ComingUp.ascx.cs" Inherits="UserControls_ComingUp" %>
 <div id="divTrial" runat="server" visible="false" class="mt-5 text-center" ><h2>This function is only available on the full plan</h2></div>
 <div class="tab-inner-content table-responsive comingup" id="divComing" runat="server">
     <table class="coming-table ">
@@ -211,7 +211,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="modal-body-section">
-                        <p>If you still feel overwhelmed after Orientation Week, don't worry it’s completely normal.  There are hundreds of others in the same boat. </p>
+                        <p>If you still feel overwhelmed after Orientation Week, don't worry it's completely normal.  There are hundreds of others in the same boat. </p>
                         <p>Remember you're not alone on your fitness journey, even Apollos Hester from the video will support you. So be vocal, share and ask questions on our Facebook community page</p>
                     </div>
                 </div>

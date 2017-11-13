@@ -54,19 +54,12 @@
                         <td scope="row">
                             <h5 class="c_y">STEP 3</h5></td>
                         <td>
-                            <p><strong>Record what you eat the night before because it will allow you to plan what you're going to eat the next day ie. For Fridays meals, record them on Thursday night.</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">
-                            <h5 class="c_y">STEP 4</h5></td>
-                        <td>
                             <p><strong>Record combination foods separately</strong> (eg. hotdog, bun and condiments) and include brand names of food items.</p>
                         </td>
                     </tr>
                     <tr>
                         <td scope="row">
-                            <h5 class="c_y">STEP 5</h5></td>
+                            <h5 class="c_y">STEP 4</h5></td>
                         <td>
                             <p><strong>For packaged items,</strong> you can simply scan the barcode to make your life much easier. See Video - <strong><a href="https://www.youtube.com/watch?v=TxBQD5JlRoc" class="c_y" target="_blank">Counting macros the DIYPT way  </a></strong>for more details.</p>
                         </td>

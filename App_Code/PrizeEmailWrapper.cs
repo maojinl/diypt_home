@@ -155,12 +155,12 @@ public class PrizeEmailWrapper
 			{
 				//send birthday email
 				membersList = (from a in db.PrizeMembers
-								join b in db.cmsMembers on a.UmbracoId equals b.nodeId
-								where a.DoB.HasValue //&& PrizeCommonUtils.LessThanDaysAhead(now, a.DoB.Value, 1) 
-								&& !(from c in db.MemberEmails where c.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail 
-								&& c.ScheduleDate > yearStart select c.MemberId).Contains(a.UmbracoId)
-								orderby a.UmbracoId
-								select a).ToList();
+							   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
+							   where a.DoB.HasValue //&& PrizeCommonUtils.LessThanDaysAhead(now, a.DoB.Value, 1) 
+							   && !(from c in db.MemberEmails where c.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail 
+								   && c.ScheduleDate > yearStart select c.MemberId).Contains(a.UmbracoId)
+							   orderby a.UmbracoId
+							   select a).ToList();
 
 				DateTime dtBirthday;
 				foreach (PrizeMember member in membersList)
@@ -266,7 +266,7 @@ public class PrizeEmailWrapper
 																 select c).FirstOrDefault();
 						if (memberPlanWeek == null)
 							continue;
-						PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ReviveMeEmail, "Revive Me", member.Firstname, "" + memberPlanWeek.Week);
+						PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ReviveMeEmail, "Revive Me", member.Firstname, "" + memberPlanWeek.Week+1);
 					}
 				}
 			}

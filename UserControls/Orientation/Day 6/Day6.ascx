@@ -17,7 +17,7 @@
         <div class="col-lg-10 push-lg-1 ">
             <div class="row">
                 <div class="col-sm-7 ">
-                    <p>I’m a big believer in the quote “You fail to plan, you plan to fail”. You’ve invested money, time, effort and most of all have shown bucket loads of courage to do something about your health so spending 9me planning and organising your next 12 weeks is a crucial part of the process.
+                    <p>I’m a big believer in the quote "You fail to plan, you plan to fail". You’ve invested money, time, effort and most of all have shown bucket loads of courage to do something about your health so spending time planning and organising your next 12 weeks is a crucial part of the process.
                     </p>
                 </div>
                 <div class="col-sm-5">

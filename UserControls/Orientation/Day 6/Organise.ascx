@@ -36,7 +36,7 @@
                     <ul class="list list-left">
                         <li>Early morning training is best because you can get it out of the way and you’ll be less likely be interrupted by a phone call or event that requires your urgent attention.</li>
                         <li>Prepare your workout times by checking your schedule regularly.</li>
-						<li>Fill your sandbag with sand or pool salt ($7.90 for 25kg from Bunnings).You should have three bags, 10kg, 15kg and 20kg. Make sure you gaffa tape them to increase durability. Click here for instructions on <a href="#" data-toggle="modal" data-target="#timeModal3" class="c_y">how to create your sandbag</a>.</li>
+						<li>Fill your sandbag with sand or pool salt ($7.90 for 25kg from Bunnings). You should have three bags, 5kg, 10kg and 15kg. Make sure you gaffa tape them to increase durability. Click here for instructions on <a href="#" data-toggle="modal" data-target="#timeModal3" class="c_y">how to create your sandbag</a>.</li>
                     </ul>
                     <div class="bg_grey d-flex justify-content-start bd-highlight mb-3">
                         <div class="p-2 bd-highlight">
@@ -62,7 +62,7 @@
                                 <li>Swissball </li>
                                 <li>Skipping rope </li>
                                 <li>A pair of gym gloves</li>
-                                <li>2 x Sandbags</li>
+                                <li>3 x Sandbags</li>
                             </ul>
                             <h6><strong>Extra things you will need:</strong></h6>
                             <ul class="list list-grey list-left">

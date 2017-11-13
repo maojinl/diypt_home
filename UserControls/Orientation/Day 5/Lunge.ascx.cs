@@ -79,7 +79,7 @@ public partial class UserControls_Orientation_Day_5_Lunge : BaseOrientation
                     $('#exerciseModal3').load('/exercise/side-lunge');";
                     imgExercise1.ImageUrl = "//media/14977/landscape_alternate_lunges_step3.jpg";
                     imgExercise2.ImageUrl = "/media/15198/landscape_walking_lunges.jpg";
-                    imgExercise3.ImageUrl = "/media/14977/landscape_alternate_lunges_step3.jpg";
+                    imgExercise3.ImageUrl = "/media/13771/landscape_side_lunge_step3.jpg";
 
                     lblExercise1.Text = "Alternate lunges";
                     lblExercise2.Text = "Walking lunges";
@@ -93,7 +93,7 @@ public partial class UserControls_Orientation_Day_5_Lunge : BaseOrientation
                     $('#exerciseModal3').load('/exercise/side-lunge');";
                     imgExercise1.ImageUrl = "/media/14977/landscape_alternate_lunges_step3.jpg";
                     imgExercise2.ImageUrl = "/media/15198/landscape_walking_lunges.jpg";
-                    imgExercise3.ImageUrl = "/media/14977/landscape_alternate_lunges_step3.jpg";
+                    imgExercise3.ImageUrl = "/media/13771/landscape_side_lunge_step3.jpg";
 
                     lblExercise1.Text = "Alternate lunges";
                     lblExercise2.Text = "Walking lunges";

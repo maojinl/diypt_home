@@ -52,7 +52,7 @@ public partial class UserControls_Orientation_Day_1_Pre_ex_questionnaire : BaseO
 <br />
 <div>If yes, explain why you didn't succeed.</div>
 <div>{2}</div>
-<div>3. Why is this goal important to you. If yes, how many?</div>
+<div>3. Why is this goal important to you.</div>
 <div>{3}</div>
 <br />
 <div>4. Have you ever exercised previously?</div>

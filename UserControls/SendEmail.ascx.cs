@@ -15,6 +15,6 @@ public partial class UserControls_SendEmail : System.Web.UI.UserControl
         string footer = templateNode.GetProperty("templateFooter").Value;
         string body = node.GetProperty("bodyContent").Value;
   
-        PrizeEmail.SendTestEmail((header + body + footer).Replace("/images/", "http://web106.sand.studiocoast.com.au/images/"));
+        PrizeEmail.SendTestEmail((header + body + footer).Replace("/images/", "http://diypt.com.au/images/"), node.NiceUrl);
     }
 }

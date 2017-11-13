@@ -144,31 +144,31 @@
                         <div class="form-check col-sm-6">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="pg-l-q4" id="" value="0">
-                                DNF
+                                 8+ min
                             </label>
                         </div>
                         <div class="form-check col-sm-6">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="pg-l-q4" id="" value="2">
-                                8+ min
+                               6-8 min
                             </label>
                         </div>
                         <div class="form-check col-sm-6">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="pg-l-q4" id="" value="4">
-                                6-8 min
+                                5-6 min
                             </label>
                         </div>
                         <div class="form-check col-sm-6">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="pg-l-q4" id="" value="6">
-                                5-6 min
+                                4-5 min
                             </label>
                         </div>
                         <div class="form-check col-sm-12">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="pg-l-q4" id="" value="8">
-                                4-5 min
+                                Less than 4 min
                             </label>
                         </div>
                     </fieldset>
@@ -523,12 +523,11 @@
                                 <input type="radio" class="form-check-input" name="pg-b-q5" id="" value="6">
                                 60%
                             </label>
-                            f
                         </div>
                         <div class="form-check col-sm-6">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="pg-b-q5" id="" value="8">
-                                70%
+                                70%+
                             </label>
                         </div>
                     </fieldset>
@@ -629,31 +628,31 @@
                         <div class="form-check col-sm-6">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="pg-l-q4" id="" value="0">
-                                DNF
-                            </label>
-                        </div>
-                        <div class="form-check col-sm-6">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="pg-l-q4" id="" value="2">
                                 8+ min
                             </label>
                         </div>
                         <div class="form-check col-sm-6">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="pg-l-q4" id="" value="4">
+                                <input type="radio" class="form-check-input" name="pg-l-q4" id="" value="2">
                                 6-8 min
                             </label>
                         </div>
                         <div class="form-check col-sm-6">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="pg-l-q4" id="" value="6">
+                                <input type="radio" class="form-check-input" name="pg-l-q4" id="" value="4">
                                 5-6 min
+                            </label>
+                        </div>
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="pg-l-q4" id="" value="6">
+                                4-5 min
                             </label>
                         </div>
                         <div class="form-check col-sm-12">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="pg-l-q4" id="" value="8">
-                                4-5 min
+                                Less than 4 min
                             </label>
                         </div>
                     </fieldset>

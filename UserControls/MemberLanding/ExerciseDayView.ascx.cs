@@ -86,49 +86,7 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
             divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
 			divRest.Visible = true;
 		}
-		switch(lblDayTypeName.Text.Trim())
-		{
-			case "Time to celebrate":
-		        divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
-				divRest.Visible = true;
-				break;
-			case "30min brisk walk":
-			case "Brisk walk":
-				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
-				divWalk.Visible = true;
-				break;
-			case "30-60min weekend physical activity":
-			case "Weekend physical activity":
-				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
-				divWeekend.Visible = true;
-				break;
-			case "Own 1hr cardio":
-			case "Own training":
-			case "Own cardio":
-				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
-				divCardio.Visible = true;
-				break;
-			case "Milestone workout = 20x pushups, squats, situps":
-			case "Milestone workout 2":
-				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
-				divSquat.Visible = true;
-				break;
-			case "Milestone workout = 20 pushups & make your bed":
-			case "Milestone workout 1":
-				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
-				divPushup.Visible = true;
-				break;
-			case "Measurement day and rest":
-				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
-				divMeasurement.Visible = true;
-				break;
-			case "Milestone workout = 20 star jumps & make your bed":
-				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
-				//divMeasurement.Visible = true;
-				break;
-			default:
-				break;
-		}
+		
         lblDay.Text = PrizeCommonUtils.ParseWeekDayToEnglish(iDay);
         MemberExercisePlan myPlan = dbAccess.GetMemberExercisePlan(memberPlanWeek.MemberExercisePlanId);
         if (iDay > 1)
@@ -186,7 +144,57 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
                 }
             }
         }
-
+		switch(lblDayTypeName.Text.Trim())
+		{
+			case "Time to celebrate":
+		        divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divRest.Visible = true;
+				DivAdvanceEquipment.Visible = false;
+				break;
+			case "30min brisk walk":
+			case "Brisk walk":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divWalk.Visible = true;
+				DivAdvanceEquipment.Visible = false;
+				break;
+			case "30-60min weekend physical activity":
+			case "Weekend physical activity":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divWeekend.Visible = true;
+				DivAdvanceEquipment.Visible = false;
+				break;
+			case "Own 1hr cardio":
+			case "Own training":
+			case "Own cardio":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divCardio.Visible = true;
+				DivAdvanceEquipment.Visible = false;
+				break;
+			case "Milestone workout = 20x pushups, squats, situps":
+			case "Milestone workout 2":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divSquat.Visible = true;
+				DivAdvanceEquipment.Visible = false;
+				break;
+			case "Milestone workout = 20 pushups & make your bed":
+			case "Milestone workout 1":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divPushup.Visible = true;
+				DivAdvanceEquipment.Visible = false;
+				break;
+			case "Measurement day and rest":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				divMeasurement.Visible = true;
+				DivAdvanceEquipment.Visible = false;
+				break;
+			case "Milestone workout = 20 star jumps & make your bed":
+				divWarmup.Visible = divCooldown.Visible = divLegend.Visible = false;
+				DivAdvanceEquipment.Visible = false;
+				//divMeasurement.Visible = true;
+				break;
+			default:
+				break;
+		}
         LoadDailyInfo(iPlanWeekId, iDay);
 
        // nextDay.Text = "Next day tuesday";

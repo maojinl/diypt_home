@@ -391,7 +391,7 @@
                 <asp:DropDownList ID="ddlProgram" runat="server" CssClass="form-control">
                     <asp:ListItem Value="">Please select</asp:ListItem>
                     <asp:ListItem Value="Lose Weight">Lose weight and increase fitness</asp:ListItem>
-                    <asp:ListItem Value="Build Muscle">Build muscle and get bigger</asp:ListItem>
+                    <asp:ListItem Value="Build Muscle">Build muscle and be stronger</asp:ListItem>
                     <asp:ListItem Value="Tone Up">Tone up and be body confident</asp:ListItem>
                 </asp:DropDownList>
 

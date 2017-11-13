@@ -211,8 +211,6 @@ Comment:
 		body = body.Replace("/login", "http://diypt.com.au/login/");
 		body = body.Replace("/my-account/", "http://diypt.com.au/my-account/");
 		body = body.Replace("/continueplan", "http://diypt.com.au/continueplan");
-		body = body.Replace("/revitalise-me", "http://diypt.com.au/revitalise-me");
-		body = body.Replace("viewonlineurl", "http://diypt.com.au" + node.NiceUrl);
 		/*body = body.Replace("/login", "http://diypt.com.au/login/");
 		body = body.Replace("/login", "http://diypt.com.au/login/");
 		body = body.Replace("/login", "http://diypt.com.au/login/");
@@ -242,7 +240,7 @@ Comment:
 		client.Send(mm);
 	}
 
-	static public void SendTestEmail(string content, string nodeUrl)
+	static public void SendTestEmail(string content)
 	{
 		SmtpClient client = new SmtpClient();
 		// client.Port = 587;
@@ -253,14 +251,9 @@ Comment:
 		//client.UseDefaultCredentials = false;
 		//client.Credentials = new System.Net.NetworkCredential("user@gmail.com", "password");
 
-		MailMessage mm = new MailMessage("jonathan@diypt.com.au", "thuyen.vu@gmail.com");
+		MailMessage mm = new MailMessage("no-reply@diypt.com", "thuyen.vu@gmail.com");
 		mm.Subject = "Test email";
 		mm.Body = content;
-		mm.Body = mm.Body.Replace("/login", "http://diypt.com.au/login/");
-		mm.Body = mm.Body.Replace("/my-account/", "http://diypt.com.au/my-account/");
-		mm.Body = mm.Body.Replace("/continueplan", "http://diypt.com.au/continueplan");
-		mm.Body = mm.Body.Replace("/revitalise-me", "http://diypt.com.au/revitalise-me");
-		mm.Body = mm.Body.Replace("viewonlineurl", "http://diypt.com.au" + nodeUrl);
 		mm.BodyEncoding = UTF8Encoding.UTF8;
 		mm.IsBodyHtml = true;
 		//mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;

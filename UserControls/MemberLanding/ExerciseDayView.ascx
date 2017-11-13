@@ -71,7 +71,7 @@
 	
     <div class="row mb-4" id="divWeekend" runat="server" visible="false">
         <div class="col-sm-7 mb-4">
-            <img class="img-fluid" src="/media/15202/weekend-activity.jpg" />
+            <img class="img-fluid" src="/media/15222/weekend.png" />
         </div>
         <div class="col-sm-5">
             <h5 class="underline">
@@ -449,7 +449,7 @@
             </div>
             <div class="modal-body">
                 <div class='embed-container'>
-                <iframe src="https://player.vimeo.com/video/227216567" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
+                <!--<iframe src="https://player.vimeo.com/video/227216567" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>-->
             </div>
             </div>
             <div class="modal-footer">
