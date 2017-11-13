@@ -52,7 +52,7 @@ public static class PrizeLogs
 			if (ex.InnerException != null)
 			{
 				log.InnerError = ex.InnerException.Message + "\r\n" + ex.InnerException.StackTrace;
-
+			}
 			db.PrizeErrorLogs.Add(log);
 			db.SaveChanges();
 		}
