@@ -186,7 +186,7 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 		var sTargetLevel = ddlLevel.SelectedItem.Text;
 		PrizeMemberPlanManager man = new PrizeMemberPlanManager();
 		PrizeDataAccess dbAccess = new PrizeDataAccess();
-		MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(memberId);
+		MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
 		if (myPlan == null)
 		{
 			Response.Write("<script>alert('Can't find the user's plan.');</script>");
@@ -206,7 +206,7 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 		var sTargetProgram = ddlProgram.SelectedItem.Text;
 		PrizeMemberPlanManager man = new PrizeMemberPlanManager();
 		PrizeDataAccess dbAccess = new PrizeDataAccess();
-		MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(memberId);
+		MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
 		if (myPlan == null)
 		{
 			Response.Write("<script>alert('Can't find the user's plan.');</script>");
@@ -223,6 +223,40 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 
 	protected void btnPauseResume_Click(object sender, EventArgs e)
 	{
+		PrizeDataAccess dbAccess = new PrizeDataAccess();
+		if (this.ddlPauseResume.Text.Equals("Pause"))
+		{
+			MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
+			PrizeMemberPlanManager man = new PrizeMemberPlanManager();
+			if (myPlan == null)
+			{
+				Response.Write("<script>alert('Can't find the user's available plan.');</script>");
+			}
+			else
+			{
+				if (!man.PauseMemberPlan(myPlan.Id))
+					Response.Write("<script>alert('Error happens when pausing the plan.');</script>");
+				else
+					Response.Write("<script>alert('The plan is paused);</script>");
+			}
+		}
+		else if (this.ddlPauseResume.Text.Equals("Resume"))
+		{
+			MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPausedPlan(memberId);
+			PrizeMemberPlanManager man = new PrizeMemberPlanManager();
+			if (myPlan == null)
+			{
+				Response.Write("<script>alert('Can't find the user's paused plan.');</script>");
+			}
+			else
+			{
+				if (!man.ResumeMemberPlan(myPlan.Id))
+					Response.Write("<script>alert('Error happens when resuming the plan.');</script>");
+				else
+					Response.Write("<script>alert('The plan is resumed);</script>");
+			}
+		}
+		this.BindGrid();
 		return;
 	}
 

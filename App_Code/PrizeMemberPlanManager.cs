@@ -721,6 +721,102 @@ public class PrizeMemberPlanManager
 		}
 	}
 
+	public bool PauseMemberPlan(int myPlanId)
+	{
+		bool ret = false;
+		DIYPTEntities db = new DIYPTEntities();
+		try
+		{
+			db.Database.Connection.Open();
+
+			MemberExercisePlan myPlan = (from c in db.MemberExercisePlans
+										 where c.Id == myPlanId
+										 select c).FirstOrDefault();
+			if (myPlan == null)
+				return ret;
+
+			IQueryable<MemberExercisePlanWeek> myPlanWeeks = (from c in db.MemberExercisePlanWeeks
+																  where c.MemberExercisePlanId == myPlan.Id
+																 orderby c.Week
+																 select c);
+			foreach (var planWeek in myPlanWeeks)
+			{
+				if (planWeek.Status.Equals(PrizeConstants.STATUS_PLAN_WEEK_STARTED) || planWeek.Status.Equals(PrizeConstants.STATUS_PLAN_WEEK_STARTED))
+				{
+					planWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_SUSPENDED;
+				}
+			}
+			myPlan.Status = PrizeConstants.STATUS_PLAN_SUSPENDED + myPlan.Status[1];
+
+			db.SaveChanges();
+
+			return true;
+		}
+		catch
+		{
+			return false;
+		}
+		finally
+		{
+			db.Dispose();
+		}
+	}
+
+	public bool ResumeMemberPlan(int myPlanId)
+	{
+		bool ret = false;
+		DIYPTEntities db = new DIYPTEntities();
+		try
+		{
+			db.Database.Connection.Open();
+
+			MemberExercisePlan myPlan = (from c in db.MemberExercisePlans
+										 where c.Id == myPlanId
+										 select c).FirstOrDefault();
+			if (myPlan == null)
+				return ret;
+
+			IList<MemberExercisePlanWeek> myPlanWeeks = (from c in db.MemberExercisePlanWeeks
+															  where c.MemberExercisePlanId == myPlan.Id && c.Status.Equals(PrizeConstants.STATUS_PLAN_WEEK_SUSPENDED)
+															  orderby c.Week
+															  select c).ToList();
+			int idx = 1;
+			DateTime currentEndDate = PrizeCommonUtils.GetSystemDate();
+			DateTime startDate = PrizeCommonUtils.GetNextWeekStart(currentEndDate);
+			DateTime endDate = PrizeCommonUtils.GetWeekEnd(startDate);
+			foreach (var myPlanWeek in myPlanWeeks)
+			{
+				if (idx == 1)
+				{
+					myPlanWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_STARTED;
+				}
+				else
+				{
+					myPlanWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_NOT_STARTED;
+				}
+				myPlanWeek.StartDate = startDate;
+				myPlanWeek.EndDate = endDate;
+				myPlan.EndDate = endDate;
+				startDate = startDate.AddDays(7);
+				endDate = endDate.AddDays(7);
+				idx++;
+			}
+			myPlan.Status = PrizeConstants.STATUS_PLAN_STARTED + myPlan.Status[1];
+
+			db.SaveChanges();
+
+			return true;
+		}
+		catch
+		{
+			return false;
+		}
+		finally
+		{
+			db.Dispose();
+		}
+	}
+
 	protected MemberExercisePlan GetNextMemberPlanNeedToPay(int iMemberId)
 	{
 		DIYPTEntities db = new DIYPTEntities();
@@ -744,13 +840,22 @@ public class PrizeMemberPlanManager
 	public string GetEmptyPlanJumpURL(PrizeMember member)
 	{
 		string sURL = "";
-		MemberExercisePlan myPlan = GetNextMemberPlanNeedToPay(member.UmbracoId);
-		if (myPlan == null)
+		PrizeDataAccess db = new PrizeDataAccess();
+		MemberExercisePlan myPlan = db.GetCurrentMemberPausedPlan(member.UmbracoId);
+		if (myPlan != null)
+		{
+			sURL = PrizeConstants.URL_MEMBER_PLAN_SUSPENDED;
+			return sURL;
+		}
+
+		 myPlan = GetNextMemberPlanNeedToPay(member.UmbracoId);
+			if (myPlan == null)
 		{
 			sURL = String.Format("{0}?loginName={1}&memberId={2}", PrizeConstants.URL_MEMBER_CONTINUE_PLAN, member.Email, member.UmbracoId);
 		}
 		else
 		{
+
 			sURL = String.Format("{0}?targetplanid={1}&targetmemberplanid={2}", PrizeConstants.URL_MEMBER_BUY_PLAN, myPlan.ExercisePlanId, myPlan.Id);
 		}
 		return sURL;

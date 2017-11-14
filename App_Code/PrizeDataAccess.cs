@@ -97,6 +97,23 @@ public class PrizeDataAccess
 		}
 	}
 
+	public MemberExercisePlan GetCurrentMemberPausedPlan(int iMemberId)
+	{
+		try
+		{
+			db.Database.Connection.Open();
+			string status = PrizeConstants.STATUS_PLAN_SUSPENDED + PrizeConstants.STATUS_PLAN_PAID;
+			MemberExercisePlan myPlan = (from c in db.MemberExercisePlans
+										 where c.MemberId == iMemberId && c.Status.Equals(status)
+										 select c).FirstOrDefault();
+			return myPlan;
+		}
+		finally
+		{
+			db.Database.Connection.Close();
+		}
+	}
+
 	public DataSet GetExercisePlanInfo(int iPlanId)
 	{
 		db.Database.Connection.Open();

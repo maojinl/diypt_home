@@ -62,8 +62,9 @@ public static class PrizeConstants
     public const string URL_MEMBER_COMING_UP = "~/my-account/coming-up#tab-bx-coming";
     public const string URL_MEMBER_CONTINUE_PLAN = "~/continuePlan";
     public const string URL_EZIDEBIT_LOGIN = "https://www.ezidebit.com/en-au/login";
+	public const string URL_MEMBER_PLAN_SUSPENDED = "~/plan-suspended";
 
-    public const int TIME_OUT = 20;
+	public const int TIME_OUT = 20;
 
     public const String STATUS_PLAN_NOT_PAID = "N";
     public const String STATUS_PLAN_PAID = "P";

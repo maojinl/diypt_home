@@ -98,7 +98,7 @@ public class PrizeEmailServiceThread : ApplicationEventHandler
 		}
 		catch (Exception e)
 		{
-			PrizeLogs.SaveSystemErrorLog(email.MemberId, 0, PrizeConstants.SystemErrorLevel.LevelNormal, "Email thread", "Sending email", e);
+			PrizeLogs.SaveSystemErrorLog(email.MemberId, email.EmailId, PrizeConstants.SystemErrorLevel.LevelNormal, "Email thread", "Sending email " +email.EmailType.ToString(), e);
 			return false;
 		}
 	}

@@ -23,7 +23,7 @@ public class PrizeEmailWrapper
 	   // SenEmailById(emailId);
 	}
 
-	static public void Prepare1DaysPrior2Week4Email(int memberId)
+	static public void Prepare1DaysPrior2Week4OrWeek11Email(int memberId, int Week)
 	{
 		using (var db = new DIYPTEntities())
 		{
@@ -33,23 +33,32 @@ public class PrizeEmailWrapper
 
 			String sDiertary = "";
 			PrizeConstants.EmailType emailType = PrizeConstants.EmailType.OneDaysPrior2Week4Normal;
-			if (sQuestions.IndexOf("Vegan") >= 0)
+			if (Week == 4)
 			{
-				sDiertary = "Vegan";
-				emailType = PrizeConstants.EmailType.OneDaysPrior2Week4Vegan;
-			}
-			else if (sQuestions.IndexOf("Lactose intolerant") >= 0)
-			{
-				sDiertary = "Lactose intolerant";
-				emailType = PrizeConstants.EmailType.OneDaysPrior2Week4Lactose;
+				emailType = PrizeConstants.EmailType.OneDaysPrior2Week4Normal;
+				if (sQuestions.IndexOf("Vegan") >= 0)
+				{
+					sDiertary = "Vegan";
+					emailType = PrizeConstants.EmailType.OneDaysPrior2Week4Vegan;
+				}
+				else if (sQuestions.IndexOf("Lactose intolerant") >= 0)
+				{
+					sDiertary = "Lactose intolerant";
+					emailType = PrizeConstants.EmailType.OneDaysPrior2Week4Lactose;
+				}
+				else
+					sDiertary = "";
 			}
 			else
-				sDiertary = "";
+			{
+				emailType = PrizeConstants.EmailType.OneDaysPrior2Week11;
+			}
 			MemberEmail myEmail = new MemberEmail();
 			myEmail.MemberId = memberId;
 			myEmail.EmailType = (int)emailType;
 			myEmail.EmailAddress = sEmail;
-			myEmail.Title = "Night before Day 1 of Week 4";
+			myEmail.Title = "Night before Day 1 of Week " + Week;
+
 			myEmail.Status = (int)PrizeConstants.EmailStatus.Shceduled;
 			myEmail.Content1 = member.Firstname;
 			PrizeDataAccess dbAccess = new PrizeDataAccess();
@@ -382,7 +391,7 @@ public class PrizeEmailWrapper
 		catch (Exception ex)
 		{
 			PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(),
-				"DailyEmailTask 1 day prior to week 11", ex);
+				"DailyEmailTask 1 day prior to week 1", ex);
 		}
 
 		try
@@ -424,7 +433,7 @@ public class PrizeEmailWrapper
 		catch (Exception ex)
 		{
 			PrizeLogs.SaveSystemErrorLog(0, 0, PrizeConstants.SystemErrorLevel.LevelSerious, typeof(PrizeEmailWrapper).ToString(),
-				"DailyEmailTask 1 day prior to week 4", ex);
+				"DailyEmailTask SendMemberConintuousLoginEmail", ex);
 		}
 
 		try
@@ -444,6 +453,7 @@ public class PrizeEmailWrapper
 											   MemberPlanWeekId = b.Id,
 											   WeekStartDate = b.StartDate,
 											   MemberExercisePlanId = c.Id,
+											   Week = b.Week
 										   }).ToList();
 
 				foreach (var memberPlanWithWeek in memberPlanWithWeeks)
@@ -453,7 +463,7 @@ public class PrizeEmailWrapper
 																 select c).FirstOrDefault();
 					if (memberPlanWeekResult.Tasks != null && memberPlanWeekResult.Tasks.Length > 1 && memberPlanWeekResult.Tasks[0] == '0')
 					{
-						Prepare1DaysPrior2Week4Email(memberPlanWithWeek.MemberId);
+						Prepare1DaysPrior2Week4OrWeek11Email(memberPlanWithWeek.MemberId, memberPlanWithWeek.Week);
 						char[] arr = memberPlanWeekResult.Tasks.ToArray();
 						arr[0] = '1';
 						memberPlanWeekResult.Tasks = new string(arr);
@@ -485,6 +495,7 @@ public class PrizeEmailWrapper
 										  MemberPlanWeekId = b.Id,
 										  WeekStartDate = b.StartDate,
 										  MemberExercisePlanId = c.Id,
+										  Week = b.Week,
 									  }).ToList();
 
 				foreach (var memberPlanWithWeek in memberPlanWithWeeks)
@@ -495,7 +506,8 @@ public class PrizeEmailWrapper
 					if (memberPlanWeekResult.Tasks != null && memberPlanWeekResult.Tasks.Length > 1 && memberPlanWeekResult.Tasks[0] == '0')
 					{
 						PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberPlanWithWeek.MemberId);
-						PrepareSimpleEmailByType(member, PrizeConstants.EmailType.OneDaysPrior2Week11, "Night before Day 1 of Week 11", member.Firstname);
+						//PrepareSimpleEmailByType(member, PrizeConstants.EmailType.OneDaysPrior2Week11, "Night before Day 1 of Week 11", member.Firstname);
+						Prepare1DaysPrior2Week4OrWeek11Email(memberPlanWithWeek.MemberId, memberPlanWithWeek.Week);
 						char[] arr = memberPlanWeekResult.Tasks.ToArray();
 						arr[0] = '1';
 						memberPlanWeekResult.Tasks = new string(arr);

@@ -32,7 +32,7 @@ public static class PrizeLogs
 		using (DIYPTEntities db = new DIYPTEntities())
 		{
 			var log = new PrizeErrorLog();
-			log.MemberExercisePlanId = memberId;
+			log.MemberId = memberId;
 			log.MemberExercisePlanId = memberPlanId;
 			log.Page = sWebPage; //HttpContext.Current.Request.Url.AbsolutePath;'
 			log.ErrorLevel = (int)level;
