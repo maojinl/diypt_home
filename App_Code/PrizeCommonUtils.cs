@@ -31,6 +31,14 @@ public static class PrizeCommonUtils
 		return dt;
 	}
 
+	static public DateTime GetWeekStart(DateTime date)
+	{
+		int postDays = 0 - (int)date.GetDayOfWeek() + 1;
+		DateTime startDate = date.AddDays(postDays);
+		DateTime dt = DateTime.Parse(startDate.ToString("yyyy-MM-dd") + " 00:00:00");
+		return dt;
+	}
+
 	static public DateTime GetWeekEnd(DateTime date)
 	{
 		int remainDays = 7 - (int)date.GetDayOfWeek() + 1;

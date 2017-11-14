@@ -782,7 +782,7 @@ public class PrizeMemberPlanManager
 															  select c).ToList();
 			int idx = 1;
 			DateTime currentEndDate = PrizeCommonUtils.GetSystemDate();
-			DateTime startDate = PrizeCommonUtils.GetNextWeekStart(currentEndDate);
+			DateTime startDate = PrizeCommonUtils.GetWeekStart(currentEndDate);
 			DateTime endDate = PrizeCommonUtils.GetWeekEnd(startDate);
 			foreach (var myPlanWeek in myPlanWeeks)
 			{
