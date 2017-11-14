@@ -209,10 +209,19 @@ Comment:
 				body = body.Replace("[fatpercentage]", sMealValue[1]);
 		}
 		body = body.Replace("/login", "http://diypt.com.au/login/");
+		
 		body = body.Replace("/my-account/", "http://diypt.com.au/my-account/");
 		body = body.Replace("/continueplan", "http://diypt.com.au/continueplan");
 		body = body.Replace("/revitalise-me", "http://diypt.com.au/revitalise-me");
-		body = body.Replace("viewonlineurl", "http://diypt.com.au" + node.NiceUrl);
+		try
+		{
+				body = body.Replace("viewonlineurl", "http://diypt.com.au" + node.NiceUrl);
+		}
+		catch
+		{
+		  //Do nothing
+		  /* Known issue in Umbraco where NiceUrl fails */
+		}
 		/*body = body.Replace("/login", "http://diypt.com.au/login/");
 		body = body.Replace("/login", "http://diypt.com.au/login/");
 		body = body.Replace("/login", "http://diypt.com.au/login/");
