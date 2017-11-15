@@ -112,11 +112,15 @@ Comment:
 			nodeId = 6682;
 		else if (emailType == PrizeConstants.EmailType.MeasurmentWeek7)
 			nodeId = 9673;
+		else if (emailType == PrizeConstants.EmailType.MeasurmentWeek10)
+			nodeId = 10873;
 		else if (emailType == PrizeConstants.EmailType.MeasurmentWeek12)
 			nodeId = 9674;
 		else if (emailType == PrizeConstants.EmailType.MeasurmentMissedWeek4)
 			nodeId = 5383;
 		else if (emailType == PrizeConstants.EmailType.MeasurmentMissedWeek7)
+			nodeId = 5383;
+		else if (emailType == PrizeConstants.EmailType.MeasurmentMissedWeek10)
 			nodeId = 5383;
 		else if (emailType == PrizeConstants.EmailType.MeasurmentMissedWeek12)
 			nodeId = 5383;
