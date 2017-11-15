@@ -741,7 +741,7 @@ public class PrizeMemberPlanManager
 																 select c);
 			foreach (var planWeek in myPlanWeeks)
 			{
-				if (planWeek.Status.Equals(PrizeConstants.STATUS_PLAN_WEEK_STARTED) || planWeek.Status.Equals(PrizeConstants.STATUS_PLAN_WEEK_STARTED))
+				if (planWeek.Status.Equals(PrizeConstants.STATUS_PLAN_WEEK_STARTED) || planWeek.Status.Equals(PrizeConstants.STATUS_PLAN_WEEK_NOT_STARTED))
 				{
 					planWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_SUSPENDED;
 				}
@@ -786,16 +786,28 @@ public class PrizeMemberPlanManager
 			DateTime endDate = PrizeCommonUtils.GetWeekEnd(startDate);
 			foreach (var myPlanWeek in myPlanWeeks)
 			{
-				if (idx == 1)
+				if (idx == 1 )
 				{
-					myPlanWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_STARTED;
+					if (myPlanWeek.StartDate <= startDate)
+					{
+						myPlanWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_STARTED;
+						myPlanWeek.StartDate = startDate;
+						myPlanWeek.EndDate = endDate;
+						
+					}
+					else
+					{
+						myPlanWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_NOT_STARTED;
+						startDate = myPlanWeek.StartDate;
+						endDate = myPlanWeek.EndDate;
+					}
 				}
 				else
 				{
 					myPlanWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_NOT_STARTED;
+					myPlanWeek.StartDate = startDate;
+					myPlanWeek.EndDate = endDate;
 				}
-				myPlanWeek.StartDate = startDate;
-				myPlanWeek.EndDate = endDate;
 				myPlan.EndDate = endDate;
 				startDate = startDate.AddDays(7);
 				endDate = endDate.AddDays(7);

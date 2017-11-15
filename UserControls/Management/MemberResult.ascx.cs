@@ -66,14 +66,15 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 								join c in db.MemberExercisePlanWeeks on a.MemberExercisePlanWeekId equals c.Id
 								join d in db.MemberExercisePlans on c.MemberExercisePlanId equals d.Id
 								join e in db.PrizeExercisePlans on d.ExercisePlanId equals e.Id
-								where a.MemberId == memberId
-								orderby c.StartDate
+								where a.MemberId == memberId && d.Status.EndsWith("P")
+								orderby d.StartDate descending, c.StartDate
 								select new
 								{
 									Memberid = a.MemberId,
 									Firstname = b.Firstname,
 									Surname = b.Surname,
 									Week = c.Week,
+									Status = c.Status,
 									StartDate = c.StartDate,
 									EndDate = c.EndDate,
 									PlanName = e.PlanName,
@@ -120,8 +121,6 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 						}
 					}
 				}
-
-
 			}
 			db.Database.Connection.Close();
 		}

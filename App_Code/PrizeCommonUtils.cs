@@ -148,4 +148,18 @@ public static class PrizeCommonUtils
 			}
 		}
 	}
+
+	static public string GetMemberPlanWeekStatus(string status)
+	{
+		if (status.Equals(PrizeConstants.STATUS_PLAN_WEEK_NOT_STARTED))
+			return "Not Started";
+		else if (status.Equals(PrizeConstants.STATUS_PLAN_WEEK_STARTED))
+			return "Started";
+		else if (status.Equals(PrizeConstants.STATUS_PLAN_WEEK_FINISHED))
+			return "Finished";
+		else if (status.Equals(PrizeConstants.STATUS_PLAN_WEEK_SUSPENDED))
+			return "Suspended";
+		else
+			return "";
+	}
 }

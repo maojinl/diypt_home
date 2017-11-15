@@ -111,7 +111,7 @@
 				  <asp:ListItem>Pause</asp:ListItem>
 				  <asp:ListItem>Resume</asp:ListItem>
 			  </asp:DropDownList>
-			  <asp:Button ID="Button1" runat="server" Text="Change Program" OnClick="btnPauseResume_Click" />
+			  <asp:Button ID="Button1" runat="server" Text="Take Action" OnClick="btnPauseResume_Click" />
 		</td>
 
 	</tr>
@@ -173,6 +173,11 @@ OnPageIndexChanging = "OnPaging" >
 		<EditItemTemplate>
 			<asp:TextBox ID="txtEl" runat="server" Text='<%# Eval("EndDate") %>'></asp:TextBox>
 		</EditItemTemplate>
+	</asp:TemplateField>
+	<asp:TemplateField HeaderText="Status"  >
+		<ItemTemplate>
+			<asp:Label ID="lbStatus" runat="server" Text='<%# PrizeCommonUtils.GetMemberPlanWeekStatus(Eval("Status").ToString()) %>'></asp:Label>
+		</ItemTemplate>
 	</asp:TemplateField>
 	<asp:TemplateField HeaderText="EndWeight"  >
 		<ItemTemplate>
