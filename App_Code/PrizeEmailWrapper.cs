@@ -275,7 +275,7 @@ public class PrizeEmailWrapper
 																 select c).FirstOrDefault();
 						if (memberPlanWeek == null)
 							continue;
-						PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ReviveMeEmail, "Revive Me", member.Firstname, "" + memberPlanWeek.Week+1);
+						PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ReviveMeEmail, "Revive Me", member.Firstname, "" + (memberPlanWeek.Week+1));
 					}
 				}
 			}
