@@ -136,6 +136,7 @@ public class PrizeMemberPlanManager
 					}
 					notPaidPlan.Status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAYMENT_CANCELLED;
 				}
+				db.SaveChanges();
 
 				DateTime startDate = PrizeCommonUtils.GetNextWeekStart(currentEndDate);
 				DateTime endDate = PrizeCommonUtils.GetWeekEnd(startDate);
@@ -146,30 +147,32 @@ public class PrizeMemberPlanManager
 				myPlan.StartDate = startDate;
 				myPlan.Status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_NOT_PAID;  //Not paid
 				db.MemberExercisePlans.Add(myPlan);
-                MemberPlanWeekResult myWeekResult;
+				db.SaveChanges();
+				MemberPlanWeekResult myWeekResult;
 
-                if (plan.IsTrialPlan != 1)
-                {
-                    MemberExercisePlanWeek myPlanWeekOrientation = new MemberExercisePlanWeek();
-                    myPlanWeekOrientation.MemberExercisePlanId = myPlan.Id;
-                    myPlanWeekOrientation.ExercisePlanWeekId = 0;
-                    myPlanWeekOrientation.MemberId = memberId;
-                    myPlanWeekOrientation.StartDate = startDate;
-                    myPlanWeekOrientation.EndDate = endDate;
-                    myPlanWeekOrientation.Status = PrizeConstants.STATUS_PLAN_WEEK_NOT_STARTED;
-                    myPlanWeekOrientation.Week = 0;
-                    db.MemberExercisePlanWeeks.Add(myPlanWeekOrientation);
+				if (plan.IsTrialPlan != 1)
+				{
+					MemberExercisePlanWeek myPlanWeekOrientation = new MemberExercisePlanWeek();
+					myPlanWeekOrientation.MemberExercisePlanId = myPlan.Id;
+					myPlanWeekOrientation.ExercisePlanWeekId = 0;
+					myPlanWeekOrientation.MemberId = memberId;
+					myPlanWeekOrientation.StartDate = startDate;
+					myPlanWeekOrientation.EndDate = endDate;
+					myPlanWeekOrientation.Status = PrizeConstants.STATUS_PLAN_WEEK_NOT_STARTED;
+					myPlanWeekOrientation.Week = 0;
+					db.MemberExercisePlanWeeks.Add(myPlanWeekOrientation);
+					db.SaveChanges();
 
-				    myWeekResult = new MemberPlanWeekResult();
-				    myWeekResult.MemberId = memberId;
-				    myWeekResult.MemberExercisePlanWeekId = myPlanWeekOrientation.Id;
-				    InitialiseWeekResult(ref myWeekResult);
-				    db.MemberPlanWeekResults.Add(myWeekResult);
-				    myPlan.EndDate = endDate;
-                }
-
-				startDate = startDate.AddDays(7);
-				endDate = endDate.AddDays(7);
+					myWeekResult = new MemberPlanWeekResult();
+					myWeekResult.MemberId = memberId;
+					myWeekResult.MemberExercisePlanWeekId = myPlanWeekOrientation.Id;
+					InitialiseWeekResult(ref myWeekResult);
+					db.MemberPlanWeekResults.Add(myWeekResult);
+					db.SaveChanges();
+					myPlan.EndDate = endDate;
+					startDate = startDate.AddDays(7);
+					endDate = endDate.AddDays(7);
+				}
 				IOrderedEnumerable<PrizeExercisePlanWeek> planWeeks = plan.PrizeExercisePlanWeeks.OrderBy(s => s.StartWeek);
 				foreach (PrizeExercisePlanWeek planWeek in planWeeks)
 				{
@@ -184,6 +187,7 @@ public class PrizeMemberPlanManager
 						myPlanWeek.Status = PrizeConstants.STATUS_PLAN_WEEK_NOT_STARTED;
 						myPlanWeek.Week = i;
 						db.MemberExercisePlanWeeks.Add(myPlanWeek);
+						db.SaveChanges();
 
 						myWeekResult = new MemberPlanWeekResult();
 						myWeekResult.MemberId = memberId;
@@ -191,12 +195,13 @@ public class PrizeMemberPlanManager
 						InitialiseWeekResult(ref myWeekResult);
 						db.MemberPlanWeekResults.Add(myWeekResult);
 						myPlan.EndDate = endDate;
+						db.SaveChanges();
 
 						startDate = startDate.AddDays(7);
 						endDate = endDate.AddDays(7);
 					}
 				}
-                db.SaveChanges();
+
 				//transaction.Complete();
 				newMemberPlan = myPlan;
 				prizePlan = plan;

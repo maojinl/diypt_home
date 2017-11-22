@@ -43,6 +43,7 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 		{
 			divMeasurement.Visible = false;
 			btnUpdateProgress.Enabled = false;
+			this.photoPanelUpload.Visible = false;
 			return;
 		}
 
@@ -58,6 +59,13 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 
 		if (iWeekNum != _MemberPlanWeek.Week)
 			_MemberPlanWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(_MemberPlanWeek.MemberExercisePlanId, iWeekNum);
+		if (_MemberPlanWeek == null)
+		{
+			divMeasurement.Visible = false;
+			btnUpdateProgress.Enabled = false;
+			this.photoPanelUpload.Visible = false;
+			return;
+		}
 
 		if (!PrizeConstants.WEEKS_NEEDS_RESULT.Contains(iWeekNum))
 			divMeasurement.Visible = false;
@@ -625,7 +633,7 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 			sPhotoTypeName = "back";
 		}
 
-		string sSuffix = tempFileupload.FileName.Substring(tempFileupload.FileName.Length - 4);
+		string sSuffix = Path.GetExtension(tempFileupload.FileName);
 		string sServerFileName = memberPlanWeek.MemberId + "_" + PrizeCommonUtils.ParseDateTimeSimple(memberPlanWeek.StartDate) + "_" + sPhotoTypeName + sSuffix;
 
 		if (tempFileupload != null && !string.IsNullOrEmpty(tempFileupload.FileName))

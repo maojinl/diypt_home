@@ -159,7 +159,7 @@ public class PrizeEmailWrapper
 
 			DateTime dtBegin = now.AddDays(1);
 			DateTime dtEnd = now.AddDays(2);
-            PrizeDataAccess dbAccess = new PrizeDataAccess();
+			PrizeDataAccess dbAccess = new PrizeDataAccess();
 
 			using (var db = new DIYPTEntities())
 			{
@@ -177,14 +177,14 @@ public class PrizeEmailWrapper
 				{
 					if (!member.DoB.HasValue)
 						continue;
-                    PrizeExercisePlan plan = dbAccess.GetCurrentOrStartingExercisePlanInfo(member.UmbracoId);
-                    if (plan != null)
-                    {
-                        dtBirthday = PrizeCommonUtils.GetThisYearDate(member.DoB.Value);
-                        if (PrizeCommonUtils.LessThanDaysAhead(now, dtBirthday, 0))
-                            PrepareSimpleEmailByType(member, PrizeConstants.EmailType.BirthdayEmail, "Happy Birthday", member.Firstname);
-                    }
-				}              
+					PrizeExercisePlan plan = dbAccess.GetCurrentOrStartingExercisePlanInfo(member.UmbracoId);
+					if (plan != null)
+					{
+						dtBirthday = PrizeCommonUtils.GetThisYearDate(member.DoB.Value);
+						if (PrizeCommonUtils.LessThanDaysAhead(now, dtBirthday, 0))
+							PrepareSimpleEmailByType(member, PrizeConstants.EmailType.BirthdayEmail, "Happy Birthday", member.Firstname);
+					}
+				}
 			}
 		}
 		catch (Exception e)
@@ -823,6 +823,9 @@ public class PrizeEmailWrapper
 					select c).ToList();
 				IList<PrizeMember> membersList = null;
 
+				string status1 = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAID; ;
+				string status2 = PrizeConstants.STATUS_PLAN_STARTED + PrizeConstants.STATUS_PLAN_PAID;
+
 				foreach (PrizePresetTask task in tasks)
 				{
 					if (PrizeCommonUtils.LessThanDaysAhead(now, task.TaskDate, 0))
@@ -833,6 +836,8 @@ public class PrizeEmailWrapper
 							{
 								membersList = (from a in db.PrizeMembers
 											   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
+											   join c in db.MemberExercisePlans on a.UmbracoId equals c.MemberId
+											   where c.Status.Equals(status1) || c.Status.Equals(status2)
 											   orderby a.UmbracoId
 											   select a
 								).ToList();
@@ -850,6 +855,8 @@ public class PrizeEmailWrapper
 							{
 								membersList = (from a in db.PrizeMembers
 											   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
+											   join c in db.MemberExercisePlans on a.UmbracoId equals c.MemberId
+											   where c.Status.Equals(status1) || c.Status.Equals(status2)
 											   orderby a.UmbracoId
 											   select a
 								).ToList();
@@ -867,6 +874,8 @@ public class PrizeEmailWrapper
 							{
 								membersList = (from a in db.PrizeMembers
 											   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
+											   join c in db.MemberExercisePlans on a.UmbracoId equals c.MemberId
+											   where c.Status.Equals(status1) || c.Status.Equals(status2)
 											   orderby a.UmbracoId
 											   select a
 								).ToList();
