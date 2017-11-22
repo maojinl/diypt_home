@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -58,14 +58,14 @@ public partial class UserControls_Orientation_Day_6_Twist : BaseOrientation
                 else
                 {
                     tempScript += @"$('#exerciseModal1').load('/exercise/Ab-circles');
-                    $('#exerciseModal2').load('/exercise/Cable-woodchop-mid');
+                    $('#exerciseModal2').load('/exercise/Cable-mid-woodchop');
                     $('#exerciseModal3').load('/exercise/Deadball-woodchop-slam');";
                     imgExercise1.ImageUrl = "/media/15145/landscape_ab_circles.jpg";
                     imgExercise2.ImageUrl = "/media/15126/landscape_cable_woodchop-mid_step1.jpg";
                     imgExercise3.ImageUrl = "/media/14403/landscape_deadball_woodchop_slam_step1.jpg";
 
                     lblExercise1.Text = "Ab circles";
-                    lblExercise2.Text = "Cable woodchop - mid";
+                    lblExercise2.Text = "Cable mid woodchop";
                     lblExercise3.Text = "Deadball woodchop slam";
                 }
                 break;
@@ -89,14 +89,14 @@ public partial class UserControls_Orientation_Day_6_Twist : BaseOrientation
                 else
                 {
                     tempScript += @"$('#exerciseModal1').load('/exercise/Ab-circles');
-                    $('#exerciseModal2').load('/exercise/Cable-woodchop-low-to-high');
+                    $('#exerciseModal2').load('/exercise/"Cable-low-to-high-woodchop');
                     $('#exerciseModal3').load('/exercise/Cable-pallof-press');";
                     imgExercise1.ImageUrl = "/media/15145/landscape_ab_circles.jpg";
                     imgExercise2.ImageUrl = "/media/15123/landscape_cable_woodchop-low_to_high_step1.jpg";
                     imgExercise3.ImageUrl = "/media/15106/landscape_cable_pallof_press_step1.jpg";
 
                     lblExercise1.Text = "Ab circles";
-                    lblExercise2.Text = "Cable woodchop";
+                    lblExercise2.Text = "Cable low to high woodchop";
                     lblExercise3.Text = "Cable pallof press";
                 }
                 break;

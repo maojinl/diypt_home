@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -386,7 +386,7 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 			{
 				if (weekResults[iWeekNum].FrontPhoto != null)
 				{
-					url = weekResults[iWeekNum].FrontPhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+					url = weekResults[iWeekNum].FrontPhoto.Replace("http://web106.sand.studiocoast.com.au", "https://diypt.com.au").Replace("http://diypt.com.au", "https://diypt.com.au");
 					if (ImageHelper.CheckImageIsValid(url))
 					{
 						Image1.ImageUrl = String.Copy(url);
@@ -394,7 +394,7 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 				}
 				if (weekResults[iWeekNum].SidePhoto != null)
 				{
-					url = weekResults[iWeekNum].SidePhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+					url = weekResults[iWeekNum].SidePhoto.Replace("http://web106.sand.studiocoast.com.au", "https://diypt.com.au").Replace("http://diypt.com.au", "https://diypt.com.au");
 					if (ImageHelper.CheckImageIsValid(url))
 					{
 						Image2.ImageUrl = String.Copy(url);
@@ -402,7 +402,7 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 				}
 				if (weekResults[iWeekNum].BackPhoto != null)
 				{
-					url = weekResults[iWeekNum].BackPhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+					url = weekResults[iWeekNum].BackPhoto.Replace("http://web106.sand.studiocoast.com.au", "https://diypt.com.au").Replace("http://diypt.com.au", "https://diypt.com.au");
 					if (ImageHelper.CheckImageIsValid(url))
 					{
 						Image3.ImageUrl = String.Copy(url);
@@ -420,11 +420,11 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 				if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]] != null)
 				{
 					if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].FrontPhoto != null)
-						imagesByWeek[i][0].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].FrontPhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+						imagesByWeek[i][0].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].FrontPhoto.Replace("http://web106.sand.studiocoast.com.au", "https://diypt.com.au");
 					if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].SidePhoto != null)
-						imagesByWeek[i][1].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].SidePhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+						imagesByWeek[i][1].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].SidePhoto.Replace("http://web106.sand.studiocoast.com.au", "https://diypt.com.au");
 					if (weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].BackPhoto != null)
-						imagesByWeek[i][2].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].BackPhoto.Replace("http://web106.sand.studiocoast.com.au", "http://diypt.com.au");
+						imagesByWeek[i][2].ImageUrl = weekResults[PrizeConstants.WEEKS_NEEDS_RESULT[i]].BackPhoto.Replace("http://web106.sand.studiocoast.com.au", "https://diypt.com.au");
 
 				}
 			}  
@@ -721,11 +721,11 @@ public partial class UserControls_MemberLanding_ProgressStatus : BaseOrientation
 		else if (drawType == PrizeConstants.GraphDrawType.DrawWaist)
 			s = "Waist (cm)";
 		else if (drawType == PrizeConstants.GraphDrawType.DrawHip)
-			s = "Hip";
+			s = lblMeasurementGraph3.Text;
 		else if (drawType == PrizeConstants.GraphDrawType.DrawHeartRate)
-			s = "Heart Rate";
+			s = lblMeasurementGraph5.Text;
 		else if (drawType == PrizeConstants.GraphDrawType.DrawChest)
-			s = "Chest (cm)";
+			s = lblMeasurementGraph4.Text;
 		return s;
 	}
 

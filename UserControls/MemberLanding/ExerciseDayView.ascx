@@ -414,7 +414,7 @@
                 Legend</h5>
         </div>
         <div class="col-sm-5">
-            <!--<p><a class="c_b" href="#" data-toggle="modal" data-target="#tempo" id="modalPopupTempo">Tempo explained ></a></p>-->
+            <p><a class="c_b" href="#" data-toggle="modal" data-target="#theModal" id="modalPopupTempo">Tempo explained ></a></p>
             <p>SG = Supinated Grip (palm facing you)</p>
             <p>PG = Pronated Grip (back of palm facing you)</p>
             <p>NG = Neutral Grip (hammer grip)</p>
@@ -438,23 +438,8 @@
                     
         <!-- Modal -->
 
-<div class="modal fade" id="tempo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tempo explained</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class='embed-container'>
-                <!--<iframe src="https://player.vimeo.com/video/227216567" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>-->
-            </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+<script>$( '#modalPopupTempo' ).click(function() {
+				                    $('#theModal').load('/exercise/tempo');
+
+                                    });
+									</script>

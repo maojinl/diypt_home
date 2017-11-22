@@ -27,4 +27,4 @@
     </div>
 <a class="nav-login" href="/login" runat="server" id="navLogin" visible="false">LOGIN</a>
 <!-- <a class="nav-join" href="#" data-toggle="modal" data-target="#joinModal">JOIN <span class="hidden-md-down">NOW</span></a> -->
-<a class="nav-join" href="/signup" runat="server" id="navjoin" visible="false">JOIN <span class="hidden-md-down">NOW</span></a>
+<a class="nav-join" href="/signup/pre-registration" runat="server" id="navjoin" visible="false">JOIN <span class="hidden-md-down">NOW</span></a>

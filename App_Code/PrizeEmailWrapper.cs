@@ -159,6 +159,7 @@ public class PrizeEmailWrapper
 
 			DateTime dtBegin = now.AddDays(1);
 			DateTime dtEnd = now.AddDays(2);
+            PrizeDataAccess dbAccess = new PrizeDataAccess();
 
 			using (var db = new DIYPTEntities())
 			{
@@ -176,9 +177,13 @@ public class PrizeEmailWrapper
 				{
 					if (!member.DoB.HasValue)
 						continue;
-					dtBirthday = PrizeCommonUtils.GetThisYearDate(member.DoB.Value);
-					if (PrizeCommonUtils.LessThanDaysAhead(now, dtBirthday, 0))
-						PrepareSimpleEmailByType(member, PrizeConstants.EmailType.BirthdayEmail, "Happy Birthday", member.Firstname);
+                    PrizeExercisePlan plan = dbAccess.GetCurrentOrStartingExercisePlanInfo(member.UmbracoId);
+                    if (plan != null)
+                    {
+                        dtBirthday = PrizeCommonUtils.GetThisYearDate(member.DoB.Value);
+                        if (PrizeCommonUtils.LessThanDaysAhead(now, dtBirthday, 0))
+                            PrepareSimpleEmailByType(member, PrizeConstants.EmailType.BirthdayEmail, "Happy Birthday", member.Firstname);
+                    }
 				}              
 			}
 		}
@@ -339,8 +344,6 @@ public class PrizeEmailWrapper
 				"DailyEmailTask 2 days prior to Orientation week", ex);
 		}
 	}
-
-
 
 	static protected void ExercisePlanEmailTask()
 	{

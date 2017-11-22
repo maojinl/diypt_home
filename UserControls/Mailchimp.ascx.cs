@@ -13,8 +13,8 @@ public partial class UserControls_Mailchimp : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        var y = AddOrUpdateListMember("us15", "52d196be9764a97c49153dac087520b2", "60b14a20c0", "tvu@ctc.usyd.edu.au", "thuyen", "vu");
+        
+        //var y = AddOrUpdateListMember("us15", "52d196be9764a97c49153dac087520b2", "60b14a20c0", "tvu@ctc.usyd.edu.au", "thuyen", "vu");
     }
 
      private string GetLists(string dataCenter, string apiKey, string listId = "")
@@ -113,5 +113,10 @@ public partial class UserControls_Mailchimp : System.Web.UI.UserControl
             sb.Append(@byte.ToString("X2"));
         }
         return sb.ToString();
+    }
+
+    protected void LinkButton1_Click(object sender, EventArgs e)
+    {
+        var y = AddOrUpdateListMember("us15", "52d196be9764a97c49153dac087520b2", "60b14a20c0", txtEmail.Text, txtFirst.Text, txtLast.Text);
     }
 }
