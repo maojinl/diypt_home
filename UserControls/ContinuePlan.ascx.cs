@@ -41,7 +41,7 @@ public partial class UserControls_ContinuePlan : System.Web.UI.UserControl
             planName = dbAcess.GetPlanName(plan);
             sPlanName = planName.Split('_');
             lblProg.Text = sPlanName[0];
-            lblSem.Text = sPlanName[3].Replace("Semester", "");
+            lblSem.Text = sPlanName[3].Replace("Semester ", "");
             lblLvl.Text = sPlanName[2];
             lblLoc.Text = sPlanName[1];
             ddlLocation.Text = sPlanName[1];

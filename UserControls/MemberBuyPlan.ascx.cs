@@ -62,6 +62,8 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
 					if (newPlanId < 0)
 					{
 						//throw new Exception("ERROR: could not find the plan " + PrizeErrorCode.getErrorMessage(newPlanId));
+						this.btnPayFully.Enabled = false;
+						this.btnPayWeekly.Enabled = false;
 						Response.Write("<script>alert('There is no new plan suitable for you.');</script>");
 						return;
 					}

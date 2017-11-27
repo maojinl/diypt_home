@@ -43,7 +43,6 @@
                                  </p>
                             </td>
                         </tr>
-                        <!--
                         <tr>
                             <td scope="row">
                                 <h5><a id="action2"  class="c_black" href="/orientation/day-6/mark-on-your-calendar-diary-any-events">Mark on your calendar/diary any events </a></h5>
@@ -71,7 +70,7 @@
                                  </p>
                             </td>
                         </tr>
-                        -->
+
                         <tr>
                             <td scope="row">
                                 <h5><a id="action5" class="c_black" href="/orientation/day-6/get-familiar-with-the-twist">Get familiar with the twist</a></h5>
