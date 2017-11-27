@@ -59,8 +59,12 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
                 if (String.IsNullOrEmpty(sPlanId))
                 {
                     newPlanId = planManager.FindNewPlan(sProgram, sLocation, sLevel, sExp, bIsTrial);
-                    if (newPlanId < 0)
-                        throw new Exception("ERROR: could not find the plan " + PrizeErrorCode.getErrorMessage(newPlanId));
+					if (newPlanId < 0)
+					{
+						//throw new Exception("ERROR: could not find the plan " + PrizeErrorCode.getErrorMessage(newPlanId));
+						Response.Write("<script>alert('There is no new plan suitable for you.');</script>");
+						return;
+					}
                 }
                 else
                     newPlanId = int.Parse(sPlanId);
