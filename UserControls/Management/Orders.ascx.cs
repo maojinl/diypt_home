@@ -140,6 +140,7 @@ public partial class UserControls_Management_Orders : System.Web.UI.UserControl
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+		/*
         int i = (int)PrizeConstants.EmailType.WelcomeEmail;
         int end = (int)PrizeConstants.EmailType.ReviveMeEmail;
         
@@ -154,5 +155,6 @@ public partial class UserControls_Management_Orders : System.Web.UI.UserControl
             member = PrizeMemberAuthUtils.GetMemberData(10796);
             PrizeEmailWrapper.PrepareSimpleEmailByType(member, (PrizeConstants.EmailType)i, "", member.Firstname, "", "", "", "");
         }
+		*/
     }
 }
