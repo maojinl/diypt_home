@@ -12,8 +12,11 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 	protected void Page_Load(object sender, System.EventArgs e)
 	{
 		memberId = Convert.ToInt32(Session["MID"]);
-		this.BindGrid();
-		this.BindDropDownList();
+		if (!IsPostBack)
+		{
+			this.BindGrid();
+			this.BindDropDownList();
+		}
 	}
 
 	private void BindDropDownList()
@@ -49,9 +52,30 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 
 				ddlLevel.Items.FindByValue("" + plan.LevelId).Selected = true;
 
+				var planQuery = from a in db.PrizeExercisePlans
+								join Program in db.PrizePlanPrograms on a.ProgramId equals Program.Id
+								join Location in db.PrizePlanLocations on a.LocationId equals Location.Id
+								join Level in db.PrizePlanLevels on a.LevelId equals Level.Id
+								join Experience in db.PrizePlanExperiences on a.ExperienceId equals Experience.Id
+								where a.IsTrialPlan == plan.IsTrialPlan
+								orderby Program.Name, Location.Name, Level.Name, Experience.Name
+								select new
+								{
+									PlanId = a.Id,
+									PlanName = Program.Name + "_" + Location.Name + "_" + Level.Name + "_" + Experience.Name
+								};
+				ddlPlan.DataValueField = "PlanId";
+				ddlPlan.DataTextField = "PlanName";
+				ddlPlan.DataSource = planQuery.ToList();
+
+				ddlPlan.DataBind();
+
+				ddlPlan.Items.FindByValue("" + plan.Id).Selected = true;
+
 				db.Database.Connection.Close();
 			}
 		}
+
 	}
 
 	private void BindGrid()
@@ -216,6 +240,27 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 				Response.Write("<script>alert('The level of the current program not in the database.');</script>");
 			else
 				Response.Write("<script>alert('The user's program has been changed to " + sTargetProgram + ");</script>");
+		}
+		this.BindGrid();
+	}
+
+	protected void btnChangePlan_Click(object sender, EventArgs e)
+	{
+		int targetPlanId = 0;
+		int.TryParse(ddlPlan.SelectedItem.Value, out targetPlanId);
+		PrizeMemberPlanManager man = new PrizeMemberPlanManager();
+		PrizeDataAccess dbAccess = new PrizeDataAccess();
+		MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
+		if (myPlan == null)
+		{
+			Response.Write("<script>alert('Can't find the user's plan.');</script>");
+		}
+		else
+		{
+			if (!man.ChangeMemberPlan(myPlan.Id, targetPlanId))
+				Response.Write("<script>alert('The level of the current program not in the database.');</script>");
+			else
+				Response.Write("<script>alert('The user's program has been changed to " + ddlPlan.SelectedItem.Text + ");</script>");
 		}
 		this.BindGrid();
 	}

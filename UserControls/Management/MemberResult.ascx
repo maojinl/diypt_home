@@ -87,7 +87,7 @@
 			
 			 Change Level</td>
 		 <td class="auto-style1">
-			  <asp:DropDownList ID="ddlLevel" runat="server" Height="16px" Width="197px">
+			  <asp:DropDownList ID="ddlLevel" runat="server" Height="22px" Width="200px">
 			  </asp:DropDownList>
 			  <asp:Button ID="btnChangeLevel" runat="server" Text="Change Level" OnClick="btnChangeLevel_Click" />
 		</td>
@@ -97,9 +97,19 @@
 	<tr>
 		 <td>Change Program</td>
 		 <td class="auto-style1">
-			  <asp:DropDownList ID="ddlProgram" runat="server" Height="16px" Width="197px">
+			  <asp:DropDownList ID="ddlProgram" runat="server" Height="22px" Width="200px">
 			  </asp:DropDownList>
 			  <asp:Button ID="btnChangeProgram" runat="server" Text="Change Program" OnClick="btnChangeProgram_Click" />
+		</td>
+
+	</tr>
+
+    	<tr>
+		 <td>Change to a different plan</td>
+		 <td class="auto-style1">
+			  <asp:DropDownList ID="ddlPlan" runat="server" Height="22px" Width="350px">
+			  </asp:DropDownList>
+			  <asp:Button ID="btnChangePlan" runat="server" Text="Change Plan" OnClick="btnChangePlan_Click" />
 		</td>
 
 	</tr>
@@ -107,7 +117,7 @@
 	<tr>
 		<td>Pause Plan</td>
 		 <td class="auto-style1">
-			  <asp:DropDownList ID="ddlPauseResume" runat="server" Height="16px" Width="197px">
+			  <asp:DropDownList ID="ddlPauseResume" runat="server" Height="22px" Width="200px">
 				  <asp:ListItem>Pause</asp:ListItem>
 				  <asp:ListItem>Resume</asp:ListItem>
 			  </asp:DropDownList>

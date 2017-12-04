@@ -723,6 +723,74 @@ public class PrizeMemberPlanManager
 		}
 	}
 
+	public bool ChangeMemberPlan(int myPlanId, int targetPlanId)
+	{
+		bool ret = false;
+		DIYPTEntities db = new DIYPTEntities();
+		try
+		{
+			db.Database.Connection.Open();
+
+			MemberExercisePlan myPlan = (from c in db.MemberExercisePlans
+										 where c.Id == myPlanId
+										 select c).FirstOrDefault();
+			if (myPlan == null)
+				return ret;
+
+			PrizeExercisePlan plan = (from c in db.PrizeExercisePlans
+									  where c.Id == myPlan.ExercisePlanId
+									  select c).FirstOrDefault();
+
+			if (plan == null)
+				return ret;
+
+			PrizeExercisePlan targetPlan;
+			if (plan.IsTrialPlan == 1)
+				targetPlan = (from c in db.PrizeExercisePlans
+							  where c.Id == targetPlanId && c.IsTrialPlan == 1
+							  select c).FirstOrDefault();
+			else
+				targetPlan = (from c in db.PrizeExercisePlans
+							  where c.Id == targetPlanId && c.IsTrialPlan == 0
+							  select c).FirstOrDefault();
+
+			if (targetPlan == null)
+			{
+				return ret;
+			}
+
+			IQueryable<PrizeExercisePlanWeek> targetPlanWeeks = (from c in db.PrizeExercisePlanWeeks
+																 where c.ExercisePlanId == targetPlan.Id
+																 orderby c.StartWeek
+																 select c);
+
+			foreach (var targetPlanWeek in targetPlanWeeks)
+			{
+
+				IQueryable<MemberExercisePlanWeek> myPlanWeeks = (from c in db.MemberExercisePlanWeeks
+																  join d in db.PrizeExercisePlanWeeks on c.ExercisePlanWeekId equals d.Id
+																  where c.MemberExercisePlanId == myPlan.Id && c.Week >= targetPlanWeek.StartWeek && c.Week <= targetPlanWeek.EndWeek
+																  select c);
+				foreach (var myPlanWeek in myPlanWeeks)
+					myPlanWeek.ExercisePlanWeekId = targetPlanWeek.Id;
+			}
+
+			myPlan.ExercisePlanId = targetPlan.Id;
+
+			db.SaveChanges();
+
+			return true;
+		}
+		catch
+		{
+			return false;
+		}
+		finally
+		{
+			db.Dispose();
+		}
+	}
+
 	public bool PauseMemberPlan(int myPlanId)
 	{
 		bool ret = false;
