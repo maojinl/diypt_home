@@ -194,7 +194,7 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
         int exercisePlanId = Int32.Parse(Session["buying_plan_id"].ToString());
        
         PrizeMemberPlanManager planManager = new PrizeMemberPlanManager();
-        planManager.ManualPaymentMemberPlanSetup(memberPlanId, exercisePlanId, mode);
+        planManager.ManualPaymentMemberPlanSetup(PrizeMemberAuthUtils.GetMemberData(), memberPlanId, exercisePlanId, mode);
 
         Response.Redirect(PrizeConstants.URL_EZIDEBIT_LOGIN);
     }

@@ -135,6 +135,15 @@ public class PrizeMemberPlanManager
 						db.MemberPlanWeekResults.Remove(weekResult);
 					}
 					notPaidPlan.Status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAYMENT_CANCELLED;
+
+					List<MemberManualPayment> manualPayments = (from c in db.MemberManualPayments
+																where c.MemberExercisePlanId == notPaidPlan.Id && c.Status.StartsWith(PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT_NOT_APPROVED)
+																select c).ToList();
+					foreach (var notPaidRecord in manualPayments)
+					{
+						db.MemberManualPayments.Remove(notPaidRecord);
+						db.SaveChanges();
+					}
 				}
 				db.SaveChanges();
 
@@ -492,7 +501,7 @@ public class PrizeMemberPlanManager
 		}
 	}
 
-	public int ManualPaymentMemberPlanSetup(int memberPlanId, int exercisePlanId, string sManualPaymentMode)
+	public int ManualPaymentMemberPlanSetup(PrizeMember member, int memberPlanId, int exercisePlanId, string sManualPaymentMode)
 	{
 		DIYPTEntities db = new DIYPTEntities();
 		try
@@ -501,31 +510,36 @@ public class PrizeMemberPlanManager
 
 			PrizeOrder myOrder = new PrizeOrder();
 			myOrder.OrderDate = PrizeCommonUtils.GetSystemDate();
-			myOrder.Username = PrizeMemberAuthUtils.GetMemberName();
-			myOrder.FirstName = "";
-			myOrder.LastName = "";
-			myOrder.Email = PrizeMemberAuthUtils.GetMemberEmail();
+			myOrder.Username = member.Email;
+			myOrder.FirstName = member.Firstname;
+			myOrder.LastName = member.Surname;
+			myOrder.Email = member.Email;
 			myOrder.Total = 0;
 			myOrder.MemberPlanId = memberPlanId;
 			myOrder.ExercisePlanId = exercisePlanId;
 			db.PrizeOrders.Add(myOrder);
-			   
+
 			MemberExercisePlan myPlan;
 			if (myOrder.OrderId >= 0)
 			{
 				myPlan = db.MemberExercisePlans.Single(o => o.Id == myOrder.MemberPlanId);
 
 				myPlan.Status = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT;
+				MemberManualPayment manualPayment = null;
 				string manualPaymentStatus = PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT_NOT_APPROVED + sManualPaymentMode;
-				MemberManualPayment manualPayment = db.MemberManualPayments.FirstOrDefault(o => o.Id == myOrder.MemberPlanId && o.Status.Equals(manualPaymentStatus));
-				if (manualPayment == null)
+				List<MemberManualPayment> manualPayments = (from c in db.MemberManualPayments
+														where c.MemberId == member.UmbracoId && c.Status.StartsWith(PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT_NOT_APPROVED)
+														select c).ToList();
+				foreach (var notPaidRecord in manualPayments)
 				{
-					manualPayment = new MemberManualPayment();
-					manualPayment.MemberId = myPlan.MemberId;
-					manualPayment.MemberExercisePlanId = myPlan.Id;
-					manualPayment.CreatedDate = PrizeCommonUtils.GetSystemDate();
+					db.MemberManualPayments.Remove(notPaidRecord);
+					db.SaveChanges();
 				}
 
+				manualPayment = new MemberManualPayment();
+				manualPayment.MemberId = myPlan.MemberId;
+				manualPayment.MemberExercisePlanId = myPlan.Id;
+				manualPayment.CreatedDate = PrizeCommonUtils.GetSystemDate();
 				manualPayment.Status = manualPaymentStatus;
 				db.MemberManualPayments.Add(manualPayment);
 			}

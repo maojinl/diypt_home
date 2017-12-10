@@ -163,6 +163,8 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
 
 	protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
 	{
+		if (e.CommandName != "Start" && e.CommandName != "Terminate")
+			return;
 		GridView grid = sender as GridView;
 		GridViewRow row = (GridViewRow)(((Button)e.CommandSource).NamingContainer);
 		int RowIndex = row.RowIndex;

@@ -119,8 +119,7 @@
 </table>
 <br/>
 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" EmptyDataText="No records has been added." PageSize="20" PagerSettings-Mode="NumericFirstLast" 
-AllowPaging="True" AlternatingRowStyle-CssClass="alt" CssClass="Grid" OnRowCommand="GridView1_RowCommand"
-OnPageIndexChanging = "OnPaging" >
+AllowPaging="True" OnPageIndexChanging = "OnPaging" AlternatingRowStyle-CssClass="alt" CssClass="Grid" OnRowCommand="GridView1_RowCommand" >
 	<Columns>
 		 <asp:TemplateField>
 			<ItemTemplate>
