@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,7 +23,7 @@ public static class PrizeEmail
 		//client.UseDefaultCredentials = false;
 		//client.Credentials = new System.Net.NetworkCredential("user@gmail.com", "password");
 
-		MailMessage mm = new MailMessage("thuyen.vu@gmail.com", "thuyen.vu@gmail.com");
+		MailMessage mm = new MailMessage("no-reply@diypt.com.au", "jonathan@diypt.com.au");
 		mm.Subject = "New comment by " + user;
 		mm.Body = "A comment was made by " + user + " in " + blog + @". Please log in and approve.
 
@@ -46,7 +46,7 @@ Comment:
 		//client.UseDefaultCredentials = false;
 		//client.Credentials = new System.Net.NetworkCredential("user@gmail.com", "password");
 
-		MailMessage mm = new MailMessage("no-reply@diypt.com", email);
+		MailMessage mm = new MailMessage("no-reply@diypt.com.au", email);
 		mm.Subject = "DIYPT password reset";
 		mm.Body = "Your new password is: " + password;
 		mm.BodyEncoding = UTF8Encoding.UTF8;
@@ -212,19 +212,20 @@ Comment:
 			if (sMealValue.Length > 1)
 				body = body.Replace("[fatpercentage]", sMealValue[1]);
 		}
-		body = body.Replace("/login", "http://diypt.com.au/login/");
+		body = body.Replace("/login", "https://diypt.com.au/login/");
 		
-		body = body.Replace("/my-account/", "http://diypt.com.au/my-account/");
-		body = body.Replace("/continueplan", "http://diypt.com.au/continueplan");
-		body = body.Replace("/revitalise-me", "http://diypt.com.au/revitalise-me");
+		body = body.Replace("/my-account/", "https://diypt.com.au/my-account/");
+		body = body.Replace("/continueplan", "https://diypt.com.au/continueplan");
+		body = body.Replace("/revitalise-me", "https://diypt.com.au/revitalise-me");
 		try
 		{
-				body = body.Replace("viewonlineurl", "http://diypt.com.au" + node.NiceUrl);
+				body = body.Replace("viewonlineurl", "https://diypt.com.au" + node.NiceUrl);
 		}
 		catch
 		{
 		  //Do nothing
 		  /* Known issue in Umbraco where NiceUrl fails */
+				body = body.Replace("viewonlineurl", "#");
 		}
 		/*body = body.Replace("/login", "http://diypt.com.au/login/");
 		body = body.Replace("/login", "http://diypt.com.au/login/");
@@ -235,7 +236,7 @@ Comment:
 		body = body.Replace("/login", "http://diypt.com.au/login/");
 		body = body.Replace("/login", "http://diypt.com.au/login/");
 		body = body.Replace("/login", "http://diypt.com.au/login/");*/
-		PrizeEmail.SendEmail(email, subject, (header + body + footer).Replace("/images/", "http://diypt.com.au/images/"));
+		PrizeEmail.SendEmail(email, subject, (header + body + footer).Replace("/images/", "https://diypt.com.au/images/"));
 		return true;
 	}
 
@@ -269,11 +270,11 @@ Comment:
 		MailMessage mm = new MailMessage("jonathan@diypt.com.au", "thuyen.vu@gmail.com");
 		mm.Subject = "Test email";
 		mm.Body = content;
-		mm.Body = mm.Body.Replace("/login", "http://diypt.com.au/login/");
-		mm.Body = mm.Body.Replace("/my-account/", "http://diypt.com.au/my-account/");
-		mm.Body = mm.Body.Replace("/continueplan", "http://diypt.com.au/continueplan");
-		mm.Body = mm.Body.Replace("/revitalise-me", "http://diypt.com.au/revitalise-me");
-		mm.Body = mm.Body.Replace("viewonlineurl", "http://diypt.com.au" + nodeUrl);
+		mm.Body = mm.Body.Replace("/login", "https://diypt.com.au/login/");
+		mm.Body = mm.Body.Replace("/my-account/", "https://diypt.com.au/my-account/");
+		mm.Body = mm.Body.Replace("/continueplan", "https://diypt.com.au/continueplan");
+		mm.Body = mm.Body.Replace("/revitalise-me", "https://diypt.com.au/revitalise-me");
+		mm.Body = mm.Body.Replace("viewonlineurl", "https://diypt.com.au" + nodeUrl);
 		mm.BodyEncoding = UTF8Encoding.UTF8;
 		mm.IsBodyHtml = true;
 		//mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
