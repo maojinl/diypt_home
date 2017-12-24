@@ -534,10 +534,12 @@ public class PrizeEmailWrapper
 				dtBegin = now.AddDays(1);
 				dtEnd = now.AddDays(2);
 				memberPlans = (from c in db.MemberExercisePlans
+							   join e in db.PrizeExercisePlans on c.ExercisePlanId equals e.Id
 							   where c.Status.Equals(availableStatus) && c.EndDate.HasValue && dtBegin <= c.EndDate.Value && dtEnd >= c.EndDate.Value //&& PrizeCommonUtils.LessThanDaysAhead(now, c.EndDate.Value, 2)
 							   && !(from d in db.MemberEmails
 								  where d.EmailType == (int)PrizeConstants.EmailType.BirthdayEmail && d.ScheduleDate > dtSendEmailBegin
 									select d.MemberId).Contains(c.MemberId)
+									&& e.IsTrialPlan == 0
 							   orderby c.MemberId
 							   select c).ToList();
 
