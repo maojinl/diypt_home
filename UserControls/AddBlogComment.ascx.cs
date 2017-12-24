@@ -19,7 +19,7 @@ public partial class UserControls_AddBlogComment : System.Web.UI.UserControl
                 commentName.Text = member.Firstname + " " + member.Surname;
                 //commentPlan.Text = member.
                 if (member.Photo != null && member.Photo != "")
-                    commentImage.ImageUrl = member.Photo;
+                    commentImage.ImageUrl = member.Photo.Replace("http://web106.sand.studiocoast.com.au", "https://diypt.com.au").Replace("http://diypt.com.au", "https://diypt.com.au");
                 else
                     commentImage.ImageUrl = @"\images\profile.jpg";
 
@@ -43,7 +43,7 @@ public partial class UserControls_AddBlogComment : System.Web.UI.UserControl
             Document doc = Document.MakeNew(memberName + " " + DateTime.Now.ToString("dd-MM-yy HH:MM:ss"), dt, u, current.Id);
             doc.getProperty("commentName").Value = memberName;
             if(member.Photo != "")
-                doc.getProperty("commentImage").Value = member.Photo;
+                doc.getProperty("commentImage").Value = member.Photo.Replace("http://web106.sand.studiocoast.com.au", "https://diypt.com.au").Replace("http://diypt.com.au", "https://diypt.com.au");
             else
                 doc.getProperty("commentImage").Value = @"\images\profile.jpg";
             doc.getProperty("commentText").Value = commentText.Text;

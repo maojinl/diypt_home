@@ -88,7 +88,7 @@ public partial class UserControls_Orientation_Day_6_Twist : BaseOrientation
                 }
                 else
                 {
-                    /*tempScript += @"$('#exerciseModal1').load('/exercise/Ab-circles');
+                    tempScript += @"$('#exerciseModal1').load('/exercise/Ab-circles');
                     $('#exerciseModal2').load('/exercise/"Cable-low-to-high-woodchop');
                     $('#exerciseModal3').load('/exercise/Cable-pallof-press');";
                     imgExercise1.ImageUrl = "/media/15145/landscape_ab_circles.jpg";
@@ -97,7 +97,7 @@ public partial class UserControls_Orientation_Day_6_Twist : BaseOrientation
 
                     lblExercise1.Text = "Ab circles";
                     lblExercise2.Text = "Cable low to high woodchop";
-                    lblExercise3.Text = "Cable pallof press";*/
+                    lblExercise3.Text = "Cable pallof press";
                 }
                 break;
             default:

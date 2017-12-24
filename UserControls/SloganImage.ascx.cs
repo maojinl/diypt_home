@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -63,9 +63,9 @@ public partial class UserControls_SloganImage : System.Web.UI.UserControl
                     //muscle
                     break;
                 case "3":
-                    lblTop.Text = "MACRO COUNTING";
-                    lblMiddle.Text = "WEIGHTS BASED TRAINING PROGRAM";
-                    lblBottom.Text = " < 10% BODY FAT";
+                    lblTop.Text = "MACRO TRACKING";
+                    lblMiddle.Text = "WEIGHTS BASED TRAINING";
+                    lblBottom.Text = " STRONGER BODY";
                     tempScript += @"
 .container-fluid-header { background-image: url('/images/login/toneup/hero-tone-up.jpg');}
 
