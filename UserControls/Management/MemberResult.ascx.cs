@@ -27,7 +27,6 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 			return;
 		}
 
-
 		using (DIYPTEntities db = new DIYPTEntities())
 		{
 			db.Database.Connection.Open();
@@ -116,43 +115,99 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 
 				GridView1.DataSource = languages.ToList();
 
-
-
 				GridView1.DataBind();
 
-
-				var foodplanweek = db.MemberFoodPlanWeeks.FirstOrDefault(a => a.MemberId == memberId);
-
-
-				if (foodplanweek != null)
+				MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
+				MemberExercisePlanWeek myPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId);
+				this.btnSave.Enabled = false;
+				if (myPlan != null)
 				{
-					tbFood1.Text = foodplanweek.Food1;
-					tbFood2.Text = foodplanweek.Food2;
-					tbFood3.Text = foodplanweek.Food3;
-					tbFood4.Text = foodplanweek.Food4;
-					if (foodplanweek.Food5 != null)
+					this.btnSave.Enabled = true;
+					var memberPlanWeeks = from a in db.MemberExercisePlanWeeks
+										where a.MemberExercisePlanId == myPlan.Id
+										orderby a.Week
+										select new
+										{
+											WeekText = a.Week,
+											WeekNum = a.Week
+										};
+					ddlWeek.DataValueField = "WeekNum";
+					ddlWeek.DataTextField = "WeekText";
+					ddlWeek.DataSource = memberPlanWeeks.ToList();
+					ddlWeek.DataBind();
+					int weekNum = -1;
+					if (myPlanWeek != null)
 					{
-						string[] sPersentage = foodplanweek.Food5.Split(';');
-						if (sPersentage.Length > 0)
-						{
-							tbFood5.Text = sPersentage[0];
-							if (sPersentage.Length > 1)
-							{
-								tbFood6.Text = sPersentage[1];
-								if (sPersentage.Length > 2)
-									tbFood7.Text = sPersentage[2];
-							}
-						}
+						weekNum = myPlanWeek.Week;
 					}
+					LoadFoodPlanWeek(memberId, myPlan.Id, weekNum);
 				}
 			}
 			db.Database.Connection.Close();
 		}
 	}
 
+	protected void WeekChanged(object sender, EventArgs e)
+	{
+		DropDownList ddlWeekList = (DropDownList)sender;
+		int weekNum = int.Parse(ddlWeekList.SelectedValue);
+		MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
+		LoadFoodPlanWeek(memberId, myPlan.Id, weekNum);
+	}
+
+	protected void LoadFoodPlanWeek(int memberId, int memberPlanId, int weekNum)
+	{
+		var foodplanweek = dbAccess.GetMemberFoodPlanWeek(memberId, memberPlanId, weekNum, false);
+
+		ddlWeek.SelectedValue = "" + weekNum;
+
+		if (foodplanweek != null)
+		{
+			tbFood1.Text = foodplanweek.Food1;
+			tbFood2.Text = foodplanweek.Food2;
+			tbFood3.Text = foodplanweek.Food3;
+			tbFood4.Text = foodplanweek.Food4;
+			if (foodplanweek.Food5 != null)
+			{
+				string[] sPersentage = foodplanweek.Food5.Split(';');
+				if (sPersentage.Length > 0)
+				{
+					tbFood5.Text = sPersentage[0];
+					if (sPersentage.Length > 1)
+					{
+						tbFood6.Text = sPersentage[1];
+						if (sPersentage.Length > 2)
+							tbFood7.Text = sPersentage[2];
+					}
+				}
+			}
+			ddlWeek.SelectedValue = "" + foodplanweek.StartWeek;
+		}
+		else
+		{
+			tbFood1.Text = string.Empty;
+			tbFood2.Text = string.Empty;
+			tbFood3.Text = string.Empty;
+			tbFood4.Text = string.Empty;
+			tbFood5.Text = string.Empty;
+			tbFood6.Text = string.Empty;
+			tbFood7.Text = string.Empty;
+		}
+	}
 
 	protected void Save(object sender, EventArgs e)
 	{
+		try
+		{
+			memberId = Convert.ToInt32(Session["MID"]);
+		}
+		catch
+		{
+			return;
+		}
+		MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
+		int weekNum = int.Parse(ddlWeek.SelectedValue);
+		int myPlanId = myPlan.Id;
 
 		using (DIYPTEntities db = new DIYPTEntities())
 		{
@@ -160,20 +215,19 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 			db.Database.Connection.Open();
 			{
 				int id = Convert.ToInt32(Session["MID"]);
-				var foodplanweek = db.MemberFoodPlanWeeks.FirstOrDefault(a => a.MemberId == id);
-
+				var foodplanweek = dbAccess.GetMemberFoodPlanWeek(memberId, myPlanId, weekNum, false);
 				if (foodplanweek == null)
 				{
 					MemberFoodPlanWeek MemFoodPW = new MemberFoodPlanWeek();
 					MemFoodPW.MemberId = id;
-					MemFoodPW.MemberExercisePlanId = 1;
+					MemFoodPW.MemberExercisePlanId = myPlanId;
 					MemFoodPW.Food1 = tbFood1.Text;
 					MemFoodPW.Food2 = tbFood2.Text;
 					MemFoodPW.Food3 = tbFood3.Text;
 					MemFoodPW.Food4 = tbFood4.Text;
 					MemFoodPW.Food5 = tbFood5.Text + ";" + tbFood6.Text + ";" + tbFood7.Text;
-					MemFoodPW.StartWeek = 1;
-					MemFoodPW.EndWeek = 1;
+					MemFoodPW.StartWeek = weekNum;
+					MemFoodPW.EndWeek = MemFoodPW.StartWeek;
 					db.MemberFoodPlanWeeks.Add(MemFoodPW);
 				}
 				else
@@ -184,10 +238,8 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 					foodplanweek.Food4 = tbFood4.Text;
 					foodplanweek.Food5 = tbFood5.Text + ";" + tbFood6.Text + ";" + tbFood7.Text;
 				}
-
 				db.SaveChanges();
 			}
-
 		}
 	}
 

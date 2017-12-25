@@ -89,7 +89,7 @@ public partial class UserControls_Orientation_Day_6_Twist : BaseOrientation
                 else
                 {
                     tempScript += @"$('#exerciseModal1').load('/exercise/Ab-circles');
-                    $('#exerciseModal2').load('/exercise/"Cable-low-to-high-woodchop');
+                    $('#exerciseModal2').load('/exercise/Cable-low-to-high-woodchop');
                     $('#exerciseModal3').load('/exercise/Cable-pallof-press');";
                     imgExercise1.ImageUrl = "/media/15145/landscape_ab_circles.jpg";
                     imgExercise2.ImageUrl = "/media/15123/landscape_cable_woodchop-low_to_high_step1.jpg";

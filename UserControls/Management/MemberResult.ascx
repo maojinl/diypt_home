@@ -70,6 +70,16 @@
 			<asp:TextBox ID="tbFood7" runat="server" Width="300px" />
 		</td>
 	</tr>
+	<tr>
+		<td>
+		  <asp:Label ID="Label8" runat="server" Text="Week of the plan:" />
+		</td>
+		<td class="auto-style1">
+            <asp:DropDownList ID="ddlWeek" runat="server" OnSelectedIndexChanged = "WeekChanged" AutoPostBack = "true" AppendDataBoundItems = "true">
+            <asp:ListItem Text = "ALL" Value = "-1"></asp:ListItem>
+            </asp:DropDownList>
+		</td>
+	</tr>
 		  <tr>
 		 <td>
 			

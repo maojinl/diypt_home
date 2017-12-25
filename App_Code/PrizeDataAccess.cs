@@ -707,14 +707,14 @@ public class PrizeDataAccess
 		}
 	}
 
-	public MemberFoodPlanWeek GetMemberFoodPlanWeek(int iMemberId, int iMemberPlanId, int iWeek)
+	public MemberFoodPlanWeek GetMemberFoodPlanWeek(int iMemberId, int iMemberPlanId, int iWeek, bool subWithAll = true)
 	{
 		MemberFoodPlanWeek myFoodPlanWeek = (from c in db.MemberFoodPlanWeeks
 										where c.MemberExercisePlanId == iMemberPlanId && c.StartWeek <= iWeek && c.EndWeek >= iWeek
 										select c).FirstOrDefault();
-		if (myFoodPlanWeek == null)
+		if (myFoodPlanWeek == null && subWithAll)
 			myFoodPlanWeek = (from c in db.MemberFoodPlanWeeks
-							  where c.MemberId == iMemberId
+							  where c.MemberId == iMemberId && c.StartWeek == -1 && c.MemberExercisePlanId == -1
 							  select c).FirstOrDefault();
 		return myFoodPlanWeek;
 	}

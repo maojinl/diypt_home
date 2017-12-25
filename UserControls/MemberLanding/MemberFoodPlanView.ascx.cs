@@ -19,14 +19,26 @@ public partial class UserControls_MemberLanding_MemberFoodPlanView : BaseOrienta
             PrizeMemberPlanManager planMan = new PrizeMemberPlanManager();
             Response.Redirect(planMan.GetEmptyPlanJumpURL(member));
         }
-		
-        MemberExercisePlanWeek memberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId);
-        if (memberPlanWeek == null)
+
+		MemberExercisePlanWeek memberPlanWeek;
+		if (Request["MemberPlanWeekID"] != null)
+		{
+			int memberPlanWeekId;
+			int.TryParse(Request["MemberPlanWeekID"], out memberPlanWeekId);
+			memberPlanWeek = dbAccess.GetMemberPlanWeekById(memberPlanWeekId);
+		}
+		else
+		{
+			memberPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId);
+		}
+
+		if (memberPlanWeek == null)
         {
             divMealPlanContent.Visible = false;
             divNotStarted.Visible = true;
             return;
         }
+
         int iWeekNum = memberPlanWeek.Week;
         lblWeekNum.Text = "Week " + iWeekNum;
         divMainMealPlan.Attributes.Add("class", "tab-inner-content nodisplay wk" + iWeekNum);
@@ -41,7 +53,26 @@ public partial class UserControls_MemberLanding_MemberFoodPlanView : BaseOrienta
             return;
         lblPlanProgram.Text = plan.PrizePlanProgram.Name;
 
-        MemberFoodPlanWeek foodWeek = dbAccess.GetMemberFoodPlanWeek(memberId, memberPlanWeek.MemberExercisePlanId, memberPlanWeek.Week);
+		MemberExercisePlanWeek prevWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(memberPlan.Id, memberPlanWeek.Week - 1);
+		if (prevWeek != null)
+		{
+			int prevWeekNum = iWeekNum - 1;
+			weekPre.NavigateUrl = "/my-account/meal-plan?MemberPlanWeekID=" + prevWeek.Id;
+			weekPre.Text = "Week " + (memberPlanWeek.Week - 1);
+		}
+		else
+			weekPre.Attributes.Add("class", "no-arrow");
+
+		MemberExercisePlanWeek nextWeek = dbAccess.GetMemberPlanWeekByMemberPlanAndWeek(memberPlan.Id, memberPlanWeek.Week + 1);
+		if (nextWeek != null)
+		{
+			weekNext.NavigateUrl = "/my-account/meal-plan?MemberPlanWeekID=" + nextWeek.Id;
+			weekNext.Text = "Week " + (memberPlanWeek.Week + 1);
+		}
+		else
+			weekNext.Attributes.Add("class", "no-arrow");
+
+		MemberFoodPlanWeek foodWeek = dbAccess.GetMemberFoodPlanWeek(memberId, memberPlanWeek.MemberExercisePlanId, memberPlanWeek.Week);
         if (foodWeek == null)
             return;
         if (foodWeek.Food1 == null || foodWeek.Food1.Equals(""))

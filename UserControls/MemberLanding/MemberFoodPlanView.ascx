@@ -73,8 +73,6 @@ display: block;
             <div id="divNotStarted" class="col" runat="server" Visible="false"><h2 class="text-center">Your program will not start until the next Monday</h2></div>
             <div class="col-sm-10 push-sm-1" id="divMealPlanContent" runat="server">
 			
-    
-	
                 </p>
                 <h5 class="c_y mb-2">FITNESS GOAL <span class="c_black"><asp:Label ID="lblPlanProgram" runat="server" Text=""></asp:Label></span></h5>
                 <h5 class="c_y ">FOOD GOAL </h5>
@@ -92,6 +90,14 @@ display: block;
                 <p class=" wk11 wk12">Consistently meet new macro goals below.</p>
                 <h5 class="c_y  mt-4  wk4 wk5 wk6 wk7 wk8 wk9 wk10 wk11 wk12">DAILY MACRONUTRIENT GOALS </h5>
                 <div class="week-view-intro mb-3  wk4 wk5 wk6 wk7 wk8 wk9 wk10 wk11 wk12 ">
+					<div></div>
+					<div></div>
+				<p>
+				<div class="d-flex justify-content-between align-items-center pb-4 pre-next">
+					<asp:hyperlink id="weekPre" runat="server" class="day-pre c_b"></asp:hyperlink>
+					<asp:hyperlink id="weekNext" runat="server" class="day-next c_b"></asp:hyperlink>
+				</div>
+				</p>
                 <div class="row">
                  <div class="col-sm-3 col-6" runat="server" ID="colories">
                         <div class="row">
