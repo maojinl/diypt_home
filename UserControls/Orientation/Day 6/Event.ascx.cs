@@ -24,6 +24,6 @@ public partial class UserControls_Orientation_Day_6_Calendar : BaseOrientation
             return;
         }
         dbAccess.UpdateOrientationWeekDayResult(myPlan.Id, 6, 2, true);
-        Response.Redirect("/orientation/day-6/mark-on-your-calendar-diary-your-shopping-days");
+        Response.Redirect("/orientation/day-6/get-familiar-with-the-exercise-terms");
     }
 }

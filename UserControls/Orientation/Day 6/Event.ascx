@@ -11,7 +11,7 @@
     </div>
     <div class="d-flex justify-content-between align-items-center pb-4 pre-next">
         <a id="dayPre" class="day-pre c_y" href="/orientation/day-6/organise-your-next-12-weeks">Back</a>
-        <a id="dayNext" class="day-next c_y" href="/orientation/day-6/mark-on-your-calendar-diary-your-shopping-days">Next</a>
+        <a id="dayNext" class="day-next c_y" href="/orientation/day-6/get-familiar-with-the-exercise-terms">Next</a>
         
     </div>
 

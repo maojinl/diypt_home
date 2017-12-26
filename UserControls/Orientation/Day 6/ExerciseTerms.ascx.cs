@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class UserControls_Orientation_Day_6_Organise : BaseOrientation
+public partial class UserControls_Orientation_Day_6_ExerciseTerms : BaseOrientation
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -23,7 +23,7 @@ public partial class UserControls_Orientation_Day_6_Organise : BaseOrientation
             Response.Write(PrizeConstants.CONST_JS_WARNING_PLAN_NOT_START);
             return;
         }
-        dbAccess.UpdateOrientationWeekDayResult(myPlan.Id, 6, 1, true);
-        Response.Redirect("/orientation/day-6/mark-on-your-calendar-diary-any-events");
+        dbAccess.UpdateOrientationWeekDayResult(myPlan.Id, 6, 3, true);
+        Response.Redirect("/orientation/day-6/get-familiar-with-the-twist");
     }
 }

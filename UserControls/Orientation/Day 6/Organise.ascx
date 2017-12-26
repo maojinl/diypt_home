@@ -11,7 +11,7 @@
     </div>
     <div class="d-flex justify-content-between align-items-center pb-4 pre-next">
         <a id="dayPre" class="day-pre c_y" href="/orientation/day-6">Back</a>
-        <a id="dayNext" class="day-next c_y" href="/orientation/day-6/get-familiar-with-the-twist">Next</a>
+        <a id="dayNext" class="day-next c_y" href="/orientation/day-6/mark-on-your-calendar-diary-any-events">Next</a>
     </div>
     <h1 class="text-center pb-4">ORGANISE YOUR NEXT 12 WEEKS </h1>
     <div class="row">

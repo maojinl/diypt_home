@@ -33,13 +33,13 @@ public partial class UserControls_Orientation_Day_6_Day6 : BaseOrientation
                 else
                     CheckBox3.Checked = false;
                 if (result[3] == '1')
+                    CheckBox3.Checked = true;
+                else
+                    CheckBox3.Checked = false;
+                if (result[4] == '1')
                     CheckBox4.Checked = true;
                 else
                     CheckBox4.Checked = false;
-                if (result[4] == '1')
-                    CheckBox5.Checked = true;
-                else
-                    CheckBox5.Checked = false;
             }
         }
     }
@@ -54,8 +54,6 @@ public partial class UserControls_Orientation_Day_6_Day6 : BaseOrientation
             quest = 3;
         else if (sender == this.CheckBox4)
             quest = 4;
-        else if (sender == this.CheckBox5)
-            quest = 5;
         MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlan(PrizeMemberAuthUtils.GetMemberID());
         if (myPlan == null)
         {

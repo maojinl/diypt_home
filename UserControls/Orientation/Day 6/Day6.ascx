@@ -54,7 +54,7 @@
                         </tr>
                         <tr>
                             <td scope="row">
-                                <h5><a id="action3"  class="c_black" href="/orientation/day-6/mark-on-your-calendar-diary-your-shopping-days">Mark on your calendar/diary your shopping days </a></h5>
+                                <h5><a id="action3"  class="c_black" href="/orientation/day-6/get-familiar-with-the-exercise-terms">Get familiar with the exercise terms</a></h5>
                             </td>
                             <td>
                                  <p class="tick-circle" style="background-color: transparent;"><asp:CheckBox ID="CheckBox3" runat="server" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />
@@ -63,20 +63,10 @@
                         </tr>
                         <tr>
                             <td scope="row">
-                                <h5><a id="action4"  class="c_black" href="/orientation/day-6/mark-on-your-calendar-diary-your-milestone-celebrations">Mark on your calendar/diary your milestone celebrations</a></h5>
-                            </td>
-                            <td>
-                                 <p class="tick-circle" style="background-color: transparent;"><asp:CheckBox ID="CheckBox4" runat="server" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />
-                                 </p>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td scope="row">
                                 <h5><a id="action5" class="c_black" href="/orientation/day-6/get-familiar-with-the-twist">Get familiar with the twist</a></h5>
                             </td>
                             <td>                                 
-                                <p class="tick-circle" style="background-color: transparent;"><asp:CheckBox ID="CheckBox5" runat="server" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />
+                                <p class="tick-circle" style="background-color: transparent;"><asp:CheckBox ID="CheckBox4" runat="server" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />
                                 </p>
                             </td>
                         </tr>

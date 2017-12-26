@@ -206,9 +206,9 @@
                     </td>
                     <td class="no-border-right">
                         <a class="weeklink" data-num="6-1" href="/orientation/day-6/organise-your-next-12-weeks">Organise your next 12 weeks reminder sheet</a>
-                        <!--<a class="weeklink" data-num="6-2" href="/orientation/day-6/mark-on-your-calendar-diary-any-events">Mark on your calendar/diary any events</a>
-                            <a class="weeklink" data-num="6-3" href="/orientation/day-6/mark-on-your-calendar-diary-your-shopping-days">Mark on your calendar/diary your shopping days</a>
-                            <a class="weeklink" data-num="6-4" href="/orientation/day-6/mark-on-your-calendar-diary-your-milestone-celebrations">Mark on your calendar/diary your milestone celebrations</a>-->
+                        <a class="weeklink" data-num="6-2" href="/orientation/day-6/mark-on-your-calendar-diary-any-events">Mark on your calendar/diary any events</a>
+                            <a class="weeklink" data-num="6-3" href="/orientation/day-6/get-familiar-with-the-exercise-terms">Get familiar with the exercise terms</a>
+                            <!--<a class="weeklink" data-num="6-4" href="/orientation/day-6/mark-on-your-calendar-diary-your-milestone-celebrations">Mark on your calendar/diary your milestone celebrations</a>-->
                     </td>
                     <td class="text-center">
                         <p runat="server" id="quest61" class="tick-circle">&#10004;</p>

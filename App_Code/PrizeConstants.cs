@@ -34,7 +34,8 @@ public static class PrizeConstants
     {
         ShowProgram,
         ShowLevel,
-        ShowedWeek1NotificationTimes
+        ShowedWeek1NotificationTimes,
+		PromotionalPhoto
     }
 
     public enum MemberTasksConfig
