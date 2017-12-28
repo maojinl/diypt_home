@@ -165,7 +165,15 @@ public partial class UserControls_Signup : System.Web.UI.UserControl
                                 */
                 member.UmbracoId = newUserId;
                 member.RegisterDateTime = PrizeCommonUtils.GetSystemDate();
-                db.PrizeMembers.Add(member);
+				char c = '1';
+				if (!cbPromotionalPhoto.Checked)
+				{
+					c = '0';
+				}
+				string s= string.Copy(member.UserSettings);
+				PrizeMemberAuthUtils.SetMemberSetting(ref s, PrizeConstants.MemberSettings.PromotionalPhoto, c);
+				member.UserSettings = s;
+				db.PrizeMembers.Add(member);
                 db.SaveChanges();
             }
             finally

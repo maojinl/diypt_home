@@ -214,19 +214,19 @@
                         <a class="weeklink" data-num="6-2" href="/orientation/day-6/mark-on-your-calendar-diary-any-events">Mark on your calendar/diary any events</a>
 					</td>
 					<td class="text-center">
-                        <p runat="server" id="62" class="tick-circle">&#10004;</p>
+                        <p runat="server" id="P1" class="tick-circle">&#10004;</p>
                     </td>
 					<td class="no-border-right">
                         <a class="weeklink" data-num="6-3" href="/orientation/day-6/get-familiar-with-the-exercise-terms">Get familiar with the exercise terms</a>
 					</td>
 					<td class="text-center">
-                        <p runat="server" id="63" class="tick-circle">&#10004;</p>
+                        <p runat="server" id="P2" class="tick-circle">&#10004;</p>
                     </td>
 					<td class="no-border-right">
                         <a class="weeklink" data-num="6-4" href="/orientation/day-6/get-familiar-with-the-twist">Get familiar with the twist</a>
 					</td>
 					<td class="text-center">
-                        <p runat="server" id="64" class="tick-circle">&#10004;</p>
+                        <p runat="server" id="P3" class="tick-circle">&#10004;</p>
                     </td>
                 </tr>
                 <tr>

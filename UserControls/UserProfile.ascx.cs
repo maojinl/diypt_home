@@ -140,32 +140,16 @@ public partial class UserControls_UserProfile : BaseOrientation
         tbInstagram.Text = member.Instagram;
         tbTwitter.Text = member.Twiter;
         profilePhoto.ImageUrl = member.Photo;
-		
-		
-		/*
-        if (PrizeMemberAuthUtils.GetMemberSetting(member.UserSettings, PrizeConstants.MemberSettings.ShowProgram) == '1')
-        {
-            cbShowProgram.Checked = true;
-            lblShowProgram.Text = "Yes";
-        }
-        else
-        {
-            cbShowProgram.Checked = false;
-            lblShowProgram.Text = "No";
-        }
 
-        if (PrizeMemberAuthUtils.GetMemberSetting(member.UserSettings, PrizeConstants.MemberSettings.ShowLevel) == '1')
-        {
-            cbShowLevel.Checked = true;
-            lblShowLevel.Text = "Yes";
-        }
-        else
-        {
-            cbShowLevel.Checked = false;
-            lblShowLevel.Text = "No";
-        }
-		*/
-    }
+		if (PrizeMemberAuthUtils.GetMemberSetting(member.UserSettings, PrizeConstants.MemberSettings.PromotionalPhoto) == '1')
+		{
+			cbPromotionalPhoto.Checked = true;
+		}
+		else
+		{
+			cbPromotionalPhoto.Checked = false;
+		}
+	}
     protected void lbEditProfile_Click(Object sender, EventArgs e)
     {
         divViewProfile.Visible = false;
@@ -301,8 +285,15 @@ public partial class UserControls_UserProfile : BaseOrientation
                             memberUpdating.Photo = attachmentServerPath;
                         }
                     }
-
-                    db.SaveChanges();
+					char cc = '1';
+					if (!cbPromotionalPhoto.Checked)
+					{
+						cc = '0';
+					}
+					string s = string.Copy(member.UserSettings);
+					PrizeMemberAuthUtils.SetMemberSetting(ref s, PrizeConstants.MemberSettings.PromotionalPhoto, cc);
+					member.UserSettings = s;
+					db.SaveChanges();
 
                 }
                 finally
@@ -397,8 +388,7 @@ public partial class UserControls_UserProfile : BaseOrientation
                     DateTime tempDoB;
                     if (DateTime.TryParse(txtDob.Text, out tempDoB))
                         memberUpdating.DoB = tempDoB;
-
-                    db.SaveChanges();
+					db.SaveChanges();
 
                 }
                 finally

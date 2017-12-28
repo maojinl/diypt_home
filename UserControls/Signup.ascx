@@ -365,9 +365,14 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="* Postcode required"
                     ForeColor="#FF3300" ControlToValidate="tbPostCode"></asp:RequiredFieldValidator>
             </div>
+
             <div class="col-md-2 col-12 col-form-label"></div>
             <div class="col-md-4 col-12">
             </div>
+			<div class="col-md-2 col-12 col-form-label">Allow Promotional Photo?</div>
+			<div class="col-md-4 col-12">
+				<asp:CheckBox ID="cbPromotionalPhoto" runat="server" checked="true"/>
+			</div>
 
         </div>
         <div class="row form-group">

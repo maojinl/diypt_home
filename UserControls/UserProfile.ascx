@@ -119,6 +119,12 @@
                                 <asp:TextBox ID="tbWhyDiypt" class="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
                             </div>
                         </div>
+						<div class="form-group row">
+                            <label for="profile-why" class="col-3 col-form-label">Allow Promotional Photo?</label>
+							<div class="col-9">
+								<asp:CheckBox ID="cbPromotionalPhoto" runat="server"/>
+							</div>
+                        </div>
                     <asp:Button ID="Button3" runat="server" class="btn btn-secondary c_y mt-5" Text="Save changes" OnClick="btnSubmitProfile_Click" />
                     </div>
                     <a name="account"></a>
