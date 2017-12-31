@@ -33,10 +33,6 @@ public partial class UserControls_Orientation_Day_6_Day6 : BaseOrientation
                 else
                     CheckBox3.Checked = false;
                 if (result[3] == '1')
-                    CheckBox3.Checked = true;
-                else
-                    CheckBox3.Checked = false;
-                if (result[4] == '1')
                     CheckBox4.Checked = true;
                 else
                     CheckBox4.Checked = false;
