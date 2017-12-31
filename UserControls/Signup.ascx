@@ -369,10 +369,12 @@
             <div class="col-md-2 col-12 col-form-label"></div>
             <div class="col-md-4 col-12">
             </div>
-			<div class="col-md-2 col-12 col-form-label">Allow Promotional Photo?</div>
-			<div class="col-md-4 col-12">
-				<asp:CheckBox ID="cbPromotionalPhoto" runat="server" checked="true"/>
-			</div>
+
+            <div class="col-12 col-form-label">
+                <asp:CheckBox ID="cbPromotionalPhoto" runat="server" checked="true"/> &nbsp; I allow DIYPT to use images of me for marketing purposes
+            </div>
+		
+			
 
         </div>
         <div class="row form-group">

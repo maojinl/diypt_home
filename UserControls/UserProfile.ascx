@@ -70,6 +70,15 @@
                                 <asp:Label ID="lblWhyDiypt" runat="server" TextMode="MultiLine"></asp:Label>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <div class="col-12">
+                            <asp:CheckBox ID="lblPromotionalPhoto" runat="server" Enabled="false"/>
+                            <label for="profile-use-photo" class="col-form-label"><b>&nbsp; I allow DIYPT to use images of me for marketing purposes</b></label>
+                            </div>
+                        </div>
+
+
                     </div>
                     <div id="divEditProfile" runat="server" visible="false">
                         <p class="text-right">
@@ -120,9 +129,9 @@
                             </div>
                         </div>
 						<div class="form-group row">
-                            <label for="profile-why" class="col-3 col-form-label">Allow Promotional Photo?</label>
-							<div class="col-9">
-								<asp:CheckBox ID="cbPromotionalPhoto" runat="server"/>
+                            <div class="col-12">
+                            <asp:CheckBox ID="cbPromotionalPhoto" runat="server"/>
+                            <label for="profile-use-photo" class="col-form-label">&nbsp; I allow DIYPT to use images of me for marketing purposes</label>
 							</div>
                         </div>
                     <asp:Button ID="Button3" runat="server" class="btn btn-secondary c_y mt-5" Text="Save changes" OnClick="btnSubmitProfile_Click" />

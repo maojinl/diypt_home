@@ -144,10 +144,12 @@ public partial class UserControls_UserProfile : BaseOrientation
 		if (PrizeMemberAuthUtils.GetMemberSetting(member.UserSettings, PrizeConstants.MemberSettings.PromotionalPhoto) == '1')
 		{
 			cbPromotionalPhoto.Checked = true;
+			lblPromotionalPhoto.Checked = true;
 		}
 		else
 		{
 			cbPromotionalPhoto.Checked = false;
+			lblPromotionalPhoto.Checked = false;
 		}
 	}
     protected void lbEditProfile_Click(Object sender, EventArgs e)
@@ -290,9 +292,9 @@ public partial class UserControls_UserProfile : BaseOrientation
 					{
 						cc = '0';
 					}
-					string s = string.Copy(member.UserSettings);
+					string s = string.Copy(memberUpdating.UserSettings);
 					PrizeMemberAuthUtils.SetMemberSetting(ref s, PrizeConstants.MemberSettings.PromotionalPhoto, cc);
-					member.UserSettings = s;
+					memberUpdating.UserSettings = s;
 					db.SaveChanges();
 
                 }
