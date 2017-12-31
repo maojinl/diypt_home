@@ -170,6 +170,7 @@ public partial class UserControls_Signup : System.Web.UI.UserControl
 				{
 					c = '0';
 				}
+				member.UserSettings = PrizeConstants.DEFAULT_MEMBER_SETTINGS;
 				string s= string.Copy(member.UserSettings);
 				PrizeMemberAuthUtils.SetMemberSetting(ref s, PrizeConstants.MemberSettings.PromotionalPhoto, c);
 				member.UserSettings = s;
