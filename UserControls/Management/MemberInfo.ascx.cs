@@ -52,6 +52,7 @@ public partial class UserControls_Management_MemberInfo : System.Web.UI.UserCont
 									GoalWeight = dic.GoalWeight,
 									GoalWaist = dic.GoalWaist,
 									GoalBodyFat = dic.GoalBodyFat,
+									UserSettings = dic.UserSettings,
 
 								};
 
@@ -137,5 +138,18 @@ public partial class UserControls_Management_MemberInfo : System.Web.UI.UserCont
 		this.BindGrid();
 	}
 
+	protected string GetAllowedPromotionalPhoto(object memberSettings)
+	{
+		string s = memberSettings as string;
+		char c = PrizeMemberAuthUtils.GetMemberSetting(s, PrizeConstants.MemberSettings.PromotionalPhoto);
+		if (c == '1')
+		{
+			return "Y";
+		}
+		else
+		{
+			return "N";
+		}
+	}
 
 }

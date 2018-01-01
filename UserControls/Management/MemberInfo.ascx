@@ -100,6 +100,14 @@ OnPageIndexChanging = "OnPaging"  >
             <asp:TextBox ID="txtEl" runat="server" Text='<%# Eval("Email") %>'></asp:TextBox>
         </EditItemTemplate>
     </asp:TemplateField>
+	    <asp:TemplateField HeaderText="Promotional Photo" >
+        <ItemTemplate>
+            <asp:Label ID="lbPromotional" runat="server" Text='<%# GetAllowedPromotionalPhoto(Eval("UserSettings")) %>'></asp:Label>
+        </ItemTemplate>
+        <EditItemTemplate>
+            <asp:TextBox ID="txtPromotional" runat="server" Text='<%# GetAllowedPromotionalPhoto(Eval("UserSettings")) %>'></asp:TextBox>
+        </EditItemTemplate>
+    </asp:TemplateField>
     <asp:TemplateField HeaderText="Street Address"  >
         <ItemTemplate>
             <asp:Label ID="lbES" runat="server" Text='<%# Eval("StreetAddress") %>'></asp:Label>
