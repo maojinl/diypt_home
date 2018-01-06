@@ -63,6 +63,11 @@ display: block;
         <h1><strong><asp:Label ID="lblWeekNum" runat="server"></asp:Label></strong></h1>
         <div class="ori-date"><span class="c_y"><asp:Label ID="lblDateDuration" runat="server"></asp:Label></span></div>
     </div>
+            <div class="d-flex justify-content-between align-items-center pb-4 pre-next">
+                    <asp:hyperlink id="weekPre" runat="server" class="day-pre c_y"></asp:hyperlink>
+                    <asp:hyperlink id="weekNext" runat="server" class="day-next c_y"></asp:hyperlink>
+                </div>
+
     <!--div class="d-flex justify-content-between align-items-center pb-4 pre-next">
         <a id="dayPre1" class="day-pre c_y" href="#">Back</a>
         <a id="dayNext1" class="day-next c_y" href="#">Next</a>
@@ -93,10 +98,7 @@ display: block;
 					<div></div>
 					<div></div>
 				<p>
-				<div class="d-flex justify-content-between align-items-center pb-4 pre-next">
-					<asp:hyperlink id="weekPre" runat="server" class="day-pre c_b"></asp:hyperlink>
-					<asp:hyperlink id="weekNext" runat="server" class="day-next c_b"></asp:hyperlink>
-				</div>
+	
 				</p>
                 <div class="row">
                  <div class="col-sm-3 col-6" runat="server" ID="colories">

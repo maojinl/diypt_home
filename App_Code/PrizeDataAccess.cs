@@ -714,7 +714,7 @@ public class PrizeDataAccess
 										select c).FirstOrDefault();
 		if (myFoodPlanWeek == null && subWithAll)
 			myFoodPlanWeek = (from c in db.MemberFoodPlanWeeks
-							  where c.MemberId == iMemberId && c.StartWeek == -1 && c.MemberExercisePlanId == -1
+							  where c.MemberId == iMemberId && c.StartWeek == -1 && c.MemberExercisePlanId == iMemberPlanId
 							  select c).FirstOrDefault();
 		return myFoodPlanWeek;
 	}
