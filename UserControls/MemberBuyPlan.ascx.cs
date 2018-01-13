@@ -8,8 +8,10 @@ using System.Web.UI.WebControls;
 public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
 {
     PrizeDataAccess dbAccess = new PrizeDataAccess();
+	bool IsTrial = false;
     protected void Page_Load(object sender, EventArgs e)
     {
+		string PaymentURL = "";
         if (!IsPostBack)
         {
             string sProgram = Request.QueryString["program"];
@@ -19,7 +21,10 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
 
             string sPlanId = Request.QueryString["targetplanid"];
             string sMyPlanId = Request.QueryString["targetmemberplanid"];
-			if(Request.UrlReferrer != null)
+
+			PaymentURL = Request.QueryString["paymenturl"];
+
+			if (Request.UrlReferrer != null)
 			{
 				string referer = Request.UrlReferrer.ToString();
 				if(referer.Contains("signup")|| referer.Contains("continue"))
@@ -45,9 +50,9 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
 			//PrizeMemberAuthUtils.GetMemberAnswer(member, 3);
             //ddlQ4.Text = "test " + member.Email;
 
-            bool bIsTrial = false;
+            IsTrial = false;
             if (Request.QueryString["Trial"] != null && Request.QueryString["Trial"].Equals("1"))
-                bIsTrial = true;
+                IsTrial = true;
             int newPlanId = 0;
             MemberExercisePlan myPlan = new MemberExercisePlan();
             PrizeExercisePlan prizePlan = new PrizeExercisePlan();
@@ -58,7 +63,7 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
             {
                 if (String.IsNullOrEmpty(sPlanId))
                 {
-                    newPlanId = planManager.FindNewPlan(sProgram, sLocation, sLevel, sExp, bIsTrial);
+                    newPlanId = planManager.FindNewPlan(sProgram, sLocation, sLevel, sExp, IsTrial);
 					if (newPlanId < 0)
 					{
 						//throw new Exception("ERROR: could not find the plan " + PrizeErrorCode.getErrorMessage(newPlanId));
@@ -100,6 +105,10 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
                     Session["payment_amt"] = PrizeConstants.GENERAL_PLAN_PRIZE;
             }
         }
+		if (IsTrial)
+		{
+			this.btnPayWeekly.Visible = false;
+		}
     }
 
     protected void ShowNewPlan(PrizeExercisePlan plan, MemberExercisePlan myPlan)
@@ -196,7 +205,21 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
         PrizeMemberPlanManager planManager = new PrizeMemberPlanManager();
         planManager.ManualPaymentMemberPlanSetup(PrizeMemberAuthUtils.GetMemberData(), memberPlanId, exercisePlanId, mode);
 
-        Response.Redirect(PrizeConstants.URL_EZIDEBIT_LOGIN);
+		if (mode.Equals(PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT_WEEKLY))
+		{
+			Response.Redirect(PrizeConstants.URL_EZIDEBIT_LOGIN_WEEKLY);
+		}
+		else
+		{
+			if (IsTrial)
+			{
+				Response.Redirect(PrizeConstants.URL_EZIDEBIT_LOGIN_TRIAL);
+			}
+			else
+			{
+				Response.Redirect(PrizeConstants.URL_EZIDEBIT_LOGIN_FULLY);
+			}
+		}
     }
 
 }

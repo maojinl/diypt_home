@@ -29,7 +29,13 @@
         if (owner.options[owner.selectedIndex].value == "No")
             q6Detail.style.display = "none";
         else
-            q6Detail.style.display = "";
+			q6Detail.style.display = "";
+
+	function changeQ7(owner) {
+		if (owner.options[owner.selectedIndex].value == "Other (please specify)")
+			q7Detail.style.display = "none";
+		else
+			q7Detail.style.display = "";
     }
 
 </script>
@@ -484,6 +490,28 @@
                     <br />
                     <p>Please specify:</p>
                     <textarea class="form-control " runat="server" id="regQ6" rows="3 "></textarea>
+                </div>
+            </div>
+        </fieldset>
+		<h6>6. How did you hear about us?</h6>
+        <fieldset class="form-group row">
+            <div class="col-md-8">
+                <asp:DropDownList ID="ddlQ7" runat="server" CssClass="form-control" onchange="changeQ7(this)">
+                    <asp:ListItem Value="">Please select</asp:ListItem>
+                    <asp:ListItem Value="Facebook sponsored ad">Facebook sponsored ad</asp:ListItem>
+                    <asp:ListItem Value="Instagram sponsored ad">Instagram sponsored ad</asp:ListItem>
+					<asp:ListItem Value="Facebook post">Facebook post</asp:ListItem>
+                    <asp:ListItem Value="Instagram post">Instagram post</asp:ListItem>
+					<asp:ListItem Value="YouTube">YouTube</asp:ListItem>
+                    <asp:ListItem Value="Friend">Friend</asp:ListItem>
+					<asp:ListItem Value="Google search">Google search</asp:ListItem>
+                    <asp:ListItem Value="Other (please specify)">Other (please specify)</asp:ListItem>
+                </asp:DropDownList>
+
+                <div id="q7Detail" style="display: none;">
+                    <br />
+                    <p>Please specify:</p>
+                    <textarea class="form-control " runat="server" id="regQ7" rows="3 "></textarea>
                 </div>
             </div>
         </fieldset>

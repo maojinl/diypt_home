@@ -298,8 +298,8 @@ public class PrizeEmailWrapper
 		List<MemberExercisePlan> memberPlans;
 		availableStatus = PrizeConstants.STATUS_PLAN_NOT_STARTED + PrizeConstants.STATUS_PLAN_PAID;
 		DateTime now = PrizeCommonUtils.GetSystemDate();
-		DateTime dtBegin = now.AddDays(-3);
-		DateTime dtEnd = now.AddDays(2);
+		DateTime dtBegin = now.AddDays(-2);
+		DateTime dtEnd = now.AddDays(0);
 		DateTime dtSendEmailBegin = now.AddDays(-10);
 
 		try

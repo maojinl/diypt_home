@@ -118,7 +118,7 @@ OnPageIndexChanging = "OnPaging"  >
     </asp:TemplateField>
     <asp:TemplateField HeaderText="Started or Not"  >
         <ItemTemplate>
-            <asp:Label ID="lbSTART" runat="server" Text='<%# Eval("Status").ToString()[0] %>'></asp:Label>
+            <asp:Label ID="lbSTART" runat="server" Text='<%# GetStartStatus(Eval("Status").ToString()[0]) %>'></asp:Label>
         </ItemTemplate>
         <EditItemTemplate>
             <asp:TextBox ID="txtSTART" runat="server" Text='<%# Eval("Status").ToString()[0] %>'></asp:TextBox>

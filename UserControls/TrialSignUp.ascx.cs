@@ -147,8 +147,12 @@ public partial class UserControls_TrialSignUp : System.Web.UI.UserControl
                 sb.Append("\r\n");
                 sb.Append(regQ6.InnerText);
                 sb.Append("\r\n");
+				sb.Append(ddlQ7.Text);
+				sb.Append("\r\n");
+				sb.Append(regQ7.InnerText);
+				sb.Append("\r\n");
 
-                member.Questions = sb.ToString();
+				member.Questions = sb.ToString();
                 
                 member.UmbracoId = newUserId;
                 member.RegisterDateTime = PrizeCommonUtils.GetSystemDate();

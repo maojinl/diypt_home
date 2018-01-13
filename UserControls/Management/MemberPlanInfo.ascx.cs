@@ -133,5 +133,24 @@ public partial class UserControls_Management_MemberPlanInfo : System.Web.UI.User
         this.BindGrid();
     }
 
+	protected string GetStartStatus(object obj)
+	{
+		char status = (char)obj;
+		string s = "";
+		if (status==PrizeConstants.STATUS_PLAN_NOT_STARTED[0])
+			s = "Not Started";
+		else if (status==PrizeConstants.STATUS_PLAN_STARTED[0])
+			s = "Started";
+		else if (status==PrizeConstants.STATUS_PLAN_FINISHED[0])
+			s = "Finished";
+		else if (status==PrizeConstants.STATUS_PLAN_SUSPENDED[0])
+			s = "Suspended";
+		else if (status==PrizeConstants.STATUS_PLAN_TERMINATED[0])
+			s = "Terminated";
+
+		return s;
+
+	}
+
 
 }
