@@ -201,8 +201,10 @@ public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
     {
         int memberPlanId = Int32.Parse(Session["buying_my_plan_id"].ToString());
         int exercisePlanId = Int32.Parse(Session["buying_plan_id"].ToString());
-       
-        PrizeMemberPlanManager planManager = new PrizeMemberPlanManager();
+		if (Request.QueryString["Trial"] != null && Request.QueryString["Trial"].Equals("1"))
+			IsTrial = true;
+
+		PrizeMemberPlanManager planManager = new PrizeMemberPlanManager();
         planManager.ManualPaymentMemberPlanSetup(PrizeMemberAuthUtils.GetMemberData(), memberPlanId, exercisePlanId, mode);
 
 		if (mode.Equals(PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT_WEEKLY))

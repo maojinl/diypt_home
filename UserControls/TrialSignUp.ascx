@@ -34,9 +34,9 @@
 
 	function changeQ7(owner) {
 		if (owner.options[owner.selectedIndex].value == "Other (please specify)")
-			q7Detail.style.display = "none";
-		else
 			q7Detail.style.display = "";
+		else
+			q7Detail.style.display = "none";
 	}
 
 </script>
