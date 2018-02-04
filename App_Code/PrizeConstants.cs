@@ -62,9 +62,9 @@ public static class PrizeConstants
     public const string URL_MEMBER_BUY_PLAN = "~/buy-plan";
     public const string URL_MEMBER_COMING_UP = "~/my-account/coming-up#tab-bx-coming";
     public const string URL_MEMBER_CONTINUE_PLAN = "~/continuePlan";
-    public const string URL_EZIDEBIT_LOGIN_WEEKLY = "https://secure.ezidebit.com.au/webddr/Request.aspx?a=093E3FE3-E747-4909-B457-C0FA23BC9E68&debits=2&ramount=28.35&aFreq=1&dur=4&tpay=13";
-	public const string URL_EZIDEBIT_LOGIN_FULLY = "https://secure.ezidebit.com.au/webddr/Request.aspx?a=093E3FE3-E747-4909-B457-C0FA23BC9E68&debits=1&oamount=313.70";
-	public const string URL_EZIDEBIT_LOGIN_TRIAL = "https://secure.ezidebit.com.au/webddr/Request.aspx?a=093E3FE3-E747-4909-B457-C0FA23BC9E68&debits=1&oamount=14.00";
+    public const string URL_EZIDEBIT_LOGIN_WEEKLY = "https://secure.ezidebit.com.au/webddr/Request.aspx?a=093E3FE3-E747-4909-B457-C0FA23BC9E68&debits=2&ramount=28.35&aFreq=1&dur=4&tpay=13&nouRef=1";
+	public const string URL_EZIDEBIT_LOGIN_FULLY = "https://secure.ezidebit.com.au/webddr/Request.aspx?a=093E3FE3-E747-4909-B457-C0FA23BC9E68&debits=1&oamount=313.70&nouRef=1";
+	public const string URL_EZIDEBIT_LOGIN_TRIAL = "https://secure.ezidebit.com.au/webddr/Request.aspx?a=093E3FE3-E747-4909-B457-C0FA23BC9E68&debits=1&oamount=14.00&nouRef=1";
 	public const string URL_MEMBER_PLAN_SUSPENDED = "~/plan-suspended";
 
 	public const int TIME_OUT = 20;

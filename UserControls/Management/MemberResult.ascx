@@ -136,6 +136,15 @@
 
 	</tr>
 
+	<tr>
+		<td>Registry questions and answers</td>
+		 <td class="auto-style1">
+			  <asp:TextBox ID="txtQA" runat="server" Height="300px" Width="700px" TextMode="MultiLine">
+			  </asp:TextBox>
+		</td>
+
+	</tr>
+
 
 </table>
 

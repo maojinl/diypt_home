@@ -16,6 +16,8 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 		{
 			this.BindGrid();
 			this.BindDropDownList();
+			PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberId);
+			txtQA.Text = member.Questions;
 		}
 	}
 

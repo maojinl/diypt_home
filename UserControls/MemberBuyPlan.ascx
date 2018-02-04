@@ -163,7 +163,7 @@
                       OnClick="CheckoutBtn_Click" 
                       BackColor="Transparent" BorderWidth="0" />--%>
         <asp:Button ID="btnPayWeekly" runat="server" class="btn btn-secondary c_y mt-5 sec" Text="Pay Weekly Ezidebit" OnClick="btnSubmitPayWeekly_Click" />
-        <asp:Button ID="btnPayFully" runat="server" class="btn btn-secondary c_y mt-5 sec" Text="Pay Fully Ezidebit" OnClick="btnSubmitPayFully_Click" />
+        <asp:Button ID="btnPayFully" runat="server" class="btn btn-secondary c_y mt-5 sec" Text="Pay Full Ezidebit" OnClick="btnSubmitPayFully_Click" />
     </div>
 </div>
 
