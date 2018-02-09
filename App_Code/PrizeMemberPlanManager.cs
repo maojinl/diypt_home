@@ -507,7 +507,8 @@ public class PrizeMemberPlanManager
 		try
 		{
 			db.Database.Connection.Open();
-
+			var oldOrders = db.PrizeOrders.Where(o => (o.MemberPlanId == memberPlanId && o.PaymentTransactionId == null));
+			db.PrizeOrders.RemoveRange(oldOrders);
 			PrizeOrder myOrder = new PrizeOrder();
 			myOrder.OrderDate = PrizeCommonUtils.GetSystemDate();
 			myOrder.Username = member.Email;

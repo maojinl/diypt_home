@@ -29,11 +29,13 @@ public partial class UserControls_Management_Orders : System.Web.UI.UserControl
         {
             db.Database.Connection.Open();
             {
-
+				
                 var gamename = from a in db.PrizeOrders
                                join b in db.PrizeExercisePlans on a.ExercisePlanId equals b.Id
                                join dic in db.PrizeMembers on a.Email equals dic.Email
-                               select new
+							   join c in db.MemberExercisePlans on a.MemberPlanId equals c.Id
+							   where (c.Status.EndsWith(PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT) || c.Status.EndsWith(PrizeConstants.STATUS_PLAN_PAID))
+							   select new
                                {
                                    FirstName = dic.Firstname,
                                    LastName = dic.Surname,

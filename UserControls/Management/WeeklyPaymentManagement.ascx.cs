@@ -40,6 +40,7 @@ public partial class UserControls_Management_WeeklyPaymentManagement : System.We
 									 join c in db.PrizeOrders on a.Id equals c.MemberPlanId
 									 orderby a.StartDate descending
 									 where w.CreatedDate > st && w.CreatedDate < ed && w.Status.StartsWith(PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT_NOT_APPROVED)
+										&& (a.Status.EndsWith(PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT))
 									 select new
 									 {
 
