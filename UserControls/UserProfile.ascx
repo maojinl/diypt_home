@@ -46,6 +46,10 @@
                                 <asp:Label ID="lblLevel" runat="server" />
                             </div>
                             <div class="form-check col-sm-6">
+                                <b>Program semester:</b>
+                                <asp:Label ID="lblSemester" runat="server" />
+                            </div>
+                            <div class="form-check col-sm-6">
                                 <b>Program location:</b>
                                 <asp:Label ID="lblLocation" runat="server" />
                             </div>

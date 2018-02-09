@@ -131,7 +131,8 @@ public partial class UserControls_UserProfile : BaseOrientation
 			
 		lblLevel.Text = sPlanName[2];
 		lblLocation.Text = sPlanName[1];
-        }
+		lblSemester.Text = sPlanName[3].Replace("Semester", "");
+		}
 
         lblFacebook.Text = member.Facebook;
         lblInstagram.Text = member.Instagram;

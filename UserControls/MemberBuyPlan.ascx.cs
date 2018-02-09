@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class UserControls_MemberBuyPlan : System.Web.UI.UserControl
+public partial class UserControls_MemberBuyPlan : BaseOrientation
 {
     PrizeDataAccess dbAccess = new PrizeDataAccess();
 	bool IsTrial = false;
