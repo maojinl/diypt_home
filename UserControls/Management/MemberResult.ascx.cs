@@ -119,8 +119,19 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 
 				GridView1.DataBind();
 
-				MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
-				MemberExercisePlanWeek myPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId);
+				MemberExercisePlan myPlan = null;
+				MemberExercisePlanWeek myPlanWeek = null;
+				if (Session["MPID"] != null)
+				{
+					int mPlanId = Convert.ToInt32(Session["MPID"]);
+					myPlan = dbAccess.GetMemberExercisePlan(mPlanId);
+				}
+				else
+				{
+					myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
+					myPlanWeek = dbAccess.GetCurrentMemberPlanWeek(memberId);
+				}
+				
 				this.btnSave.Enabled = false;
 				if (myPlan != null)
 				{
@@ -142,7 +153,11 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 					{
 						weekNum = myPlanWeek.Week;
 					}
-					LoadFoodPlanWeek(memberId, myPlan.Id, weekNum);
+
+					PrizeExercisePlan plan = dbAccess.GetExercisePlan(myPlan.ExercisePlanId);
+
+					lblPlanInfo.Text = "Plan " + plan.PlanName + " from " + PrizeCommonUtils.ParseDateToEnglish(myPlan.StartDate) + " to " + PrizeCommonUtils.ParseDateToEnglish(myPlan.EndDate.Value);
+					LoadFoodPlanWeek(memberId, myPlan, weekNum);
 				}
 			}
 			db.Database.Connection.Close();
@@ -153,13 +168,29 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 	{
 		DropDownList ddlWeekList = (DropDownList)sender;
 		int weekNum = int.Parse(ddlWeekList.SelectedValue);
-		MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
-		LoadFoodPlanWeek(memberId, myPlan.Id, weekNum);
+		MemberExercisePlan myPlan;
+		if (Session["MPID"] != null)
+		{
+			int mPlanId = Convert.ToInt32(Session["MPID"]);
+			myPlan = dbAccess.GetMemberExercisePlan(mPlanId);
+		}
+		else
+		{
+			myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
+		}
+
+		PrizeExercisePlan plan = dbAccess.GetExercisePlan(myPlan.ExercisePlanId);
+
+		lblPlanInfo.Text = "Plan "+plan.PlanName+" from " + PrizeCommonUtils.ParseDateToEnglish(myPlan.StartDate) + " to " + PrizeCommonUtils.ParseDateToEnglish(myPlan.EndDate.Value);
+		LoadFoodPlanWeek(memberId, myPlan, weekNum);
+		
 	}
 
-	protected void LoadFoodPlanWeek(int memberId, int memberPlanId, int weekNum)
+	protected void LoadFoodPlanWeek(int memberId, MemberExercisePlan memberPlan, int weekNum)
 	{
-		var foodplanweek = dbAccess.GetMemberFoodPlanWeek(memberId, memberPlanId, weekNum, false);
+		MemberFoodPlanWeek foodplanweek;
+
+		foodplanweek = dbAccess.GetMemberFoodPlanWeek(memberId, memberPlan.Id, weekNum, false);
 
 		ddlWeek.SelectedValue = "" + weekNum;
 
@@ -207,7 +238,16 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 		{
 			return;
 		}
-		MemberExercisePlan myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
+		MemberExercisePlan myPlan;
+		if (Session["MPID"] != null)
+		{
+			int mPlanId = Convert.ToInt32(Session["MPID"]);
+			myPlan = dbAccess.GetMemberExercisePlan(mPlanId);
+		}
+		else
+		{
+			myPlan = dbAccess.GetCurrentMemberPlanOrStartingPlan(memberId);
+		}
 		int weekNum = int.Parse(ddlWeek.SelectedValue);
 		int myPlanId = myPlan.Id;
 
@@ -245,12 +285,6 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 		}
 	}
 
-	protected void refresh(object sender, EventArgs e)
-	{
-
-		this.BindGrid();
-
-	}
 	protected void OnPaging(object sender, GridViewPageEventArgs e)
 	{
 		GridView1.PageIndex = e.NewPageIndex;

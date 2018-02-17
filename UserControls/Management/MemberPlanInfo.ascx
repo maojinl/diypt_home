@@ -48,7 +48,7 @@ OnPageIndexChanging = "OnPaging"  >
 
         <asp:TemplateField>
             <ItemTemplate>
-                <asp:Button ID="btnSelect" runat="server" Text="Select" CommandName = "Select" CommandArgument='<%#Eval("Id")%>' />
+                <asp:Button ID="btnSelect" runat="server" Text="Select" CommandName = "Select" CommandArgument='<%#Eval("Id")+";"+Eval("MemberPlanId")%>' />
             </ItemTemplate>
     </asp:TemplateField>
   

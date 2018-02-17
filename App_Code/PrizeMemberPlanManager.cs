@@ -118,7 +118,7 @@ public class PrizeMemberPlanManager
 					currentEndDate = PrizeCommonUtils.GetSystemDate();
 
 				IQueryable<MemberExercisePlan> myNotPaidPlans = (from c in db.MemberExercisePlans
-													 where c.MemberId == memberId && c.Status.EndsWith(PrizeConstants.STATUS_PLAN_NOT_PAID)
+													 where c.MemberId == memberId && (c.Status.EndsWith(PrizeConstants.STATUS_PLAN_NOT_PAID) || c.Status.EndsWith(PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT))
 													 select c);
 
 				foreach (MemberExercisePlan notPaidPlan in myNotPaidPlans)

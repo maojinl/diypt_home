@@ -49,6 +49,7 @@ public partial class UserControls_Management_MemberPlanInfo : System.Web.UI.User
                                     StartDate = a.StartDate,
                                     EndDate = a.EndDate,
                                     Status = a.Status,
+									MemberPlanId = a.Id,
                                     PaidDate = subOrder!=null?subOrder.OrderDate.ToString():"",
                                 };
 
@@ -102,11 +103,13 @@ public partial class UserControls_Management_MemberPlanInfo : System.Web.UI.User
     {
         if (e.CommandName == "Select")
         {
+			string[] command = e.CommandArgument.ToString().Split(';');
+            int id = Convert.ToInt32(command[0]);
+			int memberPlanId = Convert.ToInt32(command[1]);
+			Session["MID"] = Convert.ToString(id);
+			Session["MPID"] = Convert.ToString(memberPlanId);
 
-            int id = Convert.ToInt32(e.CommandArgument);
-            Session["MID"] = Convert.ToString(id);
-
-            Response.Redirect("/management/member-result.aspx");
+			Response.Redirect("/management/member-result.aspx");
 
 
         }

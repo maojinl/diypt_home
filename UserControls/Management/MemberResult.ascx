@@ -4,6 +4,7 @@
 		width: 308px;
 	}
 </style>
+<asp:Label ID="lblPlanInfo" runat="server" Text=''/>
 <table>
 	<tr>
 		<td>
@@ -86,7 +87,6 @@
 		</td>
 		 <td class="auto-style1">
 			  <asp:Button runat="server" ID="btnSave" OnClick="Save" Text="Save" />
-			 &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button runat="server" ID="btnrefresh" OnClick="refresh" Text="Refresh" />
 		</td>
 
 	</tr>
