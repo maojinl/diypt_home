@@ -88,7 +88,7 @@ public partial class UserControls_TrialSignUp : System.Web.UI.UserControl
                     Member.AddMemberToCache(uMember);   //, true, new TimeSpan(0, timeout, 0));
                     string sLocation = ddlLocation.Text;
                     string sProgram = ddlProgram.Text;
-                    PrizeEmailWrapper.SendWelcomeEmail(PrizeMemberAuthUtils.GetMemberData(uMember.Id), uMember.LoginName);
+                    PrizeEmailWrapper.SendWelcomeEmail(PrizeMemberAuthUtils.GetMemberData(uMember.Id), uMember.LoginName, true);
                     Response.Redirect(String.Format("{0}?program={1}&location={2}&level={3}&experience={4}&Trial=1", PrizeConstants.URL_MEMBER_BUY_PLAN, sProgram, sLocation, "Beginner", "Semester 1"));
                     return;
                 }

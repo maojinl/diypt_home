@@ -172,6 +172,26 @@ Comment:
 					break;
 			}
 		}
+		else if (emailType == PrizeConstants.EmailType.WelcomeEmailTrial)
+			nodeId = 12958;
+		else if (emailType == PrizeConstants.EmailType.ReviveMeEmailTrial)
+		{
+			int weekNum = 0;
+			int.TryParse(additionalContents[1], out weekNum);
+			switch (weekNum)
+			{
+				case 1:
+					nodeId = 12957;
+					break;
+				case 2:
+					nodeId = 12957;
+					break;
+				default:
+					break;
+			}
+		}
+		else if (emailType == PrizeConstants.EmailType.FisrtDayOnWeek1Trial)
+			nodeId = 12933;
 
 		if (nodeId == 0)
 			return false;

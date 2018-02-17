@@ -17,9 +17,17 @@ public class PrizeEmailWrapper
 		//        
 	}
 
-	static public void SendWelcomeEmail(PrizeMember member, string loginName)
+	static public void SendWelcomeEmail(PrizeMember member, string loginName, bool isTrial)
 	{
-		int emailId = PrepareSimpleEmailByType(member, PrizeConstants.EmailType.WelcomeEmail, "Welcome", member.Firstname, loginName);
+		int emailId;
+		if (isTrial)
+		{
+			emailId = PrepareSimpleEmailByType(member, PrizeConstants.EmailType.WelcomeEmailTrial, "Welcome", member.Firstname, loginName);
+		}
+		else
+		{
+			emailId = PrepareSimpleEmailByType(member, PrizeConstants.EmailType.WelcomeEmail, "Welcome", member.Firstname, loginName);
+		}
 	   // SenEmailById(emailId);
 	}
 
@@ -276,11 +284,36 @@ public class PrizeEmailWrapper
 					foreach (PrizeMember member in membersList)
 					{
 						MemberExercisePlanWeek memberPlanWeek = (from c in db.MemberExercisePlanWeeks
+																 join d in db.MemberExercisePlans on c.MemberExercisePlanId equals d.Id
+																 join e in db.PrizeExercisePlans on d.ExercisePlanId equals e.Id
 																 where c.MemberId == member.UmbracoId && c.Status.Equals(PrizeConstants.STATUS_PLAN_WEEK_STARTED)
+																 && e.IsTrialPlan != 1
 																 select c).FirstOrDefault();
 						if (memberPlanWeek == null)
 							continue;
 						PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ReviveMeEmail, "Revive Me", member.Firstname, "" + (memberPlanWeek.Week+1));
+					}
+
+					dtSendEmailBegin = now.AddDays(-6);
+					membersList = (from a in db.PrizeMembers
+									   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
+									   where !(from c in db.MemberEmails
+											   where c.EmailType == (int)PrizeConstants.EmailType.ReviveMeEmailTrial && c.ScheduleDate > dtSendEmailBegin
+											   select c.MemberId).Contains(a.UmbracoId)
+									   orderby a.UmbracoId
+									   select a).ToList();
+
+					foreach (PrizeMember member in membersList)
+					{
+						MemberExercisePlanWeek memberPlanWeek = (from c in db.MemberExercisePlanWeeks
+																 join d in db.MemberExercisePlans on c.MemberExercisePlanId equals d.Id
+																 join e in db.PrizeExercisePlans on d.ExercisePlanId equals e.Id
+																 where c.MemberId == member.UmbracoId && c.Status.Equals(PrizeConstants.STATUS_PLAN_WEEK_STARTED)
+																 && e.IsTrialPlan == 1
+																 select c).FirstOrDefault();
+						if (memberPlanWeek == null)
+							continue;
+						PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ReviveMeEmailTrial, "Revive Me", member.Firstname, "" + (memberPlanWeek.Week + 1));
 					}
 				}
 			}
@@ -372,6 +405,7 @@ public class PrizeEmailWrapper
 											   MemberPlanWeekId = b.Id,
 											   WeekStartDate = b.StartDate,
 											   MemberExercisePlanId = c.Id,
+											   ExercisePlanId = c.ExercisePlanId,
 										   }).ToList();
 
 				foreach (var memberPlanWithWeek in memberPlanWithWeeks)
@@ -382,7 +416,11 @@ public class PrizeEmailWrapper
 					if (memberPlanWeekResult.Tasks != null && memberPlanWeekResult.Tasks.Length > 1 && memberPlanWeekResult.Tasks[0] == '0')
 					{
 						PrizeMember member = PrizeMemberAuthUtils.GetMemberData(memberPlanWithWeek.MemberId);
-						PrepareSimpleEmailByType(member, PrizeConstants.EmailType.FisrtDayOnWeek1, "Night before Day 1 of Week 1", member.Firstname);
+						PrizeExercisePlan plan = (new PrizeDataAccess()).GetExercisePlan(memberPlanWithWeek.ExercisePlanId);
+						if (plan.IsTrialPlan != 1)
+							PrepareSimpleEmailByType(member, PrizeConstants.EmailType.FisrtDayOnWeek1, "Night before Day 1 of Week 1", member.Firstname);
+						else
+							PrepareSimpleEmailByType(member, PrizeConstants.EmailType.FisrtDayOnWeek1Trial, "Night before Day 1 of Week 1", member.Firstname);
 						char[] arr = memberPlanWeekResult.Tasks.ToArray();
 						arr[0] = '1';
 						memberPlanWeekResult.Tasks = new string(arr);
