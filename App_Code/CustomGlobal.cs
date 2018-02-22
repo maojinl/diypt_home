@@ -12,9 +12,9 @@ public class CustomGlobal : UmbracoApplication
 			application.Error += Application_Error;
 		}
 */
-		protected override void OnApplicationStarted(object sender, EventArgs e)
+		protected override void OnApplicationStarted(object sender, EventArgs ee)
 		{
-			base.OnApplicationStarted(sender, e);
+			base.OnApplicationStarted(sender, ee);
 
 			// Your code here
 		}
