@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class UserControls_ContinuePlan : System.Web.UI.UserControl
+public partial class UserControls_ContinuePlan : BaseOrientation
 {
     protected DIYPTEntities db;
     protected PrizeMember member;
