@@ -190,7 +190,16 @@ public class PrizeEmailWrapper
 					{
 						dtBirthday = PrizeCommonUtils.GetThisYearDate(member.DoB.Value);
 						if (PrizeCommonUtils.LessThanDaysAhead(now, dtBirthday, 0))
-							PrepareSimpleEmailByType(member, PrizeConstants.EmailType.BirthdayEmail, "Happy Birthday", member.Firstname);
+						{
+							if (plan.IsTrialPlan == 0)
+							{
+								PrepareSimpleEmailByType(member, PrizeConstants.EmailType.BirthdayEmail, "Happy Birthday", member.Firstname);
+							}
+							else
+							{
+								PrepareSimpleEmailByType(member, PrizeConstants.EmailType.BirthdayEmailTrial, "Happy Birthday", member.Firstname);
+							}
+						}
 					}
 				}
 			}
@@ -877,7 +886,8 @@ public class PrizeEmailWrapper
 								membersList = (from a in db.PrizeMembers
 											   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
 											   join c in db.MemberExercisePlans on a.UmbracoId equals c.MemberId
-											   where c.Status.Equals(status1) || c.Status.Equals(status2)
+											   join d in db.PrizeExercisePlans on c.ExercisePlanId equals d.Id
+											   where (c.Status.Equals(status1) || c.Status.Equals(status2)) && d.IsTrialPlan == 0
 											   orderby a.UmbracoId
 											   select a
 								).ToList();
@@ -885,6 +895,18 @@ public class PrizeEmailWrapper
 							foreach (PrizeMember member in membersList)
 							{
 								PrepareSimpleEmailByType(member, PrizeConstants.EmailType.NewYearEmail, "Happy New Year", member.Firstname);
+							}
+							membersList = (from a in db.PrizeMembers
+										   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
+										   join c in db.MemberExercisePlans on a.UmbracoId equals c.MemberId
+										   join d in db.PrizeExercisePlans on c.ExercisePlanId equals d.Id
+										   where (c.Status.Equals(status1) || c.Status.Equals(status2)) && d.IsTrialPlan == 1
+										   orderby a.UmbracoId
+										   select a
+							).ToList();
+							foreach (PrizeMember member in membersList)
+							{
+								PrepareSimpleEmailByType(member, PrizeConstants.EmailType.NewYearEmailTrial, "Happy New Year", member.Firstname);
 							}
 							task.Status = "2";
 							task.Count++;
@@ -896,7 +918,8 @@ public class PrizeEmailWrapper
 								membersList = (from a in db.PrizeMembers
 											   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
 											   join c in db.MemberExercisePlans on a.UmbracoId equals c.MemberId
-											   where c.Status.Equals(status1) || c.Status.Equals(status2)
+											   join d in db.PrizeExercisePlans on c.ExercisePlanId equals d.Id
+											   where (c.Status.Equals(status1) || c.Status.Equals(status2)) && d.IsTrialPlan == 0
 											   orderby a.UmbracoId
 											   select a
 								).ToList();
@@ -904,6 +927,18 @@ public class PrizeEmailWrapper
 							foreach (PrizeMember member in membersList)
 							{
 								PrepareSimpleEmailByType(member, PrizeConstants.EmailType.EasterEmail, "Happy Easter", member.Firstname);
+							}
+							membersList = (from a in db.PrizeMembers
+										   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
+										   join c in db.MemberExercisePlans on a.UmbracoId equals c.MemberId
+										   join d in db.PrizeExercisePlans on c.ExercisePlanId equals d.Id
+										   where (c.Status.Equals(status1) || c.Status.Equals(status2)) && d.IsTrialPlan == 1
+										   orderby a.UmbracoId
+										   select a
+								).ToList();
+							foreach (PrizeMember member in membersList)
+							{
+								PrepareSimpleEmailByType(member, PrizeConstants.EmailType.EasterEmailTrial, "Happy Easter", member.Firstname);
 							}
 							task.Status = "2";
 							task.Count++;
@@ -915,7 +950,8 @@ public class PrizeEmailWrapper
 								membersList = (from a in db.PrizeMembers
 											   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
 											   join c in db.MemberExercisePlans on a.UmbracoId equals c.MemberId
-											   where c.Status.Equals(status1) || c.Status.Equals(status2)
+											   join d in db.PrizeExercisePlans on c.ExercisePlanId equals d.Id
+											   where (c.Status.Equals(status1) || c.Status.Equals(status2)) && d.IsTrialPlan == 0
 											   orderby a.UmbracoId
 											   select a
 								).ToList();
@@ -923,6 +959,18 @@ public class PrizeEmailWrapper
 							foreach (PrizeMember member in membersList)
 							{
 								PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ChristmasEmail, "Merry Christmas", member.Firstname);
+							}
+							membersList = (from a in db.PrizeMembers
+										   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
+										   join c in db.MemberExercisePlans on a.UmbracoId equals c.MemberId
+										   join d in db.PrizeExercisePlans on c.ExercisePlanId equals d.Id
+										   where (c.Status.Equals(status1) || c.Status.Equals(status2)) && d.IsTrialPlan == 1
+										   orderby a.UmbracoId
+										   select a
+							).ToList();
+							foreach (PrizeMember member in membersList)
+							{
+								PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ChristmasEmailTrial, "Merry Christmas", member.Firstname);
 							}
 							task.Status = "2";
 							task.Count++;

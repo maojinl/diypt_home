@@ -184,7 +184,7 @@ Comment:
 					nodeId = 12957;
 					break;
 				case 2:
-					nodeId = 12957;
+					nodeId = 12976;
 					break;
 				default:
 					break;
@@ -192,6 +192,14 @@ Comment:
 		}
 		else if (emailType == PrizeConstants.EmailType.FisrtDayOnWeek1Trial)
 			nodeId = 12933;
+		else if (emailType == PrizeConstants.EmailType.NewYearEmailTrial)
+			nodeId = 12954;
+		else if (emailType == PrizeConstants.EmailType.EasterEmailTrial)
+			nodeId = 12940;
+		else if (emailType == PrizeConstants.EmailType.ChristmasEmailTrial)
+			nodeId = 12939;
+		else if (emailType == PrizeConstants.EmailType.BirthdayEmailTrial)
+			nodeId = 12938;
 
 		if (nodeId == 0)
 			return false;

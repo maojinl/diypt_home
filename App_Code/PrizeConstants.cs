@@ -143,6 +143,10 @@ public static class PrizeConstants
 		WelcomeEmailTrial,
 		ReviveMeEmailTrial,
 		FisrtDayOnWeek1Trial,
+		NewYearEmailTrial,
+		EasterEmailTrial,
+		ChristmasEmailTrial,
+		BirthdayEmailTrial,
 	}
 
 	public enum EmailStatus

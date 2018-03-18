@@ -274,11 +274,13 @@ public partial class UserControls_Management_MemberResult : System.Web.UI.UserCo
 				}
 				else
 				{
-					foodplanweek.Food1 = tbFood1.Text;
-					foodplanweek.Food2 = tbFood2.Text;
-					foodplanweek.Food3 = tbFood3.Text;
-					foodplanweek.Food4 = tbFood4.Text;
-					foodplanweek.Food5 = tbFood5.Text + ";" + tbFood6.Text + ";" + tbFood7.Text;
+					var updatePlan = (from c in db.MemberFoodPlanWeeks
+									 where c.Id == foodplanweek.Id select c).FirstOrDefault();
+					updatePlan.Food1 = tbFood1.Text;
+					updatePlan.Food2 = tbFood2.Text;
+					updatePlan.Food3 = tbFood3.Text;
+					updatePlan.Food4 = tbFood4.Text;
+					updatePlan.Food5 = tbFood5.Text + ";" + tbFood6.Text + ";" + tbFood7.Text;
 				}
 				db.SaveChanges();
 			}
