@@ -23,7 +23,7 @@ public static class PrizeEmail
 		//client.UseDefaultCredentials = false;
 		//client.Credentials = new System.Net.NetworkCredential("user@gmail.com", "password");
 
-		MailMessage mm = new MailMessage("no-reply@diypt.com.au", "jonathan@diypt.com.au");
+		MailMessage mm = new MailMessage("no-reply@diypt.com.au", "info@diypt.com.au");
 		mm.Subject = "New comment by " + user;
 		mm.Body = "A comment was made by " + user + " in " + blog + @". Please log in and approve.
 
@@ -321,7 +321,7 @@ Comment:
 		//client.UseDefaultCredentials = false;
 		//client.Credentials = new System.Net.NetworkCredential("user@gmail.com", "password");
 
-		MailMessage mm = new MailMessage("no-reply@diypt.com.au", "thuyen.vu@gmail.com");
+		MailMessage mm = new MailMessage("no-reply@diypt.com.au", "info@diypt.com.au");
 		//mm.To.Add("jrguico@yahoo.com.au");
 		//mm.To.Add("");
 		mm.Subject = "Contact us";
