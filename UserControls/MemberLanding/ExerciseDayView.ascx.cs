@@ -203,7 +203,7 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
 
     protected void LoadDailyInfo(int iPlanWeekId, int iDay)
     {
-        DataSet ds = dbAccess.GetExerciseUnitsSetDetail(iPlanWeekId, iDay);
+        DataSet ds = dbAccess.GetExerciseDayGroups(iPlanWeekId, iDay);
         DataTable tblDayGroupInfo = ds.Tables[0];
         string tempScript = "<script>";
         int counter = 0;
@@ -217,23 +217,24 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
                 double dTimeDuration = 0;
                 int iTimeDuration = 0;
                 labels[i].Text = tblDayGroupInfo.Rows[i]["DayGroupName"].ToString();
-                if (ds.Tables[labels[i].Text] != null)
+				List<ExerciseUnit> units = dbAccess.GetDayGroupedExerciseUnits(iPlanWeekId, int.Parse(tblDayGroupInfo.Rows[i]["GroupNameId"].ToString()), iDay);
+				if (units != null)
                 {
-                    foreach (DataRow row in ds.Tables[labels[i].Text].Rows)
+                    foreach (FitnessExerciseUnit unit in units)
                     {
-                        dTimeDuration += double.Parse(row["TimeDuration"].ToString());
+                        dTimeDuration += unit.TimeDuration;
                         tempScript += @"$( '#modalPopup" + (i+1) + "_" + counter + @"' ).click(function() {
-				                    $('#theModal').load('/exercise/" + row["Exercise"].ToString().Trim().Replace("- ", "").Replace(" ", "-").Replace(".", "") + @"');
+				                    $('#theModal').load('/exercise/" + unit.Exercise.Trim().Replace("- ", "").Replace(" ", "-").Replace(".", "") + @"');
 
                                     }); ";
 
                         tempScript += @"$( '#modalPopup" + (i + 1) + "A_" + counter + @"' ).click(function() {
-				                    $('#theModal').load('/exercise/" + row["Exercise"].ToString().Trim().Replace("- ", "").Replace(" ", "-").Replace(".", "") + @"');
+				                    $('#theModal').load('/exercise/" + unit.Exercise.ToString().Trim().Replace("- ", "").Replace(" ", "-").Replace(".", "") + @"');
 
                                     }); ";
 
                         tempScript += @"$( '#modalPopup" + (i + 1) + "B_" + counter + @"' ).click(function() {
-				                    $('#theModal').load('/exercise/" + row["AlternateExercise"].ToString().Trim().Replace("- ", "").Replace(" ", "-").Replace(".", "") + @"');
+				                    $('#theModal').load('/exercise/" + unit.AlternateExercise.ToString().Trim().Replace(" - ", "").Replace(" ", "-").Replace(".", "") + @"');
 
                                     }); ";
                         counter++;
@@ -241,7 +242,7 @@ public partial class UserControls_MemberLanding_ExerciseDayView : System.Web.UI.
 
                     iTimeDuration = (int)Math.Ceiling((double)dTimeDuration / 60);
                     labelsTimeDuration[i].Text = "" + iTimeDuration;
-                    repeaters[i].DataSource = ds.Tables[labels[i].Text].DefaultView;
+					repeaters[i].DataSource = units;
                     repeaters[i].DataBind();
                 }
             }

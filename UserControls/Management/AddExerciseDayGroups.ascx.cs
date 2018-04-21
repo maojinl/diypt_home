@@ -11,9 +11,7 @@ public partial class UserControls_Management_AddExerciseDayGroups : System.Web.U
     {
         if (!this.IsPostBack)
         {
-
             this.BindGrid();
-
         }
     }
 
@@ -29,7 +27,6 @@ public partial class UserControls_Management_AddExerciseDayGroups : System.Web.U
     {
         using (DIYPTEntities db = new DIYPTEntities())
         {
-
             db.Database.Connection.Open();
             {
                 var languages = from dic in db.PrizeExerciseDayGroupNames

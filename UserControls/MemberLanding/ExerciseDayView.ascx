@@ -183,44 +183,44 @@
                 <ItemTemplate>
                     <div class="row row-plan">
                         <div class="col-sm-4">
-                            <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1_<%# Container.ItemIndex %>'>
-                            <asp:Image ID="image1" runat="server" class="img-fluid" ImageUrl='<%#DataBinder.Eval(Container.DataItem,"Exercise")%>' /></a>
+                            <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1_<%# ((FitnessExerciseUnit)Container.DataItem).Exercise%>'>
+                            <asp:Image ID="image1" runat="server" class="img-fluid" ImageUrl='<%#((FitnessExerciseUnit)Container.DataItem).Exercise%>'/></a>
                         </div>
                         <div class="col-sm-4">
                             <div class="plan-name">
-                                <%#DataBinder.Eval(Container.DataItem,"Sequence")%>
+                               <%#((FitnessExerciseUnit)Container.DataItem).Sequence%>
                                     <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1A_<%# Container.ItemIndex %>'>
-                                        <%#DataBinder.Eval(Container.DataItem,"Exercise")%>
+                                        <%#((FitnessExerciseUnit)Container.DataItem).Exercise%>
                                     </a>
                             </div>
                             <div class="plan-info">or alternatively
                                 <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1B_<%# Container.ItemIndex %>'>
-                                    <%#DataBinder.Eval(Container.DataItem,"AlternateExercise")%>
+                                    <%#((FitnessExerciseUnit)Container.DataItem).AlternateExercise%>
                                 </a>
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Reps & Sets: </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Reps")%> x
-                                    <%#DataBinder.Eval(Container.DataItem,"Trainning_Set")%> Sets
+                                <%#((FitnessExerciseUnit)Container.DataItem).Reps%> x
+                                    <%#((FitnessExerciseUnit)Container.DataItem).TrainningSet%> Sets
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Rest (sec):</span> </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Rest")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Rest%>
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Weight:</span>
-                                <%#DataBinder.Eval(Container.DataItem,"Weight")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Weight%>
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Tempo:</span> </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Tempo")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Tempo%>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="c_b plan-info-comments">Comments:</div>
                             <div class="plan-comments  plan-info">
                                 </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Comments")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Comments%>
                             </div>
                         </div>
                     </div>
@@ -239,44 +239,44 @@
                 <ItemTemplate>
                     <div class="row row-plan">
                         <div class="col-sm-4">
-                            <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup2_<%# Container.ItemIndex %>'>
-                            <asp:Image ID="image1" runat="server" class="img-fluid" ImageUrl='<%#DataBinder.Eval(Container.DataItem,"Exercise")%>' /></a>
+                            <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1_<%#((FitnessExerciseUnit)Container.DataItem).Exercise%>'>
+                            <asp:Image ID="image1" runat="server" class="img-fluid" ImageUrl='<%#((FitnessExerciseUnit)Container.DataItem).Exercise%>'/></a>
                         </div>
                         <div class="col-sm-4">
                             <div class="plan-name">
-                                <%#DataBinder.Eval(Container.DataItem,"Sequence")%>
-                                    <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup2A_<%# Container.ItemIndex %>'>
-                                        <%#DataBinder.Eval(Container.DataItem,"Exercise")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Sequence%>
+                                    <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1A_<%# Container.ItemIndex %>'>
+                                        <%#((FitnessExerciseUnit)Container.DataItem).Exercise%>
                                     </a>
                             </div>
                             <div class="plan-info">or alternatively
-                                <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup2B_<%# Container.ItemIndex %>'>
-                                    <%#DataBinder.Eval(Container.DataItem,"AlternateExercise")%>
+                                <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1B_<%# Container.ItemIndex %>'>
+                                    <%#((FitnessExerciseUnit)Container.DataItem).AlternateExercise%>
                                 </a>
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Reps & Sets: </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Reps")%> x
-                                    <%#DataBinder.Eval(Container.DataItem,"Trainning_Set")%> Sets
+                                <%#((FitnessExerciseUnit)Container.DataItem).Reps%> x
+                                    <%#((FitnessExerciseUnit)Container.DataItem).TrainningSet%> Sets
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Rest (sec):</span> </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Rest")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Rest%>
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Weight:</span>
-                                <%#DataBinder.Eval(Container.DataItem,"Weight")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Weight%>
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Tempo:</span> </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Tempo")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Tempo%>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="c_b plan-info-comments">Comments:</div>
                             <div class="plan-comments  plan-info">
                                 </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Comments")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Comments%>
                             </div>
                         </div>
                     </div>
@@ -295,44 +295,44 @@
                 <ItemTemplate>
                     <div class="row row-plan">
                         <div class="col-sm-4">
-                            <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup3_<%# Container.ItemIndex %>'>
-                            <asp:Image ID="image1" runat="server" class="img-fluid" ImageUrl='<%#DataBinder.Eval(Container.DataItem,"Exercise")%>' /></a>
+                            <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1_<%# ((FitnessExerciseUnit)Container.DataItem).Exercise%>'>
+                            <asp:Image ID="image1" runat="server" class="img-fluid" ImageUrl='<%#((FitnessExerciseUnit)Container.DataItem).Exercise%>'/></a>
                         </div>
                         <div class="col-sm-4">
                             <div class="plan-name">
-                                <%#DataBinder.Eval(Container.DataItem,"Sequence")%>
-                                    <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup3A_<%# Container.ItemIndex %>'>
-                                        <%#DataBinder.Eval(Container.DataItem,"Exercise")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Sequence%>
+                                    <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1A_<%# Container.ItemIndex %>'>
+                                       <%#((FitnessExerciseUnit)Container.DataItem).Exercise%>
                                     </a>
                             </div>
                             <div class="plan-info">or alternatively
-                                <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup3B_<%# Container.ItemIndex %>'>
-                                    <%#DataBinder.Eval(Container.DataItem,"AlternateExercise")%>
+                                <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1B_<%# Container.ItemIndex %>'>
+                                    <%#((FitnessExerciseUnit)Container.DataItem).AlternateExercise%>
                                 </a>
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Reps & Sets: </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Reps")%> x
-                                    <%#DataBinder.Eval(Container.DataItem,"Trainning_Set")%> Sets
+                                <%#((FitnessExerciseUnit)Container.DataItem).Reps%> x
+                                    <%#((FitnessExerciseUnit)Container.DataItem).TrainningSet%> Sets
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Rest (sec):</span> </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Rest")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Rest%>
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Weight:</span>
-                                <%#DataBinder.Eval(Container.DataItem,"Weight")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Weight%>
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Tempo:</span> </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Tempo")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Tempo%>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="c_b plan-info-comments">Comments:</div>
                             <div class="plan-comments  plan-info">
                                 </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Comments")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Comments%>
                             </div>
                         </div>
                     </div>
@@ -351,44 +351,44 @@
                 <ItemTemplate>
                     <div class="row row-plan">
                         <div class="col-sm-4">
-                            <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup4_<%# Container.ItemIndex %>'>
-                            <asp:Image ID="image1" runat="server" class="img-fluid" ImageUrl='<%#DataBinder.Eval(Container.DataItem,"Exercise")%>' /></a>
+                            <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1_<%# ((FitnessExerciseUnit)Container.DataItem).Exercise%>'>
+                            <asp:Image ID="image1" runat="server" class="img-fluid" ImageUrl='<%#((FitnessExerciseUnit)Container.DataItem).Exercise%>'/></a>
                         </div>
                         <div class="col-sm-4">
                             <div class="plan-name">
-                                <%#DataBinder.Eval(Container.DataItem,"Sequence")%>
-                                    <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup4A_<%# Container.ItemIndex %>'>
-                                        <%#DataBinder.Eval(Container.DataItem,"Exercise")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Sequence%>
+                                    <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1A_<%# Container.ItemIndex %>'>
+                                       <%#((FitnessExerciseUnit)Container.DataItem).Exercise%>
                                     </a>
                             </div>
                             <div class="plan-info">or alternatively
-                                <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup4B_<%# Container.ItemIndex %>'>
-                                    <%#DataBinder.Eval(Container.DataItem,"AlternateExercise")%>
+                                <a href="#" data-toggle="modal" data-target="#theModal" id='modalPopup1B_<%# Container.ItemIndex %>'>
+                                    <%#((FitnessExerciseUnit)Container.DataItem).AlternateExercise%>
                                 </a>
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Reps & Sets: </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Reps")%> x
-                                    <%#DataBinder.Eval(Container.DataItem,"Trainning_Set")%> Sets
+                                <%#((FitnessExerciseUnit)Container.DataItem).Reps%> x
+                                    <%#((FitnessExerciseUnit)Container.DataItem).TrainningSet%> Sets
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Rest (sec):</span> </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Rest")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Rest%>
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Weight:</span>
-                                <%#DataBinder.Eval(Container.DataItem,"Weight")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Weight%>
                             </div>
                             <div class="plan-info">
                                 <span class="c_b">Tempo:</span> </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Tempo")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Tempo%>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="c_b plan-info-comments">Comments:</div>
                             <div class="plan-comments  plan-info">
                                 </span>
-                                <%#DataBinder.Eval(Container.DataItem,"Comments")%>
+                                <%#((FitnessExerciseUnit)Container.DataItem).Comments%>
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,10 @@ using System.Linq;
 using System.Data.Common;
 using System.Data;
 using System.Transactions;
+using System.Xml.Serialization;
+using System.IO;
+using System.Text;
+using System.Reflection;
 
 /// <summary>
 /// Summary description for PrizeDataAccess
@@ -185,11 +189,12 @@ public class PrizeDataAccess
 			DbDataReader reader = cmd.ExecuteReader();
 			DataSet ds = new DataSet();
 			ds.Load(reader, LoadOption.PreserveChanges, new String[] { "DayGroupInfo" });
+			List<FitnessExerciseUnit> units = new List<FitnessExerciseUnit>();
 
 			for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
 			{
 				cmd.CommandText = "SELECT  d.DayGroupName, c.ExerciseDay, a.Sequence, b.Exercise, b.AlternateExercise, b.Reps," +
-					" b.Rest, b.Weight, b.Tempo, b.Trainning_Set, b.Image, b.TimeDuration, b.Comments " +
+					" b.Rest, b.Weight, b.Tempo, b.TrainningSet, b.Image, b.TimeDuration, b.Comments " +
 					" FROM  PrizeExerciseUnitSets a, PrizeExerciseUnits b, PrizeExerciseUnitSetForDays c, PrizeExerciseDayGroupNames d " +
 					" WHERE a.ExerciseUnitId = b.Id AND a.UnitSetId = c.ExerciseUnitSetId " +
 					" AND c.ExerciseDay = " + iDay + " AND c.DayGroupNameId = d.Id " +
@@ -198,6 +203,72 @@ public class PrizeDataAccess
 				reader = cmd.ExecuteReader();
 				ds.Load(reader, LoadOption.PreserveChanges, new String[] { ds.Tables[0].Rows[i]["DayGroupName"].ToString() });
 			}
+			return ds;
+		}
+		finally
+		{
+			db.Database.Connection.Close();
+		}
+	}
+
+	public List<ExerciseUnit> GetDayGroupedExerciseUnits(int iPlanWeekId, int GroupNameId, int iDay)
+	{
+		db.Database.Connection.Open();
+		DbCommand cmd = db.Database.Connection.CreateCommand();
+		List <ExerciseUnit> units = new List<ExerciseUnit>();
+		try
+		{
+			DataSet ds = new DataSet();
+			cmd.CommandText = "SELECT  b.UnitType, d.DayGroupName, c.ExerciseDay, a.Sequence, b.Exercise, b.AlternateExercise, b.Reps," +
+				" b.Rest, b.Weight, b.Tempo, b.TrainningSet, b.Image, b.TimeDuration, b.Comments, b.UnitContent " +
+				" FROM  PrizeExerciseUnitSets a, PrizeExerciseUnits b, PrizeExerciseUnitSetForDays c, PrizeExerciseDayGroupNames d " +
+				" WHERE a.ExerciseUnitId = b.Id AND a.UnitSetId = c.ExerciseUnitSetId " +
+				" AND c.ExerciseDay = " + iDay + " AND c.DayGroupNameId = d.Id " +
+				" AND c.ExercisePlanWeekId = " + iPlanWeekId +
+				" AND d.Id = " + GroupNameId.ToString() + " ORDER BY a.Sequence";
+			DbDataReader reader = cmd.ExecuteReader();
+			ds.Load(reader, LoadOption.PreserveChanges, new String[] { GroupNameId.ToString() });
+			foreach (DataRow row in ds.Tables[0].Rows)
+			{
+				string typeName = row["UnitType"].ToString();
+				Assembly asm = Assembly.GetExecutingAssembly();
+				XmlSerializer xs = new XmlSerializer(asm.GetType(typeName));
+				MemoryStream ms = new MemoryStream(ASCIIEncoding.ASCII.GetBytes(row["UnitContent"].ToString()));
+				ms.Position = 0;
+				FitnessExerciseUnit unit = (FitnessExerciseUnit)xs.Deserialize(ms);
+
+				unit.Exercise = row["Exercise"].ToString();
+				unit.DayGroupName = row["DayGroupName"].ToString();
+				unit.ExerciseDay = int.Parse(row["ExerciseDay"].ToString());
+				unit.Sequence = row["Sequence"].ToString();
+				unit.Image = row["Image"].ToString();
+				unit.TimeDuration = int.Parse(row["TimeDuration"].ToString());
+				unit.Comments = row["Comments"].ToString();
+				units.Add(unit);
+			}
+			return units;
+		}
+		finally
+		{
+			db.Database.Connection.Close();
+		}
+	}
+
+	public DataSet GetExerciseDayGroups(int iPlanWeekId, int iDay)
+	{
+		db.Database.Connection.Open();
+		DbCommand cmd = db.Database.Connection.CreateCommand();
+		cmd.CommandText = "SELECT  d.Id as GroupNameId, d.DayGroupName, c.ExerciseDay, MAX(c.Id) as DayGroupId " +
+			" FROM PrizeExerciseUnitSetForDays c " +
+			" JOIN PrizeExerciseDayGroupNames d ON c.DayGroupNameId = d.Id "+
+			 " WHERE 1=1 " +
+			 " AND c.ExercisePlanWeekId = " + iPlanWeekId +
+			 " AND c.ExerciseDay = " + iDay + " GROUP BY d.id, d.DayGroupName, c.ExerciseDay ORDER BY DayGroupId";
+		try
+		{
+			DbDataReader reader = cmd.ExecuteReader();
+			DataSet ds = new DataSet();
+			ds.Load(reader, LoadOption.PreserveChanges, new String[] { "DayGroupInfo" });
 			return ds;
 		}
 		finally

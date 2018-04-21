@@ -482,6 +482,7 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <EntitySet Name="MemberExercisePlans" EntityType="diyptModel.MemberExercisePlan" />
           <EntitySet Name="MemberExercisePlanWeeks" EntityType="diyptModel.MemberExercisePlanWeek" />
           <EntitySet Name="MemberFoodPlanWeeks" EntityType="diyptModel.MemberFoodPlanWeek" />
+          <EntitySet Name="MemberManualPayments" EntityType="diyptModel.MemberManualPayment" />
           <EntitySet Name="MemberPlanWeekResults" EntityType="diyptModel.MemberPlanWeekResult" />
           <EntitySet Name="PrizeErrorLogs" EntityType="diyptModel.PrizeErrorLog" />
           <EntitySet Name="PrizeExerciseDayGroupNames" EntityType="diyptModel.PrizeExerciseDayGroupName" />
@@ -515,7 +516,6 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
             <End Role="PrizeExercisePlanWeek" EntitySet="PrizeExercisePlanWeeks" />
           </AssociationSet>
           <EntitySet Name="cmsMembers" EntityType="diyptModel.cmsMember" />
-          <EntitySet Name="MemberManualPayments" EntityType="diyptModel.MemberManualPayment" />
           </EntityContainer>
         <EntityType Name="PrizePlanProgram">
           <Key>
@@ -602,6 +602,19 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="StartWeek" Type="Int32" Nullable="false" />
           <Property Name="EndWeek" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberManualPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="MemberExercisePlanId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaidDate" Type="DateTime" Precision="3" />
+          <Property Name="TerminatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="MemberPlanWeekResult">
           <Key>
@@ -927,19 +940,6 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
           <Property Name="LoginName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="MemberManualPayment">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemberId" Type="Int32" Nullable="false" />
-          <Property Name="MemberExercisePlanId" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="PaidDate" Type="DateTime" Precision="3" />
-          <Property Name="TerminatedDate" Type="DateTime" Precision="3" />
-          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1031,6 +1031,20 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
                 <ScalarProperty Name="Food3" ColumnName="Food3" />
                 <ScalarProperty Name="Food2" ColumnName="Food2" />
                 <ScalarProperty Name="Food1" ColumnName="Food1" />
+                <ScalarProperty Name="MemberExercisePlanId" ColumnName="MemberExercisePlanId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberManualPayments">
+            <EntityTypeMapping TypeName="diyptModel.MemberManualPayment">
+              <MappingFragment StoreEntitySet="MemberManualPayments">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="TerminatedDate" ColumnName="TerminatedDate" />
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="MemberExercisePlanId" ColumnName="MemberExercisePlanId" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1338,20 +1352,6 @@ warning 6002: The table/view 'diypt.dbo.PrizeSysConfigs' does not have a primary
                 <ScalarProperty Name="LoginName" ColumnName="LoginName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="nodeId" ColumnName="nodeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MemberManualPayments">
-            <EntityTypeMapping TypeName="diyptModel.MemberManualPayment">
-              <MappingFragment StoreEntitySet="MemberManualPayments">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="TerminatedDate" ColumnName="TerminatedDate" />
-                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="MemberExercisePlanId" ColumnName="MemberExercisePlanId" />
-                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -41,6 +41,8 @@ public partial class DIYPTEntities : DbContext
 
     public virtual DbSet<MemberFoodPlanWeek> MemberFoodPlanWeeks { get; set; }
 
+    public virtual DbSet<MemberManualPayment> MemberManualPayments { get; set; }
+
     public virtual DbSet<MemberPlanWeekResult> MemberPlanWeekResults { get; set; }
 
     public virtual DbSet<PrizeErrorLog> PrizeErrorLogs { get; set; }
@@ -82,8 +84,6 @@ public partial class DIYPTEntities : DbContext
     public virtual DbSet<PrizeSysConfig> PrizeSysConfigs { get; set; }
 
     public virtual DbSet<cmsMember> cmsMembers { get; set; }
-
-    public virtual DbSet<MemberManualPayment> MemberManualPayments { get; set; }
 
 }
 
