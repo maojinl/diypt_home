@@ -117,9 +117,9 @@ public class PrizeMemberPlanManager
 				else
 					currentEndDate = PrizeCommonUtils.GetSystemDate();
 
-				IQueryable<MemberExercisePlan> myNotPaidPlans = (from c in db.MemberExercisePlans
+				List<MemberExercisePlan> myNotPaidPlans = (from c in db.MemberExercisePlans
 													 where c.MemberId == memberId && (c.Status.EndsWith(PrizeConstants.STATUS_PLAN_NOT_PAID) || c.Status.EndsWith(PrizeConstants.STATUS_PLAN_MANUAL_PAYMENT))
-													 select c);
+													 select c).ToList();
 
 				foreach (MemberExercisePlan notPaidPlan in myNotPaidPlans)
 				{
@@ -182,7 +182,8 @@ public class PrizeMemberPlanManager
 					startDate = startDate.AddDays(7);
 					endDate = endDate.AddDays(7);
 				}
-				IOrderedEnumerable<PrizeExercisePlanWeek> planWeeks = plan.PrizeExercisePlanWeeks.OrderBy(s => s.StartWeek);
+
+				IList<PrizeExercisePlanWeek> planWeeks = plan.PrizeExercisePlanWeeks.OrderBy(s => s.StartWeek).ToList();
 				foreach (PrizeExercisePlanWeek planWeek in planWeeks)
 				{
 					for (int i = planWeek.StartWeek; i <= planWeek.EndWeek; i++)

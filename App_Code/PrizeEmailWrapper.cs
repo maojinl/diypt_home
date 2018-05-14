@@ -302,7 +302,7 @@ public class PrizeEmailWrapper
 							continue;
 						PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ReviveMeEmail, "Revive Me", member.Firstname, "" + (memberPlanWeek.Week+1));
 					}
-
+					
 					dtSendEmailBegin = now.AddDays(-6);
 					membersList = (from a in db.PrizeMembers
 									   join b in db.cmsMembers on a.UmbracoId equals b.nodeId
@@ -322,7 +322,11 @@ public class PrizeEmailWrapper
 																 select c).FirstOrDefault();
 						if (memberPlanWeek == null)
 							continue;
-						PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ReviveMeEmailTrial, "Revive Me", member.Firstname, "" + (memberPlanWeek.Week + 1));
+
+						if (memberPlanWeek.Week < 2)
+						{
+							PrepareSimpleEmailByType(member, PrizeConstants.EmailType.ReviveMeEmailTrial, "Revive Me", member.Firstname, "" + (memberPlanWeek.Week));
+						}
 					}
 				}
 			}
